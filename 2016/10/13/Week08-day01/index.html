@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Week08-day012016/10/13 星期四 9:16:14今日概要 回顾Http协议 OKHttp3 Picasso  Http协议 Android中通信常用方式（两种） 一种基于Http协议 下方详情：HTTP协议你所需要知道的 Http协议基于请求响应模式：服务端高冷，要客户端向服务器请求 三次握手       一种基于Socket协议 OKHttpDemo Get请求 同步请求方式">
+<meta name="keywords" content="Android学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week08-day01">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/Week08-day01/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="Week08-day012016/10/13 星期四 9:16:14今日概要 回顾Http协议 OKHttp3 Picasso  Http协议 Android中通信常用方式（两种） 一种基于Http协议 下方详情：HTTP协议你所需要知道的 Http协议基于请求响应模式：服务端高冷，要客户端向服务器请求 三次握手       一种基于Socket协议 OKHttpDemo Get请求 同步请求方式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/OC4uLad.png">
+<meta property="og:image" content="http://i.imgur.com/SwttWre.gif">
+<meta property="og:image" content="http://i.imgur.com/KDukRrM.png">
+<meta property="og:image" content="http://i.imgur.com/tHSwOGa.png">
+<meta property="og:image" content="http://i.imgur.com/yLply08.png">
+<meta property="og:image" content="http://i.imgur.com/lG9DTy8.png">
+<meta property="og:image" content="http://i.imgur.com/qjhvMv4.png">
+<meta property="og:image" content="http://i.imgur.com/wLIZ2Yh.png">
+<meta property="og:image" content="http://i.imgur.com/Ti0obvr.png">
+<meta property="og:image" content="http://i.imgur.com/BFLmmFf.png">
+<meta property="og:image" content="http://i.imgur.com/JDqLfrU.png">
+<meta property="og:image" content="http://i.imgur.com/7YrRo5Z.png">
+<meta property="og:image" content="http://i.imgur.com/D5dqJ3Q.png">
+<meta property="og:image" content="http://i.imgur.com/C2sFNcX.png">
+<meta property="og:image" content="http://i.imgur.com/ZO0oDQD.png">
+<meta property="og:image" content="http://i.imgur.com/YDZOgzI.png">
+<meta property="og:image" content="http://i.imgur.com/bH48opI.png">
+<meta property="og:image" content="http://i.imgur.com/NvXfvGp.png">
+<meta property="og:image" content="http://i.imgur.com/qL3WyLY.png">
+<meta property="og:image" content="http://i.imgur.com/XY0qSNS.png">
+<meta property="og:image" content="http://i.imgur.com/ojqKnRE.png">
+<meta property="og:image" content="http://i.imgur.com/ec1Vykw.png">
+<meta property="og:image" content="http://i.imgur.com/fCipI12.png">
+<meta property="og:image" content="http://i.imgur.com/I0BYrEE.png">
+<meta property="og:image" content="http://i.imgur.com/O8BaNeG.png">
+<meta property="og:updated_time" content="2018-01-09T14:34:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week08-day01">
+<meta name="twitter:description" content="Week08-day012016/10/13 星期四 9:16:14今日概要 回顾Http协议 OKHttp3 Picasso  Http协议 Android中通信常用方式（两种） 一种基于Http协议 下方详情：HTTP协议你所需要知道的 Http协议基于请求响应模式：服务端高冷，要客户端向服务器请求 三次握手       一种基于Socket协议 OKHttpDemo Get请求 同步请求方式">
+<meta name="twitter:image" content="http://i.imgur.com/OC4uLad.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/13/Week08-day01/"/>
+
+
+
+
+
+  <title>Week08-day01 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/13/Week08-day01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week08-day01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T09:16:14+08:00">
+                2016-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Week08-day01"><a href="#Week08-day01" class="headerlink" title="Week08-day01"></a>Week08-day01</h2><h5 id="2016-10-13-星期四-9-16-14"><a href="#2016-10-13-星期四-9-16-14" class="headerlink" title="2016/10/13 星期四 9:16:14"></a>2016/10/13 星期四 9:16:14</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾Http协议</strong></li>
+<li><strong>OKHttp3</strong></li>
+<li><strong>Picasso</strong></li>
+</ol>
+<h3 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h3><ol>
+<li>Android中通信常用方式（<strong>两种</strong>）<ol>
+<li>一种基于<strong>Http</strong>协议<ul>
+<li>下方详情：<strong>HTTP协议你所需要知道的</strong></li>
+<li>Http协议基于请求响应模式：服务端高冷，要客户端向服务器请求</li>
+<li>三次握手<ul>
+<li><img src="http://i.imgur.com/OC4uLad.png" alt=""></li>
+<li><img src="http://i.imgur.com/SwttWre.gif" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一种基于<strong>Socket</strong>协议</li>
+<li>OKHttpDemo<ol>
+<li><strong>Get请求</strong><ul>
+<li><strong>同步请求方式</strong>：<ul>
+<li><img src="http://i.imgur.com/KDukRrM.png" alt=""></li>
+<li><img src="http://i.imgur.com/tHSwOGa.png" alt=""></li>
+<li><img src="http://i.imgur.com/yLply08.png" alt=""></li>
+</ul>
+</li>
+<li><strong>异步请求方式</strong><ul>
+<li><img src="http://i.imgur.com/lG9DTy8.png" alt=""></li>
+<li>注意runOnUiThread()<img src="http://i.imgur.com/qjhvMv4.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Post请求</strong><img src="http://i.imgur.com/wLIZ2Yh.png" alt=""><ul>
+<li>同步请求方式<ul>
+<li>普通请求<img src="http://i.imgur.com/Ti0obvr.png" alt=""></li>
+<li>json请求</li>
+</ul>
+</li>
+<li>异步请求方式<ul>
+<li><img src="http://i.imgur.com/BFLmmFf.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>下载</strong><ul>
+<li><img src="http://i.imgur.com/JDqLfrU.png" alt=""></li>
+</ul>
+</li>
+<li><strong>在文件系统中开启响应缓存</strong><ul>
+<li><img src="http://i.imgur.com/7YrRo5Z.png" alt=""></li>
+<li>（2.0版本）</li>
+<li><img src="http://i.imgur.com/D5dqJ3Q.png" alt=""> </li>
+</ul>
+</li>
+<li><strong>指定超时时间</strong><ul>
+<li>连接超时15s</li>
+<li>读写超时20s</li>
+<li>（2.0版本）</li>
+<li><img src="http://i.imgur.com/C2sFNcX.png" alt=""></li>
+</ul>
+</li>
+<li><strong>设置tag标记</strong><ul>
+<li>在request中设置tag</li>
+<li>遍历call的两个队列，取消对应request的tag的call的请求<ul>
+<li><img src="http://i.imgur.com/ZO0oDQD.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="Android-studio模版修改"><a href="#Android-studio模版修改" class="headerlink" title="Android studio模版修改"></a>Android studio模版修改</h3><ol>
+<li>Android studio安装目录—&gt;plugins—&gt;android—&gt;lib—&gt;templates—&gt;gradle-projects(<strong>先备份</strong>)—&gt;NewAndroidProject—&gt;root<ul>
+<li><img src="http://i.imgur.com/YDZOgzI.png" alt=""></li>
+<li><code>//新添加的ButterKnife的apt的插件</code></li>
+<li><code>classpath &#39;com.neenbedankt.gradle.plugins:android-apt:1.8&#39;</code></li>
+</ul>
+</li>
+<li>…—&gt;NewAndroidModule—&gt;root<ul>
+<li><img src="http://i.imgur.com/bH48opI.png" alt=""></li>
+<li><code>//添加了 引入：apt插件</code></li>
+<li><code>apply plugin: &#39;android-apt&#39;</code></li>
+<li><img src="http://i.imgur.com/NvXfvGp.png" alt=""></li>
+<li><code>//butterknife的包的导入</code></li>
+<li><code>compile &#39;com.jakewharton:butterknife:8.4.0&#39;</code></li>
+<li><code>apt &#39;com.jakewharton:butterknife-compiler:8.4.0&#39;</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="HTTP协议你所需要知道的（扩展）"><a href="#HTTP协议你所需要知道的（扩展）" class="headerlink" title="##HTTP协议你所需要知道的（扩展）"></a>##HTTP协议你所需要知道的（扩展）</h2><h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><ul>
+<li>虽然现在已经有很多的开源库帮助我们可以轻而易举的访问网络,  但是我们还是得知道HTTP协议原理。</li>
+</ul>
+<p>###Http简介</p>
+<ul>
+<li>HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。</li>
+<li>基于TCP的协议</li>
+<li>HTTP默认端口号：80</li>
+<li>端口：<ul>
+<li>TCP 0–65535,建议0–1024预留给操作系统，</li>
+<li>UDP 0–65535,</li>
+</ul>
+</li>
+<li><code>HTTP协议基于请求响应模式</code><ul>
+<li>必须先发送请求，服务器才能做出响应</li>
+<li>请求与响应成对的</li>
+</ul>
+</li>
+<li>HTTP协议的版本<ul>
+<li>HTTP/1.1  建立一个连接，可以发送多次请求</li>
+<li>HTTP/1.0  建立一个连接，发送一次请求，断开连接</li>
+</ul>
+</li>
+</ul>
+<p>###HTTP请求</p>
+<pre><code>- Http请求行，请求头，请求体
+</code></pre><ul>
+<li>请求行<ul>
+<li>格式： 请求方式  请求资源路径                协议/版本号</li>
+<li>例如： GET     /video/2015/0709/_wpd.mp4 HTTP/1.1<ul>
+<li>请求方式 Http协议提供了7种方式，常用的有两种get,post</li>
+<li>get:将请求参数追加的url之后，传递到服务器<ul>
+<li>例如：<a href="http://***//video/2015/0709/_wpd.mp4?username=1&amp;page=1&amp;size=10" target="_blank" rel="noopener">http://***//video/2015/0709/_wpd.mp4?username=1&amp;page=1&amp;size=10</a>;</li>
+</ul>
+</li>
+<li>post:将请求参数放置请求体重，用户看不到：所以安全，可以传递大量数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>请求头<ul>
+<li>Accept:text/html,image/*    – 支持的数据类型<ul>
+<li>MIME类型格式：大类型/小类型;例如text/html,text/css,text/javascript</li>
+<li>image;application;Video;Audio;message;multipart等等</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Accept-Encoding:gzip        – 支持压缩格式</li>
+<li>Host:<a href="http://www.alex.com" target="_blank" rel="noopener">http://www.alex.com</a> –访问的主机</li>
+</ul>
+</li>
+<li>请求体<ul>
+<li>请求体，用于提交Post请求提交的数据；最后一个请求头和请求体之间存在一个空行</li>
+</ul>
+</li>
+</ul>
+<p>###HTTP响应    </p>
+<pre><code>- 格式：响应行，响应头，响应体
+</code></pre><ol>
+<li>响应行<ul>
+<li>格式：  协议/格式  响应码  </li>
+<li>例如：  HTTP/1.1 200    OK</li>
+</ul>
+</li>
+<li>响应头<ul>
+<li>Server: nginx/1.6.0     – 服务器型号</li>
+<li>Date: Mon, 27 Jun 2016 05:51:06 GMT –时间</li>
+<li>Content-Type: application/json;charset=UTF-8 –数据类型</li>
+<li>Transfer-Encoding: chunked</li>
+<li>Connection: keep-alive 连接状态</li>
+<li>Access-Control-Allow-Origin: *</li>
+</ul>
+</li>
+<li>响应体<ul>
+<li>返回我们需要的数据，比如我们经常拿到的json或者xml等等</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>###Tips</p>
+<ol>
+<li>将字符串的#rgb转成color资源<ul>
+<li>Color.parseColor(String)</li>
+<li><img src="http://i.imgur.com/qL3WyLY.png" alt=""></li>
+</ul>
+</li>
+<li>Android TextView中可以设置html代码<ul>
+<li><img src="http://i.imgur.com/XY0qSNS.png" alt=""></li>
+<li><img src="http://i.imgur.com/ojqKnRE.png" alt=""></li>
+</ul>
+</li>
+<li>OKHttp工具类的封装<ul>
+<li><img src="http://i.imgur.com/ec1Vykw.png" alt=""></li>
+</ul>
+</li>
+<li>复习接口回调<ul>
+<li><img src="http://i.imgur.com/fCipI12.png" alt=""></li>
+</ul>
+</li>
+<li>复习Handler<ul>
+<li><img src="http://i.imgur.com/I0BYrEE.png" alt=""></li>
+<li><img src="http://i.imgur.com/O8BaNeG.png" alt=""></li>
+</ul>
+</li>
+<li>Map遍历foreach（需要的数据类型：数据源map.entrySet()）</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android学习/" rel="tag"># Android学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/13/Week08-09/" rel="next" title="Week08-09">
+                <i class="fa fa-chevron-left"></i> Week08-09
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/17/Week08-day03/" rel="prev" title="Week08-day03">
+                Week08-day03 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week08-day01"><span class="nav-number">1.</span> <span class="nav-text">Week08-day01</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2016-10-13-星期四-9-16-14"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">2016/10/13 星期四 9:16:14</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日概要"><span class="nav-number">2.</span> <span class="nav-text">今日概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http协议"><span class="nav-number">2.1.</span> <span class="nav-text">Http协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-studio模版修改"><span class="nav-number">2.2.</span> <span class="nav-text">Android studio模版修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP协议你所需要知道的（扩展）"><span class="nav-number">3.</span> <span class="nav-text">##HTTP协议你所需要知道的（扩展）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言："><span class="nav-number">3.1.</span> <span class="nav-text">前言：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

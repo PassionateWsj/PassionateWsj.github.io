@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##Week06_day04    ######2016/9/29 星期四 9:41:13   茶百科 锁定竖屏  xml清单配置文件中android:screenOrientation=&amp;quot;portrait&amp;quot; 主界面 + 抽屉布局 在style.xml样式中修改成NoActionBar 适配 string colors 能用@android:color/系统自带颜色   dim">
+<meta name="keywords" content="Android学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week06_Day04笔记">
+<meta property="og:url" content="http://yoursite.com/2016/09/29/Week06-Day04笔记/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="##Week06_day04    ######2016/9/29 星期四 9:41:13   茶百科 锁定竖屏  xml清单配置文件中android:screenOrientation=&amp;quot;portrait&amp;quot; 主界面 + 抽屉布局 在style.xml样式中修改成NoActionBar 适配 string colors 能用@android:color/系统自带颜色   dim">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/YMhDxta.png">
+<meta property="og:image" content="http://i.imgur.com/yAfE1P0.png">
+<meta property="og:image" content="http://i.imgur.com/1ZQVZLj.png">
+<meta property="og:image" content="http://i.imgur.com/kJda1H9.png">
+<meta property="og:image" content="http://i.imgur.com/EjO0m3v.png">
+<meta property="og:image" content="http://i.imgur.com/g5VapkJ.png">
+<meta property="og:image" content="http://i.imgur.com/E4go77M.png">
+<meta property="og:image" content="http://i.imgur.com/LuIUkFy.png">
+<meta property="og:image" content="http://i.imgur.com/6tnN0hp.png">
+<meta property="og:image" content="http://i.imgur.com/97Gh9Db.png">
+<meta property="og:image" content="http://i.imgur.com/T6cqVbS.png">
+<meta property="og:updated_time" content="2018-01-09T14:34:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week06_Day04笔记">
+<meta name="twitter:description" content="##Week06_day04    ######2016/9/29 星期四 9:41:13   茶百科 锁定竖屏  xml清单配置文件中android:screenOrientation=&amp;quot;portrait&amp;quot; 主界面 + 抽屉布局 在style.xml样式中修改成NoActionBar 适配 string colors 能用@android:color/系统自带颜色   dim">
+<meta name="twitter:image" content="http://i.imgur.com/YMhDxta.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/29/Week06-Day04笔记/"/>
+
+
+
+
+
+  <title>Week06_Day04笔记 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/29/Week06-Day04笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week06_Day04笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-29T09:41:13+08:00">
+                2016-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##Week06_day04   </p>
+<p>######2016/9/29 星期四 9:41:13 </p>
+<ol>
+<li><h3 id="茶百科"><a href="#茶百科" class="headerlink" title="茶百科"></a>茶百科</h3><ul>
+<li>锁定竖屏<br>  <code>xml清单配置文件中android:screenOrientation=&quot;portrait&quot;</code></li>
+<li>主界面 + 抽屉布局</li>
+<li>在style.xml样式中修改成NoActionBar</li>
+<li><strong>适配</strong><ul>
+<li>string</li>
+<li>colors<ul>
+<li>能用@android:color/系统自带颜色</li>
+</ul>
+</li>
+<li><strong>dimens</strong></li>
+<li><strong>styles</strong><ul>
+<li>要加备注易于区分</li>
+<li>可用于重复的布局</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tools工具（预览功能） </li>
+</ul>
+</li>
+<li><h3 id="给Fragment传值不要用构造方法，利用setArguments-bundle-来传值（为了方便可以自定义快捷键）"><a href="#给Fragment传值不要用构造方法，利用setArguments-bundle-来传值（为了方便可以自定义快捷键）" class="headerlink" title="给Fragment传值不要用构造方法，利用setArguments(bundle)来传值（为了方便可以自定义快捷键）"></a><strong>给Fragment传值不要用构造方法，利用setArguments(bundle)来传值（为了方便可以自定义快捷键）</strong><img src="http://i.imgur.com/YMhDxta.png" alt=""></h3></li>
+<li><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a><strong>设计模式</strong></h3><ul>
+<li>需要能看懂UML建模图<ul>
+<li><strong>类关系图</strong><ul>
+<li><img src="http://i.imgur.com/yAfE1P0.png" alt=""></li>
+<li>减号为私有</li>
+<li>加好为公有</li>
+</ul>
+</li>
+<li><strong>用例图</strong><ul>
+<li><img src="http://i.imgur.com/1ZQVZLj.png" alt=""></li>
+</ul>
+</li>
+<li>……</li>
+</ul>
+</li>
+<li><strong>阅读《大话设计模式》.pdf</strong><ul>
+<li>通俗易懂</li>
+</ul>
+</li>
+<li><strong>6个原则</strong><ol>
+<li>依赖倒转原则：抽象不应该依赖细节，细节应该依赖于抽象</li>
+</ol>
+<ul>
+<li>……</li>
+</ul>
+</li>
+<li><strong>建造者设计模式</strong><ul>
+<li>为了统一，定义一个抽象类（这样就不会缺胳膊少腿了）<img src="http://i.imgur.com/kJda1H9.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h6 id="手机投影（asm）"><a href="#手机投影（asm）" class="headerlink" title="手机投影（asm）"></a>手机投影（asm）</h6></li>
+<li><p>导第三方module控件框架方法</p>
+<ol>
+<li>写布局文件时，复制全路径方法</li>
+</ol>
+</li>
+<li><h3 id="ViewPager预加载"><a href="#ViewPager预加载" class="headerlink" title="ViewPager预加载"></a>ViewPager预加载</h3><pre><code>预加载页数：前后可以预加载的数量，默认是1，必须预加载1页
+vp_main.setOffscreenPageLimit(4);
+</code></pre></li>
+<li><h1 id="组合控件"><a href="#组合控件" class="headerlink" title="组合控件"></a><strong>组合控件</strong></h1><ul>
+<li>使用方式：把原有的控件组合到一起去使用，当成一个控件</li>
+<li>自定义标题栏</li>
+<li><img src="http://i.imgur.com/EjO0m3v.png" alt=""><ul>
+<li>写一个布局</li>
+<li>通过<br><code>&lt;include layout=&quot;@layout/***&quot;&gt;</code>使用</li>
+<li><strong><em>step</em></strong></li>
+<li><img src="http://i.imgur.com/g5VapkJ.png" alt=""></li>
+<li><img src="http://i.imgur.com/E4go77M.png" alt=""></li>
+</ul>
+</li>
+<li><strong>在布局文件中设置的属性值</strong><ol>
+<li>得到一个属性工具TypedArray<br><code>TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.mytitle);</code><br><img src="http://i.imgur.com/LuIUkFy.png" alt=""></li>
+<li>得到属性的数量<br> <code>int count = a.getIndexCount();</code><br><img src="http://i.imgur.com/6tnN0hp.png" alt=""></li>
+<li>遍历取出在布局文件中设置的属性值<br> <img src="http://i.imgur.com/97Gh9Db.png" alt=""></li>
+<li>回收资源<br> <img src="http://i.imgur.com/T6cqVbS.png" alt=""></li>
+</ol>
+</li>
+<li>尝试看其他的自定义View属性，丰富view<h1 id="8-自定义View链接"><a href="#8-自定义View链接" class="headerlink" title="8. 自定义View链接"></a>8. 自定义View链接</h1><a href="http://note.youdao.com/share/?id=af71fb1f4cd193f7d5774bae2d878907&amp;type=note#/" title="自定义控件---铭少" target="_blank" rel="noopener">http://note.youdao.com/share/?id=af71fb1f4cd193f7d5774bae2d878907&amp;type=note#/</a></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android学习/" rel="tag"># Android学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/28/Week06-Day03笔记/" rel="next" title="Week06_Day03笔记">
+                <i class="fa fa-chevron-left"></i> Week06_Day03笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/30/Week06-Day05笔记/" rel="prev" title="Week06_Day05笔记">
+                Week06_Day05笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#茶百科"><span class="nav-number">1.</span> <span class="nav-text">茶百科</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Fragment传值不要用构造方法，利用setArguments-bundle-来传值（为了方便可以自定义快捷键）"><span class="nav-number">2.</span> <span class="nav-text">给Fragment传值不要用构造方法，利用setArguments(bundle)来传值（为了方便可以自定义快捷键）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">3.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#手机投影（asm）"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">手机投影（asm）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewPager预加载"><span class="nav-number">4.</span> <span class="nav-text">ViewPager预加载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合控件"><span class="nav-number"></span> <span class="nav-text">组合控件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-自定义View链接"><span class="nav-number"></span> <span class="nav-text">8. 自定义View链接</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

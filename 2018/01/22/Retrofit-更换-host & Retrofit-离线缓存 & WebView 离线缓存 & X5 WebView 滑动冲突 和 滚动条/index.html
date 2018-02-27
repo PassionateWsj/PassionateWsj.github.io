@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今日概要 A B C   Tips 动态改变 Retrofit 网络请求中的服务器连接  添加一个允许运行时改变 hostname 的拦截器 12345678910111213141516171819202122232425262728class ChangeableBaseUrlInterceptor : Interceptor &amp;#123;    @Volatile private var h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018-01-22 Retrofit 更换 host">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/Retrofit-更换-host & Retrofit-离线缓存 & WebView 离线缓存 & X5 WebView 滑动冲突 和 滚动条/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="今日概要 A B C   Tips 动态改变 Retrofit 网络请求中的服务器连接  添加一个允许运行时改变 hostname 的拦截器 12345678910111213141516171819202122232425262728class ChangeableBaseUrlInterceptor : Interceptor &amp;#123;    @Volatile private var h">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-27T03:31:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018-01-22 Retrofit 更换 host">
+<meta name="twitter:description" content="今日概要 A B C   Tips 动态改变 Retrofit 网络请求中的服务器连接  添加一个允许运行时改变 hostname 的拦截器 12345678910111213141516171819202122232425262728class ChangeableBaseUrlInterceptor : Interceptor &amp;#123;    @Volatile private var h">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/22/Retrofit-更换-host & Retrofit-离线缓存 & WebView 离线缓存 & X5 WebView 滑动冲突 和 滚动条/"/>
+
+
+
+
+
+  <title>2018-01-22 Retrofit 更换 host | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/Retrofit-更换-host & Retrofit-离线缓存 & WebView 离线缓存 & X5 WebView 滑动冲突 和 滚动条/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018-01-22 Retrofit 更换 host</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T10:11:15+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>A</strong></li>
+<li><strong>B</strong></li>
+<li><strong>C</strong></li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li><p>动态改变 Retrofit 网络请求中的服务器连接</p>
+<ul>
+<li><p>添加一个允许运行时改变 hostname 的拦截器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class ChangeableBaseUrlInterceptor : Interceptor &#123;</span><br><span class="line">    @Volatile private var host: HttpUrl? = null</span><br><span class="line"></span><br><span class="line">    fun setHost(url: String) &#123;</span><br><span class="line">        this.host = HttpUrl.parse(url)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Throws(IOException::class)</span><br><span class="line">    override fun intercept(chain: Interceptor.Chain): Response &#123;</span><br><span class="line">         val newRequest = host?.let &#123;</span><br><span class="line">            val newUrl = chain.request().url().newBuilder()</span><br><span class="line">                    .scheme(it.scheme())</span><br><span class="line">                    .host(it.url().toURI().host)</span><br><span class="line">                    .port(it.port())</span><br><span class="line">                    .build()</span><br><span class="line"></span><br><span class="line">            return@let chain.request().newBuilder()</span><br><span class="line">                    .url(newUrl)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">         return if(newRequest!=null)&#123;</span><br><span class="line">             chain.proceed(newRequest)</span><br><span class="line">         &#125;else&#123;</span><br><span class="line">             chain.proceed(chain.request())</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Retrofit 离线缓存</p>
+<ol>
+<li><p>设置缓存路径</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();</span><br><span class="line"></span><br><span class="line">File cacheDir = new File(ctx.getCacheDir(), &quot;response&quot;);</span><br><span class="line">//缓存的最大尺寸10m</span><br><span class="line">Cache cache = new Cache(cacheDir, 1024 * 1024 * 10);</span><br><span class="line">clientBuilder.cache(cache);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>2. 添加拦截器
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class CacheInterceptor : Interceptor &#123;</span><br><span class="line"></span><br><span class="line">    override fun intercept(chain: Interceptor.Chain): okhttp3.Response &#123;</span><br><span class="line">        var request = chain.request()</span><br><span class="line">        val netAvailable = HttpUtil.isConnected(SYPApplication.globalContext)</span><br><span class="line"></span><br><span class="line">        if (netAvailable) &#123;</span><br><span class="line">            request = request.newBuilder()</span><br><span class="line">                    //网络可用 强制从网络获取数据</span><br><span class="line">                    .cacheControl(CacheControl.FORCE_NETWORK)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            request = request.newBuilder()</span><br><span class="line">                    //网络不可用 从缓存获取</span><br><span class="line">                    .cacheControl(CacheControl.FORCE_CACHE)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line">        var response = chain.proceed(request)</span><br><span class="line">        if (netAvailable) &#123;</span><br><span class="line">            response = response.newBuilder()</span><br><span class="line">                    .removeHeader(&quot;Pragma&quot;)</span><br><span class="line">                    // 有网络时 设置缓存超时时间1个小时</span><br><span class="line">                    .header(&quot;Cache-Control&quot;, &quot;public, max-age=&quot; + 60 * 60)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            response = response.newBuilder()</span><br><span class="line">                    .removeHeader(&quot;Pragma&quot;)</span><br><span class="line">                    // 无网络时，设置超时为1周</span><br><span class="line">                    .header(&quot;Cache-Control&quot;, &quot;public, only-if-cached, max-stale=&quot; + 7 * 24 * 60 * 60)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line">        return response</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>WebView 离线缓存</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">webSettings?.cacheMode = if (HttpUtil.isConnected(this)) &#123;</span><br><span class="line">    // 缓存模式为无缓存</span><br><span class="line">    WebSettings.LOAD_NO_CACHE</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    WebSettings.LOAD_CACHE_ELSE_NETWORK</span><br><span class="line">&#125;</span><br><span class="line">val cacheDir = File(cacheDir, &quot;webviewCache&quot;)</span><br><span class="line">//设置数据库缓存路径</span><br><span class="line">webSettings?.databasePath = cacheDir.absolutePath</span><br><span class="line">//设置 应用 缓存目录</span><br><span class="line">webSettings?.setAppCachePath(cacheDir.absolutePath)</span><br><span class="line">//开启 DOM 存储功能</span><br><span class="line">webSettings?.domStorageEnabled = true</span><br><span class="line">//开启 数据库 存储功能</span><br><span class="line">webSettings?.databaseEnabled = true</span><br><span class="line">//开启 应用缓存 功能</span><br><span class="line">webSettings?.setAppCacheEnabled(true)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>X5 的 WebView 与 SwipeRefreshLayout 滑动冲突</p>
+<ul>
+<li><p>注意 : <code>this.getScrollY()</code> 永远为 0 ，想要获取 WebView 顶部到 WebView 可视顶部距离的方法为 <code>this.getWebScrollY()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 重写 WebView 的onScrollChagned 方法</span><br><span class="line">public class WebView4Scroll extends WebView &#123;</span><br><span class="line">    private SwipeRefreshLayout swipeRefreshLayout;</span><br><span class="line"></span><br><span class="line">    public WebView4Scroll(Context context, SwipeRefreshLayout swipeRefreshLayout)&#123;</span><br><span class="line">        super(context);</span><br><span class="line">        this.swipeRefreshLayout = swipeRefreshLayout;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onScrollChanged(int l, int t, int oldl, int oldt) &#123;</span><br><span class="line">        super.onScrollChanged(l, t, oldl, oldt);</span><br><span class="line">        if (this.getWebScrollY() == 0)&#123;</span><br><span class="line">            swipeRefreshLayout.setEnabled(true);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            swipeRefreshLayout.setEnabled(false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>X5 的 WebView 去除滚动条</p>
+<pre><code>mWebView?.x5WebViewExtension?.setScrollBarFadingEnabled(false)
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/2018-01-13-Kotlin关键字/" rel="next" title="2018-01-17 Kotlin关键字">
+                <i class="fa fa-chevron-left"></i> 2018-01-17 Kotlin关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/22/2018-01-22/" rel="prev" title="Mon Jan 22 2018 00:00:00 GMT+0800 (CST)">
+                Mon Jan 22 2018 00:00:00 GMT+0800 (CST) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#今日概要"><span class="nav-number">1.</span> <span class="nav-text">今日概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

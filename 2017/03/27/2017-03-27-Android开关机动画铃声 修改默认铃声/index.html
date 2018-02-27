@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="日常笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2017/3/27 10:15今日概要 回顾昨日知识点 Android开关机动画铃声 修改默认铃声  笔记Android开关机动画铃声 开关机动画的启动 Android系统在init.rc中定义了很多Service，定义的Service将会被init进程创建，其中的服务包含开机动画   源文件SurfaceFlinger.cpp 当android系统boot时，开始加载动画和开机铃声status_">
+<meta name="keywords" content="日常笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开关机动画铃声 修改默认铃声">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/2017-03-27-Android开关机动画铃声 修改默认铃声/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="2017/3/27 10:15今日概要 回顾昨日知识点 Android开关机动画铃声 修改默认铃声  笔记Android开关机动画铃声 开关机动画的启动 Android系统在init.rc中定义了很多Service，定义的Service将会被init进程创建，其中的服务包含开机动画   源文件SurfaceFlinger.cpp 当android系统boot时，开始加载动画和开机铃声status_">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/ASKTvQM.png">
+<meta property="og:updated_time" content="2018-01-11T09:08:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开关机动画铃声 修改默认铃声">
+<meta name="twitter:description" content="2017/3/27 10:15今日概要 回顾昨日知识点 Android开关机动画铃声 修改默认铃声  笔记Android开关机动画铃声 开关机动画的启动 Android系统在init.rc中定义了很多Service，定义的Service将会被init进程创建，其中的服务包含开机动画   源文件SurfaceFlinger.cpp 当android系统boot时，开始加载动画和开机铃声status_">
+<meta name="twitter:image" content="http://i.imgur.com/ASKTvQM.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/2017-03-27-Android开关机动画铃声 修改默认铃声/"/>
+
+
+
+
+
+  <title>Android开关机动画铃声 修改默认铃声 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/2017-03-27-Android开关机动画铃声 修改默认铃声/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android开关机动画铃声 修改默认铃声</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T10:15:05+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2017-3-27-10-15"><a href="#2017-3-27-10-15" class="headerlink" title="2017/3/27 10:15"></a>2017/3/27 10:15</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>Android开关机动画铃声</strong></li>
+<li><strong>修改默认铃声</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Android开关机动画铃声"><a href="#Android开关机动画铃声" class="headerlink" title="Android开关机动画铃声"></a>Android开关机动画铃声</h3><ol>
+<li>开关机动画的启动<ul>
+<li>Android系统在init.rc中定义了很多Service，定义的Service将会被init进程创建，其中的服务包含开机动画</li>
+</ul>
+</li>
+<li>源文件SurfaceFlinger.cpp<ul>
+<li>当android系统boot时，开始加载动画和开机铃声<pre><code>status_tSurfaceFlinger::readyToRun()
+{
+// start boot animation service  
+property_set(&quot;ctl.start&quot;, &quot;bootanim&quot;);//  
+}
+</code></pre></li>
+<li>当Android完成boot后，关闭动画和开机铃声<pre><code>voidSurfaceFlinger::bootFinished()  
+{  
+//stop bootanim service  
+property_set(&quot;ctl.stop&quot;, &quot;bootanim&quot;);  
+}  
+</code></pre></li>
+</ul>
+</li>
+<li><p>bootanimationservice详解</p>
+<ul>
+<li>所在位置：/frameworks/base/cmds/bootanimation, 主要有两个文件<ul>
+<li>bootanimation_main.cpp</li>
+<li>bootAnimation.cpp</li>
+</ul>
+</li>
+<li><p>bootanimation_main.cpp是主入口文件</p>
+<ul>
+<li><p>其主要的功能是根据传进来的参数决定是是要播放开机还是关机动画/铃音，并且启动BootAnimation:<br>BootAnimation.cpp集成自Thread，在创建时会调用readyToRun()-&gt;threadLoop():</p>
+<pre><code>int main(intargc, char** argv)  
+{  
+   // ...  
+if(argc &gt; 1){  
+   if(!strcmp(argv[1],&quot;shut&quot;))  
+  setBoot =false;  
+  }  
+
+  if(argc &gt; 2){  
+  if(!strcmp(argv[2],&quot;nomp3&quot;))  
+  sePaly =false;  
+  }  
+
+  if(argc &gt; 3){  
+   if(!strcmp(argv[3],&quot;rotate&quot;))  
+  setRotated= true;  
+  }  
+
+// ...  
+
+sp&lt;BootAnimation&gt;boot = new BootAnimation(setBoot,sePaly,setRotated);  
+
+XLOGD(&quot;joinThreadPool...&quot;);  
+IPCThreadState::self()-&gt;joinThreadPool();  
+XLOGD(&quot;exit bootanimation...&quot;);  
+}  
+
+return 0;  
+
+}  
+</code></pre></li>
+</ul>
+</li>
+<li><p>readyToRun() 方法判断/system/media/bootanimation.zip(shutanimaion.zip)是否存在，如果存在，则将 mAndroidAnimation 设置false，这个变量决定threadLoop中调用android（）还是movie（）来具体实现动画的播放。</p>
+<pre><code>status_tBootAnimation::readyToRun() {  
+……………………………………  
+mAndroidAnimation = false;  
+   if(bBootOrShutDown){  
+
+status_terr = mZip.open(&quot;/data/local/bootanimation.zip&quot;);  
+
+if(err != NO_ERROR) {  
+
+   err =mZip.open(&quot;/system/media/bootanimation.zip&quot;);  
+
+   if (err != NO_ERROR) {  
+
+   mAndroidAnimation = true;  
+
+   }  
+
+}  
+
+   }else {  
+
+   if(!bShutRotate){  
+
+  status_terr = mZip.open(&quot;/data/local/shutanimation.zip&quot;);  
+
+  if (err != NO_ERROR) {  
+
+  err= mZip.open(&quot;/system/media/shutanimation.zip&quot;);  
+
+  if (err != NO_ERROR) {  
+
+  mAndroidAnimation = true;  
+
+  }  
+
+  }  
+
+   }  
+
+   }  
+
+return NO_ERROR;  
+
+}  
+boolBootAnimation::threadLoop()  
+{  
+//  …................  
+   if(!bBootOrShutDown){  
+
+  pSoundFileName=&quot;/data/local/shutaudio.mp3&quot;;  
+
+  pBackupSoundFileName=&quot;/system/media/shutaudio.mp3&quot;;  
+
+   } else {  
+
+  pSoundFileName=&quot;/data/local/bootaudio.mp3&quot;;  
+
+ pBackupSoundFileName=&quot;/system/media/bootaudio.mp3&quot;;  
+
+   }  
+
+   …...............  
+
+   mediastatus =mediaplayer-&gt;setDataSource(pBackupSoundFileName, NULL);  
+
+   mediaplayer-&gt;setAudioStreamType(AudioSystem::BOOT);  
+
+   mediastatus = mediaplayer-&gt;prepare();  
+
+   mediaplayer-&gt;setAudioStreamType(AudioSystem::BOOT);  
+
+   mediastatus =mediaplayer-&gt;prepare();  
+
+   mediaplayer-&gt;setVolume(0.28,0.28);  
+
+   mediastatus =mediaplayer-&gt;start();  
+
+ …..........................  
+
+   if (mAndroidAnimation）  
+
+  r = &lt;span style=&quot;background-color: rgb(255, 255, 102); &quot;&gt;android&lt;/span&gt;()；  
+
+} else {  
+
+   r = movie();  
+
+   }  
+
+}  
+</code></pre></li>
+<li>threadLoop首先判断system/media/bootaudio.mp3(shutaudio.mp3)文件是否存在，如果存在则调用mediaplayer的接口播放（setdatasoruce，prepare，setvolume，start）。<br>然后根据 mAndroidAnimation 变量调用android()/movie(). 如果system/media/shutanimation.zip/bootanimation.zip存在的话，调用movie（），该接口会解析zip文件中的desc.txt文件，根据txt文件中的配置来播放动画。</li>
+</ul>
+</li>
+<li>bootanimation.zip中desc.txt播放规则<ul>
+<li>1920 1080 15 —-第一位宽 第二位是高 第三位是帧率也就是一秒播放多少帧(多少张图片)</li>
+<li>p 1 0 part1—-第二位表示part1部分也就是包含图片的文件夹播放次数，第二位表示这部分播完后下部分开始的间隔，默认为0第三位表示文件夹名称</li>
+<li><strong>在编写完你所需要的设置后，最后一行要换行，切记，否则系统无法读取开机广告</strong></li>
+<li><img src="http://i.imgur.com/ASKTvQM.png" alt=""></li>
+<li><strong>zip资源是以存储的形式打包</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>修改默认铃声需要更改的几个位置<ul>
+<li>资源：frameworks\base\data\sounds</li>
+<li>mk资源列表：frameworks\base\data\sounds</li>
+<li>默认铃声：build\buildplus\buildspec\对应项目spec、RO_CONFIG_RINGTONE</li>
+<li>如果需要针对不同机型，需要在devices\sprd\sounds.mk中进行资源文件夹的选择判断</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常笔记/" rel="tag"># 日常笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/20/2017-03-20 Android Preference实践 Ubuntu jdk8环境配置添加 @hide方法注释/" rel="next" title="Android Preference实践 Ubuntu jdk8环境配置添加 @hide方法注释">
+                <i class="fa fa-chevron-left"></i> Android Preference实践 Ubuntu jdk8环境配置添加 @hide方法注释
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/31/2017-03-31 编译指令 Launcher3常用类分析/" rel="prev" title="Android 源码编译指令 Launcher3常用类分析">
+                Android 源码编译指令 Launcher3常用类分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2017-3-27-10-15"><span class="nav-number">1.</span> <span class="nav-text">2017/3/27 10:15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日概要"><span class="nav-number">2.</span> <span class="nav-text">今日概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记"><span class="nav-number">3.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android开关机动画铃声"><span class="nav-number">3.1.</span> <span class="nav-text">Android开关机动画铃声</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">4.</span> <span class="nav-text">Tips</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

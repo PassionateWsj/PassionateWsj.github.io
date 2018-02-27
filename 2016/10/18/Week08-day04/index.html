@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Week08-day042016/10/18 星期二 9:01:27今日概要 回顾Picasso框架、ViewPagerIndicator 视频播放 数据库框架   修改Picasso使用OkHttp3的下载器 用默认的2.x的OkHttp 自己写基于Okhttp3的OkHttpDownloader   视频播放 VideoView 放raw目录下   MediaPlayer+SurfaceVie">
+<meta name="keywords" content="Android学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week08-day04">
+<meta property="og:url" content="http://yoursite.com/2016/10/18/Week08-day04/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="Week08-day042016/10/18 星期二 9:01:27今日概要 回顾Picasso框架、ViewPagerIndicator 视频播放 数据库框架   修改Picasso使用OkHttp3的下载器 用默认的2.x的OkHttp 自己写基于Okhttp3的OkHttpDownloader   视频播放 VideoView 放raw目录下   MediaPlayer+SurfaceVie">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/A8ErzfG.png">
+<meta property="og:image" content="http://i.imgur.com/MyveLA3.png">
+<meta property="og:image" content="http://i.imgur.com/eQzlF6g.png">
+<meta property="og:image" content="http://i.imgur.com/9oIGR3R.png">
+<meta property="og:image" content="http://i.imgur.com/ahHyDLf.png">
+<meta property="og:image" content="http://i.imgur.com/3GVX9f4.png">
+<meta property="og:image" content="http://i.imgur.com/zTDl0wg.png">
+<meta property="og:image" content="http://i.imgur.com/ifdxRhn.png">
+<meta property="og:image" content="http://i.imgur.com/4GOxn9g.png">
+<meta property="og:image" content="http://i.imgur.com/JlqXO6F.png">
+<meta property="og:updated_time" content="2018-01-09T14:34:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week08-day04">
+<meta name="twitter:description" content="Week08-day042016/10/18 星期二 9:01:27今日概要 回顾Picasso框架、ViewPagerIndicator 视频播放 数据库框架   修改Picasso使用OkHttp3的下载器 用默认的2.x的OkHttp 自己写基于Okhttp3的OkHttpDownloader   视频播放 VideoView 放raw目录下   MediaPlayer+SurfaceVie">
+<meta name="twitter:image" content="http://i.imgur.com/A8ErzfG.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/18/Week08-day04/"/>
+
+
+
+
+
+  <title>Week08-day04 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/18/Week08-day04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week08-day04</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-18T09:01:27+08:00">
+                2016-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Week08-day04"><a href="#Week08-day04" class="headerlink" title="Week08-day04"></a>Week08-day04</h2><h5 id="2016-10-18-星期二-9-01-27"><a href="#2016-10-18-星期二-9-01-27" class="headerlink" title="2016/10/18 星期二 9:01:27"></a>2016/10/18 星期二 9:01:27</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾Picasso框架、ViewPagerIndicator</strong></li>
+<li><strong>视频播放</strong></li>
+<li><strong>数据库框架</strong></li>
+</ol>
+<hr>
+<h3 id="修改Picasso使用OkHttp3的下载器"><a href="#修改Picasso使用OkHttp3的下载器" class="headerlink" title="修改Picasso使用OkHttp3的下载器"></a>修改Picasso使用OkHttp3的下载器</h3><ol>
+<li>用默认的2.x的OkHttp</li>
+<li>自己写基于Okhttp3的OkHttpDownloader</li>
+</ol>
+<hr>
+<h3 id="视频播放"><a href="#视频播放" class="headerlink" title="视频播放"></a>视频播放</h3><ol>
+<li><strong>VideoView</strong><ol>
+<li>放raw目录下</li>
+</ol>
+</li>
+<li><strong>MediaPlayer+SurfaceView</strong><ol>
+<li>放assets目录下</li>
+<li><img src="http://i.imgur.com/A8ErzfG.png" alt=""><ul>
+<li>双缓冲：帧动画，开启新线程提前画好下一帧，然后不擦除，直接替换</li>
+</ul>
+</li>
+<li><img src="http://i.imgur.com/MyveLA3.png" alt=""></li>
+<li><img src="http://i.imgur.com/eQzlF6g.png" alt=""></li>
+</ol>
+</li>
+<li><p><strong>三方框架：Vitamio</strong></p>
+<ol>
+<li><p>在清单配置文件中注册Vitamiosdk</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Don&apos;t forgot InitActivity --&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=&quot;io.vov.vitamio.activity.InitActivity&quot;</span><br><span class="line">            android:configChanges=&quot;orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation&quot;</span><br><span class="line">            android:launchMode=&quot;singleTop&quot;</span><br><span class="line">            android:theme=&quot;@android:style/Theme.NoTitleBar&quot;</span><br><span class="line">            android:windowSoftInputMode=&quot;stateAlwaysHidden&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化vitamio的sdk</p>
+<ul>
+<li><img src="http://i.imgur.com/9oIGR3R.png" alt=""></li>
+</ul>
+</li>
+<li><img src="http://i.imgur.com/ahHyDLf.png" alt=""></li>
+<li><img src="http://i.imgur.com/3GVX9f4.png" alt=""></li>
+<li><img src="http://i.imgur.com/zTDl0wg.png" alt=""></li>
+<li><img src="http://i.imgur.com/ifdxRhn.png" alt=""></li>
+</ol>
+</li>
+</ol>
+<hr>
+<p>###数据库框架</p>
+<p>####ORMLite框架（基于ORM的数据库框架）:ORM：对象 - 关系 映射,即一个对象 对应 数据库中一个表</p>
+<pre><code>1. 导包
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.j256.ormlite:ormlite-android:5.0&apos;</span><br></pre></td></tr></table></figure>
+
+2. 创建一个数据库帮助类继承OrmLiteSqliteOpenHelper（单例）
+    - ![](http://i.imgur.com/fjUZXcE.png)
+3. 创建对象类，一定要有一个无参构造方法
+    - ![](http://i.imgur.com/YzBcB8f.png)
+4. 在帮助类创建表
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">            //创建一张Person表</span><br><span class="line">            TableUtils.createTable(connectionSource,Person.class);</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+5. 一个表对应一个Dao，在帮助类中写一个暴露的方法，获得即数据库的业务类，里面会封装CURD的方法
+    - ![](http://i.imgur.com/rwAZMNA.png)
+6. 插入一条数据
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private void insertData() &#123;</span><br><span class="line">        //插入一条数据</span><br><span class="line">        int age = (int) (Math.random() * 100);</span><br><span class="line">        Person person = new Person(&quot;hjj&quot;, age, &quot;zz一枚&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            mPersonDao.createIfNotExists(person);</span><br><span class="line"></span><br><span class="line">            mAdapeter.setData(queryAllData());</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+7. 删除一条数据
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">private void deleteData() &#123;</span><br><span class="line">        if (queryAllData() != null) &#123;</span><br><span class="line">            Person person = queryAllData().get(0);</span><br><span class="line">            try &#123;</span><br><span class="line">                mPersonDao.delete(person);</span><br><span class="line">                mAdapeter.setData(queryAllData());</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+8. 查询
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Person&gt; data = mPersonDao.queryBuilder().where().like(&quot;age&quot;, s + &quot;%&quot;).query();</span><br></pre></td></tr></table></figure>
+</code></pre><hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>GC会优先回收null的对象</li>
+<li>View的手势监听<ul>
+<li><img src="http://i.imgur.com/4GOxn9g.png" alt=""></li>
+<li><img src="http://i.imgur.com/JlqXO6F.png" alt=""></li>
+</ul>
+</li>
+<li>记一些常见的异常<ol>
+<li>NullPointerException - 空指针引用异常<br>ClassCastException - 类型强制转换异常。<br>IllegalArgumentException - 传递非法参数异常。<br>ArithmeticException - 算术运算异常<br>ArrayStoreException - 向数组中存放与声明类型不兼容对象异常<br>IndexOutOfBoundsException - 下标越界异常<br>NegativeArraySizeException - 创建一个大小为负数的数组错误异常<br>NumberFormatException - 数字格式异常<br>SecurityException - 安全异常<br>UnsupportedOperationException - 不支持的操作异常</li>
+<li>算术异常类：ArithmeticExecption<br>空指针异常类：NullPointerException<br>类型强制转换异常：ClassCastException<br>数组负下标异常：NegativeArrayException<br>数组下标越界异常：ArrayIndexOutOfBoundsException<br>违背安全原则异常：SecturityException<br>文件已结束异常：EOFException<br>文件未找到异常：FileNotFoundException<br>字符串转换为数字异常：NumberFormatException<br>操作数据库异常：SQLException<br>输入输出异常：IOException<br>方法未找到异常：NoSuchMethodException<br>Java.lang.AbstractMethodError<br>抽象方法错误。当应用试图调用抽象方法时抛出。</li>
+</ol>
+</li>
+</ol>
+<p>java.lang.AssertionError<br>断言错。用来指示一个断言失败的情况。</p>
+<p>java.lang.ClassCircularityError<br>类循环依赖错误。在初始化一个类时，若检测到类之间循环依赖则抛出该异常。</p>
+<p>java.lang.ClassFormatError<br>类格式错误。当Java虚拟机试图从一个文件中读取Java类，而检测到该文件的内容不符合类的有效格式时抛出。</p>
+<p>java.lang.Error<br>错误。是所有错误的基类，用于标识严重的程序运行问题。这些问题通常描述一些不应被应用程序捕获的反常情况。</p>
+<p>java.lang.ExceptionInInitializerError<br>初始化程序错误。当执行一个类的静态初始化程序的过程中，发生了异常时抛出。静态初始化程序是指直接包含于类中的static语句段。</p>
+<p>java.lang.IllegalAccessError<br>违法访问错误。当一个应用试图访问、修改某个类的域（Field）或者调用其方法，但是又违反域或方法的可见性声明，则抛出该异常。</p>
+<p>java.lang.IncompatibleClassChangeError<br>不兼容的类变化错误。当正在执行的方法所依赖的类定义发生了不兼容的改变时，抛出该异常。一般在修改了应用中的某些类的声明定义而没有对整个应用重新编译而直接运行的情况下，容易引发该错误。</p>
+<p>java.lang.InstantiationError<br>实例化错误。当一个应用试图通过Java的new操作符构造一个抽象类或者接口时抛出该异常.</p>
+<p>java.lang.InternalError<br>内部错误。用于指示Java虚拟机发生了内部错误。</p>
+<p>java.lang.LinkageError<br>链接错误。该错误及其所有子类指示某个类依赖于另外一些类，在该类编译之后，被依赖的类改变了其类定义而没有重新编译所有的类，进而引发错误的情况。</p>
+<p>java.lang.NoClassDefFoundError<br>未找到类定义错误。当Java虚拟机或者类装载器试图实例化某个类，而找不到该类的定义时抛出该错误。</p>
+<p>java.lang.NoSuchFieldError<br>域不存在错误。当应用试图访问或者修改某类的某个域，而该类的定义中没有该域的定义时抛出该错误。</p>
+<p>java.lang.NoSuchMethodError<br>方法不存在错误。当应用试图调用某类的某个方法，而该类的定义中没有该方法的定义时抛出该错误。</p>
+<p>java.lang.OutOfMemoryError<br>内存不足错误。当可用内存不足以让Java虚拟机分配给一个对象时抛出该错误。</p>
+<p>java.lang.StackOverflowError<br>堆栈溢出错误。当一个应用递归调用的层次太深而导致堆栈溢出时抛出该错误。</p>
+<p>java.lang.ThreadDeath<br>线程结束。当调用Thread类的stop方法时抛出该错误，用于指示线程结束。</p>
+<p>java.lang.UnknownError<br>未知错误。用于指示Java虚拟机发生了未知严重错误的情况。</p>
+<p>java.lang.UnsatisfiedLinkError<br>未满足的链接错误。当Java虚拟机未找到某个类的声明为native方法的本机语言定义时抛出。</p>
+<p>java.lang.UnsupportedClassVersionError<br>不支持的类版本错误。当Java虚拟机试图从读取某个类文件，但是发现该文件的主、次版本号不被当前Java虚拟机支持的时候，抛出该错误。</p>
+<p>java.lang.VerifyError<br>验证错误。当验证器检测到某个类文件中存在内部不兼容或者安全问题时抛出该错误。</p>
+<p>java.lang.VirtualMachineError<br>虚拟机错误。用于指示虚拟机被破坏或者继续执行操作所需的资源不足的情况。</p>
+<p>java.lang.ArithmeticException<br>算术条件异常。譬如：整数除零等。</p>
+<p>java.lang.ArrayIndexOutOfBoundsException<br>数组索引越界异常。当对数组的索引值为负数或大于等于数组大小时抛出。</p>
+<p>java.lang.ArrayStoreException<br>数组存储异常。当向数组中存放非数组声明类型对象时抛出。</p>
+<p>java.lang.ClassCastException<br>类造型异常。假设有类A和B（A不是B的父类或子类），O是A的实例，那么当强制将O构造为类B的实例时抛出该异常。该异常经常被称为强制类型转换异常。</p>
+<p>java.lang.ClassNotFoundException<br>找不到类异常。当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH之后找不到对应名称的class文件时，抛出该异常。</p>
+<p>java.lang.CloneNotSupportedException<br>不支持克隆异常。当没有实现Cloneable接口或者不支持克隆方法时,调用其clone()方法则抛出该异常。</p>
+<p>java.lang.EnumConstantNotPresentException<br>枚举常量不存在异常。当应用试图通过名称和枚举类型访问一个枚举对象，但该枚举对象并不包含常量时，抛出该异常。</p>
+<p>java.lang.Exception<br>根异常。用以描述应用程序希望捕获的情况。</p>
+<p>java.lang.IllegalAccessException<br>违法的访问异常。当应用试图通过反射方式创建某个类的实例、访问该类属性、调用该类方法，而当时又无法访问类的、属性的、方法的或构造方法的定义时抛出该异常。</p>
+<p>java.lang.IllegalMonitorStateException<br>违法的监控状态异常。当某个线程试图等待一个自己并不拥有的对象（O）的监控器或者通知其他线程等待该对象（O）的监控器时，抛出该异常。</p>
+<p>java.lang.IllegalStateException<br>违法的状态异常。当在Java环境和应用尚未处于某个方法的合法调用状态，而调用了该方法时，抛出该异常。</p>
+<p>java.lang.IllegalThreadStateException<br>违法的线程状态异常。当县城尚未处于某个方法的合法调用状态，而调用了该方法时，抛出异常。</p>
+<p>java.lang.IndexOutOfBoundsException<br>索引越界异常。当访问某个序列的索引值小于0或大于等于序列大小时，抛出该异常。</p>
+<p>java.lang.InstantiationException<br>实例化异常。当试图通过newInstance()方法创建某个类的实例，而该类是一个抽象类或接口时，抛出该异常。</p>
+<p>java.lang.InterruptedException<br>被中止异常。当某个线程处于长时间的等待、休眠或其他暂停状态，而此时其他的线程通过Thread的interrupt方法终止该线程时抛出该异常。</p>
+<p>java.lang.NegativeArraySizeException<br>数组大小为负值异常。当使用负数大小值创建数组时抛出该异常。</p>
+<p>java.lang.NoSuchFieldException<br>属性不存在异常。当访问某个类的不存在的属性时抛出该异常。</p>
+<p>java.lang.NoSuchMethodException<br>方法不存在异常。当访问某个类的不存在的方法时抛出该异常。</p>
+<p>java.lang.NullPointerException<br>空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等。</p>
+<p>java.lang.NumberFormatException<br>数字格式异常。当试图将一个String转换为指定的数字类型，而该字符串确不满足数字类型要求的格式时，抛出该异常。</p>
+<p>java.lang.RuntimeException<br>运行时异常。是所有Java虚拟机正常操作期间可以被抛出的异常的父类。</p>
+<p>java.lang.SecurityException<br>安全异常。由安全管理器抛出，用于指示违反安全情况的异常。</p>
+<p>java.lang.StringIndexOutOfBoundsException<br>字符串索引越界异常。当使用索引值访问某个字符串中的字符，而该索引值小于0或大于等于序列大小时，抛出该异常。</p>
+<p>java.lang.TypeNotPresentException<br>类型不存在异常。当应用试图以某个类型名称的字符串表达方式访问该类型，但是根据给定的名称又找不到该类型是抛出该异常。该异常与ClassNotFoundException的区别在于该异常是unchecked（不被检查）异常，而ClassNotFoundException是checked（被检查）异常。</p>
+<p>java.lang.UnsupportedOperationException<br>不支持的方法异常。指明请求的方法不被支持情况的异常。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android学习/" rel="tag"># Android学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/17/Week08-day03/" rel="next" title="Week08-day03">
+                <i class="fa fa-chevron-left"></i> Week08-day03
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/18/AndroidStudio模版编写/" rel="prev" title="AndroidStudio代码模版编写">
+                AndroidStudio代码模版编写 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week08-day04"><span class="nav-number">1.</span> <span class="nav-text">Week08-day04</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2016-10-18-星期二-9-01-27"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">2016/10/18 星期二 9:01:27</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日概要"><span class="nav-number">2.</span> <span class="nav-text">今日概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Picasso使用OkHttp3的下载器"><span class="nav-number">2.1.</span> <span class="nav-text">修改Picasso使用OkHttp3的下载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频播放"><span class="nav-number">2.2.</span> <span class="nav-text">视频播放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">3.</span> <span class="nav-text">Tips</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
