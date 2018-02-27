@@ -232,1077 +232,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/2017-07-小知识点整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/27/2017-07-小知识点整理/" itemprop="url">2017-07-27 小知识点整理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-27T09:17:15+08:00">
-                2017-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>解决全屏popupWindows被状态栏覆盖的问题<ul>
-<li>在父布局顶部放置一个高度为0的View</li>
-<li>调用popupWindows的showAsDropDown(View,xOff,yOff)的显示方法</li>
-</ul>
-</li>
-<li><p>获取软键盘高度</p>
-<pre><code>val myLayout = findViewById(R.id.rl_input_barcode_group) as RelativeLayout
-myLayout.viewTreeObserver.addOnGlobalLayoutListener {
-    val r = Rect()
-    myLayout.getWindowVisibleDisplayFrame(r)
-    val screenHeight = myLayout.rootView.height
-    val heightDifference = screenHeight - (r.bottom - r.top)
-    Log.e(&quot;hjjzz&quot;, &quot;&quot; + heightDifference)
-    view!!.btn_input_barcode_confirm.setPadding(0,0,0,heightDifference)
-    //boolean visible = heightDiff &gt; screenHeight / 3;
-}
-</code></pre></li>
-<li><p>弹出/关闭软键盘</p>
-<ul>
-<li>键盘blog：<a href="http://blog.csdn.net/mynameishuangshuai/article/details/51567357#t3" target="_blank" rel="noopener">http://blog.csdn.net/mynameishuangshuai/article/details/51567357#t3</a></li>
-<li><p>弹出</p>
-<pre><code>editText.setFocusable(true);  
-editText.setFocusableInTouchMode(true);  
-editText.requestFocus();  
-InputMethodManager inputManager = (InputMethodManager)editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
-inputManager.showSoftInput(editText, 0);
-</code></pre></li>
-<li><p>关闭</p>
-<pre><code>edit.setText(&quot;&quot;);    
-edit.clearFocus();    
-InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);     
-imm.hideSoftInputFromWindow(edit.getWindowToken(), 0); 
-</code></pre></li>
-</ul>
-</li>
-<li><p>软键盘收起</p>
-<pre><code>InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-if (imm != null) {
-    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0); // 这里使用getWindow()来代替EditText更加灵活
-}
-</code></pre></li>
-<li><p>popupwindow实现</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">View view = LayoutInflater.from(this).inflate(R.layout.popup_forget_pwd_notice, null);</span><br><span class="line">final PopupWindow popupWindow = new PopupWindow(view, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT, true);</span><br><span class="line">TextView tv_forget_pwd_notice_content = (TextView) view.findViewById(R.id.tv_forget_pwd_notice_content);</span><br><span class="line">view.findViewById(R.id.tv_forget_pwd_notice_confirm).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        popupWindow.dismiss();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">tv_forget_pwd_notice_content.setText(message);</span><br><span class="line"></span><br><span class="line">View parent = LayoutInflater.from(this).inflate(R.layout.activity_new_forget_password, null);</span><br><span class="line">popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);</span><br></pre></td></tr></table></figure>
-</code></pre></li>
-<li><p>从相册获取图片扫码</p>
-<ul>
-<li>打开相册获取图片Uri</li>
-<li>通过Uri获取图片路径</li>
-<li>通过路径得到合适的Bitmap</li>
-<li>对Bitmap进行扫码</li>
-<li>三方库：<a href="https://github.com/XuDaojie/QRCode-Android" target="_blank" rel="noopener">https://github.com/XuDaojie/QRCode-Android</a>  </li>
-</ul>
-</li>
-<li>TextView行间距<code>android:lineSpacingExtra=&quot;6dp&quot;</code></li>
-<li>EditText光标<code>android:textCursorDrawable=&quot;@drawable/login_edit_cursor&quot;</code></li>
-<li>equals正确写法<code>&quot;a&quot;.equals(string)</code></li>
-<li>git基本命令<ul>
-<li>新建分支：git checkout -b [new branch name]</li>
-<li>重置到之前的commit：git reset –hard [commit]</li>
-<li>回退版本：git reset –hard HEAD</li>
-<li>清除Untracked文件：git clean -dxf</li>
-<li>从远程服务器拉取分支代码：git pull [git链接] [分支名]</li>
-<li>删除分支</li>
-</ul>
-</li>
-<li>EditText内容字间距（浮点型放大倍率）：<code>android:letterSpacing=&quot;0.3&quot;</code></li>
-<li><p>闪光灯开关</p>
-<ul>
-<li><p>打开</p>
-<pre><code>try{
-  m_Camera = Camera.open();
-  Camera.Parameters mParameters;
-  mParameters = m_Camera.getParameters();
-  mParameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-  m_Camera.setParameters(mParameters);
-} catch(Exception ex){}
-</code></pre></li>
-<li><p>关闭</p>
-<pre><code>try{
-  Camera.Parameters mParameters;
-  mParameters = m_Camera.getParameters();
-  mParameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-  m_Camera.setParameters(mParameters);
-  m_Camera.release();
-} catch(Exception ex){}
-</code></pre></li>
-</ul>
-</li>
-<li><p>EditText密码显示隐藏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">editText1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());</span><br><span class="line">		editText1.setTransformationMethod(PasswordTransformationMethod.getInstance());</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>从相册选取指定数量图片</p>
-<ul>
-<li><p>知乎：<a href="https://github.com/zhihu/Matisse" target="_blank" rel="noopener">https://github.com/zhihu/Matisse</a></p>
-<pre><code>Matisse.from(this)
-    .choose(MimeType.allOf())
-    .countable(true)
-    .maxSelectable(maxNum)
-    .addFilter(GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-    .gridExpectedSize(
-            resources.getDimensionPixelSize(R.dimen.grid_expected_size))
-    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-    .thumbnailScale(0.85f)
-    .imageEngine(GlideEngine())
-    .forResult(REQUEST_CODE_CHOOSE)
-</code></pre></li>
-<li>onActivityResult 返回的是 <code>List&lt;Uri&gt;</code> ：<code>Matisse.obtainResult(Intent类型data)</code></li>
-<li><p>通过Uri生成path新建File</p>
-<pre><code>public static String handleImageOnKitKat(Uri uri, Context context) {
-    String imagePath = null;
-
-    if (DocumentsContract.isDocumentUri(context, uri)) {
-        String docId = DocumentsContract.getDocumentId(uri);
-        if (&quot;com.android.providers.media.documents&quot;.equals(uri.getAuthority())) {
-            //Log.d(TAG, uri.toString());
-            String id = docId.split(&quot;:&quot;)[1];
-            String selection = MediaStore.Images.Media._ID + &quot;=&quot; + id;
-            imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection, context);
-        } else if (&quot;com.android.providers.downloads.documents&quot;.equals(uri.getAuthority())) {
-            //Log.d(TAG, uri.toString());
-            Uri contentUri = ContentUris.withAppendedId(
-                    Uri.parse(&quot;content://downloads/public_downloads&quot;),
-                    Long.valueOf(docId));
-            imagePath = getImagePath(contentUri, null, context);
-        }
-    } else if (&quot;content&quot;.equalsIgnoreCase(uri.getScheme())) {
-        //Log.d(TAG, &quot;content: &quot; + uri.toString());
-        imagePath = getImagePath(uri, null, context);
-    }
-    return imagePath;
-}
-
-private static String getImagePath(Uri uri, String selection, Context context) {
-    String path = null;
-    Cursor cursor = context.getContentResolver().query(uri, null, selection, null, null);
-    if (cursor != null) {
-        if (cursor.moveToFirst()) {
-            path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-        }
-
-        cursor.close();
-    }
-    return path;
-}
-</code></pre></li>
-</ul>
-</li>
-<li><p>压缩图片</p>
-<ul>
-<li><p>luban：<a href="https://github.com/Curzibn/Luban" target="_blank" rel="noopener">https://github.com/Curzibn/Luban</a></p>
-<pre><code>Luban.with(mContext)
-        .load(file) //传人要压缩的图片
-        .setCompressListener(object : OnCompressListener {
-            override fun onSuccess(p0: File?) {
-                Glide.with(mContext).load(p0).into(ImageView)
-            }
-
-            override fun onError(p0: Throwable?) {
-
-            }
-
-            override fun onStart() {
-
-            }
-        }).launch()    //启动压缩
-</code></pre></li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/07/2017-04-07-Android语言国际化支持/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/07/2017-04-07-Android语言国际化支持/" itemprop="url">Android语言国际化支持</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T09:41:16+08:00">
-                2017-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2017-4-7-9-41"><a href="#2017-4-7-9-41" class="headerlink" title="2017/4/7 9:41"></a>2017/4/7 9:41</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>Android 平台语言支持</strong></li>
-</ol>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Android-平台语言支持"><a href="#Android-平台语言支持" class="headerlink" title="Android 平台语言支持"></a>Android 平台语言支持</h3><table>
-<thead>
-<tr>
-<th>Language</th>
-<th>English Name</th>
-<th>Chinese Name</th>
-<th>Code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>العربية</td>
-<td>Arabic(Israel)</td>
-<td>阿拉伯语(以色列)</td>
-<td>ar_IL</td>
-</tr>
-<tr>
-<td>العربية</td>
-<td>Arabic(Egypt)</td>
-<td>阿拉伯语(埃及)</td>
-<td>ar_EG</td>
-</tr>
-<tr>
-<td>中文</td>
-<td>Chinese Simplified</td>
-<td>中文简体</td>
-<td>zh_CN</td>
-</tr>
-<tr>
-<td>中文</td>
-<td>Chinese Tradition</td>
-<td>中文繁体</td>
-<td>zh_TW</td>
-</tr>
-<tr>
-<td>中文</td>
-<td>Chinese</td>
-<td>中文(香港)</td>
-<td>zh_HK</td>
-</tr>
-<tr>
-<td>Nederlands</td>
-<td>Dutch (Netherlands)</td>
-<td>荷兰语</td>
-<td>nl_NL</td>
-</tr>
-<tr>
-<td>Nederlands</td>
-<td>Dutch (Netherlands)</td>
-<td>荷兰语(比利时)</td>
-<td>nl_BE</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(United States)</td>
-<td>英语(美国)</td>
-<td>en_US</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(Australia)</td>
-<td>英语(澳大利亚)</td>
-<td>en_AU</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(Canada)</td>
-<td>英语(加拿大)</td>
-<td>en_CA</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(India)</td>
-<td>英语(印度)</td>
-<td>en_IN</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(Ireland)</td>
-<td>英语(爱尔兰)</td>
-<td>en_IE</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(New Zealand)</td>
-<td>英语(新西兰)</td>
-<td>en_NZ</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(Singapore)</td>
-<td>英语(新加波)</td>
-<td>en_SG</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(South Africa)</td>
-<td>英语(南非)</td>
-<td>en_ZA</td>
-</tr>
-<tr>
-<td>English</td>
-<td>English(United Kingdom)</td>
-<td>英语(英国)</td>
-<td>en_GB</td>
-</tr>
-<tr>
-<td>Français</td>
-<td>French</td>
-<td>法语</td>
-<td>fr_FR</td>
-</tr>
-<tr>
-<td>Français</td>
-<td>French</td>
-<td>法语(比利时)</td>
-<td>fr_BE</td>
-</tr>
-<tr>
-<td>Français</td>
-<td>French</td>
-<td>法语(加拿大)</td>
-<td>fr_CA</td>
-</tr>
-<tr>
-<td>Français</td>
-<td>French</td>
-<td>法语(瑞士)</td>
-<td>fr_CH</td>
-</tr>
-<tr>
-<td>Deutsch</td>
-<td>German</td>
-<td>德语</td>
-<td>de_DE</td>
-</tr>
-<tr>
-<td>Deutsch</td>
-<td>German</td>
-<td>德语(列支敦斯登)</td>
-<td>de_LI</td>
-</tr>
-<tr>
-<td>Deutsch</td>
-<td>German</td>
-<td>德语(奥地利)</td>
-<td>de_AT</td>
-</tr>
-<tr>
-<td>Deutsch</td>
-<td>German</td>
-<td>德语(瑞士)</td>
-<td>de_CH</td>
-</tr>
-<tr>
-<td>Italiano</td>
-<td>Italian</td>
-<td>意大利语</td>
-<td>it_IT</td>
-</tr>
-<tr>
-<td>Italiano</td>
-<td>Italian</td>
-<td>意大利语(瑞士)</td>
-<td>it_CH</td>
-</tr>
-<tr>
-<td>Protuguês</td>
-<td>Portuguese</td>
-<td>葡萄牙语（巴西）</td>
-<td>pt_BR</td>
-</tr>
-<tr>
-<td>Protuguês</td>
-<td>Portuguese</td>
-<td>葡萄牙语</td>
-<td>pt_PT</td>
-</tr>
-<tr>
-<td>Español</td>
-<td>Spanish</td>
-<td>西班牙语</td>
-<td>es_ES</td>
-</tr>
-<tr>
-<td>Español</td>
-<td>Spanish</td>
-<td>西班牙语(美国)</td>
-<td>es_US</td>
-</tr>
-<tr>
-<td>বাংলা</td>
-<td>Bengali</td>
-<td>孟加拉语</td>
-<td>bn_BD</td>
-</tr>
-<tr>
-<td>বাংলা</td>
-<td>Bengali</td>
-<td>孟加拉语(印度)</td>
-<td>bn_IN</td>
-</tr>
-<tr>
-<td>hrvatski</td>
-<td>Croatian</td>
-<td>克罗地亚语</td>
-<td>hr_HR</td>
-</tr>
-<tr>
-<td>čeština</td>
-<td>Czech</td>
-<td>捷克语</td>
-<td>cs_CZ</td>
-</tr>
-<tr>
-<td>Dansk</td>
-<td>Danish</td>
-<td>丹麦语</td>
-<td>da_DK</td>
-</tr>
-<tr>
-<td>ελληνικά</td>
-<td>Greek</td>
-<td>希腊语</td>
-<td>el_GR</td>
-</tr>
-<tr>
-<td>עברית</td>
-<td>Hebrew</td>
-<td>希伯来语(以色列)</td>
-<td>he_IL</td>
-</tr>
-<tr>
-<td>עברית</td>
-<td>Hebrew</td>
-<td>希伯来语(以色列)</td>
-<td>iw_IL</td>
-</tr>
-<tr>
-<td>हिंदी</td>
-<td>Hindi</td>
-<td>印度语</td>
-<td>hi_IN</td>
-</tr>
-<tr>
-<td>Magyar</td>
-<td>Hungarian</td>
-<td>匈牙利语</td>
-<td>hu_HU</td>
-</tr>
-<tr>
-<td>Bahasa Indonesia</td>
-<td>Indonesian</td>
-<td>印度尼西亚语</td>
-<td>in_ID</td>
-</tr>
-<tr>
-<td>日本語の言語</td>
-<td>Japanese</td>
-<td>日语</td>
-<td>ja_JP</td>
-</tr>
-<tr>
-<td>한국의</td>
-<td>Korean</td>
-<td>韩语（朝鲜语）</td>
-<td>ko_KR</td>
-</tr>
-<tr>
-<td>Bahasa Melayu</td>
-<td>Malay</td>
-<td>马来语</td>
-<td>ms_MY</td>
-</tr>
-<tr>
-<td>فارسی</td>
-<td>Perisan</td>
-<td>波斯语</td>
-<td>fa_IR</td>
-</tr>
-<tr>
-<td>Polski</td>
-<td>Polish</td>
-<td>波兰语</td>
-<td>pl_PL</td>
-</tr>
-<tr>
-<td>româna</td>
-<td>Romanian</td>
-<td>罗马尼亚语</td>
-<td>ro_RO</td>
-</tr>
-<tr>
-<td>Русский</td>
-<td>Russian</td>
-<td>俄罗斯语</td>
-<td>ru_RU</td>
-</tr>
-<tr>
-<td>српски</td>
-<td>Serbian</td>
-<td>塞尔维亚语</td>
-<td>sr_RS</td>
-</tr>
-<tr>
-<td>Svenska</td>
-<td>Swedish</td>
-<td>瑞典语</td>
-<td>sv_SE</td>
-</tr>
-<tr>
-<td>ไทย</td>
-<td>Thai</td>
-<td>泰语</td>
-<td>th_TH</td>
-</tr>
-<tr>
-<td>Türkçe</td>
-<td>Turkey</td>
-<td>土耳其语</td>
-<td>tr_TR</td>
-</tr>
-<tr>
-<td>اردو</td>
-<td>Urdu</td>
-<td>乌尔都语</td>
-<td>ur_PK</td>
-</tr>
-<tr>
-<td>tiếng việt</td>
-<td>Vietnamese</td>
-<td>越南语</td>
-<td>vi_VN</td>
-</tr>
-<tr>
-<td>catalá</td>
-<td>Catalan</td>
-<td>加泰隆语(西班牙)</td>
-<td>ca_ES</td>
-</tr>
-<tr>
-<td>latviešu</td>
-<td>Latviesu</td>
-<td>拉脱维亚语</td>
-<td>lv_LV</td>
-</tr>
-<tr>
-<td>Lietuvių</td>
-<td>Lithuanian</td>
-<td>立陶宛语</td>
-<td>lt_LT</td>
-</tr>
-<tr>
-<td>Norsk bokmal</td>
-<td>Norwegian</td>
-<td>挪威语</td>
-<td>nb_NO</td>
-</tr>
-<tr>
-<td>Slovenčina</td>
-<td>slovencina</td>
-<td>斯洛伐克语</td>
-<td>sk_SK</td>
-</tr>
-<tr>
-<td>Slovenščina</td>
-<td>Slovenian</td>
-<td>斯洛文尼亚语</td>
-<td>sl_SI</td>
-</tr>
-<tr>
-<td>български</td>
-<td>bulgarian</td>
-<td>保加利亚语</td>
-<td>bg_BG</td>
-</tr>
-<tr>
-<td>українська</td>
-<td>Ukrainian</td>
-<td>乌克兰语</td>
-<td>uk_UA</td>
-</tr>
-<tr>
-<td>Tagalog</td>
-<td>Filipino</td>
-<td>菲律宾语</td>
-<td>tl_PH</td>
-</tr>
-<tr>
-<td>Suomi</td>
-<td>Finnish</td>
-<td>芬兰语</td>
-<td>fi_FI</td>
-</tr>
-<tr>
-<td>Afrikaans</td>
-<td>Afrikaans</td>
-<td>南非语</td>
-<td>af_ZA</td>
-</tr>
-<tr>
-<td>Rumantsch</td>
-<td>Romansh</td>
-<td>罗曼什语(瑞士)</td>
-<td>rm_CH</td>
-</tr>
-<tr>
-<td>Burmese</td>
-<td>Burmese(Zawgyi)</td>
-<td>缅甸语</td>
-<td>my_ZG</td>
-</tr>
-<tr>
-<td>Burmese</td>
-<td>Burmese</td>
-<td>缅甸语</td>
-<td>my_MM</td>
-</tr>
-<tr>
-<td>ខ្មែរ</td>
-<td>Khmer</td>
-<td>柬埔寨语</td>
-<td>km_KH</td>
-</tr>
-<tr>
-<td>አማርኛ</td>
-<td>Amharic</td>
-<td>阿姆哈拉语(埃塞俄比亚)</td>
-<td>am_ET</td>
-</tr>
-<tr>
-<td>беларуская</td>
-<td>Belarusian</td>
-<td>白俄罗斯语</td>
-<td>be_BY</td>
-</tr>
-<tr>
-<td>eesti</td>
-<td>Estonian</td>
-<td>爱沙尼亚语</td>
-<td>et_EE</td>
-</tr>
-<tr>
-<td>Kiswahili</td>
-<td>Swahili</td>
-<td>斯瓦希里语(坦桑尼亚)</td>
-<td>sw_TZ</td>
-</tr>
-<tr>
-<td>isiZulu</td>
-<td>Zulu</td>
-<td>祖鲁语(南非)</td>
-<td>zu_ZA</td>
-</tr>
-<tr>
-<td>azərbaycanca</td>
-<td>Azerbaijani</td>
-<td>阿塞拜疆语</td>
-<td>az_AZ</td>
-</tr>
-<tr>
-<td>Հայերէն</td>
-<td>Armenian</td>
-<td>亚美尼亚语(亚美尼亚)</td>
-<td>hy_AM</td>
-</tr>
-<tr>
-<td>ქართული</td>
-<td>Georgian</td>
-<td>格鲁吉亚语(格鲁吉亚)</td>
-<td>ka_GE</td>
-</tr>
-<tr>
-<td>ລາວ</td>
-<td>Laotian</td>
-<td>老挝语(老挝)</td>
-<td>lo_LA</td>
-</tr>
-<tr>
-<td>Монгол</td>
-<td>Mongolian</td>
-<td>蒙古语</td>
-<td>mn_MN</td>
-</tr>
-<tr>
-<td>नेपाली</td>
-<td>Nepali</td>
-<td>尼泊尔语</td>
-<td>ne_NP</td>
-</tr>
-<tr>
-<td>қазақ тілі</td>
-<td>Kazakh</td>
-<td>哈萨克语</td>
-<td>kk_KZ</td>
-</tr>
-<tr>
-<td>සිංහල</td>
-<td>Sinhala</td>
-<td>僧加罗语(斯里兰卡)</td>
-<td>si_LK</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/2017-04-01 Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/01/2017-04-01 Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体/" itemprop="url">Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T09:22:30+08:00">
-                2017-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2017-4-1-9-22"><a href="#2017-4-1-9-22" class="headerlink" title="2017/4/1 9:22"></a>2017/4/1 9:22</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>Launcher3</strong></li>
-<li><strong>Launcher3壁纸修改</strong></li>
-<li><strong>根据plmn获取不同主页</strong></li>
-<li><strong>修改系统默认值</strong></li>
-</ol>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher3"><a href="#Launcher3" class="headerlink" title="Launcher3"></a>Launcher3</h3><ol>
-<li>结构示意图<ul>
-<li><img src="http://i.imgur.com/wi7sDBc.png" alt=""></li>
-</ul>
-</li>
-<li>github：<a href="https://github.com/fookwood/Launcher3" target="_blank" rel="noopener">https://github.com/fookwood/Launcher3</a></li>
-</ol>
-<h3 id="Launcher3壁纸修改"><a href="#Launcher3壁纸修改" class="headerlink" title="Launcher3壁纸修改"></a>Launcher3壁纸修改</h3><ol>
-<li>将资源图片放在<code>Launcher3\WallpaperPicker\res\drawable</code>目录下，并改好缩略图，命名规则为资源图后加<code>_small</code></li>
-<li>在<code>Launcher3\WallpaperPicker\res\values-nodpi\wallpapers.xml</code>文件中声明资源图片，可不包含后缀名</li>
-</ol>
-<h3 id="根据plmn获取不同主页"><a href="#根据plmn获取不同主页" class="headerlink" title="根据plmn获取不同主页"></a>根据plmn获取不同主页</h3><ol>
-<li><code>Browser\src\com\android\browser\BrowserSettings.java</code>文件中<code>getHomePageFromPLMN()</code>方法添加case</li>
-<li>并且在<code>setHomePage()</code>方法中添加相应项目的判断<pre><code>if(SystemProperties.get(&quot;ro.project.customer_name&quot;).equals(&quot;Bmobile&quot;)){
-            sFactoryResetUrl = getHomePageFromPLMN();
-        }
-</code></pre></li>
-</ol>
-<h3 id="修改系统默认值"><a href="#修改系统默认值" class="headerlink" title="修改系统默认值"></a>修改系统默认值</h3><ol>
-<li>修改<code>frameworks\base\packages\SettingsProvider\res\values\defaults.xml</code>文件中对应的值，比如：def_wifi_display_on和def_wifi_on设置为默认开启</li>
-<li>字体的修改在<code>\frameworks\base\core\java\android\content\res\Configuration.java</code>文件的<code>setToDefaults()</code>方法中，fontScale = 1； //normal value is 1</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre><code>@ALL MTK 7.0 平台 Kernel开启了device-mapper-verity (dm-verity) 功能导致userdebug版本无法remount /system为rw模式
-
-需要 
-1)执行adb disable-verity 
-2) reboot
-3) 重新root /remount 
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/2017-03-31 编译指令 Launcher3常用类分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2752,6 +1681,1514 @@ boolBootAnimation::threadLoop()
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/Android源码架构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/13/Android源码架构/" itemprop="url">Android源码架构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T22:13:49+08:00">
+                2017-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Android源码架构"><a href="#Android源码架构" class="headerlink" title="Android源码架构"></a>Android源码架构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">├── Makefile            全局的Makefile</span><br><span class="line">├── build               系统编译规则和配置所需要的脚本和工具</span><br><span class="line">├── prebuilt            各种平台编译工具链</span><br><span class="line">├── bionic              基础C库源代码</span><br><span class="line">├── frameworks          * Android应用程序的核心框架层(java及C++语言)</span><br><span class="line">├── system              * 底层文件系统/库/应用及组件(adb...)</span><br><span class="line">├── dalvik              JAVA虚拟机</span><br><span class="line">├── external            Android使用的一些额外开源库(字体/Bt/Sepolicy...)</span><br><span class="line">├── libcore             与媒体播放框架代码相关</span><br><span class="line">├── packages            各种应用程序实例</span><br><span class="line">├── development         程序开发所需要的实例/模板/工具</span><br><span class="line">├── ndk</span><br><span class="line">├── sdk</span><br><span class="line">├── cts                 Android CTS兼容性规范测试代码</span><br><span class="line">├── vendor              * 厂商定制代码</span><br><span class="line">├── device              * 厂商定制代码</span><br><span class="line">├── hardware            * 一些与硬件相关的库，部分厂家开源的硬解适配层HAL代码</span><br><span class="line">├── kernel              * Linux源代码</span><br><span class="line">├── bootable            引导加载器（LK）</span><br><span class="line">├── abi</span><br><span class="line">├── doc                 * Android相关的文档</span><br><span class="line">├── art                 * art虚拟机相关的代码</span><br><span class="line">├── developers</span><br><span class="line">├── libnativehelper</span><br><span class="line">├── out                 编译生成的文件</span><br><span class="line">├── pdk</span><br></pre></td></tr></table></figure>
+<h1 id="BUILD系统"><a href="#BUILD系统" class="headerlink" title="BUILD系统"></a>BUILD系统</h1><p>Android的源码是如何编译的？<br>了解了这个有助于我们对android源码是如何构成的有直观的了解，现在以SC7731C Android7.0为例，在这里对Android编译系统进行分析。</p>
+<p>整个build的make文件主要分为三类:   </p>
+<ol>
+<li>系统核心的Make文件： 定义了Build系统的框架，文件全部位于路径 /build/core ，其他Make文件都是基于该框架编写的；   </li>
+<li>针对产品的Make文件： 定义了具体某个型号手机的Make文件，文件路径位于 /device ，该目录下往往又以公司名和产品名划分两个子级目录，比如 /device/qcom/msm8916 ；  </li>
+<li>针对模块的Make文件： 整个系统分为各个独立的模块，每个模块都一个专门的Make文件，名称统一为”Android.mk”，该文件定义了当前模块的编译方式。Build系统会扫描整个源码树中名为”Android.mk”的问题，并执行相应模块的编译工作。  </li>
+</ol>
+<h2 id="Android编译指令"><a href="#Android编译指令" class="headerlink" title="Android编译指令"></a>Android编译指令</h2><p>Android原生的代码完整编译需要如下三个命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">$ lunch</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-source-build-envsetup-sh"><a href="#1-source-build-envsetup-sh" class="headerlink" title="1. source build/envsetup.sh"></a>1. source build/envsetup.sh</h3><blockquote>
+<p>第一行命令<code>$ source build/envsetup.sh</code>引入了<code>build/envsetup.sh</code>脚本中的变量和方法，该脚本的作用是初始化编译环境，其中最重要的函数比如lunch就是在这一步加载到shell环境变量中去的。<br>环境导入后,当可以执行lunch函数时，通常有一下命令可被执行。</p>
+</blockquote>
+<ul>
+<li>编译指令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>croot</td>
+<td>切换到源码树的根目录</td>
+</tr>
+<tr>
+<td>m</td>
+<td>在源码树的根目录执行 make</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>Build 当前目录下的模块</td>
+</tr>
+<tr>
+<td>mmm</td>
+<td>Build 指定目录下的模块</td>
+</tr>
+<tr>
+<td>mma</td>
+<td>编译当前路径下所有模块，且包含依赖</td>
+</tr>
+<tr>
+<td>mmma</td>
+<td>编译指定路径下所有模块，且包含依赖</td>
+</tr>
+<tr>
+<td>make \<module\></module\></td>
+<td>无参数则表示编译整个Android代码</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>搜索指令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cgrep</td>
+<td>在所有 C/C++ 文件上执行 grep</td>
+</tr>
+<tr>
+<td>jgrep</td>
+<td>在所有 Java 文件上执行 grep</td>
+</tr>
+<tr>
+<td>resgrep</td>
+<td>在所有 res/*.xml 文件上执行 grep</td>
+</tr>
+<tr>
+<td>mangrep</td>
+<td>所有 AndroidManifest.xml 文件执行搜索操作</td>
+</tr>
+<tr>
+<td>sepgrep</td>
+<td>所有 sepolicy 文件执行搜索操作</td>
+</tr>
+<tr>
+<td>sgrep</td>
+<td>所有资源文件执行搜索操作</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>导航指令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>croot</td>
+<td>切换至Android根目录</td>
+</tr>
+<tr>
+<td>cproj</td>
+<td>切换至工程的根目录</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>可以搭配<code>cd -</code>来回切换</p>
+</blockquote>
+<ul>
+<li>其他指令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>printconfig</td>
+<td>显示当前 Build 的配置信息</td>
+</tr>
+<tr>
+<td>add_lunch_combo</td>
+<td>在 lunch 函数的菜单中添加一个条目</td>
+</tr>
+<tr>
+<td>lunch</td>
+<td>函数的参数用来指定此次编译的目标产品以及编译类型。</td>
+</tr>
+</tbody>
+</table>
+<p>如下是SC7731C X50142项目source后添加的环境变量:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">ANDROID_DEV_SCRIPTS=/home/liujunhong/develop/X50142/idh.code/development/scripts:/home/liujunhong/develop/X50142/idh.code/prebuilts/devtools/tools:/home/liujunhong/develop/X50142/idh.code/external/selinux/prebuilts/bin</span><br><span class="line">ARM_EABI_TOOLCHAIN=/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin</span><br><span class="line">ANDROID_PRE_BUILD_PATHS=/usr/lib/jvm/java-8-openjdk-amd64/bin:</span><br><span class="line">ANDROID_BUILD_TOP=/home/liujunhong/develop/X50142/idh.code</span><br><span class="line">ANDROID_PRODUCT_OUT=/home/liujunhong/develop/X50142/idh.code/out/target/product/sp7731c_1h10</span><br><span class="line">ANDROID_JAVA_TOOLCHAIN=/usr/lib/jvm/java-8-openjdk-amd64/bin</span><br><span class="line">OUT=/home/liujunhong/develop/X50142/idh.code/out/target/product/sp7731c_1h10</span><br><span class="line">TARGET_BUILD_VARIANT=userdebug</span><br><span class="line">ASAN_OPTIONS=detect_leaks=0</span><br><span class="line">BUILD_ENV_SEQUENCE_NUMBER=10</span><br><span class="line">ANDROID_BUILD_PATHS=/home/liujunhong/develop/X50142/idh.code/out/host/linux-x86/bin:/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/:/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin::/home/liujunhong/develop/X50142/idh.code/development/scripts:/home/liujunhong/develop/X50142/idh.code/prebuilts/devtools/tools:/home/liujunhong/develop/X50142/idh.code/external/selinux/prebuilts/bin:/home/liujunhong/develop/X50142/idh.code/prebuilts/android-emulator/linux-x86_64:</span><br><span class="line">TARGET_BUILD_APPS=</span><br><span class="line">TARGET_BUILD_TYPE=release</span><br><span class="line">PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:/home/liujunhong/develop/X50142/idh.code/out/host/linux-x86/bin:/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin:/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/:/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin::/home/liujunhong/develop/X50142/idh.code/development/scripts:/home/liujunhong/develop/X50142/idh.code/prebuilts/devtools/tools:/home/liujunhong/develop/X50142/idh.code/external/selinux/prebuilts/bin:/home/liujunhong/develop/X50142/idh.code/prebuilts/android-emulator/linux-x86_64:/usr/lib/jvm/java-8-openjdk-amd64/bin/:/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/:/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/<span class="built_in">local</span>/games:/usr/app/node-v4.5.0-linux-x64/bin:/home/liujunhong/Mydoc/bin</span><br><span class="line">JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64</span><br><span class="line">ANDROID_TOOLCHAIN=/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin</span><br><span class="line">ANDROID_TOOLCHAIN_2ND_ARCH=/home/liujunhong/develop/X50142/idh.code/prebuilts/gcc/linux-x86/</span><br><span class="line">GCC_COLORS=error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01</span><br><span class="line">PYTHONPATH=/home/liujunhong/develop/X50142/idh.code/development/python-packages:</span><br><span class="line">ANDROID_EMULATOR_PREBUILTS=/home/liujunhong/develop/X50142/idh.code/prebuilts/android-emulator/linux-x86_64</span><br><span class="line">TARGET_GCC_VERSION=4.9</span><br><span class="line">ANDROID_HOST_OUT=/home/liujunhong/develop/X50142/idh.code/out/host/linux-x86</span><br><span class="line">TARGET_PRODUCT=sp7731c_1h10_oversea</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-lunch"><a href="#2-lunch" class="headerlink" title="2. lunch"></a>2. lunch</h3><p>lunch命令用于指定此次编译的目标产品，以下是7731c平台lunch时的输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">You&apos;re building on Linux</span><br><span class="line">Lunch menu... pick a combo:</span><br><span class="line">     1. aosp_arm-eng</span><br><span class="line">     2. aosp_arm64-eng</span><br><span class="line">     ...</span><br><span class="line">     28. sp7731c_1h10_native-userdebug</span><br><span class="line">     29. sp7731c_1h10_native_trusty-userdebug</span><br><span class="line">     30. sp7731c_1h10_multi-userdebug</span><br><span class="line">     31. sp7731c_1h10_telcel-userdebug</span><br><span class="line">     32. sp7731c_1h10_vodafne-userdebug</span><br><span class="line">     33. sp7731c_1h10_claro-userdebug</span><br><span class="line">     34. sp7731c_1h10_orange-userdebug</span><br><span class="line">     35. sp7731c_1h10_oversea-userdebug</span><br><span class="line">     ...</span><br><span class="line">     46. sp8730se_1h10_qhd_native-userdebug</span><br><span class="line">...</span><br><span class="line">     49. sp8730se_1h10_qhd_native-userdebug</span><br></pre></td></tr></table></figure></p>
+<p>这些配置是从哪里获取到的呢？我们就不得不说<code>add_lunch_combo</code>，如上文所说，<code>add_lunch_combo</code>升级是为lunch添加一个条目，而实际就是增加了一种<code>产品配置</code>   </p>
+<p>在哪里有调用呢？ </p>
+<ul>
+<li><code>device/&lt;vendor&gt;/&lt;platform&gt;/&lt;board&gt;/vendorsetup.sh</code>，以下是我们SC7731C平台的代码文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">idh.code\device\sprd\scx20\sp7731c_1h10\vendorsetup.sh  </span><br><span class="line">add_lunch_combo sp7731c_1h10_native-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_native_trusty-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_multi-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_telcel-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_vodafne-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_claro-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_orange-userdebug</span><br><span class="line">add_lunch_combo sp7731c_1h10_oversea-userdebug</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们看看<code>add_lunch_combo</code>和<code>lunch</code>的代码可以知道,<code>add_lunch_combo</code>会将后面的参数去重后放到一个数组中<br>而<code>lunch</code>时只是先显示该数组的内容,然后根据用户的选择来设置并显示了一些环境变量然后显示<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add_lunch_combo()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">local</span> new_combo=<span class="variable">$1</span></span><br><span class="line">    <span class="built_in">local</span> c</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="variable">$&#123;LUNCH_MENU_CHOICES[@]&#125;</span> ; <span class="keyword">do</span>  </span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$new_combo</span>"</span> = <span class="string">"<span class="variable">$c</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">    LUNCH_MENU_CHOICES=(<span class="variable">$&#123;LUNCH_MENU_CHOICES[@]&#125;</span> <span class="variable">$new_combo</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> lunch()</span><br><span class="line">&#123;</span><br><span class="line">....</span><br><span class="line">        print_lunch_menu</span><br><span class="line">        &lt;CODE FOR PARSE USER CHOOSE&gt;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    <span class="built_in">export</span> TARGET_PRODUCT=<span class="variable">$product</span></span><br><span class="line">    <span class="built_in">export</span> TARGET_BUILD_VARIANT=<span class="variable">$variant</span></span><br><span class="line">    <span class="built_in">export</span> TARGET_BUILD_TYPE=release</span><br><span class="line">...</span><br><span class="line">    set_stuff_for_environment</span><br><span class="line">    printconfig</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那编译系统是在什么时候去读取的<code>vendorsetup.sh</code>文件呢? </p>
+<ul>
+<li>在<code>envsetup.sh</code>的最后,脚本会变量device目录,找到所有的<code>vendorsetup.sh</code>文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"x<span class="variable">$SHELL</span>"</span> != <span class="string">"x/bin/bash"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">case</span> `ps -o <span class="built_in">command</span> -p $$` <span class="keyword">in</span></span><br><span class="line">        *bash*)</span><br><span class="line">            ;;</span><br><span class="line">        *)</span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"WARNING: Only bash is supported, use of other shell would lead to erroneous results"</span></span><br><span class="line">            ;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Execute the contents of any vendorsetup.sh files we can find.</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> `<span class="built_in">test</span> -d device &amp;&amp; find -L device -maxdepth 4 -name <span class="string">'vendorsetup.sh'</span> 2&gt; /dev/null | sort` \</span><br><span class="line">         `<span class="built_in">test</span> -d vendor &amp;&amp; find -L vendor -maxdepth 4 -name <span class="string">'vendorsetup.sh'</span> 2&gt; /dev/null | sort` \</span><br><span class="line">         `<span class="built_in">test</span> -d product &amp;&amp; find -L product -maxdepth 4 -name <span class="string">'vendorsetup.sh'</span> 2&gt; /dev/null | sort`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"including <span class="variable">$f</span>"</span></span><br><span class="line">    . <span class="variable">$f</span> <span class="comment">#运行找到的脚本(注意是用". "来运行的,相当与source vendorsetup.sh)</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">unset</span> f</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因为我们在<code>add_lunch_combo</code>的时候默认的<code>varient</code>是<code>userdebug</code>,如果我们需要编译其他类型的版本,我们还需要使用<code>choosevariant</code>来选择我们需要编译的版本类型<br>variant通常有三种:   </p>
+<ul>
+<li>user:代表这是编译出的系统镜像是可以用来正式发布到市场的版本,其权限是被限制的(如没有root权限等)</li>
+<li>userdebug:在user版本的基础上开放了root权限和debug权限.</li>
+<li>eng:代表engineer,也就是所谓的开发工程师的版本,拥有最大的权限(root等),此外还附带了许多debug工具</li>
+</ul>
+<h3 id="3-make"><a href="#3-make" class="headerlink" title="3. make"></a>3. make</h3><h4 id="3-1-编译目标"><a href="#3-1-编译目标" class="headerlink" title="3.1 编译目标"></a>3.1 编译目标</h4><p>当我们在Android源码根目录下执行make的时候，会查找当前目录下的Makefie文件或者makefile文件并且执行，在android/Makefile文件中，它只有一行有用的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### DO NOT EDIT THIS FILE ###</span><br><span class="line">include build/core/main.mk</span><br><span class="line">### DO NOT EDIT THIS FILE ###</span><br></pre></td></tr></table></figure></p>
+<p>因此，执行make时真正的入口是android/build/core/main.mk文件<br>我们在Android源码根目录下执行make命令的时候，并没有传入目标，那么就会执行默认的目标。那默认的目标是什么呢？在android/build/core/main.mk中有这样几行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># This is the default target.  It must be the first declared target.</span><br><span class="line">.PHONY: droid</span><br><span class="line">DEFAULT_GOAL := droid</span><br><span class="line">$(DEFAULT_GOAL): droid_targets</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Building a full system-- the default is to build droidcore</span><br><span class="line">droid_targets: droidcore dist_files</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Build files and then package it into the rom formats</span><br><span class="line">.PHONY: droidcore</span><br><span class="line">droidcore: files \</span><br><span class="line">	systemimage \</span><br><span class="line">	$(INSTALLED_BOOTIMAGE_TARGET) \</span><br><span class="line">	$(INSTALLED_RECOVERYIMAGE_TARGET) \</span><br><span class="line">	$(INSTALLED_USERDATAIMAGE_TARGET) \</span><br><span class="line">	$(INSTALLED_CACHEIMAGE_TARGET) \</span><br><span class="line">	$(INSTALLED_PRODNVIMAGE_TARGET) \</span><br><span class="line">	$(INSTALLED_VENDORIMAGE_TARGET) \</span><br><span class="line">	$(INSTALLED_FILES_FILE) \</span><br><span class="line">	$(INSTALLED_FILES_FILE_VENDOR)</span><br></pre></td></tr></table></figure>
+<p>可以看到默认的目标是<code>droid</code>,而<code>droid</code>又依赖<code>droid_targets</code>,<code>droid_targets</code>又依赖<code>droidcore</code> 和 <code>dist_files</code>,然后<code>droidcore</code>依赖的就是各类images</p>
+<p><img src="&quot;图片来源:http://blog.csdn.net/lizekun2010/article/details/52598105&quot;" alt="targets.png"></p>
+<h4 id="3-2-其他-Make-命令"><a href="#3-2-其他-Make-命令" class="headerlink" title="3.2 其他 Make 命令"></a>3.2 其他 Make 命令</h4><table>
+<thead>
+<tr>
+<th>Make 目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>make clean</td>
+<td>执行清理，等同于：rm -rf out/。</td>
+</tr>
+<tr>
+<td>make sdk</td>
+<td>编译出 Android 的 SDK。</td>
+</tr>
+<tr>
+<td>make clean-sdk</td>
+<td>清理 SDK 的编译产物。</td>
+</tr>
+<tr>
+<td>make update-api</td>
+<td>更新 API。在 framework API 改动之后，需要首先执行该命令来更新 API，公开的 API 记录在 frameworks/base/api 目录下。</td>
+</tr>
+<tr>
+<td>make dist</td>
+<td>执行 Build，并将 MAKECMDGOALS 变量定义的输出文件拷贝到 /out/dist 目录。</td>
+</tr>
+<tr>
+<td>make all</td>
+<td>编译所有内容，不管当前产品的定义中是否会包含。</td>
+</tr>
+<tr>
+<td>make help</td>
+<td>帮助信息，显示主要的 make 目标。</td>
+</tr>
+<tr>
+<td>make snod</td>
+<td>从已经编译出的包快速重建系统镜像。（其实主要对system进行打包）</td>
+</tr>
+<tr>
+<td></td>
+<td>make snod  — system.i</td>
+</tr>
+<tr>
+<td>make libandroid_runtime</td>
+<td>编译所有 JNI framework 内容。</td>
+</tr>
+<tr>
+<td>make framework</td>
+<td>编译所有 Java framework 内容。</td>
+</tr>
+<tr>
+<td>make services</td>
+<td>编译系统服务和相关内容。</td>
+</tr>
+<tr>
+<td>make <local_target></local_target></td>
+<td>编译一个指定的模块，local_target 为模块的名称。</td>
+</tr>
+<tr>
+<td>make clean-<local_target></local_target></td>
+<td>清理一个指定模块的编译结果。</td>
+</tr>
+<tr>
+<td>make dump-products</td>
+<td>显示所有产品的编译配置信息，例如：产品名，产品支持的地区语言，产品中会包含的模块等信息。</td>
+</tr>
+<tr>
+<td>make bootimage</td>
+<td>生成 boot.img</td>
+</tr>
+<tr>
+<td>make recoveryimage</td>
+<td>生成 recovery.img</td>
+</tr>
+<tr>
+<td>make userdataimage</td>
+<td>生成 userdata.img</td>
+</tr>
+<tr>
+<td>make cacheimage</td>
+<td>生成 cache.img</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-2-编译流程"><a href="#3-2-编译流程" class="headerlink" title="3.2 编译流程"></a>3.2 编译流程</h2><blockquote>
+<p>main.mk –&gt; config.mk –&gt; envsetup.mk –&gt; product_config.mk      </p>
+</blockquote>
+<p>下面就来看看<code>product_config.mk</code>文件，首先调用方法get-all-product-makefiles找出所有的AndoridProducts.mk文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ifneq ($(strip $(TARGET_BUILD_APPS)),)</span><br><span class="line"># An unbundled app build needs only the core product makefiles.</span><br><span class="line">all_product_configs := $(call get-product-makefiles,\</span><br><span class="line">    $(SRC_TARGET_DIR)/product/AndroidProducts.mk)</span><br><span class="line">else</span><br><span class="line"># Read in all of the product definitions specified by the AndroidProducts.mk</span><br><span class="line"># files in the tree.</span><br><span class="line">all_product_configs := $(get-all-product-makefiles)</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+<p>然后从all_product_configs中找出我们当前产品的all_product_makefiles文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Find the product config makefile for the current product.</span><br><span class="line"># all_product_configs consists items like:</span><br><span class="line"># &lt;product_name&gt;:&lt;path_to_the_product_makefile&gt;</span><br><span class="line"># or just &lt;path_to_the_product_makefile&gt; in case the product name is the</span><br><span class="line"># same as the base filename of the product config makefile.</span><br><span class="line">current_product_makefile :=</span><br><span class="line">all_product_makefiles :=</span><br><span class="line">$(foreach f, $(all_product_configs),\</span><br><span class="line">    $(eval _cpm_words := $(subst :,$(space),$(f)))\</span><br><span class="line">    $(eval _cpm_word1 := $(word 1,$(_cpm_words)))\</span><br><span class="line">    $(eval _cpm_word2 := $(word 2,$(_cpm_words)))\</span><br><span class="line">    $(if $(_cpm_word2),\</span><br><span class="line">        $(eval all_product_makefiles += $(_cpm_word2))\</span><br><span class="line">        $(if $(filter $(TARGET_PRODUCT),$(_cpm_word1)),\</span><br><span class="line">            $(eval current_product_makefile += $(_cpm_word2)),),\</span><br><span class="line">        $(eval all_product_makefiles += $(f))\</span><br><span class="line">        $(if $(filter $(TARGET_PRODUCT),$(basename $(notdir $(f)))),\</span><br><span class="line">            $(eval current_product_makefile += $(f)),)))</span><br><span class="line">_cpm_words :=</span><br><span class="line">_cpm_word1 :=</span><br><span class="line">_cpm_word2 :=</span><br><span class="line">current_product_makefile := $(strip $(current_product_makefile))</span><br></pre></td></tr></table></figure></p>
+<p>比如我们在执行lunch时选择的是sp7731c_1h10_oversea，则current_product_makefile的值就是：device/sprd/scx20/sp7731c_1h10/sp7731c_1h10_oversea.mk<br>接着调用import-products导入产品配置信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(call import-products, $(current_product_makefile))</span><br></pre></td></tr></table></figure></p>
+<p>接着设置TARGET_DEVICE的值，其实就是sp7731c_1h10：<br>TARGET_DEVICE := $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_DEVICE)<br>接着设置PRODUCT_COPY_FILES，这个变量指定了需要拷贝的文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRODUCT_COPY_FILES := \  </span><br><span class="line">    $(strip $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_COPY_FILES))</span><br></pre></td></tr></table></figure></p>
+<p>接着设置PRODUCT_PROPERTY_OVERRIDES属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRODUCT_PROPERTY_OVERRIDES := \  </span><br><span class="line">    $(strip $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_PROPERTY_OVERRIDES))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">board_config_mk := \</span><br><span class="line">        $(strip $(sort $(wildcard \</span><br><span class="line">                $(SRC_TARGET_DIR)/board/$(TARGET_DEVICE)/BoardConfig.mk \</span><br><span class="line">                $(shell test -d device &amp;&amp; find -L device -maxdepth 4 -path &apos;*/$(TARGET_DEVICE)/BoardConfig.mk&apos;) \</span><br><span class="line">                $(shell test -d vendor &amp;&amp; find -L vendor -maxdepth 4 -path &apos;*/$(TARGET_DEVICE)/BoardConfig.mk&apos;) \</span><br><span class="line">        )))</span><br><span class="line">ifeq ($(board_config_mk),)</span><br><span class="line">  $(error No config file found for TARGET_DEVICE $(TARGET_DEVICE))</span><br><span class="line">endif</span><br><span class="line">ifneq ($(words $(board_config_mk)),1)</span><br><span class="line">  $(error Multiple board config files for TARGET_DEVICE $(TARGET_DEVICE): $(board_config_mk))</span><br><span class="line">endif</span><br><span class="line">include $(board_config_mk)</span><br></pre></td></tr></table></figure>
+<p>至此，板型配置基本加载完毕。开始加载所有模块<br>加载完板型配置信息后，回到main.mk文件中，很快发现了ONE_SHOT_MAKEFILE的使用。如果这个变量被定义了，那么就是编译一个模块，如果没有被定义，就说明是编译整个系统。MAKECMDGOALS是make的一个环境变量，当我们执行make的时候并没有设置它，因此它为空。所以dont_bother不等于true，因此会加载所有的Android.mk，这里是调用一个Python脚本android/build/tools/findleaves.py来查找系统中所有的Android.mk，然后循环include进来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Include all of the makefiles in the system  </span><br><span class="line"># </span><br><span class="line"># Can&apos;t use first-makefiles-under here because  </span><br><span class="line"># --mindepth=2 makes the prunes not work.  </span><br><span class="line">subdir_makefiles := \  </span><br><span class="line">    $(shell build/tools/findleaves.py $(FIND_LEAVES_EXCLUDES) $(subdirs) Android.mk)  </span><br><span class="line"></span><br><span class="line">ifeq ($(USE_SOONG),true)  </span><br><span class="line">subdir_makefiles := $(SOONG_ANDROID_MK) $(call filter-soong-makefiles,$(subdir_makefiles))  </span><br><span class="line">endif  </span><br><span class="line">$(foreach mk, $(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))</span><br></pre></td></tr></table></figure></p>
+<p>那么问题来了,我们要加一个新的<code>产品配置</code>要改什么文件呢?</p>
+<h2 id="添加新的产品"><a href="#添加新的产品" class="headerlink" title="添加新的产品"></a>添加新的产品</h2><p>当要开发一款新的 Android 产品的时候，我们首先需要在 Build 系统中添加对于该产品的定义。<br>在 Android Build 系统中对产品定义的文件通常位于 device 目录下。device 目录下根据公司名以及产品名分为二级或多级目录。<br>通常，对于一个产品的定义通常至少会包括四个文件：AndroidProducts.mk，产品版本定义文件，BoardConfig.mk 以及 verndorsetup.sh。</p>
+<ul>
+<li><p>/device/sprd/scx20/sp7731c_4h10/vendorsetup.sh:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_lunch_combo sp7731c_4h10_native-userdebug</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>/device/sprd/scx20/sp7731c_4h10/AndroidProducts.mk：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRODUCT_MAKEFILES := \</span><br><span class="line">    $(LOCAL_DIR)/sp7731c_4h10_native.mk</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>产品版本定义文件：顾名思义，该文件中包含了对于特定产品版本的定义。该文件可能不只一个，因为同一个产品可能会有多种版本（例如，面向中国地区一个版本，面向美国地区一个版本）。<br>文件中可以定义的变量以及含义</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRODUCT_NAME</td>
+<td>最终用户将看到的完整产品名，会出现在“关于手机”信息中。</td>
+</tr>
+<tr>
+<td>PRODUCT_MODEL</td>
+<td>产品的型号，这也是最终用户将看到的。</td>
+</tr>
+<tr>
+<td>PRODUCT_LOCALES</td>
+<td>该产品支持的地区，以空格分格，例如：en_GB de_DE es_ES fr_CA。</td>
+</tr>
+<tr>
+<td>PRODUCT_PACKAGES</td>
+<td>该产品版本中包含的 APK 应用程序，以空格分格，例如：Calendar Contacts。</td>
+</tr>
+<tr>
+<td>PRODUCT_DEVICE</td>
+<td>该产品的工业设计的名称。</td>
+</tr>
+<tr>
+<td>PRODUCT_MANUFACTURER</td>
+<td>制造商的名称。</td>
+</tr>
+<tr>
+<td>PRODUCT_BRAND</td>
+<td>该产品专门定义的商标（如果有的话）。</td>
+</tr>
+<tr>
+<td>PRODUCT_PROPERTY_OVERRIDES</td>
+<td>对于商品属性的定义。</td>
+</tr>
+<tr>
+<td>PRODUCT_COPY_FILES</td>
+<td>编译该产品时需要拷贝的文件，以“源路径 : 目标路径”的形式。</td>
+</tr>
+<tr>
+<td>PRODUCT_OTA_PUBLIC_KEYS</td>
+<td>对于该产品的 OTA 公开 key 的列表。</td>
+</tr>
+<tr>
+<td>PRODUCT_POLICY</td>
+<td>产品使用的策略。</td>
+</tr>
+<tr>
+<td>PRODUCT_PACKAGE_OVERLAYS</td>
+<td>指出是否要使用默认的资源或添加产品特定定义来覆盖。</td>
+</tr>
+<tr>
+<td>PRODUCT_CONTRIBUTORS_FILE</td>
+<td>HTML 文件，其中包含项目的贡献者。</td>
+</tr>
+<tr>
+<td>PRODUCT_TAGS</td>
+<td>该产品的标签，以空格分格。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="添加新的模块"><a href="#添加新的模块" class="headerlink" title="添加新的模块"></a>添加新的模块</h2><p>在源码树中，一个模块的所有文件通常都位于同一个文件夹中。为了将当前模块添加到整个 Build 系统中，每个模块都需要一个专门的 Make 文件，该文件的名称为“Android.mk”。Build 系统会扫描名称为“Android.mk”的文件，并根据该文件中内容编译出相应的产物。</p>
+<p>需要注意的是：在 Android Build 系统中，编译是以模块（而不是文件）作为单位的，每个模块都有一个唯一的名称，一个模块的依赖对象只能是另外一个模块，而不能是其他类型的对象。对于已经编译好的二进制库，如果要用来被当作是依赖对象，那么应当将这些已经编译好的库作为单独的模块。对于这些已经编译好的库使用 <code>BUILD_PREBUILT</code> 或 <code>BUILD_MULTI_PREBUILT</code>。例如：当编译某个 Java 库需要依赖一些 Jar 包时，并不能直接指定 Jar 包的路径作为依赖，而必须首先将这些 Jar 包定义为一个模块，然后在编译 Java 库的时候通过模块的名称来依赖这些 Jar 包。</p>
+<h3 id="Android-mk-解析"><a href="#Android-mk-解析" class="headerlink" title="Android.mk 解析"></a>Android.mk 解析</h3><p>在源码树中每一个模块的所有文件通常都相应有一个自己的文件夹，在该模块的根目录下有一个名称为“Android.mk” 的文件。编译系统正是以模块为单位进行编译，每个模块都有唯一的模块名，一个模块可以有依赖多个其他模块，模块间的依赖关系就是通过模块名来引用的。也就是说当模块需要依赖一个jar包或者apk时，必须先将jar包或apk定义为一个模块，然后再依赖相应的模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir) </span><br><span class="line">include $(CLEAR_VARS)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这两行代码的作用是：<br>设置当前模块的编译路径为当前文件夹路径。<br>清理（可能由其他模块设置过的）编译环境中用到的变量。   </p>
+</blockquote>
+<p>为了方便模块的编译，Build 系统设置了很多的编译环境变量。要编译一个模块，只要在编译之前根据需要设置这些变量然后执行编译即可。它们包括：</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOCAL_SRC_FILES</td>
+<td>当前模块包含的所有源代码文件。</td>
+</tr>
+<tr>
+<td>LOCAL_MODULE</td>
+<td>当前模块的名称，这个名称应当是唯一的，模块间的依赖关系就是通过这个名称来引用的。</td>
+</tr>
+<tr>
+<td>LOCAL_C_INCLUDES</td>
+<td>C 或 C++ 语言需要的头文件的路径。LOCAL_STATIC_LIBRARIES：当前模块在静态链接时需要的库的名称。LOCAL_SHARED_LIBRARIES：当前模块在运行时依赖的动态库的名称。</td>
+</tr>
+<tr>
+<td>LOCAL_CFLAGS</td>
+<td>提供给 C/C++ 编译器的额外编译参数。</td>
+</tr>
+<tr>
+<td>LOCAL_JAVA_LIBRARIES</td>
+<td>当前模块依赖的 Java 共享库。</td>
+</tr>
+<tr>
+<td>LOCAL_STATIC_JAVA_LIBRARIES</td>
+<td>前模块依赖的 Java 静态库。LOCAL_PACKAGE_NAME：当前 APK 应用的名称。</td>
+</tr>
+<tr>
+<td>LOCAL_CERTIFICATE</td>
+<td>签署当前应用的证书名称。</td>
+</tr>
+<tr>
+<td>LOCAL_MODULE_TAGS</td>
+<td>当前模块所包含的标签，一个模块可以包含多个标签。标签的值可能是 debug, eng, user，development 或者 optional(默认)。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>标签是提供给编译类型使用的。不同的编译类型会安装包含不同标签的模块。<br>要编译一个 APK 文件，只需要在 Android.mk 文件中，加入“include $(BUILD_PACKAGE)   </p>
+</blockquote>
+<p>除此以外，Build 系统中还定义了一些便捷的函数以便在 Android.mk 中使用，包括：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(call my-dir)</td>
+<td>获取当前文件夹路径。</td>
+</tr>
+<tr>
+<td>$(call all-java-files-under, <src>)</src></td>
+<td>获取指定目录下的所有 Java 文件。</td>
+</tr>
+<tr>
+<td>$(call all-c-files-under, <src>)</src></td>
+<td>获取指定目录下的所有 C 语言文件。</td>
+</tr>
+<tr>
+<td>$(call all-Iaidl-files-under, <src>)</src></td>
+<td>获取指定目录下的所有 AIDL 文件。</td>
+</tr>
+<tr>
+<td>$(call all-makefiles-under, <folder>)</folder></td>
+<td>获取指定目录下的所有 Make 文件。</td>
+</tr>
+<tr>
+<td>$(call intermediates-dir-for, <class>, <app_name>, <host or="" target="">, <common?> )</common?></host></app_name></class></td>
+<td>获取 Build 输出的目标文件夹路径。</td>
+</tr>
+</tbody>
+</table>
+<p>示例:</p>
+<ul>
+<li><p>编译一个 APK 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir) </span><br><span class="line">include $(CLEAR_VARS) </span><br><span class="line"># 获取所有子目录中的 Java 文件</span><br><span class="line">LOCAL_SRC_FILES := $(call all-subdir-java-files)             </span><br><span class="line"># 当前模块依赖的静态 Java 库，如果有多个以空格分隔</span><br><span class="line">LOCAL_STATIC_JAVA_LIBRARIES := static-library </span><br><span class="line"># 当前模块的名称</span><br><span class="line">LOCAL_PACKAGE_NAME := LocalPackage </span><br><span class="line"># 编译 APK 文件</span><br><span class="line">include $(BUILD_PACKAGE)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译一个 Java 的静态库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir) </span><br><span class="line">include $(CLEAR_VARS) </span><br><span class="line"></span><br><span class="line"># 获取所有子目录中的 Java 文件</span><br><span class="line">LOCAL_SRC_FILES := $(call all-subdir-java-files) </span><br><span class="line"></span><br><span class="line"># 当前模块依赖的动态 Java 库名称</span><br><span class="line">LOCAL_JAVA_LIBRARIES := android.test.runner </span><br><span class="line"></span><br><span class="line"># 当前模块的名称</span><br><span class="line">LOCAL_MODULE := sample </span><br><span class="line"></span><br><span class="line"># 将当前模块编译成一个静态的 Java 库</span><br><span class="line">include $(BUILD_STATIC_JAVA_LIBRARY)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="SPROCOMM-Android项目编译脚本"><a href="#SPROCOMM-Android项目编译脚本" class="headerlink" title="SPROCOMM Android项目编译脚本"></a>SPROCOMM Android项目编译脚本</h1><p>介绍完Android原始的编译系统,我们再看看禾苗编译系统做了些什么,我们从<code>buildall_eng.sh</code>说起</p>
+<ol>
+<li><p>处理并检查脚本参数,最新版本的脚本支持如下参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">usage</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"USAGE: <span class="variable">$0</span> &lt;PROJECT&gt; [ota] [pac] [copy] [boot] [bootloader] [recovery] [snod] [api] [env] [nodex] [-m &lt;MODULE&gt;]"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* OTA : 编译OTA包"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* BOOT : 编译boot.img"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* CHIPRAM : 编译chipram"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* RECOVERY : 编译recovery.img"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* BOOTLOADER : 编译bootloader(u-boot.bin)"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* SNOD : 打包system.img"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* -m &lt;MODULE&gt; : 编译&lt;MODULE&gt;指定的模块(-m bootloader)"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* PAC : 编译完成后自动打包(*.pac)"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* COPY : 拷贝覆盖文件，不启动编译"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* API : 提示需要更新api时加该参数:更新api.txt，编译完成后请将framework中的api文件提交到git上"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* ENV : 单编source时加该参数，只设置环境，不启动编译"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* NODEX : 全编DEBUG版本时不生成odex文件"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"* 参数不区分大小写和顺序"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为7.0平台设置Java环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">javaVersion=`<span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span> | grep <span class="string">"java-8-openjdk-amd64"</span>`</span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$javaVersion</span> ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Set JAVA_HOME as /usr/lib/jvm/java-8-openjdk-amd64"</span></span><br><span class="line">    <span class="built_in">export</span> JAVA_HOME=<span class="string">"/usr/lib/jvm/java-8-openjdk-amd64"</span></span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/jre/bin/:<span class="variable">$PATH</span></span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin/:<span class="variable">$PATH</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用<code>sprplus_target_gen.pl</code>解析项目对应的spec生成配置文件文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/buildplus/tool/sprplus_target_gen.pl  <span class="variable">$&#123;PROJECT&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">输出:</span></span><br><span class="line">build/buildplus/buildspec/X50142.spec</span><br><span class="line">Copy build/buildplus/target/Features.java to frameworks/base/core/java/android/plugin/</span><br><span class="line">Copy build/buildplus/target/spr_target.h to kernel/include/linux/</span><br><span class="line">Copy build/buildplus/target/spr_target.h to chipram/include/configs/</span><br><span class="line">Copy build/buildplus/target/spr_target.h to system/core/include/android/</span><br><span class="line">Copy build/buildplus/target/spr_target.h to u-boot64/include/configs/</span><br><span class="line">Copy build/buildplus/target/spr_target.h to kernel/scripts/</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>拷贝覆盖文件和编译ota时所需要的modem以及audio_para文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Copy overlay files ##</span></span><br><span class="line">OVERLAY_FILE=./sprocomm_proj/<span class="variable">$&#123;PROJECT&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ -d <span class="variable">$&#123;OVERLAY_FILE&#125;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    cp -rf <span class="variable">$&#123;OVERLAY_FILE&#125;</span>/* ./</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"WARNING!!! Overlay file Not found!"</span> ; sleep 2</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">modem_bins_dir=device/sprd/<span class="variable">$&#123;CONFIG_DEVICE_PLATFORM&#125;</span>/<span class="variable">$&#123;CONFIG_DEVICE_BOARD&#125;</span>/modem_bins</span><br><span class="line">audio_paras_dir=device/sprd/<span class="variable">$&#123;CONFIG_DEVICE_PLATFORM&#125;</span>/<span class="variable">$&#123;CONFIG_DEVICE_BOARD&#125;</span>/rootdir/system/etc/audio_params/audio_para</span><br><span class="line"></span><br><span class="line">modem_dir=modem/<span class="variable">$&#123;PROJECT&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"default"</span> != <span class="variable">$&#123;BUILD_HARDWARE_CLASS&#125;</span> ];<span class="keyword">then</span></span><br><span class="line">    modem_dir=modem/<span class="variable">$&#123;PROJECT&#125;</span>-<span class="variable">$&#123;BUILD_HARDWARE_CLASS&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -e <span class="variable">$&#123;modem_dir&#125;</span>/audio_para ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"copy "</span><span class="variable">$&#123;modem_dir&#125;</span>/audio_para<span class="string">" to "</span><span class="variable">$&#123;audio_paras_dir&#125;</span></span><br><span class="line">    cp <span class="variable">$&#123;modem_dir&#125;</span>/audio_para <span class="variable">$&#123;audio_paras_dir&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">mkdir -p <span class="variable">$&#123;modem_bins_dir&#125;</span></span><br><span class="line">cp <span class="variable">$&#123;modem_dir&#125;</span>/DSP_DM_G2.bin  <span class="variable">$&#123;modem_bins_dir&#125;</span>/wdsp.bin</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"true"</span> = <span class="variable">$&#123;BUILD_COPY_ONLY&#125;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    [ <span class="variable">$BUILD_ENV</span> = <span class="string">"false"</span> ] &amp;&amp; <span class="built_in">exit</span> 1; <span class="built_in">return</span>;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行Android原生的编译脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">lunch <span class="variable">$&#123;CONFIG_DEVICE_PRODUCT&#125;</span>-userdebug</span><br><span class="line">choosevariant <span class="variable">$&#123;varient_val&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行展讯编译kernel额外的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kheader</span><br><span class="line">kdconfig</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有必要则重启一次jack服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vmArg=`<span class="built_in">echo</span> <span class="variable">$JACK_SERVER_VM_ARGUMENTS</span> | grep <span class="string">"Xmx4096m"</span>`</span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$vmArg</span> ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">export</span> JACK_SERVER_VM_ARGUMENTS=<span class="string">"-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4096m"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"restart jack server"</span></span><br><span class="line">    bash ./prebuilts/sdk/tools/jack-admin <span class="built_in">kill</span>-server </span><br><span class="line">    bash ./prebuilts/sdk/tools/jack-admin start-server</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拷贝展讯7.0平台提供的proprietories文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Copy SPRD7.0 proprietories files</span></span><br><span class="line">PROPRIETORIES=<span class="string">"vendor/sprd/proprietories-out/<span class="variable">$&#123;CONFIG_DEVICE_PRODUCT&#125;</span>-<span class="variable">$&#123;BUILD_VARIANT&#125;</span>"</span></span><br><span class="line"><span class="keyword">if</span> [ ! -e <span class="variable">$PROPRIETORIES</span> ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$PROPRIETORIES</span> not exists, using native file...</span><br><span class="line">sleep 3</span><br><span class="line">PROPRIETORIES=<span class="string">"vendor/sprd/proprietories-out/<span class="variable">$&#123;CONFIG_DEVICE_BOARD&#125;</span>_native-<span class="variable">$&#123;BUILD_VARIANT&#125;</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> Copy <span class="variable">$PROPRIETORIES</span> to out</span><br><span class="line">cp -rf <span class="variable">$PROPRIETORIES</span>/* .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始编译</p>
+<blockquote>
+<p><code>BUILD_MODULE_CMD</code> 可能会指定一些别的模块,这样就会编译指定的模块,而不是整个android系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MULTILANGUAGE_SUPPORT=<span class="literal">true</span> DEBUG_WITH_DEXPREOPT=<span class="variable">$&#123;DEBUG_WITH_DEXPREOPT&#125;</span> make <span class="variable">$&#123;BUILD_MODULE_CMD&#125;</span> -j<span class="variable">$JN</span> 2&gt;&amp;1 | tee <span class="variable">$&#123;SAVE_PATH&#125;</span>/build.log</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>如果有必要,则编译并打包ota包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#build otapackage#</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"true"</span> = <span class="variable">$&#123;BUILD_OTA&#125;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    MULTILANGUAGE_SUPPORT=<span class="literal">true</span> DEBUG_WITH_DEXPREOPT=<span class="variable">$&#123;DEBUG_WITH_DEXPREOPT&#125;</span> make otapackage -j<span class="variable">$JN</span> 2&gt;&amp;1 | tee <span class="variable">$&#123;SAVE_PATH&#125;</span>/buildOta.log</span><br><span class="line">    RESULT=<span class="variable">$&#123;PIPESTATUS[0]&#125;</span> ; <span class="keyword">if</span> [ ! <span class="string">"0"</span> = <span class="variable">$&#123;RESULT&#125;</span> ] ; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"Build Abort!"</span>; [ <span class="variable">$BUILD_ENV</span> = <span class="string">"false"</span> ] &amp;&amp; <span class="built_in">exit</span> 1; <span class="built_in">return</span>; <span class="keyword">fi</span></span><br><span class="line">    <span class="comment">#cp -f $&#123;BUILD_OUT_DIR&#125;/*-ota-*.zip $&#123;SAVE_PATH&#125;</span></span><br><span class="line">    cp -f <span class="variable">$&#123;BUILD_OUT_DIR&#125;</span>/*-fota-Package.zip <span class="variable">$&#123;SAVE_PATH&#125;</span></span><br><span class="line">    </span><br><span class="line">    RESULT=$? ; <span class="keyword">if</span> [ ! <span class="string">"0"</span> = <span class="variable">$&#123;RESULT&#125;</span> ] ; <span class="keyword">then</span> </span><br><span class="line">        cp -f <span class="variable">$&#123;BUILD_OUT_DIR&#125;</span>/obj/PACKAGING/target_files_intermediates/*target_files*.zip <span class="variable">$&#123;SAVE_PATH&#125;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有必要则打包生成的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Start Pack ##</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"true"</span> = <span class="variable">$&#123;BUILD_PAC&#125;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    cp -f <span class="variable">$&#123;BUILD_OUT_DIR&#125;</span>/system/build.prop <span class="variable">$&#123;SAVE_PATH&#125;</span></span><br><span class="line">    cp -f <span class="variable">$&#123;BUILD_OUT_DIR&#125;</span>/obj/KERNEL/vmlinux <span class="variable">$&#123;SAVE_PATH&#125;</span></span><br><span class="line">    <span class="keyword">if</span> [ ! <span class="string">"user"</span> = <span class="variable">$&#123;BUILD_VARIANT&#125;</span> ]; <span class="keyword">then</span></span><br><span class="line">        zip -r <span class="variable">$&#123;SAVE_PATH&#125;</span>_ENG.zip <span class="variable">$&#123;SAVE_PATH&#125;</span>/*</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        zip -r <span class="variable">$&#123;SAVE_PATH&#125;</span>.zip <span class="variable">$&#123;SAVE_PATH&#125;</span>/*</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    rm <span class="variable">$&#123;SAVE_PATH&#125;</span> -rf;</span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"default"</span> != <span class="variable">$&#123;BUILD_HARDWARE_CLASS&#125;</span> ];<span class="keyword">then</span></span><br><span class="line">        ./make_pac.sh <span class="variable">$&#123;PROJECT&#125;</span> <span class="variable">$&#123;BUILD_HARDWARE_CLASS&#125;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ./make_pac.sh <span class="variable">$&#123;PROJECT&#125;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>至此是编译的全部流程,其中有几点需要我们注意:   </p>
+<h2 id="SPEC文件的规则"><a href="#SPEC文件的规则" class="headerlink" title="SPEC文件的规则"></a>SPEC文件的规则</h2><p>Android 7.0平台上我重写了SPEC文件的规则和解析脚本,规则如下</p>
+<ol>
+<li>每个项目都应该有一个与项目名相同的spec文件,如<code>build/buildplus/buildspec/X50142.spec</code></li>
+<li>spec 文件使用分号(“;”)标识注释, 并要求行尾不要有windows换行符”\r”(7.0引入jack,该符号会导致编译报错)</li>
+<li>将所有的变量整理在一起，去掉不需要的变量，并规范变量名   </li>
+<li>变量规则，所有定义的变量都按照KEY\<type\>=VALUE的格式书写，其中TYPE支持如下几种：   <blockquote>
+<pre><code>* BUILD : Makefile 变量   
+* String：Java变量   
+* int : Java 变量   
+* boolean： Java变量   
+* Native ： C/C++  常量   
+* DEFINE:  C/C++ 宏 （value=1 时生成#define KEY， 否则生成#define KEY_UNDEFINED）   
+</code></pre></blockquote>
+</type\></li>
+<li>添加一个新的变量时需要先在<code>build\buildplus\namespace\names.ini</code>配置其默认值(如果xxx.spec中未定义,则生成的文件中变量的值未name.ini中定义的默认值),否则添加的变量不能反应到输出的文件中</li>
+<li>去除6.0中的如下属性ro.project.customer_name、ro.project.customer_sku、ro.project.name（原因: 衍生项目有可能被用户看到别的客户名，有些代码将getprop放在循环中引发性能问题）所有Java中判断属性通过如下常量获取<blockquote>
+<pre><code>* android.os.Build.CUSTOMER ： 客户名   
+* android.os.Build.CUSTOMER_SKU ： 客户品牌名（Lava/Xolo）   
+* android.os.Build.PROJECT ： 项目名   
+</code></pre></blockquote>
+</li>
+<li>针对之前项目与device目录对应关系不清楚问题，将以前的CONFIG_DEVICE_BOARD  = scx20、CONFIG_DEVICE_PRODUCT  = sp7731c_1h10修改为3个宏，创建项目时请注意：<blockquote>
+<pre><code>* CONFIG_DEVICE_PLATFORM\&lt;BUILD\&gt;  = scx20   
+* CONFIG_DEVICE_BOARD\&lt;BUILD\&gt;  = sp7731c_1h10   
+* CONFIG_DEVICE_PRODUCT\&lt;BUILD\&gt;  = sp7731c_1h10_oversea   
+</code></pre></blockquote>
+</li>
+<li>BUILD类型的变量的值不允许添加引号</li>
+</ol>
+<h2 id="SPEC文件的解析"><a href="#SPEC文件的解析" class="headerlink" title="SPEC文件的解析"></a>SPEC文件的解析</h2><ol>
+<li>SPEC文件使用<code>sprplus_target_gen.pl</code>脚本解析,并在<code>build\buildplus\target</code>目录下生成3个文件<blockquote>
+<ul>
+<li>Features.java</li>
+<li>spr_target.h</li>
+<li>spr_target.min<br>分别供java, c/c++, 以及makefile使用<br>其中<code>spr_target.h</code>还会被copy到”kernel”, “chipram”, “uboot”, “system”代码的include文件夹中<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">my $targetDefaultNativePath = <span class="string">"build/buildplus/target/spr_target.h"</span>;</span><br><span class="line">my @targetNativePaths =  (<span class="string">"kernel/include/linux/"</span>,</span><br><span class="line">                    <span class="string">"chipram/include/configs/"</span>,</span><br><span class="line">                    <span class="string">"system/core/include/android/"</span>,</span><br><span class="line">                    <span class="string">"u-boot64/include/configs/"</span>,</span><br><span class="line">                    <span class="string">"kernel/scripts/"</span>,);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="关于覆盖目录"><a href="#关于覆盖目录" class="headerlink" title="关于覆盖目录"></a>关于覆盖目录</h2><p>由于驱动中的部分文件不方便作项目区分,保留了覆盖目录,覆盖目录位于./sprocomm_proj/${PROJECT},在编译或者source单编的时候会被拷贝覆盖到原始的代码中.<br>因为滥用覆盖目录会经常会导致代码被误提交,修改不生效,升级大版本复杂等问题, 请尽量避免使用覆盖的方式区分项目和代码, 同时脚本中也做了限制,禁止如下几种类型添加到覆盖目录中,当在覆盖目录中创建这几类文件时会提示错误</p>
+<blockquote>
+<ul>
+<li>.java</li>
+<li>.cpp</li>
+<li>.cc</li>
+<li>.mk</li>
+<li>.sh</li>
+<li>.py</li>
+<li>.pl<br>如果无论如何都要覆盖这几个文件,此时可以删除.git/hooks/pre-commit再重新commit(pre-commit文件会在重新编译后再次生成)</li>
+</ul>
+</blockquote>
+<ul>
+<li>关于各类文件区分项目,可以参考如下修改<br><a href="http://192.168.11.104/gitweb/?p=MOCORDROID7.0_Trunk_K310_17A_W17.04.2.git;a=commitdiff;h=77a7000d049c44a3e5cc35fa985f7949f8b4c9ed;hp=fefbe6f615f18e2153ac7f9d35db9ca4f97778fc" target="_blank" rel="noopener">参考代码</a></li>
+</ul>
+<ol>
+<li>java文件,先在spec中定义变量(JAVA_VALUE_WIFI_HOT_SSID):<blockquote>
+<p>JAVA_VALUE_WIFI_HOT_SSID\<string\> = “alcatel U5”;</string\></p>
+</blockquote>
+</li>
+</ol>
+<p>再修改代码引用:<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">      */</span><br><span class="line">     private WifiConfiguration getDefaultApConfiguration() &#123;</span><br><span class="line">         WifiConfiguration config = new WifiConfiguration();</span><br><span class="line"><span class="deletion">-        config.SSID = mContext.getResources().getString(</span></span><br><span class="line"><span class="deletion">-                R.string.wifi_tether_configure_ssid_default);</span></span><br><span class="line"><span class="addition">+        //SPROCOMM</span></span><br><span class="line"><span class="addition">+        //config.SSID = mContext.getResources().getString(</span></span><br><span class="line"><span class="addition">+        //        R.string.wifi_tether_configure_ssid_default);</span></span><br><span class="line"><span class="addition">+        config.SSID = android.plugin.Features.JAVA_VALUE_WIFI_HOT_SSID;</span></span><br><span class="line">         config.allowedKeyManagement.set(KeyMgmt.WPA2_PSK);</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>makfile文件,同样定义变量:<blockquote>
+<p>MODULES_PROJECT_NAME\<build\> = X50142   </build\></p>
+</blockquote>
+</li>
+</ol>
+<p>再修改引用代码:<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- a/idh.code/device/sprd/scx20/sp7731c_1h10/BoardConfig.mk</span></span><br><span class="line"><span class="comment">+++ b/idh.code/device/sprd/scx20/sp7731c_1h10/BoardConfig.mk</span></span><br><span class="line">@@ -146,3 +146,14 @@ DEVICE_GSP_NOT_SCALING_UP_TWICE := true</span><br><span class="line"> </span><br><span class="line"> #UCAM feature</span><br><span class="line"> TARGET_BOARD_CAMERA_FACE_BEAUTY := true # hal config</span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+include build/buildplus/target/spr_target.min</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+ifeq ($(MODULES_PROJECT_NAME), X50142)</span></span><br><span class="line"><span class="addition">+CAMERA_SENSOR_TYPE_BACK := "ov5005_mipi_raw"</span></span><br><span class="line"><span class="addition">+CAMERA_SENSOR_TYPE_FRONT := "gc030a_mipi_raw"</span></span><br><span class="line"><span class="addition">+BOARD_HAVE_ACC := BMA2X2</span></span><br><span class="line"><span class="addition">+BOARD_ACC_INSTALL := 0</span></span><br><span class="line"><span class="addition">+BOARD_HAVE_PLS := TP</span></span><br><span class="line"><span class="addition">+BOARD_PLS_COMPATIBLE := false</span></span><br><span class="line"><span class="addition">+endif</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>c/c++代码,同样定义变量   <blockquote>
+<p>NATIVE_DISPLAY_NAME_CAMERA_VENDOR\<native\> = “alcatel”   </native\></p>
+</blockquote>
+</li>
+</ol>
+<p>再修改代码引用<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- a/idh.code/vendor/sprd/modules/libcamera/oem2v0/src/cmr_setting.c</span></span><br><span class="line"><span class="comment">+++ b/idh.code/vendor/sprd/modules/libcamera/oem2v0/src/cmr_setting.c</span></span><br><span class="line"><span class="meta">@@ -26,7 +26,7 @@</span></span><br><span class="line"> #include "sensor_drv_u.h"</span><br><span class="line"> #include "cmr_exif.h"</span><br><span class="line"> #include "cmr_oem.h"</span><br><span class="line"><span class="deletion">-</span></span><br><span class="line"><span class="addition">+#include \&lt;android/spr_target.h\&gt;</span></span><br><span class="line"> </span><br><span class="line"> #define SETTING_MSG_QUEUE_SIZE              5</span><br><span class="line"> </span><br><span class="line">@@ -1506,11 +1506,15 @@ static cmr_int setting_get_exif_info(struct setting_component *cpt,</span><br><span class="line">     strcpy((char *)p_exif_info-\&gt;primary.img_desc_ptr-\&gt;ImageDescription, (char *)image_desc);</span><br><span class="line">     memset(property,'\0',sizeof(property));</span><br><span class="line">     property_get("ro.product.manufacturer", property, EXIF_DEF_MAKER);</span><br><span class="line"><span class="deletion">-    strcpy((char *)p_exif_info-\&gt;primary.img_desc_ptr-\&gt;Make, (char *)property);</span></span><br><span class="line"><span class="addition">+    //SPROCOMM</span></span><br><span class="line"><span class="addition">+    //strcpy((char *)p_exif_info-\&gt;primary.img_desc_ptr-\&gt;Make, (char *)property);</span></span><br><span class="line"><span class="addition">+    strcpy((char *)p_exif_info-\&gt;primary.img_desc_ptr-\&gt;Make, NATIVE_DISPLAY_NAME_CAMERA_VENDOR);</span></span><br><span class="line">     </span><br><span class="line">     memset(property,'\0',sizeof(property));</span><br><span class="line">     property_get("ro.product.model", property, EXIF_DEF_MODEL);</span><br></pre></td></tr></table></figure></p>
+<p>或者定义:</p>
+<blockquote>
+<p>SUPPORT_OTG\<define\> = 0;<br>那spr_target.h代码中将生成:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SUPPORT_OTG_UNDEFINED</span></span><br></pre></td></tr></table></figure></define\></p>
+<p>SUPPORT_OTG\<define\> = 1;(或者”true”/“yes”)<br>那spr_target.h代码中将生成:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SUPPORT_OTG</span></span><br></pre></td></tr></table></figure></define\></p>
+</blockquote>
+<h2 id="Android应用资源文件的覆盖规则"><a href="#Android应用资源文件的覆盖规则" class="headerlink" title="Android应用资源文件的覆盖规则"></a>Android应用资源文件的覆盖规则</h2><p>我们在Android上层开发时经常会遇到替换图标/壁纸/布局/字符,串等资源,Android编译系统提供了两个变量(DEVICE_PACKAGE_OVERLAYS/PRODUCT_PACKAGE_OVERLAYS)可以控制资源文件的覆盖问题(AndroidManifest.xml不支持这种覆盖方式),我们创建了一个目录<code>vendor/sprocomm_overlays/$(MODULES_PROJECT_NAME)</code>放置这些要覆盖的文件,在全编或者单编时会自动引用该文件夹下的文件而无需拷贝(图片和布局这类一个文件生成一个R.java中id的文件需要保持文件名不变,字符串这类一个变量生成一个id的则可以为文件随便命名)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HAVE_SPR_OVERLAY_FILE := $(shell test -d vendor/sprocomm_overlays/$(MODULES_PROJECT_NAME) &amp;&amp; echo yes)  </span><br><span class="line">ifeq ($(strip $(HAVE_SPR_OVERLAY_FILE)),yes)</span><br><span class="line">    $(warning &apos;Including sprocomm overlays&apos;) </span><br><span class="line">    PRODUCT_PACKAGE_OVERLAYS += \</span><br><span class="line">        vendor/sprocomm_overlays/$(MODULES_PROJECT_NAME)</span><br><span class="line">else</span><br><span class="line">    $(warning &apos;No sprocomm overlays&apos;) </span><br><span class="line">endif</span><br></pre></td></tr></table></figure></p>
+<p>如我想替换X50142的Setting的图标,那么将新的图标文件放在:<code>vendor/sprocomm_overlays/X50142/packages/apps/Settings/res/mipmap-hdpi/ic_launcher_settings.png</code></p>
+<p>如我想修改Chrome浏览器的主页和书签,那么我可以创建一个xml(<strong>文件名任意</strong>)放置在<code>vendor/sprocomm_overlays/X50142/packages/providers/PartnerBookmarksProvider/res/values/overlay_bookmarks.xml</code>,文件内容如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 注意此处,我们并没有覆盖bookmarks_folder_name,那么bookmarks_folder_name将使用原来的值 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--string name="bookmarks_folder_name" translatable="false"&gt;Partner Bookmarks&lt;/string--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 我们并不关注homepage这个字符串原来是定义到哪个xml文件中的,我们只要写在这里就能生效 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"homepage"</span> <span class="attr">translatable</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">        http://www.alcatel-mobile.com<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Bookmarks icon--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">array</span> <span class="attr">name</span>=<span class="string">"bookmark_preloads"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span><span class="tag">&lt;/<span class="name">item</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span><span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span><span class="tag">&lt;/<span class="name">item</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span><span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Bookmarks --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">"bookmarks"</span> <span class="attr">translatable</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>My Onetouch<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>http://3g.my-onetouch.com<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Alcatel Store<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>http://shop.alcatel-mobile.com<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>同样的我们还可以用这种方法修改系统framework/base/core/res/values/configs.xml或者SettingProvider中的配置而无需覆盖整个文件</p>
+<p>另外如果我们需要为X50142项目在Settings<code>/res/raw</code>文件夹中添加一个新文件xx.ogg,我们只需要将xx.ogg放在<code>vendor/sprocomm_overlays/X50142/packages/apps/Settings/res/raw</code>文件夹下,这样编译别的项目时就不会把这个文件编译进去,减小APK体积</p>
+<p>个人墙裂建议把spec中定义的SettingProvider中的各个默认值移除用这种方式来覆盖(1. 尊重Android原始设计,避免代码混乱 2. 减少因为spec中添加变量导致的需要重新全编问题)</p>
+<h1 id="SPROCOMM-Android项目编译命令"><a href="#SPROCOMM-Android项目编译命令" class="headerlink" title="SPROCOMM Android项目编译命令"></a>SPROCOMM Android项目编译命令</h1><h2 id="全编译"><a href="#全编译" class="headerlink" title="全编译"></a>全编译</h2><p>当安装好环境并下载代码后，通常需要将整套代码完整编译一次, 编译脚本一般有两个<code>buildall_user.sh</code>,<code>buildall_eng.sh</code>，前者用于编译发布给客户的版本，后者用于编译研发自己使用的版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./buildall_eng.sh X4568LV snod pac</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>其中:</p>
+<ul>
+<li>X4568LV : 项目名</li>
+<li><code>pac</code>   : 打包参数，用于将编译生成的img文件打包成下载工具可以识别的文件格式</li>
+<li>其他参数(如<code>./buildall_eng.sh X4568LV snod</code>直接打包生成system.img)请直接运行<code>buildall_eng.sh</code>查看帮助提示</li>
+</ul>
+</blockquote>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./make_pac.sh X4568LV</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>用于将编译生成的文件手动打包为下载工具可以识别的文件格式</p>
+<p>完整编译时会在代码根目录下生成一个文件夹或压缩包，其中包含当前代码的git版本号，和编译过程中产生的log，以及用于后期调试需要的vmlinux备份文件。 当编译失败时，需要检查其中的<code>build.log</code>或<code>buildOta.log</code> 根据log排除编译错误</p>
+</blockquote>
+<h2 id="单编模块"><a href="#单编模块" class="headerlink" title="单编模块"></a>单编模块</h2><p>修改了一个模块的代码后需要编译验证，在一个新的终端中第一次单编时需要先导入环境变量(单编user版本的模块需要用buildall_user.sh)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> buildall_eng.sh X4568LV env</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>实际是将<code>source build/envsetup.sh</code>等命令批量运行了一遍<br>导入环境变量时注意全编的是哪个项目(以及什么版本),如果与全编时不一致很可能会自动删除掉out目录下的一些文件,导致需要重新全编译(新版本的脚本检测到不一致时会提示)</p>
+</blockquote>
+<p>导入环境变量后就可以单独编译模块了</p>
+<ul>
+<li><code>mm</code>  单编当前目录的模块</li>
+<li><code>mmm &lt;module_path&gt;</code> 单编<code>&lt;module_path&gt;</code>路径所指向的模块</li>
+<li>单编完成后会在<code>out/target/product/xxxxx/system/</code>目录对于的文件夹下生成编译好的模块，可以安装或push到手机中验证</li>
+<li>推送文件到手机需要使用<code>adb</code>命令，请参考ADB章节</li>
+</ul>
+<h1 id="编译错误处理"><a href="#编译错误处理" class="headerlink" title="编译错误处理"></a>编译错误处理</h1><ol>
+<li>GC overhead limit exceeded </li>
+<li>OOM</li>
+</ol>
+<blockquote>
+<p>Try increasing heap size with Java option ‘-Xmx’<br>解决方法：<a href="http://blog.csdn.net/brightming/article/details/49763515" target="_blank" rel="noopener">http://blog.csdn.net/brightming/article/details/49763515</a><br>修改 prebuilts/sdk/tools/jack-admin<br>在下面这行中，增加 -Xmx4096m<br>JACK_SERVER_COMMAND=”java -Djava.io.tmpdir=$TMPDIR$JACK_SERVER_VM_ARGUMENTS -Xmx4096m -cp $LAUNCHER_JAR</p>
+</blockquote>
+<ol>
+<li><p>提示adb.iso 文件找不到导致编译失败, 需要系统中安装 mkisofs , genisoimage</p>
+<blockquote>
+<p>sudo apt-get install genisoimage</p>
+</blockquote>
+</li>
+<li><p>提示”WARNING!!! can’t find board directory [device/sprd/scx20_/sp7731c<em>1h10</em>]”, 特点是<code>scx20_</code>和<code>sp7731c_1h10_</code>后面有个下划线</p>
+<blockquote>
+<p>原因是Windows系统中的换行符比linux多一个<code>&quot;\r&quot;</code>,需要用文本编辑器删除</p>
+</blockquote>
+</li>
+<li><p>语法正确的Makefile（xxx.mk） 在编译时提示”xxxxxxx <em>*</em> missing separator. “</p>
+<blockquote>
+<p>原因也是Windows换行符,需要删除<code>&quot;\r&quot;</code></p>
+</blockquote>
+</li>
+<li><p>6.0和7.0都可能遇到的Can’t Launch Jack.</p>
+<blockquote>
+<p>Jack服务可能时由于内存等原因没有启动,重新编译一次即可</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="http://www.jianshu.com/p/sTeAbC" target="_blank" rel="noopener">http://www.jianshu.com/p/sTeAbC</a></li>
+<li><a href="http://blog.csdn.net/lizekun2010/article/details/52598105" target="_blank" rel="noopener">http://blog.csdn.net/lizekun2010/article/details/52598105</a></li>
+<li>BOOK: Embedded Android</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/Git常用指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/13/Git常用指令/" itemprop="url">Git常用指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T22:07:18+08:00">
+                2017-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Git常用指令"><a href="#Git常用指令" class="headerlink" title="Git常用指令"></a>Git常用指令</h3><ul>
+<li><img src="http://i.imgur.com/vM452Xj.png" alt=""><ul>
+<li>Workspace：工作区</li>
+<li>Index / Stage：暂存区</li>
+<li>Repository：仓库区</li>
+<li>Remote：远程仓库</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ol>
+<li><p>新建代码库</p>
+<ul>
+<li>在当前目录新建一个Git代码库<ul>
+<li><strong>git init</strong></li>
+</ul>
+</li>
+<li>新建一个目录，将其初始化为Git代码库<ul>
+<li><strong>git init [project-name]</strong></li>
+</ul>
+</li>
+<li>复制一个项目和它的整个代码历史<ul>
+<li><strong>git clone [url]</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>配置</p>
+<ul>
+<li>分为全局配置和项目配置 <strong>.git</strong>文件</li>
+<li>显示当前的Git配置<ul>
+<li><strong>git config –list</strong></li>
+</ul>
+</li>
+<li>编辑Git配置文件<ul>
+<li><strong>git config -e [–global]</strong></li>
+</ul>
+</li>
+<li><strong>git config [–global] user.name ‘[name]’</strong></li>
+<li><strong>git config [–global] user.email ‘[email]’</strong></li>
+</ul>
+</li>
+<li><p>增加、删除文件</p>
+<ul>
+<li>添加指定文件到暂存区<ul>
+<li><strong>git add [file1] [file2] …</strong></li>
+</ul>
+</li>
+<li>添加指定目录到暂存区，包括子目录<ul>
+<li><strong>git add [dir]</strong></li>
+</ul>
+</li>
+<li>添加当前目录的所有文件到暂存区<ul>
+<li><strong>git add .</strong></li>
+</ul>
+</li>
+<li>添加每个变化前，都会要求确认，对于同一个文件的多出变化可以实现分次提交<ul>
+<li><strong>git add -p</strong></li>
+</ul>
+</li>
+<li>删除工作区文件，并且将这次删除放入暂存区<ul>
+<li><strong>git rm [file1] [file2] …</strong></li>
+</ul>
+</li>
+<li>停止追踪指定文件，但该文件会保留在工作区<ul>
+<li><strong>git rm –cached [file]</strong></li>
+</ul>
+</li>
+<li>改名文件，并且将这个改名放入暂存区<ul>
+<li><strong>git mv [file-original] [file-renamed]</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>代码提交</p>
+<ul>
+<li>提交暂存区到仓库区<ul>
+<li><strong>git commit -m [message]</strong></li>
+</ul>
+</li>
+<li>提交暂存区的指定文件到仓库区<ul>
+<li><strong>git commit [file1] [file2] … -m [message]</strong></li>
+</ul>
+</li>
+<li>提交工作区自上次commit之后的变化，直接到仓库区<ul>
+<li><strong>git commit -a</strong></li>
+</ul>
+</li>
+<li>提交时显示所有diff信息<ul>
+<li><strong>git commit -v</strong></li>
+</ul>
+</li>
+<li>使用一次新的commit，代替上一次提交，如果代码没有任何新变化，则用来改写上一次commit的提交信息<ul>
+<li><strong>git commit –amend -m [message]</strong>：</li>
+</ul>
+</li>
+<li>重做上一次commit，并包括指定文件的新变化<ul>
+<li><strong>git commit –amend [file1] [file2] …</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>分支</p>
+<ul>
+<li>列出所有本地分支<ul>
+<li><strong>git branch</strong></li>
+</ul>
+</li>
+<li>列出所有远程分支<ul>
+<li><strong>git branch -r</strong></li>
+</ul>
+</li>
+<li>列出所有本地和远程分支<ul>
+<li><strong>git branch -a</strong></li>
+</ul>
+</li>
+<li>新建一个分支，但依然停留在当前分支<ul>
+<li><strong>git branch [branch-name]</strong></li>
+</ul>
+</li>
+<li>新建一个分支，并且切换到该分支<ul>
+<li><strong>git checkout -b [branch]</strong></li>
+</ul>
+</li>
+<li>新建一个分支，指向指定commit<ul>
+<li><strong>git branch [branch] [commit]</strong></li>
+</ul>
+</li>
+<li>新建一个分支，与指定的远程分支建立追踪关系<ul>
+<li><strong>git branch –track [branch] [remote-branch]</strong>：</li>
+</ul>
+</li>
+<li>切换到指定分支，并更新工作区<ul>
+<li><strong>git checkout [branch-name]</strong></li>
+</ul>
+</li>
+<li>切换到上一分支<ul>
+<li><strong>git checkout -</strong></li>
+</ul>
+</li>
+<li>建立追踪关系，与现有分支与指定的远程分支之间<ul>
+<li><strong>git branch –set -upstream [branch] [remote-branch]</strong></li>
+</ul>
+</li>
+<li>合并指定分支到当前分支<ul>
+<li><strong>git merge [branch]</strong></li>
+</ul>
+</li>
+<li>选择一个commit，合并进当前分支<ul>
+<li><strong>git cherry-pick [commit]</strong></li>
+</ul>
+</li>
+<li>删除分支<ul>
+<li><strong>git branch -d [branch-name]</strong></li>
+</ul>
+</li>
+<li>删除远程分支<ul>
+<li><strong>git push origin –delete [branch-name]</strong></li>
+<li><strong>git branch -dr [remote/branch]</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>标签</p>
+<ul>
+<li>列出所有tag    <ul>
+<li><strong>git tag</strong></li>
+</ul>
+</li>
+<li>新建一个tag在当前commit<ul>
+<li><strong>git tag [tag]</strong></li>
+</ul>
+</li>
+<li>新建一个tag在指定commit<ul>
+<li><strong>git tag [tag] [commit]</strong></li>
+</ul>
+</li>
+<li>删除本地tag<ul>
+<li><strong>git tag -d [tag]</strong></li>
+</ul>
+</li>
+<li>删除远程tag<ul>
+<li><strong>git push origin :refs/tags/[tagName]</strong></li>
+</ul>
+</li>
+<li>查看tag信息<ul>
+<li><strong>git show [tag]</strong></li>
+</ul>
+</li>
+<li>提交指定tag<ul>
+<li><strong>git push [remote] [tag]</strong></li>
+</ul>
+</li>
+<li>提交所有tag<ul>
+<li><strong>git push [remote] –tags</strong></li>
+</ul>
+</li>
+<li>新建一个分支，指向某个tag<ul>
+<li><strong>git checkout -b [branch] [tag]</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>查看信息</p>
+<ul>
+<li>显示有变更的文件<ul>
+<li><strong>git status</strong></li>
+</ul>
+</li>
+<li>显示当前分支的版本历史<ul>
+<li><strong>git log</strong></li>
+</ul>
+</li>
+<li>显示commit历史，以及每次commit发生变更的文件<ul>
+<li><strong>git log –stat</strong></li>
+</ul>
+</li>
+<li>搜索提交历史，根据关键词<ul>
+<li><strong>git log -S [keyword]</strong></li>
+</ul>
+</li>
+<li>显示某个commit之后的所有变动，每个commit占据一行<ul>
+<li><strong>git log [tag] HEAD –pretty=format:%s</strong></li>
+</ul>
+</li>
+<li>显示某个commite之后的所有变动，其“提交说明”必须符合搜索条件<ul>
+<li><strong>git log [tag] HEAD –grep feature</strong></li>
+</ul>
+</li>
+<li>显示某个文件的版本历史，包括文件改名<ul>
+<li><strong>git log –follow [file]</strong></li>
+<li><strong>git whatchanged [file]</strong></li>
+</ul>
+</li>
+<li>显示指定文件相关的每一次diff<ul>
+<li><strong>git log -p [file]</strong></li>
+</ul>
+</li>
+<li>显示过去5次提交<ul>
+<li><strong>git log -5 –pretty –oneline</strong></li>
+</ul>
+</li>
+<li>显示所有提交过的用户，按提交次数排序<ul>
+<li><strong>git shortlog -sn</strong></li>
+</ul>
+</li>
+<li>显示指定文件是什么人在什么时间修改过<ul>
+<li><strong>git blame [file]</strong></li>
+</ul>
+</li>
+<li>显示暂存区和工作区的差异<ul>
+<li><strong>git diff</strong></li>
+</ul>
+</li>
+<li>显示暂存区和上一个commit的差异<ul>
+<li><strong>git diff –cached [file]</strong></li>
+</ul>
+</li>
+<li>显示工作区与当前分支最新commit之间的差异<ul>
+<li><strong>git diff HEAD</strong></li>
+</ul>
+</li>
+<li>显示两次提交之间的差异<ul>
+<li><strong>git diff [first-branch]…[second-branch]</strong></li>
+</ul>
+</li>
+<li>显示今天你写了多少行代码<ul>
+<li><strong>git diff –shortstat “@{0 day ago}”</strong></li>
+</ul>
+</li>
+<li>显示某次提交的元数据和内容变化<ul>
+<li><strong>git show [commit]</strong></li>
+</ul>
+</li>
+<li>显示某次提交发生变化的文件<ul>
+<li><strong>git show –name-only [commit]</strong></li>
+</ul>
+</li>
+<li>显示某次提交时，某个文件的内容<ul>
+<li><strong>git show [commit]:[filename]</strong></li>
+</ul>
+</li>
+<li>显示当前分支的最近几次提交<ul>
+<li><strong>git reflog</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>远程同步</p>
+<ul>
+<li>下载远程仓库的所有变动<ul>
+<li><strong>git fetch [remote]</strong></li>
+</ul>
+</li>
+<li>显示所有远程仓库<ul>
+<li><strong>git remote -v</strong></li>
+</ul>
+</li>
+<li>显示某个远程仓库的信息<ul>
+<li><strong>git remote show [remote]</strong></li>
+</ul>
+</li>
+<li>增加一个新的远程仓库，并命名<ul>
+<li><strong>git remote add [shortname] [url]</strong></li>
+</ul>
+</li>
+<li>取回远程仓库的变化，并与本地分支合并<ul>
+<li><strong>git pull [remote] [branch]</strong></li>
+</ul>
+</li>
+<li>上传本地指定分支到远程仓库<ul>
+<li><strong>git push [remote] [branch]</strong></li>
+</ul>
+</li>
+<li>强行推送当前分支到远程仓库，即使有冲突<ul>
+<li><strong>git push [remote] –force</strong></li>
+</ul>
+</li>
+<li>推送所有分支到远程仓库<ul>
+<li><strong>git push [remote] –all</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>撤销</p>
+<ul>
+<li>恢复暂存区的指定文件到工作区<ul>
+<li><strong>git checkout [file]</strong></li>
+</ul>
+</li>
+<li>恢复某个commit的指定文件到暂存区和工作区<ul>
+<li><strong>git checkout [commit] [file]</strong></li>
+</ul>
+</li>
+<li>恢复暂存区的所有文件到工作区<ul>
+<li><strong>git checkout .</strong></li>
+</ul>
+</li>
+<li>重置暂存区的指定文件，与上一次commit保持一致，但工作区不变<ul>
+<li><strong>git reset [file]</strong></li>
+</ul>
+</li>
+<li>重置暂存区与工作区，与上一次commit保持一致<ul>
+<li><strong>git reset –hard</strong></li>
+</ul>
+</li>
+<li>重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变<ul>
+<li><strong>git reset [commit]</strong></li>
+</ul>
+</li>
+<li>重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致<ul>
+<li><strong>git reset –hard [commit]</strong></li>
+</ul>
+</li>
+<li>重置当前HEAD为指定commit，但保持暂存区和工作区不变<ul>
+<li><strong>git reset –keep [commit]</strong></li>
+</ul>
+</li>
+<li>新建一个commit，用来撤销指定commit，后者的所有变化都将被前者抵消，并且应用到当前分支<ul>
+<li><strong>git revert [commit]</strong></li>
+</ul>
+</li>
+<li>暂时将未提交的变化移除，稍后再移入<ul>
+<li><strong>git stash</strong></li>
+<li><strong>git stash pop</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其他</p>
+<ul>
+<li>生成一个可供发布的压缩包<ul>
+<li><strong>git archive</strong></li>
+</ul>
+</li>
+<li>grep查找<ul>
+<li>git grep [-n显示行号] xxxx</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/2017-03-10-Launcher3基础-adb命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/10/2017-03-10-Launcher3基础-adb命令/" itemprop="url">Launcher3基础 adb命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T10:17:40+08:00">
+                2017-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2017-3-10-10-17"><a href="#2017-3-10-10-17" class="headerlink" title="2017/3/10 10:17"></a>2017/3/10 10:17</h2><p>##### </p>
+<h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>了解Launcher</strong></li>
+<li><strong>adb命令</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher"><a href="#Launcher" class="headerlink" title="Launcher"></a>Launcher</h3><ol>
+<li>Framework启动Launcher流程<ul>
+<li><img src="http://i.imgur.com/4yLgYys.png" alt=""></li>
+</ul>
+</li>
+<li>PackageManger管理类<ul>
+<li>负责管理应用程序包，可以通过它获取应用程序信息，通过getPacageManager方法得到这个类</li>
+<li>ResolveInfo：这个类是通过解析一个与IntentFilter相对应的intent得到的信息。它部分地对应于从AndroidManifest.xml的<intent>标签收集到的信息。</intent></li>
+</ul>
+</li>
+<li>简易LauncherDemo步骤<ol>
+<li>搭建两个布局：主界面（GridView）、item布局（图标、app名称）</li>
+<li>Launcher.java<ol>
+<li>获取PackageManger</li>
+<li>通过action获取intent<ul>
+<li>Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);<br>mainIntent.addCategory(Intent.CATEGORY_LAUNCHER); </li>
+</ul>
+</li>
+<li>根据intent查处所有app信息<ul>
+<li>mAllApps = mPackageManager.queryIntentActivities(mainIntent, 0); </li>
+</ul>
+</li>
+<li>设置到GridView上</li>
+<li>给item添加点击时间<ul>
+<li>通过ResoveInfo获取目标app的包名和入口Activity</li>
+<li>用ComponentName启动app</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>CellLayout：存放大小不一的控件</li>
+</ol>
+<h3 id="adb命令-Android-Debug-Bridge"><a href="#adb命令-Android-Debug-Bridge" class="headerlink" title="adb命令(Android Debug Bridge)"></a>adb命令(Android Debug Bridge)</h3><ol>
+<li>常用命令<ul>
+<li>查看设备<ul>
+<li>adb devices</li>
+</ul>
+</li>
+<li>安装apk<ul>
+<li>adb install [-r重新安装，-s安装到sd卡] [路径]</li>
+</ul>
+</li>
+<li>卸载软件<ul>
+<li>adb uninstall [-k删除配置和缓存] [软件名com.jameswong.demo]</li>
+</ul>
+</li>
+<li>进入设备或模拟器的shell<ul>
+<li>adb shell</li>
+<li>adb shell [command]：adb shell dmesg会打印出内核的调试信息</li>
+</ul>
+</li>
+<li>从电脑发送文件到设备<ul>
+<li>adb push [本地路径] [远程路径]</li>
+</ul>
+</li>
+<li>从设备下载文件到电脑<ul>
+<li>adb pull [远程路径] [本地路径]</li>
+</ul>
+</li>
+<li>查看bug报告<ul>
+<li>adb bugreport</li>
+</ul>
+</li>
+<li>启动Server<ul>
+<li>adb start-server</li>
+</ul>
+</li>
+<li>停止Server<ul>
+<li>adb kill-server</li>
+</ul>
+</li>
+<li>清除应用数据与缓存<ul>
+<li>adb shell pm clear [packagename]</li>
+</ul>
+</li>
+<li>启动应用<ul>
+<li>adb shell am start -n com.stormzhang.demo/.ui.SplashActivity</li>
+</ul>
+</li>
+<li>强制停止应用<ul>
+<li>adb shell am force-stop <packagename></packagename></li>
+</ul>
+</li>
+<li>查看日志<ul>
+<li>adb logcat</li>
+</ul>
+</li>
+<li>重启<ul>
+<li>adb reboot</li>
+</ul>
+</li>
+<li>获取root权限<ul>
+<li>adb root</li>
+</ul>
+</li>
+<li>重新挂载系统分区<ul>
+<li>adb remount</li>
+</ul>
+</li>
+<li>获取序列号<ul>
+<li>adb get-serialno</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li><strong>Dalvik</strong>与<strong>ART(Android runtime)</strong><ul>
+<li>Google公司自己设计用于Android平台的Java虚拟机</li>
+<li>2014年Google I/O 删除Dalvik，用<strong>ART</strong>替代</li>
+<li>区别<ul>
+<li><img src="http://i.imgur.com/Z8BJ9HI.png" alt=""></li>
+<li><strong>ART模式</strong>：是Android runtime的简称。在ART虚拟机环境下，Android对程序只进行一次编译，就是在程序安装时。在安装应用时，ART虚拟机就先将程序的Java语言转化为适合Android系统运行的机器语言，而且是一次编译终身受用。这样就免于程序每次运行时，都要重新编译的麻烦了，系统的运行效率被大大提高。</li>
+<li><strong>Dalvik</strong>：是Google公司自己设计用于Android平台的Java虚拟机。Dalvik虚拟机是Google等厂商合作开发的Android移动设备平台的核心组成部分之一。它可以支持已转换为 .dex（即Dalvik Executable）格式的Java应用程序的运行，.dex格式是专为Dalvik设计的一种压缩格式，适合内存和处理器速度有限的系统。Dalvik 经过优化，允许在有限的内存中同时运行多个虚拟机的实例，并且[1] 每一个Dalvik 应用作为一个独立的Linux 进程执行。独立的进程可以防止在虚拟机崩溃的时候所有程序都被关闭。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>onAttachedToWindow()是在onResume()方法之后执行</li>
+<li>View中的onFinishInflate()方法<ul>
+<li>当View中所有的子控件均被映射成xml后触发，即MyView mv = (MyView)View.inflate (context,R.layout.my_view,null);之后执行</li>
+</ul>
+</li>
+<li>AS查找快捷键<ul>
+<li>Ctrl+F：在当前窗口查找文本</li>
+<li>Ctrl+Shift+F：在当前工程内查找文本</li>
+<li>Ctrl+N：查找类</li>
+<li>Ctrl+Shift+N：查找文件</li>
+<li>Ctrl+Shift+Alt+N：查找项目中的方法或变量</li>
+<li>光标停留类名，右键”Find Usages”(快捷键Alt+F7)：查找类/方法/变量引用的地方</li>
+<li>ctrl+F7：该方法在当前类中的被使用到的地方</li>
+<li>Ctrl+F12：在类中快速定位某个方法或属性</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2802,7 +3239,7 @@ boolBootAnimation::threadLoop()
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

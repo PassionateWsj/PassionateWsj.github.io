@@ -232,539 +232,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java13-常用类-包含String类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/10/Java13-常用类-包含String类/" itemprop="url">Java13-常用类-包含String类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:03:32+08:00">
-                2018-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、常用类（略）"><a href="#一、常用类（略）" class="headerlink" title="一、常用类（略）"></a>一、常用类（略）</h3><h3 id="二、String类"><a href="#二、String类" class="headerlink" title="二、String类"></a>二、String类</h3><ol>
-<li>构建（字符串常量池，在堆里开辟空间new的过程可以在构造方法进行参数传递）</li>
-<li>方法<ul>
-<li>比较    compareTo()，equals()（都可以无视大小写）</li>
-<li>截取    split()，subString()</li>
-<li>是否符合要求    startsWith()，endsWith()，trim()</li>
-<li>匹配    indexOf()，contains()</li>
-<li>根据索引获取字符    charAt()</li>
-<li>转换    toCharArry()    getBytes()    replace()    toLowerCase()    toUpperCase()</li>
-</ul>
-</li>
-</ol>
-<h3 id="三、Date类，Calendar类（时间日期有关的）"><a href="#三、Date类，Calendar类（时间日期有关的）" class="headerlink" title="三、Date类，Calendar类（时间日期有关的）"></a>三、Date类，Calendar类（时间日期有关的）</h3><p>使用Calendar比较多，对Date类进行了扩展</p>
-<ol>
-<li><p>对于Date而言，构造方法使用long毫秒数可以构建，可以使用after()或before()判断时间是否在前还是在后，其他方法都可以使用Calendar类提供的方法进行替换</p>
-</li>
-<li><p>Calendar类（抽象类）日历</p>
-<ul>
-<li>通过getInstance方法进行初始化，返回实例化对象(Calendar符合单例模式)</li>
-</ul>
-</li>
-<li><p>辅助时间类（Calendar类）的时候–&gt;SimpleDateFormat类（调整时间显示的格式）</p>
-<ul>
-<li>填写想要的格式，时间最后会转换成指定时间格式的字符串（核心的方法就是format()）</li>
-</ul>
-</li>
-</ol>
-<h3 id="四、System类"><a href="#四、System类" class="headerlink" title="四、System类"></a>四、System类</h3><ol>
-<li>打印的内容    out.println()</li>
-<li>获取当前系统的好秒时间    currentTimeMillis()</li>
-<li>接收控制台的数据System.in</li>
-</ol>
-<h3 id="五、Math类"><a href="#五、Math类" class="headerlink" title="五、Math类"></a>五、Math类</h3><ol>
-<li>sqrt()    根号</li>
-<li>abs()    绝对值</li>
-<li>pow()    幂次方</li>
-<li>round()    四舍五入    floor()只退    ceil()只进</li>
-<li>random()    随机数</li>
-<li>其他还有正弦余弦，π（PI）……</li>
-</ol>
-<h3 id="六、Runtim类"><a href="#六、Runtim类" class="headerlink" title="六、Runtim类"></a>六、Runtim类</h3><ol>
-<li>可以手动调用gc(Garbage Collection)垃圾回收器</li>
-<li>可以查看当前虚拟机的内存情况</li>
-<li>可以执行一些特殊的进程（记事本等）</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>String自带方法</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>toCharArry()</td>
-<td>字符串转换字符数组    </td>
-</tr>
-<tr>
-<td>charAt()</td>
-<td>从字符串中提取指定位置的字符</td>
-</tr>
-<tr>
-<td>compareTo()</td>
-<td>根据字典的次序，对应的字符进行逐个比较(&gt;返回正数，=返回0，&lt;返回负数)</td>
-</tr>
-<tr>
-<td>compareToIngoreCase()</td>
-<td>同上（无视大小写进行比较）</td>
-</tr>
-<tr>
-<td>getBytes()</td>
-<td>与byte数组的转换    </td>
-</tr>
-<tr>
-<td>indexOf()</td>
-<td>过滤字符串中存在的字符，存在返回index，不存在返回-1</td>
-</tr>
-<tr>
-<td>lastIndexOf()</td>
-<td>返回最后一个index</td>
-</tr>
-<tr>
-<td>trim()</td>
-<td>去掉字符串的前后空格</td>
-</tr>
-<tr>
-<td>subString()</td>
-<td>从字符串中取出子字符串（index来索引截取，结束index不包含）</td>
-</tr>
-<tr>
-<td>toLowerCase()、toUpperCase()</td>
-<td>大小写转换</td>
-</tr>
-<tr>
-<td>endsWith()、startsWith()</td>
-<td>判断字符串的开头结尾字符</td>
-</tr>
-<tr>
-<td>replace()</td>
-<td>替换String字符串中的一个字符（返回String），也可删除指定字符，用””来替换即可</td>
-</tr>
-<tr>
-<td>concat()</td>
-<td>拼接字符串，返回String</td>
-</tr>
-<tr>
-<td>contains()</td>
-<td>判断是否包含字符串，返回boolean</td>
-</tr>
-<tr>
-<td>valueOf()</td>
-<td>将基本数据类型转成实际的字符串(这个方法是静态方法)</td>
-</tr>
-<tr>
-<td>append()</td>
-<td>添加字符</td>
-</tr>
-<tr>
-<td>insert()</td>
-<td></td>
-</tr>
-<tr>
-<td>replace(a,b,”c”)</td>
-<td></td>
-</tr>
-<tr>
-<td>indexOf()</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 创建字符串的几种方法</span><br><span class="line">    */</span><br><span class="line">   static void create()&#123;</span><br><span class="line">       //1.直接赋值</span><br><span class="line">       String s1 = &quot;abc&quot;;</span><br><span class="line">       //2.通过new的方式进行实例化创建</span><br><span class="line">       String s2 = new String(&quot;abc&quot;);</span><br><span class="line">       String s3 = &quot;abc&quot;;    //s1与s3的地址是一样的</span><br><span class="line">       String s4 = new String(&quot;abc&quot;);    //s2和s4的地址是不同的</span><br><span class="line"></span><br><span class="line">       //他们的区别？</span><br><span class="line">       //1、s1和s2在内存中存储的空间不同</span><br><span class="line">       //    s1存放在方法区的字符串常量区</span><br><span class="line">       //    s2存放在堆里</span><br><span class="line">       //    如果存在字符串常量区，那么操作起来方便，空间也能节约下来</span><br><span class="line">       //    而堆区则需要开辟空间</span><br><span class="line">       //    推荐在常量池创建字符串，节省内存</span><br><span class="line">       //    从时间和空间去分析他们各自的特点</span><br><span class="line"></span><br><span class="line">       char[] ch = &#123;&apos;a&apos;,&apos;b&apos;,&apos;c&apos;&#125;;    //字符数组（byte[] 网络数组，char[]）可以变成字符串</span><br><span class="line">       byte[] bs = &#123;1,23,5&#125;;</span><br><span class="line">       String s6 = new String(ch);    //new的时候，构造方法支持char[]和byte[]</span><br><span class="line">       String s7 = new String(bs);</span><br><span class="line">       System.out.println(s6);</span><br><span class="line">       System.out.println(s7);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ol>
-<li>StringBuffer（需要实例化，省内存空间（StringBuilding更快但是需要在单线程使用，并且不安全））</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java12-异常/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/10/Java12-异常/" itemprop="url">Java12-异常</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:03:15+08:00">
-                2018-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、Java中有异常（Exception）处理的机制"><a href="#一、Java中有异常（Exception）处理的机制" class="headerlink" title="一、Java中有异常（Exception）处理的机制"></a>一、Java中有异常（Exception）处理的机制</h3><p>当你在执行程序的时候，可能这个操作是错误的，比如：10/0，null.equals(“abc”)。如何去处理这样的操作<br>Java的异常机制就是针对这样的错误操作而提供的解决方案</p>
-<h3 id="二、了解Exception的继承结构"><a href="#二、了解Exception的继承结构" class="headerlink" title="二、了解Exception的继承结构"></a>二、了解Exception的继承结构</h3><p>所有的Exception都是继承Throwable类（可抛的）<br>从Throwable角度出发，他有两个子类  Exception和Error<br>所有Error抛出的错误，正常情况下在Java代码中都无法在应用层解决（JVM FULLDisk Error 虚拟机报错），所以不去深究</p>
-<h3 id="三、异常"><a href="#三、异常" class="headerlink" title="三、异常"></a>三、异常</h3><ol>
-<li><p>异常的定义</p>
-<ul>
-<li>自己定义一个继承Exception的子类即可</li>
-</ul>
-</li>
-<li><p>异常的处理</p>
-<ul>
-<li><p>消极处理（对外抛出（Java默认大多异常的处理方式））</p>
-<ul>
-<li><p>throws（关键字）在对应的方法最后进行使用，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    void test() throws NullPointerException&#123;&#125;    //很有可能产生错误，在末尾添加关键字throws</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>积极处理（对知道可能产生的错误进行处理）</p>
-<ul>
-<li><p>try - catch模块    扩展，try - catch - finally（无论执行了try还是catch，finally都执行）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">              boolean test()&#123;</span><br><span class="line">                  try&#123;        //没异常时执行</span><br><span class="line">                  //  假如s不是null，代码没有问题，执行try模块</span><br><span class="line">                  //  假如加入的s是null，这时执行catch模块</span><br><span class="line">                  //  String s = null;</span><br><span class="line">                      s.equals(&quot;abc&quot;);</span><br><span class="line">                  &#125;catch(NullPotinterException)&#123;        //有异常时执行</span><br><span class="line">                      //处理逻辑</span><br><span class="line">                      return false;</span><br><span class="line">                  &#125;finally&#123;</span><br><span class="line">                     //finally中的逻辑肯定会执行，与返回值无关</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;   </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>如何使用自定义的异常</p>
-<ul>
-<li><p>throw关键字可以使用自定义的异常</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">       void test()&#123;</span><br><span class="line">           //自己的逻辑</span><br><span class="line">           throw new MyException(&quot;自己的异常&quot;);    //已经自己声明过的异常</span><br><span class="line">           //可以有两种方式处理，一种积极的处理，一种消极的处理</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>throws和throw的区别：<ol>
-<li>throws处理异常的一种消极方式</li>
-<li>throw使用自定义的异常</li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java11-二维数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/10/Java11-二维数组/" itemprop="url">Java11-二维数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:03:05+08:00">
-                2018-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java10-数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1874,6 +1341,585 @@ stus[1] = stu2;
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/Android基础知识点整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/09/Android基础知识点整理/" itemprop="url">Android基础知识点整理(1)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T22:05:41+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基本技能"><a href="#基本技能" class="headerlink" title="基本技能"></a>基本技能</h2><ul>
+<li>markdown语法<ul>
+<li>附件</li>
+</ul>
+</li>
+<li>git 基本语法<ul>
+<li>附件</li>
+</ul>
+</li>
+<li>基本命令行<ul>
+<li>创建文件夹<br>  <code>mkdir test</code></li>
+<li>进入文件夹<br>  <code>cd test</code></li>
+<li>创建空文件<br>  <code>touch fileName</code></li>
+<li>查看文本内容<br>  <code>cat xxx.txt</code></li>
+<li>删除文件<br>  <code>rm xxx.txt</code><br>  <code>rm -rf file</code>// -fr表示递归和强制，一定要小心使用 rm -fr / 那你的电脑就over了</li>
+<li>拷贝<br>  <code>cp -R 源文件  目标文件</code>// -R 表示对目录进行递归操作</li>
+<li>移动<br>  <code>mv filePath toPath</code></li>
+<li>显示当前目录的路径名<br>  在目录中执行<code>pwd</code>    </li>
+<li>查看文件内容<br>  <code>cat fileName</code></li>
+<li>清除命令行内容<br>  <code>clear</code></li>
+<li>显示当前日期<br>  <code>date</code></li>
+<li>显示文件列表<br>  <code>ls</code>// 显示未隐藏的文件<br>  <code>ls -a</code>// 显示所有文件<br>  <code>ls -A</code>// 显示除了’.’和’.’以外所有文件<br>  <code>ls -l</code>// 显示文件详细信息<br>  <code>ls -R</code>// 递归显示目录及其子目录文件内容</li>
+<li>关机<br>  <code>sudo shutdown -h now</code>// -h 是关闭电源 now立即关机<br>  <code>sudo shutdown -r now</code>//重启<br>  <code>sudo shutdown -h -time 60</code>// 表示60分钟后关机，注意单位是分钟   </li>
+</ul>
+</li>
+</ul>
+<h2 id="基本工具"><a href="#基本工具" class="headerlink" title="基本工具"></a>基本工具</h2><h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
+<li>android studio 快捷键<ul>
+<li>附件</li>
+</ul>
+</li>
+<li><p>activity 生命周期（这个图相当形象了）</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/CharonChui/Pictures/master/basic-lifecycle-paused.png?raw=true" alt="image"></li>
+<li><p>四种启动模式（进阶）</p>
+<ol>
+<li><p>standard : （standard 是系统默认的启动模式。）</p>
+<ul>
+<li>标准启动模式，每次激活 Activity 时都会创建 Activity ，并放入任务栈中。如果启动此 Activity 的 Intent 中没有设置 <code>FLAG_ACTIVITY_NEW_TASK</code> 标志, 则这个 Activity 与启动他的 Activity 在同一个 Task 中,如果设置了 Activity 请参考上面 <code>FLAG_ACTIVITY_NEW_TASK</code> 的详细说明,”launchMode”设置为”standard”的 Activity 可以被实例化多次, 可以在 Task 中的任何位置, 对于一个新的 Intent 请求就会实例化一次.</li>
+</ul>
+<ol>
+<li><p>singleTop : </p>
+<ul>
+<li>如果在任务的栈顶正好存在该 Activity 的实例， 就重用该实例，而不会创建新的 Activity 对象，不过它会调用onNewIntent()方法。如果栈顶部不存在就会创建新的实例并放入栈顶(即使栈中已经存在该 Activity 实例，只要不在栈顶，都会创建实例)。如果启动此 Activit y的 Intent 中没有设置 <code>FLAG_ACTIVITY_NEW_TASK</code> 标志, 则这个 Activity 与启动他的 Activity 在同一个 Task 中,如果设置了 Activity 请参考上面 <code>FLAG_ACTIVITY_NEW_TASK</code> 的详细说明,”launchMode”设置为”singleTop”的 Activity 可以被实例化多次,  可以在 Task 中的任何位置, 对于一个新的 Intent 请求如果在 Task 栈顶, 则会用栈顶的 Activity 响影 Intent 请求,而不会重新实例化对象接收请求, 如果没有在栈顶, 则会实例化一个新的对象接收 Intent 请求.</li>
+</ul>
+</li>
+<li><p>singleTask : </p>
+<ul>
+<li>如果在栈中已经有该 Activity 的实例，就重用该实例(会调用实例的 onNewIntent() )。重用时，会让该实例回到栈顶，因此在它上面的实例将会被移除栈。如果栈中不存在该实例，将会创建新的实例放入栈中。 和 singleTop 在名字上即可看出区别，即 singleTop 每次只检测当前栈顶的 Activity 是否是我们需要请求创建的，而 singleTask 则会检测栈中全部的 Activity 对象，从上向下，如果检测到是我们所请求的则会消灭此 Activity 对象上面的对象，直接把检测到的我们需要的 Activity 置为栈顶。”launchMode”设置为”singleTask”的 Activity 总是在栈底, 只能被实例化一次, 它允许其它 Activity 压入”singleTask”的 Activity 所在的 Task 栈,如果有新的 Intent 请求有此标志的 Activity , 则系统会清除有此标志的 Task 栈中的全部 Activity,并把此 Activity 显示出来.</li>
+</ul>
+</li>
+<li><p>singleInstance : </p>
+<ul>
+<li>在一个新栈中创建该 Activity 实例，并让多个应用共享该 Activity 实例。一旦这种模式的 Activity 实例存在于某个栈中，任何应用再激活这个 Activity 时都会重用该栈中的实例，其效果相当于多个应用程序共享一个应用，不管谁激活该 Activity 都会进入同一个应用中。此启动模式和我们使用的浏览器工作原理类似，在多个程序中访问浏览器时，如果当前浏览器没有打开，则打开浏览器，否则会在当前打开的浏览器中访问。此模式会节省大量的系统资源，因为他能保证要请求的 Activity 对象在当前的栈中只存在一个。”launchMode”设置为”singleInstance”的 Activity 总是在栈底, 只能被实例化一次, 不允许其它的 Activity 压入”singleInstance”的 Activity 所在 Task 栈,  即整个 Task 栈中只能有这么一个 Activity .</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>activity 间跳转</p>
+<ol>
+<li><p>action</p>
+<pre><code>Intent intent = new Intent(); 
+intent.setAction(&quot;com.intfocus.template.testactivity&quot;); 
+……
+startActivity(intent);
+
+//在配置文件中注册Activity的时候需要声明：
+&lt;activity android:name=&quot;com.intfocus.template.TestActivity&quot;&gt;
+&lt;intent-filter&gt;
+&lt;action android:name=&quot;com.intfocus.template.testactivity&quot; /&gt;
+&lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;   
+&lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre></li>
+<li><p>类名</p>
+<pre><code>Intent intent = new Intent(TestActivity.this,TargetActivity.class); 
+……
+startActivity(intent);
+</code></pre></li>
+<li><p>Uri</p>
+<pre><code>Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(&quot;tel:13000000000&quot;));
+……
+startActivity(intent);
+</code></pre></li>
+</ol>
+</li>
+<li><p>webview 加载本地网页及与 js 交互</p>
+<ul>
+<li>WebView加载本地网页<ul>
+<li>file:///android_asset/xxx.html</li>
+</ul>
+</li>
+<li><p>WebView 与 Js 交互</p>
+<ul>
+<li><p>Android 调用 WebView 中的 js 脚本</p>
+<pre><code>// 启用javascript        mWebView.getSettings().setJavaScriptEnabled(true);
+// 加载web页面
+mWebView.loadUrl(&quot;file:///android_asset/index.html&quot;);
+// 调用js
+mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); //aa是js的函数test()的参数  
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- Js 调用 Android 中的方法
+
+        public WebViewActivity extends Activity {
+
+            public void onCreate() {
+                // 启用javascript    
+                mWebView.getSettings().setJavaScriptEnabled(true);
+                // 加载web页面
+                mWebView.loadUrl(&quot;file:///android_asset/index.html&quot;);
+                // 首先要对webview绑定javascriptInterface，js脚本通过这个接口来调用java代码。javascriptInterface实际就是一个普通的java类，里面是我们本地实现的java代码， 将JavascriptInterface传递给webview，并指定别名，这样js脚本就可以通过我们给的这个别名来调用我们的方法,在这里，this是实例化的对象，wst是这个对象在js中的别名
+                mWebView.addJavascriptInterface(this, &quot;index&quot;);
+            }
+
+            // js所调用的native方法的本地实现，安卓4.2及以上版本（API &gt;= 17），在注入类中为可调用的方法添加@JavascriptInterface注解，无注解的方法不能被调用，这种方式可以防范注入漏洞
+            @JavascriptInterface
+            public void startFunction(final String str) {  
+                Toast.makeText(this, str, Toast.LENGTH_SHORT).show();  
+                runOnUiThread(new Runnable() {  
+
+                    @Override  
+                    public void run() {  
+                        msgView.setText(msgView.getText() + &quot;\njs调用了java函数传递参数：&quot; + str);  
+
+                    }  
+                });  
+            }  
+        }
+
+         js 中通过如下代码调用即可  
+        &lt;a onClick=&quot;window.wst.startFunction(&apos;hello world&apos;)&quot; &gt;点击调用java代码并传递参数&lt;/a&gt;  
+</code></pre><ul>
+<li>android 展示 pdf<ol>
+<li>原生没有什么现有的好方法来实现 pdf 的展示，谷歌提供了一种 WebView 加载的方式，但是被墙体验很差<ul>
+<li>webView.loadUrl(“<a href="http://docs.google.com/gview?embedded=true&amp;url=" target="_blank" rel="noopener">http://docs.google.com/gview?embedded=true&amp;url=</a>“ + pdfUrl); // </li>
+</ul>
+</li>
+<li>下载 pdf 到本地，使用三方库来展示 <ul>
+<li><a href="https://github.com/barteksc/AndroidPdfViewer" target="_blank" rel="noopener">传送门</a> ： 这个库支持的 pdf 格式较丰富，使用也很方便</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/04/2018-01-04 RxJava Kotlin Android Profiler Glide Stetho 待整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/04/2018-01-04 RxJava Kotlin Android Profiler Glide Stetho 待整理/" itemprop="url">RxJava Kotlin Android Profiler Glide Stetho 待整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T10:00:40+08:00">
+                2018-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>RxJava</strong></li>
+<li><strong>Kotlin</strong></li>
+<li><strong>Android Profiler</strong></li>
+<li><strong>Glide</strong></li>
+<li><strong>Stetho</strong></li>
+</ol>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="GreenDao-3"><a href="#GreenDao-3" class="headerlink" title="GreenDao 3"></a><a href="https://www.jianshu.com/p/4e6d72e7f57a" target="_blank" rel="noopener">GreenDao 3</a></h3><ul>
+<li><a href="https://link.jianshu.com/?t=https://github.com/greenrobot/greenDAO" target="_blank" rel="noopener">Github</a></li>
+<li><a href="https://link.jianshu.com/?t=http://greenrobot.org/greendao/" target="_blank" rel="noopener">官网</a></li>
+</ul>
+<hr>
+<h3 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h3><ol>
+<li>线程控制实现原理</li>
+</ol>
+<hr>
+<h3 id="Kotlin"><a href="#Kotlin" class="headerlink" title="Kotlin"></a>Kotlin</h3><ol>
+<li>xiecheng</li>
+</ol>
+<hr>
+<h3 id="Android-Profiler"><a href="#Android-Profiler" class="headerlink" title="Android Profiler"></a>Android Profiler</h3><hr>
+<h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a><a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">Glide</a></h3><hr>
+<h3 id="Stetho"><a href="#Stetho" class="headerlink" title="Stetho"></a><a href="https://github.com/facebook/stetho" target="_blank" rel="noopener">Stetho</a></h3><hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>1. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/2018-01-03 Native 与 H5 交互-属性动画-SnackbarUtil/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/03/2018-01-03 Native 与 H5 交互-属性动画-SnackbarUtil/" itemprop="url">Native 与 H5 交互-属性动画-SnackbarUtil.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T10:00:40+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>A</strong></li>
+<li><strong>B</strong></li>
+<li><strong>C</strong></li>
+</ol>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="Native-与-H5-交互"><a href="#Native-与-H5-交互" class="headerlink" title="Native 与 H5 交互"></a><a href="http://blog.csdn.net/carson_ho/article/details/64904691" target="_blank" rel="noopener">Native 与 H5 交互</a></h3><ol>
+<li><p>Native 调用 JS (2种)</p>
+<ul>
+<li>loadUrl() : <code>mWebView.loadUrl(&quot;javascript:method()&quot;);</code></li>
+<li><p>evaluateJavascript() :</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mWebView.evaluateJavascript（&quot;javascript:method()&quot;, new ValueCallback&lt;String&gt;() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void onReceiveValue(String value) &#123;</span><br><span class="line">           //此处为 js 返回的结果</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 对比
+
+    调用方式 | 优点 | 缺点 | 使用场景
+    ------|-----------|------|----
+    使用loadUrl()|方便简洁|效率低；获取返回值麻烦|不需要获取返回值，对性能要求较低时
+    使用evaluateJavascript()|效率高|向下兼容差（仅 Android4.4 以上可用）|Android 4.4 以上
+</code></pre><ol>
+<li><p>JS 调用 Native (3种)</p>
+<ul>
+<li>通过 WebView 的 addJavascriptInterface() 进行对象映射 </li>
+<li>通过 WebViewClient 的 shouldOverrideUrlLoading() 方法回调拦截 url </li>
+<li>通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框 alert()、confirm()、prompt() 消息</li>
+<li><p>对比</p>
+<p>  调用方式|优点|缺点|使用场景<br>  —-|—-|—-|—-<br>  通过 addJavascriptInterface() 进行添加对象映射|方便简洁|Android 4.2 一下存在漏洞|Android 4.2 以上相对简单互调场景<br>  通过 WebViewClient 的方法 shouldOverrideUrlLoading() 回调拦截 url|不存在漏洞问题|使用复杂；需要进行协议的约束；从 Native 层往 Web 层传递值比较繁琐|不需要返回值情况下的互调场景（iOS主要使用的方式）<br>  通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框消息|不存在漏洞问题|使用复杂；需要进行协议的约束|能满足大多数情况下互调场景</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a><a href="http://blog.csdn.net/feiduclear_up/article/details/39255083" target="_blank" rel="noopener">属性动画</a></h3><ol>
+<li></li>
+</ol>
+<hr>
+<h3 id="ARouter"><a href="#ARouter" class="headerlink" title="ARouter"></a><a href="https://github.com/alibaba/ARouter" target="_blank" rel="noopener">ARouter</a></h3><hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>FastJson kotlin 变量 <code>var is_xxx : Int? = 0</code> 获取不到 json 中的数据，需要变更变量名称并加上注解 @JSONField(name=”is_xxx”)</li>
+<li>SnackbarUtil</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ****************************************************</span><br><span class="line"> * @author jameswong</span><br><span class="line"> * created on: 18/01/03 上午11:28</span><br><span class="line"> * e-mail: PassionateWsj@outlook.com</span><br><span class="line"> * name:</span><br><span class="line"> * desc:</span><br><span class="line"> * ****************************************************</span><br><span class="line"> */</span><br><span class="line">public class SnackbarUtil &#123;</span><br><span class="line"></span><br><span class="line">    public static final int Info = 1;</span><br><span class="line">    public static final int Confirm = 2;</span><br><span class="line">    public static final int Warning = 3;</span><br><span class="line">    public static final int Alert = 4;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static int red = 0xfff44336;</span><br><span class="line">    public static int green = 0xff4caf50;</span><br><span class="line">    public static int blue = 0xff2195f3;</span><br><span class="line">    public static int orange = 0xffffc107;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //选择预设类型</span><br><span class="line">    private static void switchType(Snackbar snackbar, int type) &#123;</span><br><span class="line">        switch (type) &#123;</span><br><span class="line">            case Info:</span><br><span class="line">                setSnackbarColor(snackbar, blue);</span><br><span class="line">                break;</span><br><span class="line">            case Confirm:</span><br><span class="line">                setSnackbarColor(snackbar, green);</span><br><span class="line">                break;</span><br><span class="line">            case Warning:</span><br><span class="line">                setSnackbarColor(snackbar, orange);</span><br><span class="line">                break;</span><br><span class="line">            case Alert:</span><br><span class="line">                setSnackbarColor(snackbar, Color.YELLOW, red);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar文字和背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">            ((TextView) view.findViewById(R.id.snackbar_text)).setTextColor(messageColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 向Snackbar中添加view</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param layoutId</span><br><span class="line">     * @param index    新加布局在Snackbar中的位置</span><br><span class="line">     */</span><br><span class="line">    public static void snackbarAddView(Snackbar snackbar, int layoutId, int index) &#123;</span><br><span class="line">        View snackbarview = snackbar.getView();</span><br><span class="line">        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarview;</span><br><span class="line"></span><br><span class="line">        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(layoutId, null);</span><br><span class="line"></span><br><span class="line">        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        p.gravity = Gravity.CENTER_VERTICAL;</span><br><span class="line"></span><br><span class="line">        snackbarLayout.addView(add_view, index, p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1924,7 +1970,7 @@ stus[1] = stu2;
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
