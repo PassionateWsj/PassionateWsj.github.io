@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485一、简介    1.进程和线程的概念        什么叫进程？">
+<meta name="keywords" content="Java学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java19-线程">
+<meta property="og:url" content="http://yoursite.com/2016/07/16/Java19-线程/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485一、简介    1.进程和线程的概念        什么叫进程？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/CSSxgO6.jpg">
+<meta property="og:updated_time" content="2018-03-01T16:20:05.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java19-线程">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485一、简介    1.进程和线程的概念        什么叫进程？">
+<meta name="twitter:image" content="https://i.imgur.com/CSSxgO6.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/16/Java19-线程/"/>
+
+
+
+
+
+  <title>Java19-线程 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java19-线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java19-线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">一、简介</span><br><span class="line">    1.进程和线程的概念</span><br><span class="line">        什么叫进程？</span><br><span class="line">        一个应用程序有自己独立的内存空间，有自己独立的数据的逻辑处理区域</span><br><span class="line">        JVM这样的应用程序称之为一个独立的进程</span><br><span class="line">        补充：操作系统里认为有独立端口号（有自己独立的内存空间和数据的逻辑处理区域）的应用程序为一个进程</span><br><span class="line">            比如：QQ，FeiQ是一个进程</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">什么是线程？</span><br><span class="line">1.进程中可以执行CPU的最小单位，称之为线程</span><br><span class="line">    比如：QQ中：1.网络下载数据（调度CPU执行）</span><br><span class="line">                          2.UI显示内容（调度CPU显示）</span><br><span class="line">                    网络下载（1个线程）和UI显示（1个线程）是独立的，各自可以执行自己的逻辑，没有直接联系</span><br><span class="line"></span><br><span class="line">线程和进程的区别：</span><br><span class="line">    1.进程：有自己独立的内存空间，有自己独立的数据的逻辑处理区域；包含一个或多个线程；进程在所有非守候线程结束后才能结束</span><br><span class="line">    2.线程：可以共享进程中相同的内存空间和逻辑区域；线程不能独立存在，必须是进程的一部分</span><br><span class="line"></span><br><span class="line">二、线程的生命周期</span><br><span class="line">    1.创建    实例化对象</span><br><span class="line">    2.就绪    对象实例化线程对象进行初始化</span><br><span class="line">    3.运行    当实例化对象调用start()方法的时候</span><br><span class="line">    4.阻塞    运行的过程中，被阻塞了（sleep()、join()、wait()、yield()）</span><br><span class="line">                  阻塞完毕后，可以重新回到运行状态</span><br><span class="line">    5.死亡    线程内部的逻辑全部执行完了，进入死亡状态，等待GC的回收。不能回到运行状态</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    currentThread()    获取线程对象</span><br><span class="line">    getName()    获取线程名称</span><br><span class="line">    isAlive()    （boolean）测试线程是否处于活动状态</span><br><span class="line">    interrupt()    中断线程</span><br><span class="line">    interrupted()    （boolean）测试当前线程是否已经中断（当线程中断时(比如sleep)，都是返回false）</span><br><span class="line">    isInterrupted()    （boolean）测试线程是否已经中断</span><br><span class="line">    getPriority()    返回线程的优先级</span><br><span class="line">    getState()    返回线程的状态</span><br><span class="line">    join()    等待该线程终止（可加时间）</span><br><span class="line">    yield()    暂停当前正在执行的线程对象，并执行其他线程</span><br><span class="line"></span><br><span class="line">三、使用</span><br><span class="line">  1。创建</span><br><span class="line">       1）继承关键类Thread类，可以自定义线程  （使用方便。但是共享数据麻烦）</span><br><span class="line">            比如  Thread thread = new 继承Thread的子类()</span><br><span class="line">       2）实现Runnable接口，可以自定义线程   （共享数据比较方便）</span><br><span class="line">            比如  Thread thread = new Thread(实现Runnable接口的类)；</span><br><span class="line">  2。就绪</span><br><span class="line">       在run方法里执行自己的逻辑</span><br><span class="line">  3。运行</span><br><span class="line">       start()</span><br><span class="line">  4。阻塞</span><br><span class="line">      1）休眠 sleep() 填写毫秒数，设置的毫秒数过去以后，继续回到运行状态</span><br><span class="line">  5。死亡</span><br><span class="line">      run方法执行完毕</span><br><span class="line"></span><br><span class="line">线程中经常使用的方法：</span><br><span class="line">1.setName() 给自定义的线程起给名字，通过构造方法也可以设置线程的名字</span><br><span class="line">   获取名字：通用的方法Thread.currentThread().getName()  获取当前线程的名字</span><br><span class="line">2.和休眠打断有关的方法</span><br><span class="line">   interrupt()方法，可以打断正在休眠的线程</span><br><span class="line">   静态方法：interrupted()方法，返回是boolean,判断打断的情况，true打断了，false没有打断</span><br><span class="line">   实例化对象调用的方法 : isInterrupt()方法，返回是boolean,判断打断的情况，true打断了，false没有打断</span><br><span class="line">   </span><br><span class="line">   判断是否打断的情况：前提条件，当前的线程没有处在中断状态，一直在运行，被打断成功会返回true</span><br><span class="line">  </span><br><span class="line">   总结：</span><br><span class="line">   所以现在：如果要打断线程运行，interrupt()是很危险的处理，发生的结果可能无法控制</span><br><span class="line">   一般都是通过boolean类型的标志变量控制线程的中断，过程可以自己控制</span><br><span class="line">   千万不要调用stop方法，很危险，后果不堪设想</span><br><span class="line"></span><br><span class="line">3.中断的方法join (连结)</span><br><span class="line">   总结：</span><br><span class="line">   当前的线程1受到线程2的影响 ，当线程2在线程1中调用join方法的时候，线程1停止运行进入阻塞状态，只有当线程2全部执行完毕以后，线程1才能继续回到运行状态。这就是join的中断方式 </span><br><span class="line"></span><br><span class="line">4.礼让的方法yield()</span><br><span class="line">   1.在给线程设置优先级完毕以后，当前的线程1 优先级 大于或等于 线程2， 线程1使用yield()方式，让线程2先运行</span><br><span class="line">      概率性比较大，就是线程2比你先运行的概率大</span><br><span class="line">     暂时释放自己已经获得CPU，把CPU的资源，让给同等级的其他线程</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Java给多线程编程提供了内置的支持。一个多线程程序包含两个或多个能并发运行的部分。程序的每一部分都称作一个线程，并且每个线程定义了一个独立的执行路径。</span><br><span class="line">多线程是多任务的一种特别的形式，但多线程使用了更小的资源开销。</span><br><span class="line">这里定义和线程相关的另一个术语 - 进程：一个进程包括由操作系统分配的内存空间，包含一个或多个线程。一个线程不能独立的存在，它必须是进程的一部分。一个进程一直运行，直到所有的非守候线程都结束运行后才能结束。</span><br><span class="line">多线程能满足程序员编写高效率的程序来达到充分利用CPU的目的。</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/CSSxgO6.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">  ● 新建状态:</span><br><span class="line">使用 new 关键字和 Thread 类或其子类建立一个线程对象后，该线程对象就处于新建状态。它保持这个状态直到程序 start() 这个线程。</span><br><span class="line">  ● 就绪状态:</span><br><span class="line">当线程对象调用了start()方法之后，该线程就进入就绪状态。就绪状态的线程处于就绪队列中，要等待JVM里线程调度器的调度。</span><br><span class="line">  ● 运行状态:</span><br><span class="line">如果就绪状态的线程获取 CPU 资源，就可以执行 run()，此时线程便处于运行状态。处于运行状态的线程最为复杂，它可以变为阻塞状态、就绪状态和死亡状态。</span><br><span class="line">  ● 阻塞状态:</span><br><span class="line">如果一个线程执行了sleep（睡眠）、suspend（挂起）等方法，失去所占用资源之后，该线程就从运行状态进入阻塞状态。在睡眠时间已到或获得设备资源后可以重新进入就绪状态。</span><br><span class="line">  ● 死亡状态:</span><br><span class="line">一个运行状态的线程完成任务或者其他终止条件发生时，该线程就切换到终止状态。</span><br><span class="line"></span><br><span class="line">线程的优先级</span><br><span class="line">每一个Java线程都有一个优先级，这样有助于操作系统确定线程的调度顺序。</span><br><span class="line">Java线程的优先级是一个整数，其取值范围是1 （Thread.MIN_PRIORITY ） - 10 （Thread.MAX_PRIORITY ）。</span><br><span class="line">默认情况下，每一个线程都会分配一个优先级NORM_PRIORITY（5）。</span><br><span class="line">具有较高优先级的线程对程序更重要，并且应该在低优先级的线程之前分配处理器资源。但是，线程优先级不能保证线程执行的顺序，而且非常依赖于平台。</span><br><span class="line"> 创建一个线程</span><br><span class="line">Java提供了两种创建线程方法：</span><br><span class="line">  ● 通过实现Runable接口；</span><br><span class="line">  ● 通过继承Thread类本身。</span><br><span class="line"></span><br><span class="line">线程的几个主要概念:</span><br><span class="line">在多线程编程时，你需要了解以下几个概念：</span><br><span class="line">  ● 线程同步</span><br><span class="line">  ● 线程间通信</span><br><span class="line">  ● 线程死锁</span><br><span class="line">  ● 线程控制：挂起、停止和恢复</span><br><span class="line">多线程的使用</span><br><span class="line">有效利用多线程的关键是理解程序是并发执行而不是串行执行的。例如：程序中有两个子系统需要并发执行，这时候就需要利用多线程编程。</span><br><span class="line">通过对多线程的使用，可以编写出非常高效的程序。不过请注意，如果你创建太多的线程，程序执行的效率实际上是降低了，而不是提升了。</span><br><span class="line">请记住，上下文的切换开销也很重要，如果你创建了太多的线程，CPU花费在上下文的切换的时间将多于执行程序的时间！</span><br><span class="line"> Thread 方法</span><br><span class="line">下表列出了Thread类的一些重要方法：</span><br><span class="line">序号 方法描述</span><br><span class="line">1 public void start()使该线程开始执行；Java 虚拟机调用该线程的 run 方法。</span><br><span class="line">2 public void run()如果该线程是使用独立的 Runnable 运行对象构造的，则调用该 Runnable 对象的 run 方法；否则，该方法不执行任何操作并返回。</span><br><span class="line">3 public final void setName(String name)改变线程名称，使之与参数 name 相同。</span><br><span class="line">4 public final void setPriority(int priority) 更改线程的优先级。</span><br><span class="line">5 public final void setDaemon(boolean on)将该线程标记为守护线程或用户线程。</span><br><span class="line">6 public final void join(long millisec)等待该线程终止的时间最长为 millis 毫秒。</span><br><span class="line">7 public void interrupt()中断线程。</span><br><span class="line">8 public final boolean isAlive()测试线程是否处于活动状态。</span><br><span class="line">测试线程是否处于活动状态。 上述方法是被Thread对象调用的。下面的方法是Thread类的静态方法。</span><br><span class="line">序号 方法描述</span><br><span class="line">1 public static void yield()暂停当前正在执行的线程对象，并执行其他线程。</span><br><span class="line">2 public static void sleep(long millisec)在指定的毫秒数内让当前正在执行的线程休眠（暂停执行），此操作受到系统计时器和调度程序精度和准确性的影响。</span><br><span class="line">3 public static boolean holdsLock(Object x)当且仅当当前线程在指定的对象上保持监视器锁时，才返回 true。</span><br><span class="line">4 public static Thread currentThread()返回对当前正在执行的线程对象的引用。</span><br><span class="line">5 public static void dumpStack()将当前线程的堆栈跟踪打印至标准错误流。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java学习/" rel="tag"># Java学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/16/Java21-线程池/" rel="next" title="Java21-线程池">
+                <i class="fa fa-chevron-left"></i> Java21-线程池
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/16/Java20-线程同步/" rel="prev" title="Java20-线程同步">
+                Java20-线程同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

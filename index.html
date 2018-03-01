@@ -383,125 +383,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/2018-01-13-Kotlin关键字/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/2018-01-13-Kotlin关键字/" itemprop="url">2018-01-17 Kotlin关键字</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T10:42:18+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/Android-开发规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1921,7 +1802,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java28-注解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/2018-01-10-MySql基本语法及存储过程学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -1940,7 +1821,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/Java28-注解/" itemprop="url">Java28-注解</a></h1>
+                <a class="post-title-link" href="/2018/01/10/2018-01-10-MySql基本语法及存储过程学习/" itemprop="url">MySql基本语法及存储过程学习</a></h1>
         
 
         <div class="post-meta">
@@ -1952,7 +1833,7 @@ if (i == 1) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:08:01+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T10:00:40+08:00">
                 2018-01-10
               </time>
             
@@ -1992,7 +1873,146 @@ if (i == 1) {
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">一、概念</span><br><span class="line">       注解相当于一种标记，在程序中加了注解就等于为程序打上了某种标记，没加，则等于没有某种标记，以后，javac编译器，开发工具和其他程序可以用反射来了解你的类及各种元素上有无何种标记，看你有什么标记，就去干相应的事。标记可以加在包，类，字段，方法，方法的参数以及局部变量上。</span><br><span class="line">      比如：@Override 使用在方法上的，表示该方法重写的意思，@Deprecated 使用在方法上，表示该方法废弃的意思</span><br><span class="line"></span><br><span class="line">二、使用</span><br><span class="line">     自定义注解及其应用</span><br><span class="line">    1）、定义一个最简单的注解</span><br><span class="line">            public @interface MyAnnotation &#123;&#125;</span><br><span class="line">    2）、将注解加在某个类上：</span><br><span class="line">            @MyAnnotation</span><br><span class="line">            public class AnnotationTest&#123;</span><br><span class="line">                //......</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">三、四种元注解</span><br><span class="line">      Java中提供了四种元注解，专门负责注解其他的注解</span><br><span class="line">    </span><br><span class="line">    1）、@Retention元注解，表示需要在什么级别保存该注释信息（生命周期）。可选的RetentionPoicy参数包括：</span><br><span class="line">         a)、RetentionPolicy.SOURCE: 注解只保留在源文件中</span><br><span class="line">         b)、RetentionPolicy.CLASS：注解只保留在class文件中，在加载到JVM虚拟机时丢弃（默认）</span><br><span class="line">         c)、RetentionPolicy.RUNTIME：内存中的字节码，VM将在运行时也保留注解，因此可以通过反射机制读取注解的信息</span><br><span class="line">    </span><br><span class="line">    2）、@Target元注解，默认值为任何元素，表示该注解用于什么地方。可用的ElementType参数包括:：</span><br><span class="line">         a)、ElementType.TYPE: 类、接口（包括注解类型)或enum声明</span><br><span class="line">         b)、ElementType.METHOD: 方法声明</span><br><span class="line">         c)、ElementType.FIELD: 成员变量</span><br><span class="line">         d)、ElementType.CONSTRUCTOR: 构造器声明</span><br><span class="line">         e)、ElementType.LOCAL_VARIABLE: 局部变量声明</span><br><span class="line">         f)、 ElementType.PACKAGE: 包声明</span><br><span class="line">         g)、ElementType.PARAMETER: 参数声明</span><br><span class="line">    3）、@Documented元注解，将注解包含在JavaDoc中</span><br><span class="line">    4）、@Inheried元注解，允许子类继承父类中的注解</span><br><span class="line"></span><br><span class="line">四、注解添加属性</span><br><span class="line">    1) 属性：</span><br><span class="line">        基本类型：int id();  </span><br><span class="line">        引用类型：String name(); </span><br><span class="line">        数组类型：int[] values();</span><br><span class="line">        枚举类型：Enum enum();</span><br><span class="line">    2)默认值：default，比如：int id() default 0;   String name() default &quot;haha&quot;;</span><br></pre></td></tr></table></figure>
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>MySql 基本语法学习</strong></li>
+<li><strong>MySql 存储过程</strong></li>
+<li><strong>WebView 嵌入 JavaScript 代码</strong></li>
+<li><strong>WebView 修改 UserAgent</strong></li>
+<li><strong>X5 访问外链的坑</strong></li>
+<li><strong>Kotlin 正则表达式</strong></li>
+</ol>
+<hr>
+<h3 id="MySql-基本语法学习"><a href="#MySql-基本语法学习" class="headerlink" title="MySql 基本语法学习"></a><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">MySql 基本语法学习</a></h3><h4 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h4><ul>
+<li>数据库的连接</li>
+<li>数据库里的信息</li>
+<li>查看数据库信息</li>
+<li>调用存储过程</li>
+</ul>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><h5 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h5><p>连接 MySQL 时需要提供 IP 地址、端口号、用户名、密码；</p>
+<p>根据业务需求给该连接起个连接名称。</p>
+<h5 id="数据库里的信息"><a href="#数据库里的信息" class="headerlink" title="数据库里的信息"></a>数据库里的信息</h5><p>数据库里信息只需要关注数据表、函数（存储过程）、查询。</p>
+<ul>
+<li>数据表：项目中使用的业务数据存储的地方</li>
+<li>函数（存储过程）：常用查询代码的整理</li>
+<li>查询：每天都会重复写的查询代码，可以保存在这里，不必须重复敲码</li>
+</ul>
+<h5 id="数据表"><a href="#数据表" class="headerlink" title="数据表"></a>数据表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据表</span><br><span class="line">create table</span><br></pre></td></tr></table></figure>
+<h5 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h5><p>没有参数时，直接调用存储过程名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call pro_version</span><br></pre></td></tr></table></figure>
+<p>需要传参数时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call pro_query_app_report_etl(9903, 3)</span><br></pre></td></tr></table></figure>
+<p>《调试文档 - 报表刷新状态》</p>
+<p>查看存储过程需要传的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create procedure pro_query_app_report_etl</span><br></pre></td></tr></table></figure>
+<p>把 create procedure 字段的内存拷贝出来就可以看到存储过程的定义，及参数的定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE DEFINER=`shengyiplus`@`%` PROCEDURE </span><br><span class="line">`pro_query_app_report_etl`</span><br><span class="line">(in var_report_id varchar(50),in var_day varchar(50))</span><br><span class="line">...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>返回结果，存储过程中 <code>select</code> 的结果集就是返回的结果。</p>
+<h4 id="接口调用"><a href="#接口调用" class="headerlink" title="接口调用"></a>接口调用</h4><ol>
+<li>实现存储过程</li>
+<li>通过调用接口，把存储过程名称作为参数传入</li>
+<li>通过接口获取存储过程执行的结果</li>
+</ol>
+<h5 id="实现存储过程"><a href="#实现存储过程" class="headerlink" title="实现存储过程"></a>实现存储过程</h5><p>如上</p>
+<h5 id="通过调用接口，把存储过程名称作为参数传入"><a href="#通过调用接口，把存储过程名称作为参数传入" class="headerlink" title="通过调用接口，把存储过程名称作为参数传入"></a>通过调用接口，把存储过程名称作为参数传入</h5><p>存储过程若无参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get /api/v2/procedure/data?api_token=288d848d3bdf31ec764e2af72669bb90&amp;procedure=shengyiplus_s.pro_manage_expense_p1&amp;ordered_params</span><br></pre></td></tr></table></figure>
+<p>有参数时使用 <code>ordered_params=one@two&amp;one=1&amp;two=2</code></p>
+<ul>
+<li>ordered_params 决定了参数的数量及顺序</li>
+<li>后面给 ordered_params 中的参数赋值，若无则赋值为空</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get /api/v2/procedure/data?api_token=288d848d3bdf31ec764e2af72669bb90&amp;procedure= shengyiplus_s.pro_manage_expense_chart&amp;ordered_params=month@city&amp;month=201711&amp;city=深圳市</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="MySql存储过程"><a href="#MySql存储过程" class="headerlink" title="MySql存储过程"></a><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">MySql存储过程</a></h3><h4 id="delimiter"><a href="#delimiter" class="headerlink" title="delimiter"></a>delimiter</h4><p>delimiter 告诉 mysql 解释器，该段命令是否已结束。</p>
+<p>默认情况下，delimiter 是分号 ;</p>
+<p>在命令行客户端中，如果有一行命令以分号结束，那么回车后，mysql 将会执行该命令。</p>
+<p>输入下面的语句:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msyql&gt; select * from test_table;</span><br></pre></td></tr></table></figure>
+<p>然后回车，那么 mysql 会立即执行该语句。</p>
+<p>但有时候，不希望 mysql 这么做，可能输入较多的语句，且语句中包含有分号。</p>
+<p>如试图在命令行客户端中输入如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists pr_param_in;</span><br><span class="line">create procedure pr_param_in(in id int)</span><br><span class="line">begin</span><br><span class="line">    if (id is not null) then</span><br><span class="line">        set id = id + 1;</span><br><span class="line">    end if;</span><br><span class="line"></span><br><span class="line">    select id as id_inner;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<p>默认情况下，不可能等到用户把这些语句全部输入完之后，再执行整段语句。</p>
+<p>因为 MySQL 一遇到分号，它就要自动执行。</p>
+<p>这种情况下，就需要事先把 delimiter 换成其它符号，如 ;;</p>
+<p>这样只有当 ;; 出现之后，MySQL 解释器才会执行这段语句</p>
+<p>完整的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists pr_param_in;</span><br><span class="line"></span><br><span class="line">delimiter ;; -- 声明以 ;; 作为结束符告诉 mysql 已可以运行</span><br><span class="line"></span><br><span class="line">create procedure pr_param_in(in id int)</span><br><span class="line">begin</span><br><span class="line">    if (id is not null) then</span><br><span class="line">        set id = id + 1;</span><br><span class="line">    end if;</span><br><span class="line"></span><br><span class="line">    select id as id_inner;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">;; -- 告诉 mysql 可以执行上述代码</span><br><span class="line"></span><br><span class="line">delimiter ; -- 恢复结束符</span><br></pre></td></tr></table></figure>
+<h4 id="存储过程-1"><a href="#存储过程-1" class="headerlink" title="存储过程"></a>存储过程</h4><p>一组 sql 语句集，功能强大，可以实现一些比较复杂的逻辑功能；</p>
+<p>存储过程跟触发器有点类似，都是一组 sql 集，但是存储过程是主动调用的，且功能比触发器更加强大，触发器是某件事触发后自动调用；</p>
+<p><strong>每句 sql 记得在行尾加分号</strong></p>
+<p>基本语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists `proc_if`;</span><br><span class="line">delimiter ;;</span><br><span class="line">create definer=`root`@`localhost` procedure `proc_if`</span><br><span class="line">begin</span><br><span class="line">end</span><br><span class="line">;;</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>delimiter ;;：之前说过了，把默认的输入的结束符;替换成;;。</li>
+<li>definer：创建者；</li>
+</ul>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>三种定义方式：</p>
+<ol>
+<li>declare</li>
+</ol>
+<p>这种方式定义的变量，语句的位置必须在begin下,同时要带上参数类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">declare tname varchar(50);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>set</li>
+</ol>
+<p>这种方式定义的变量，定义同时赋值，语句的位置可以任意出现，不需要带上参数类型，但定义的变量是会话变量，如果想定义局部变量，那么变量名加上’@’。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set @aa=&apos;xxx&apos;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>select</li>
+</ol>
+<p>性质同上一个set，但是这个可以通过插询记录去赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set @var=(select cnm from tbnm);</span><br><span class="line">select @var=cnm from tbnm;</span><br></pre></td></tr></table></figure>
+<h4 id="prepare"><a href="#prepare" class="headerlink" title="prepare"></a>prepare</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prepare statement_name from sql_text /*定义*/   </span><br><span class="line">execute statement_name [using variable [,variable...]] /*执行预处理语句*/   </span><br><span class="line">deallocate prepare statement_name /*删除定义*/</span><br></pre></td></tr></table></figure>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>更新所有数据表的字符串为 utf8</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">begin  </span><br><span class="line">    declare done boolean default 0;</span><br><span class="line">    declare tbl_name varchar(255);  </span><br><span class="line">  </span><br><span class="line">    declare t_index cursor for select ist.table_name from information_schema.tables as ist where ist.table_schema = &apos;shengyiplus_pro&apos; and ist.table_type = &apos;base table&apos;;</span><br><span class="line">    declare continue handler for sqlstate &apos;02000&apos; set done = 1;  </span><br><span class="line">  </span><br><span class="line">open t_index;  </span><br><span class="line">repeat  </span><br><span class="line">        fetch t_index into tbl_name;  </span><br><span class="line">        set @sql = concat(&apos;alter table &apos;, tbl_name, &apos; convert to character set utf8;&apos;);</span><br><span class="line"></span><br><span class="line">        prepare stmt from @sql; -- 定义</span><br><span class="line">        execute stmt;           -- 执行</span><br><span class="line">        deallocate prepare stmt;-- 释放</span><br><span class="line"></span><br><span class="line">until done end repeat;  </span><br><span class="line">close t_index;  </span><br><span class="line">  </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h4 id="存储过程列表"><a href="#存储过程列表" class="headerlink" title="存储过程列表"></a>存储过程列表</h4><p>方法一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show procedure status;</span><br></pre></td></tr></table></figure>
+<p>方法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">  routine_schema as database_name</span><br><span class="line">  , routine_name as procedure_name</span><br><span class="line">from information_schema.routines </span><br><span class="line">where routine_schema = database()</span><br><span class="line">and routine_name like &apos;pro_%&apos;</span><br><span class="line">and routine_type = &apos;PROCEDURE&apos;</span><br><span class="line">order by routine_name asc</span><br></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="http://www.cnblogs.com/chenpi/p/5136483.html" target="_blank" rel="noopener">mysql 中的存储过程</a></li>
+<li><a href="http://www.cnblogs.com/colder/p/3142067.html" target="_blank" rel="noopener">mysql 存储过程之游标遍历数据表</a></li>
+<li><a href="http://www.iteye.com/problems/100884" target="_blank" rel="noopener">mysql 存储过程执行动态sql的问题</a></li>
+<li><a href="http://blog.csdn.net/luo4105/article/details/51501245" target="_blank" rel="noopener">mysql 存储过程—-三种定义变量方式</a></li>
+<li><a href="http://blog.csdn.net/zhxp_870516/article/details/8531378" target="_blank" rel="noopener">mysql prepare语句使用</a></li>
+<li><a href="http://blog.csdn.net/u010003835/article/details/50716610" target="_blank" rel="noopener">数据库_MySQL 游标的使用和结果集的遍历</a></li>
+<li><a href="http://blog.csdn.net/k346k346/article/details/51892492" target="_blank" rel="noopener">MySQL 对 CREATE TABLE IF NOT EXISTS SELECT 的处理</a></li>
+<li><a href="http://book.51cto.com/art/201012/240986.htm" target="_blank" rel="noopener">从 information_schema.Routines 表中查看存储过程和函数的信息</a></li>
+</ul>
+<hr>
+<h2 id="WebView-嵌入-JavaScript-代码"><a href="#WebView-嵌入-JavaScript-代码" class="headerlink" title="WebView 嵌入 JavaScript 代码"></a>WebView 嵌入 JavaScript 代码</h2><ol>
+<li>方法写在 WebView 的 WebViewClient 的 onPageFinished 方法中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> public void onPageFinished(WebView view, String url) </span><br><span class="line">  &#123;</span><br><span class="line">       super.onPageFinished(view, url);</span><br><span class="line">        webview.loadUrl(&quot;javascript:(function()&#123;&quot; +</span><br><span class="line">                &quot;var objs=document.getElementsByTagName(\&quot;span\&quot;);&quot; +</span><br><span class="line">                &quot;for(var i=0;i&lt;objs.length;i++)&quot; +</span><br><span class="line">                &quot;&#123;&quot;</span><br><span class="line">                + &quot;      objs[i].onclick=function()  &quot; +</span><br><span class="line">                &quot;    &#123;   &quot;</span><br><span class="line">                + &quot;     window.authorlistener.openAuthor(this.getAttribute(&apos;data-author-id&apos;));     &quot; +</span><br><span class="line">                &quot; window.textlistener.openText(this.getAttribute(&apos;data-source-id&apos;)); &quot;+</span><br><span class="line">                &quot;    &#125;  &quot; +</span><br><span class="line">                &quot;&#125;&quot; +</span><br><span class="line">                &quot;&#125;)()&quot;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Kotlin-正则表达式"><a href="#Kotlin-正则表达式" class="headerlink" title="Kotlin 正则表达式"></a><a href="http://www.jb51.net/article/130009.htm" target="_blank" rel="noopener">Kotlin 正则表达式</a></h2><ol>
+<li><p>替换 UserAgent 中的 Chrome 版本为最新</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val userAgentWithNewChromeVersion = Regex(&quot;[Cc]hrome/[0-9.]*\\s+&quot;).replace(webSettings?.userAgentString!!, &quot;Chrome/57.0.2987.132 &quot;)</span><br><span class="line">webSettings.setUserAgent(userAgentWithNewChromeVersion)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>Linux Mint 学习安装<ul>
+<li><a href="http://www.binarytides.com/better-linux-mint-17-cinnamon/" target="_blank" rel="noopener">安装Linux Mint 17后要做的20件事</a></li>
+</ul>
+</li>
+<li><a href="https://stackoverflow.com/questions/19716840/handle-arrow-keys-from-d-pad-on-webview-google-tv-app" target="_blank" rel="noopener">Android Native 与 H5 适配 TV 遥控器按键</a></li>
+<li>Q : 阿里云数据可视化网页打开提示”请尝试使用Chrome最新版本浏览”<ul>
+<li>A : 查看网页源码，发现有一个浏览器检查的 <a href="https://cdn-service.datav.aliyun.com/datav-static/1.4.0_44/js/libs/browser-check.js" target="_blank" rel="noopener">js</a> ， js 使用了查看浏览器版本信息的 UserAgent 插件 <a href="https://github.com/faisalman/ua-parser-js" target="_blank" rel="noopener">UAParser</a> <a href="https://faisalman.github.io/ua-parser-js/" target="_blank" rel="noopener">测试连接</a> ，js 中通过插件获取浏览器信息，发现只支持 Chrome (主版本大于等50) 和 Safari(主版本大于等于10)</li>
+<li>而我们的应用嵌入了 X5 内核浏览器，综上所诉三个坑<ol>
+<li>设备在硬件上不支持 X5</li>
+<li>js 没有判断腾讯的 X5 内核浏览器（既 MQQBrowser）</li>
+<li>在把 UserAgent 中的 X5 信息去掉之后，依然有问题，<code>去掉 wv 会提示 Browser 为Android Browser ，再去掉 Version/4.0 之后 Browser 变为 Chrome</code><ul>
+<li>Browser 为 Chrome WebView<br><code>Mozilla/5.0 (Linux; Android 6.0.1; SM919 Build/MXB48T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 Mobile Safari/537.36</code></li>
+<li>Browser 为 Chrome<br><code>Mozilla/5.0 (Linux; Android 6.0.1; SM919 Build/MXB48T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.97 Mobile Safari/537.36</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+
           
         
       
@@ -2040,7 +2060,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java28-反射机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/Android基础知识点整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2059,7 +2079,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/Java28-反射机制/" itemprop="url">Java28-反射机制</a></h1>
+                <a class="post-title-link" href="/2018/01/09/Android基础知识点整理/" itemprop="url">Android基础知识点整理(1)</a></h1>
         
 
         <div class="post-meta">
@@ -2071,8 +2091,8 @@ if (i == 1) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:07:52+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T22:05:41+08:00">
+                2018-01-09
               </time>
             
 
@@ -2111,7 +2131,162 @@ if (i == 1) {
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">一、什么是反射机制</span><br><span class="line">        简单的来说，反射机制指的是程序在运行时能够获取自身的信息。在java中，只要给定类的名字， 那么就可以通过反射机制来获得类的所有信息。</span><br><span class="line">  </span><br><span class="line">二、哪里用到反射机制</span><br><span class="line">        有些时候，我们用过一些知识，但是并不知道它的专业术语是什么，在刚刚学jdbc时用过一行代码， Class.forName(&quot;com.mysql.jdbc.Driver.class&quot;).newInstance();但是那时候只知道那行代码是生成驱动对象实例，并不知道它的具体含义。听了反射机制这节课后，才知道，原来这就是反射，现在很多开框架都用到反射机制，hibernate、struts都是用反射机制实现的。</span><br><span class="line"></span><br><span class="line">三、反射机制的优点与缺点</span><br><span class="line">        为什么要用反射机制？直接创建对象不就可以了吗，这就涉及到了动态与静态的概念，</span><br><span class="line">  ●  静态编译：在编译时确定类型，绑定对象,即通过。  </span><br><span class="line">  ●  动态编译：运行时确定类型，绑定对象。动态编译最大限度发挥了java的灵活性，体现了多态的应用，有以降低类之间的藕合性。  </span><br><span class="line">        一句话，反射机制的优点就是可以实现动态创建对象和编译，体现出很大的灵活性，特别是在J2EE的开发中它的灵活性就表现的十分明显。比如，一个大型的软件，不可能一次就把把它设计的很完美，当这个程序编译后，发布了，当发现需要更新某些功能时，我们不可能要用户把以前的卸载，再重新安装新的版本，假如这样的话，这个软件肯定是没有多少人用的。采用静态的话，需要把整个程序重新编译一次才可以实现功能的更新，而采用反射机制的话，它就可以不用卸载，只需要在运行时才动态的创建和编译，就可以实现该功能。</span><br><span class="line">       它的缺点是对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满足我们的要求。这类操作总是慢于只直接执行相同的操作。</span><br><span class="line"></span><br><span class="line">四、利用反射机制能获得什么信息</span><br><span class="line">       一句话，类中有什么信息，它就可以获得什么信息，不过前提是得知道类的名字，要不就没有后文了,首先得根据传入的类的全名来创建Class对象。  </span><br><span class="line">        Class c=Class.forName(&quot;className&quot;);          //注明：className必须为全名，也就是得包含包名，比如，com.jimmy.UserInfo;</span><br><span class="line">        Object obj=c.newInstance();                        //创建对象的实例</span><br><span class="line">  </span><br><span class="line">        以下所有的方法全部通过class调用</span><br><span class="line"></span><br><span class="line">    1、获得构造函数的方法  </span><br><span class="line">         Constructor getConstructor(Class[] params)                            //根据指定参数获得public构造器</span><br><span class="line">         Constructor[] getConstructors()                                                //获得public的所有构造器</span><br><span class="line">         Constructor getDeclaredConstructor(Class[] params)             //根据指定参数获得public和非public的构造器</span><br><span class="line">         Constructor[] getDeclaredConstructors()                                 //获得public和非public的所有构造器 </span><br><span class="line"></span><br><span class="line">     2、获得类方法的方法  </span><br><span class="line">         Method getMethod(String name, Class[] params)    //根据方法名，参数类型获得方法</span><br><span class="line">         Method[] getMethods()                                              //获得所有的public方法 </span><br><span class="line">         Method getDeclaredMethod(String name, Class[] params)        //根据方法名和参数类型，获得public和非public的方法</span><br><span class="line">         Method[] getDeclaredMethods()                                                  //获得所以的public和非public方法</span><br><span class="line">   </span><br><span class="line">    3、 获得类中属性的方法</span><br><span class="line">        Field getField(String name)                    //根据变量名得到相应的public变量</span><br><span class="line">        Field[] getFields()                                    //获得类中所以public的变量的方法</span><br><span class="line">        Field getDeclaredField(String name)    //根据方法名获得public和非public变量</span><br><span class="line">        Field[] getDeclaredFields()                    //获得类中所有的public和非public方法 </span><br><span class="line"></span><br><span class="line">注意：一般使用框架用到反射，对默认的架构不满意，重新搭建新的架构</span><br></pre></td></tr></table></figure>
+            <h2 id="基本技能"><a href="#基本技能" class="headerlink" title="基本技能"></a>基本技能</h2><ul>
+<li>markdown语法<ul>
+<li>附件</li>
+</ul>
+</li>
+<li>git 基本语法<ul>
+<li>附件</li>
+</ul>
+</li>
+<li>基本命令行<ul>
+<li>创建文件夹<br>  <code>mkdir test</code></li>
+<li>进入文件夹<br>  <code>cd test</code></li>
+<li>创建空文件<br>  <code>touch fileName</code></li>
+<li>查看文本内容<br>  <code>cat xxx.txt</code></li>
+<li>删除文件<br>  <code>rm xxx.txt</code><br>  <code>rm -rf file</code>// -fr表示递归和强制，一定要小心使用 rm -fr / 那你的电脑就over了</li>
+<li>拷贝<br>  <code>cp -R 源文件  目标文件</code>// -R 表示对目录进行递归操作</li>
+<li>移动<br>  <code>mv filePath toPath</code></li>
+<li>显示当前目录的路径名<br>  在目录中执行<code>pwd</code>    </li>
+<li>查看文件内容<br>  <code>cat fileName</code></li>
+<li>清除命令行内容<br>  <code>clear</code></li>
+<li>显示当前日期<br>  <code>date</code></li>
+<li>显示文件列表<br>  <code>ls</code>// 显示未隐藏的文件<br>  <code>ls -a</code>// 显示所有文件<br>  <code>ls -A</code>// 显示除了’.’和’.’以外所有文件<br>  <code>ls -l</code>// 显示文件详细信息<br>  <code>ls -R</code>// 递归显示目录及其子目录文件内容</li>
+<li>关机<br>  <code>sudo shutdown -h now</code>// -h 是关闭电源 now立即关机<br>  <code>sudo shutdown -r now</code>//重启<br>  <code>sudo shutdown -h -time 60</code>// 表示60分钟后关机，注意单位是分钟   </li>
+</ul>
+</li>
+</ul>
+<h2 id="基本工具"><a href="#基本工具" class="headerlink" title="基本工具"></a>基本工具</h2><h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
+<li>android studio 快捷键<ul>
+<li>附件</li>
+</ul>
+</li>
+<li><p>activity 生命周期（这个图相当形象了）</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/CharonChui/Pictures/master/basic-lifecycle-paused.png?raw=true" alt="image"></li>
+<li><p>四种启动模式（进阶）</p>
+<ol>
+<li><p>standard : （standard 是系统默认的启动模式。）</p>
+<ul>
+<li>标准启动模式，每次激活 Activity 时都会创建 Activity ，并放入任务栈中。如果启动此 Activity 的 Intent 中没有设置 <code>FLAG_ACTIVITY_NEW_TASK</code> 标志, 则这个 Activity 与启动他的 Activity 在同一个 Task 中,如果设置了 Activity 请参考上面 <code>FLAG_ACTIVITY_NEW_TASK</code> 的详细说明,”launchMode”设置为”standard”的 Activity 可以被实例化多次, 可以在 Task 中的任何位置, 对于一个新的 Intent 请求就会实例化一次.</li>
+</ul>
+<ol>
+<li><p>singleTop : </p>
+<ul>
+<li>如果在任务的栈顶正好存在该 Activity 的实例， 就重用该实例，而不会创建新的 Activity 对象，不过它会调用onNewIntent()方法。如果栈顶部不存在就会创建新的实例并放入栈顶(即使栈中已经存在该 Activity 实例，只要不在栈顶，都会创建实例)。如果启动此 Activit y的 Intent 中没有设置 <code>FLAG_ACTIVITY_NEW_TASK</code> 标志, 则这个 Activity 与启动他的 Activity 在同一个 Task 中,如果设置了 Activity 请参考上面 <code>FLAG_ACTIVITY_NEW_TASK</code> 的详细说明,”launchMode”设置为”singleTop”的 Activity 可以被实例化多次,  可以在 Task 中的任何位置, 对于一个新的 Intent 请求如果在 Task 栈顶, 则会用栈顶的 Activity 响影 Intent 请求,而不会重新实例化对象接收请求, 如果没有在栈顶, 则会实例化一个新的对象接收 Intent 请求.</li>
+</ul>
+</li>
+<li><p>singleTask : </p>
+<ul>
+<li>如果在栈中已经有该 Activity 的实例，就重用该实例(会调用实例的 onNewIntent() )。重用时，会让该实例回到栈顶，因此在它上面的实例将会被移除栈。如果栈中不存在该实例，将会创建新的实例放入栈中。 和 singleTop 在名字上即可看出区别，即 singleTop 每次只检测当前栈顶的 Activity 是否是我们需要请求创建的，而 singleTask 则会检测栈中全部的 Activity 对象，从上向下，如果检测到是我们所请求的则会消灭此 Activity 对象上面的对象，直接把检测到的我们需要的 Activity 置为栈顶。”launchMode”设置为”singleTask”的 Activity 总是在栈底, 只能被实例化一次, 它允许其它 Activity 压入”singleTask”的 Activity 所在的 Task 栈,如果有新的 Intent 请求有此标志的 Activity , 则系统会清除有此标志的 Task 栈中的全部 Activity,并把此 Activity 显示出来.</li>
+</ul>
+</li>
+<li><p>singleInstance : </p>
+<ul>
+<li>在一个新栈中创建该 Activity 实例，并让多个应用共享该 Activity 实例。一旦这种模式的 Activity 实例存在于某个栈中，任何应用再激活这个 Activity 时都会重用该栈中的实例，其效果相当于多个应用程序共享一个应用，不管谁激活该 Activity 都会进入同一个应用中。此启动模式和我们使用的浏览器工作原理类似，在多个程序中访问浏览器时，如果当前浏览器没有打开，则打开浏览器，否则会在当前打开的浏览器中访问。此模式会节省大量的系统资源，因为他能保证要请求的 Activity 对象在当前的栈中只存在一个。”launchMode”设置为”singleInstance”的 Activity 总是在栈底, 只能被实例化一次, 不允许其它的 Activity 压入”singleInstance”的 Activity 所在 Task 栈,  即整个 Task 栈中只能有这么一个 Activity .</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>activity 间跳转</p>
+<ol>
+<li><p>action</p>
+<pre><code>Intent intent = new Intent(); 
+intent.setAction(&quot;com.intfocus.template.testactivity&quot;); 
+……
+startActivity(intent);
+
+//在配置文件中注册Activity的时候需要声明：
+&lt;activity android:name=&quot;com.intfocus.template.TestActivity&quot;&gt;
+&lt;intent-filter&gt;
+&lt;action android:name=&quot;com.intfocus.template.testactivity&quot; /&gt;
+&lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;   
+&lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre></li>
+<li><p>类名</p>
+<pre><code>Intent intent = new Intent(TestActivity.this,TargetActivity.class); 
+……
+startActivity(intent);
+</code></pre></li>
+<li><p>Uri</p>
+<pre><code>Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(&quot;tel:13000000000&quot;));
+……
+startActivity(intent);
+</code></pre></li>
+</ol>
+</li>
+<li><p>webview 加载本地网页及与 js 交互</p>
+<ul>
+<li>WebView加载本地网页<ul>
+<li>file:///android_asset/xxx.html</li>
+</ul>
+</li>
+<li><p>WebView 与 Js 交互</p>
+<ul>
+<li><p>Android 调用 WebView 中的 js 脚本</p>
+<pre><code>// 启用javascript        mWebView.getSettings().setJavaScriptEnabled(true);
+// 加载web页面
+mWebView.loadUrl(&quot;file:///android_asset/index.html&quot;);
+// 调用js
+mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); //aa是js的函数test()的参数  
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- Js 调用 Android 中的方法
+
+        public WebViewActivity extends Activity {
+
+            public void onCreate() {
+                // 启用javascript    
+                mWebView.getSettings().setJavaScriptEnabled(true);
+                // 加载web页面
+                mWebView.loadUrl(&quot;file:///android_asset/index.html&quot;);
+                // 首先要对webview绑定javascriptInterface，js脚本通过这个接口来调用java代码。javascriptInterface实际就是一个普通的java类，里面是我们本地实现的java代码， 将JavascriptInterface传递给webview，并指定别名，这样js脚本就可以通过我们给的这个别名来调用我们的方法,在这里，this是实例化的对象，wst是这个对象在js中的别名
+                mWebView.addJavascriptInterface(this, &quot;index&quot;);
+            }
+
+            // js所调用的native方法的本地实现，安卓4.2及以上版本（API &gt;= 17），在注入类中为可调用的方法添加@JavascriptInterface注解，无注解的方法不能被调用，这种方式可以防范注入漏洞
+            @JavascriptInterface
+            public void startFunction(final String str) {  
+                Toast.makeText(this, str, Toast.LENGTH_SHORT).show();  
+                runOnUiThread(new Runnable() {  
+
+                    @Override  
+                    public void run() {  
+                        msgView.setText(msgView.getText() + &quot;\njs调用了java函数传递参数：&quot; + str);  
+
+                    }  
+                });  
+            }  
+        }
+
+         js 中通过如下代码调用即可  
+        &lt;a onClick=&quot;window.wst.startFunction(&apos;hello world&apos;)&quot; &gt;点击调用java代码并传递参数&lt;/a&gt;  
+</code></pre><ul>
+<li>android 展示 pdf<ol>
+<li>原生没有什么现有的好方法来实现 pdf 的展示，谷歌提供了一种 WebView 加载的方式，但是被墙体验很差<ul>
+<li>webView.loadUrl(“<a href="http://docs.google.com/gview?embedded=true&amp;url=" target="_blank" rel="noopener">http://docs.google.com/gview?embedded=true&amp;url=</a>“ + pdfUrl); // </li>
+</ul>
+</li>
+<li>下载 pdf 到本地，使用三方库来展示 <ul>
+<li><a href="https://github.com/barteksc/AndroidPdfViewer" target="_blank" rel="noopener">传送门</a> ： 这个库支持的 pdf 格式较丰富，使用也很方便</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+
           
         
       
@@ -2159,7 +2334,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java27-数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/04/2018-01-04 RxJava Kotlin Android Profiler Glide Stetho 待整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2178,7 +2353,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/Java27-数据库/" itemprop="url">Java27-数据库</a></h1>
+                <a class="post-title-link" href="/2018/01/04/2018-01-04 RxJava Kotlin Android Profiler Glide Stetho 待整理/" itemprop="url">RxJava Kotlin Android Profiler Glide Stetho 待整理</a></h1>
         
 
         <div class="post-meta">
@@ -2190,8 +2365,8 @@ if (i == 1) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:07:41+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T10:00:40+08:00">
+                2018-01-04
               </time>
             
 
@@ -2230,7 +2405,31 @@ if (i == 1) {
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">TABLE_NAME 常用指令：</span><br><span class="line">    .help    帮助</span><br><span class="line">    .exit     退出</span><br><span class="line">    .tables    查看表名称</span><br><span class="line">    .schema ***    查看指定表内容</span><br><span class="line">  .headers on    显示列明</span><br><span class="line">  .mode column   左侧居中，调整格式</span><br><span class="line">  .width 10,20,30    调整列之间的距离</span><br><span class="line"></span><br><span class="line">    alter table 表 rename to 表new;    修改表名</span><br><span class="line">    drop table database_name.table_name;    删除表</span><br><span class="line">    insert into 表(列名2,列名3,列名4...) values (属性2,属性3,属性4...)    给表赋值</span><br><span class="line">    insert into 表 values(属性1,属性2,属性3,属性4...)</span><br><span class="line">    select 列1,列2,...或者* from 表    查询</span><br><span class="line">  delete from TABLE where ID=1;    删除行</span><br><span class="line">  update TABLE set 列名=值,列名=值 where 条件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    strftime(&apos;格式&apos;,列名)    重定义时间格式</span><br><span class="line">    列名 as 列名new    临时名称</span><br><span class="line">    表1||&apos;我是小三&apos;||表2    拼接表</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    INTEGER、REAL、TEXT、BLOB、NULL</span><br><span class="line">    primary key（_id integer primary key autoincrement not null） 主键（autoincrement 自增长）</span><br><span class="line">    not null    非空</span><br><span class="line">    unique    唯一</span><br><span class="line">    check    检测    check sex=&apos;man&apos; or sex=&apos;woman&apos;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">运算符 描述</span><br><span class="line">AND AND 运算符允许在一个 SQL 语句的 WHERE 子句中的多个条件的存在。</span><br><span class="line">BETWEEN BETWEEN 运算符用于在给定最小值和最大值范围内的一系列值中搜索值。</span><br><span class="line">EXISTS EXISTS 运算符用于在满足一定条件的指定表中搜索行的存在。</span><br><span class="line">IN IN 运算符用于把某个值与一系列指定列表的值进行比较。</span><br><span class="line">NOT IN IN 运算符的对立面，用于把某个值与不在一系列指定列表的值进行比较。</span><br><span class="line">LIKE LIKE 运算符用于把某个值与使用通配符运算符的相似值进行比较。</span><br><span class="line">GLOB GLOB 运算符用于把某个值与使用通配符运算符的相似值进行比较。GLOB 与 LIKE 不同之处在于，它是大小写敏感的。</span><br><span class="line">NOT NOT 运算符是所用的逻辑运算符的对立面。比如 NOT EXISTS、NOT BETWEEN、NOT IN，等等。它是否定运算符。</span><br><span class="line">OR OR 运算符用于结合一个 SQL 语句的 WHERE 子句中的多个条件。</span><br><span class="line">IS NULL NULL 运算符用于把某个值与 NULL 值进行比较。</span><br><span class="line">IS IS 运算符与 = 相似。</span><br><span class="line">IS NOT IS NOT 运算符与 != 相似。</span><br><span class="line">|| 连接两个不同的字符串，得到一个新的字符串。</span><br><span class="line">UNIQUE UNIQUE 运算符搜索指定表中的每一行，确保唯一性（无重复）。</span><br><span class="line">LIKE 是大小不敏感</span><br><span class="line">下面一些实例演示了 带有 &apos;%&apos; 和 &apos;_&apos; 运算符的 LIKE 子句不同的地方：</span><br><span class="line">语句 描述</span><br><span class="line">WHERE SALARY LIKE &apos;200%&apos; 查找以 200 开头的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;%200%&apos; 查找任意位置包含 200 的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;_00%&apos; 查找第二位和第三位为 00 的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;2_%_%&apos; 查找以 2 开头，且长度至少为 3 个字符的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;%2&apos; 查找以 2 结尾的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;_2%3&apos; 查找第二位为 2，且以 3 结尾的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;2___3&apos; 查找长度为 5 位数，且以 2 开头以 3 结尾的任意值</span><br><span class="line">GLOB 是大小写敏感</span><br><span class="line">下面一些实例演示了 带有 &apos;*&apos; 和 &apos;?&apos; 运算符的 GLOB 子句不同的地方：</span><br><span class="line">语句 描述</span><br><span class="line">WHERE SALARY GLOB &apos;200*&apos; 查找以 200 开头的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;*200*&apos; 查找任意位置包含 200 的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;?00*&apos; 查找第二位和第三位为 00 的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;2??&apos; 查找以 2 开头，且长度至少为 3 个字符的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;*2&apos; 查找以 2 结尾的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;?2*3&apos; 查找第二位为 2，且以 3 结尾的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;2???3&apos; 查找长度为 5 位数，且以 2 开头以 3 结尾的任意值</span><br><span class="line">SQLite Limit 子句</span><br><span class="line">SQLite 的 LIMIT 子句用于限制由 SELECT 语句返回的数据数量。</span><br><span class="line">带有 LIMIT 子句的 SELECT 语句的基本语法如下：</span><br><span class="line">SELECT column1, column2, columnN </span><br><span class="line">FROM table_name</span><br><span class="line">LIMIT [no of rows]</span><br><span class="line">下面是 LIMIT 子句与 OFFSET 子句一起使用时的语法：</span><br><span class="line">SELECT column1, column2, columnN </span><br><span class="line">FROM table_name</span><br><span class="line">LIMIT [no of rows] OFFSET [row num]</span><br><span class="line"></span><br><span class="line">SQLite Order By</span><br><span class="line">SQLite 的 ORDER BY 子句是用来基于一个或多个列按升序或降序顺序排列数据。</span><br><span class="line">ORDER BY 子句的基本语法如下：</span><br><span class="line">SELECT column-list </span><br><span class="line">FROM table_name </span><br><span class="line">[WHERE condition][ORDER BY column1, column2,.. columnN][ASC | DESC];</span><br><span class="line">SQLite Group By</span><br><span class="line">SQLite 的 GROUP BY 子句用于与 SELECT 语句一起使用，来对相同的数据进行分组。</span><br><span class="line">在 SELECT 语句中，GROUP BY 子句放在 WHERE 子句之后，放在 ORDER BY 子句之前。</span><br><span class="line">下面给出了 GROUP BY 子句的基本语法。GROUP BY 子句必须放在 WHERE 子句中的条件之后，必须放在 ORDER BY 子句之前。</span><br><span class="line">SELECT column-list</span><br><span class="line">FROM table_name</span><br><span class="line">WHERE [ conditions ]</span><br><span class="line">GROUP BY column1, column2....columnN</span><br><span class="line">ORDER BY column1, column2....columnN</span><br><span class="line">您可以在 GROUP BY 子句中使用多个列。确保您使用的分组列在列清单中。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">一、简介</span><br><span class="line">    存储数据的仓库，将一些数据通过数据库结构化的规则进行存储。</span><br><span class="line">    常用的一些数据库的存储：sqlite、oracle、MySQL、SQLDB、DB2。。。包括其他的数据库</span><br><span class="line">    sqlite是Oracle的一个子产品：sqlite是一个轻量级的数据库（sqlite数据库是以文件的方式进行存储）</span><br><span class="line">二、Sqlite的忒点  </span><br><span class="line">  一般大型的数据库都会分配用户的权限，进行对应的管理，有专门的数据库配置文件进行统一管理</span><br><span class="line">    sqlite没有这样的权限管理。要使用sqlite数据库内容，文件copy就可以了，不需要进行导入导出，也没有访问限制</span><br><span class="line"></span><br><span class="line">  1、移植性高，只要文件的copy</span><br><span class="line">  2、存储占用的空间不会太大，也不需要专门数据后台支持</span><br><span class="line">  3、数据库的存储量有限，当存出数据多的时候，访问效率会比较低，一般数据存储量在10万条左右</span><br><span class="line">  4、比如数据库操作过程比较弱，删除表的列，添加列等操作都不支持，对外键的支持比较弱</span><br><span class="line">  5、sqlite开源的，Android设备中，自带的本地数据库就是sqlite(因为消耗内存小)</span><br><span class="line"></span><br><span class="line">三、下载（因为JAVASE没有sqlite）</span><br><span class="line">网址：http://www.sqlite.org/download.html（下载windows版本的tools）</span><br><span class="line">下载的zip压缩包解压缩就可以了</span><br><span class="line">直接可以启动sqlite3看到命令行</span><br><span class="line">补充：如果不能识别sqlite3的命令，配置环境变量Path加入sqlite3.exe所在的完整的文件路径</span><br><span class="line"></span><br><span class="line">四、后续所有对sqlite的操作都是基于命令行的操作</span><br><span class="line">    1.如果直接执行sqlite3的命令行，数据库的内容是存放在内存，没有实际的文件。若将关闭命令行，所有的操作都数据都不再存在。纯粹练练手的</span><br><span class="line">    2.如果要存储到实际的文件中，如何操作？</span><br><span class="line">      a)在任意目录创建一个后缀名是.db的文件（该文件可以用来存放sqlite的数据内容）</span><br><span class="line">      b)通过sqlite3的指令打开该文件，存储数据内容即可 </span><br><span class="line">         指令:sqlite3 *.db文件</span><br><span class="line"></span><br><span class="line">五、使用sqlite3基本指令的介绍</span><br><span class="line">      1.常用的指令：</span><br><span class="line">         .help   帮助</span><br><span class="line">         .exit    退出</span><br><span class="line">        .table   查看数据中创建的所有的表</span><br><span class="line">        .schema  （全部）查看当时创建表的语句，确认有哪些列的名字</span><br><span class="line">        .schema 表名   查看该表的创建语句     </span><br><span class="line">        .headers on      显示列的名字</span><br><span class="line">        .mode column     列默认左侧居中的显示方式</span><br><span class="line"></span><br><span class="line">      2.与数据库操作有关的指令（执行对应的sql语句）</span><br><span class="line">         sql语句的含义：结构化查询语言的意思</span><br><span class="line">         分为三种类型：</span><br><span class="line">         1）DDL：数据库定义语句  （主要作用创建数据表，删除数据表，修改数据表的操作）       </span><br><span class="line">         2）DML：数据库操作语句  （主要往数据表添加，删除，修改，查询等）</span><br><span class="line">         3)  DCL: 数据库控制语句 （数据库开启事务，事件回滚的操作等等）</span><br><span class="line"></span><br><span class="line">     3.DDL语句：</span><br><span class="line">        1.数据库中最重要的就是表的资源，组成表由2个基本要素（列名和字段）</span><br><span class="line">           创建表的过程中，定义列的名字和列的数据类型 比如：name字符串  age整数  等等</span><br><span class="line">           扩展：sqlite中有5种数据类型</span><br><span class="line">                     1— integer  整型</span><br><span class="line">                     2— real       浮点型</span><br><span class="line">                     3— text      文本型/字符串类型</span><br><span class="line">                     4— blob     二进制类型</span><br><span class="line">                     5— Null      空</span><br><span class="line">         2.创建表的语句：create table 表名 (列的名字1 列的数据类型1 限制条件1 ,列的名字2 列的数据类型2 限制条件2);</span><br><span class="line">             比如：create table student (name text,age integer，sex text);    //分号结尾表示语句结束了</span><br><span class="line">             补充列录入字段值的限制</span><br><span class="line">             a)primary key   主键  （特点，表示数据的唯一性）规则：主键必须是integer,而且字段的值不能重复 。如果值重复直接报错</span><br><span class="line">             b)not null 非空 （录入的数据不能为空，否则报错）</span><br><span class="line">             c)unique 唯一  （录入的数据内容唯一，不能有重复）</span><br><span class="line">             d)check  检测    (录入数据内容进行检测 ) </span><br><span class="line">                语句格式:check 列名1=内容1 or 列名2=内容2</span><br><span class="line">                比如:  check (sex=&apos;man&apos; or sex=&apos;woman&apos;)</span><br><span class="line">          </span><br><span class="line">            比如：create table student (_id integer primary key autoincrement , name text not null, age integer, sex text check （sex=&apos;man&apos; or sex = &apos;woman&apos;）, score real);</span><br><span class="line">            特殊:autoincrement 自增长的意思，修饰主键，这样录入数据就可以不用考虑主键值的录入了</span><br><span class="line">            </span><br><span class="line">            修改表名字的语句： alter table 表名1 rename to 表名2;  </span><br><span class="line">            删除表语句: drop table 表名;</span><br><span class="line">            表中添加新的列名： alter table 表名 add 字段名 字段类型  限制条件</span><br><span class="line"></span><br><span class="line">       4.DML语句</span><br><span class="line">          1.往数据表中添加数据： insert into 表名 (列名1,列名2,列名3) values (字段值1,字段值2,字段值3)</span><br><span class="line">              比如： insert into student (name,sex,score) values (&apos;zhangsan&apos;,&apos;man&apos;,66.5);</span><br><span class="line">            </span><br><span class="line">          2.查看指定表的所有的数据: select * from 表名     ==    select  列名1,列名2,列名3 from 表名</span><br><span class="line">               补充：*指代了所有的列名</span><br><span class="line">              a)显示指定列的数据（快速通过列名过滤数据）： select  列名1,列名2 from 表名   比如: select _id,name from student;</span><br><span class="line">              b)where语句进行查询: select 列名门  from 表名 where 条件</span><br><span class="line">                  i)支持判断条件：&gt; &lt; =  &gt;= &lt;= !=    比如：select * from student where age &lt;= 20;    select * from student where score&gt;=60;</span><br><span class="line">                  ii)支持算数条件： + - * / %  比如: select * from student where _id+age = 51;</span><br><span class="line">                  iii)支持其他条件：or(或)   and（且）  between 范围1 and 范围2 （在范围1和范围2之间）</span><br><span class="line">                         比如:select * from student where age &gt; 16 or score &gt;80;       只要一个满足就符合要求</span><br><span class="line">                         比如:select * from student where age &gt; 16 and score &gt;80;     全部满足才符合要求</span><br><span class="line">                         比如:select * from student where age between 18 and 20;    在该区间之内（18和20都是包含的）  等同于：where age&gt;=18 and age&lt;=20;</span><br><span class="line">                  iv) distinct(去除重复的数据) </span><br><span class="line">                       比如:select distinct name from student;   //如果名字一样，不显示重复的名字 (比如相同的部门不用反复打印，只要打印几个不同的部门名字就可以了)</span><br><span class="line">                  v)  like (实现模糊查询的功能)</span><br><span class="line">                       语句结构:select 列名 from 表名 where 需要匹配的列的名字 like  &apos;模糊查询的条件(%和_的使用)&apos; </span><br><span class="line">                        比如: select * from student where  name like &apos;ma%&apos;;   //匹配名字是ma开始后面任意内容，所有符合要求的可以查询  （%匹配任意多的字符，0个也可以）                 </span><br><span class="line">                        比如: select * from student where  name like &apos;ma_&apos;;   //匹配名字是ma开始的，后面一个字符的情况，符合要求的可以查询到 （_匹配单一的字符）</span><br><span class="line">                        比如: select * from student where  name like &apos;_ma%&apos;;  //开始匹配一个字符，中间出现ma,结尾匹配任意字符</span><br><span class="line">                c) order by语句（排序，可以根据实际要求进行指定字段的排序）</span><br><span class="line">                        语句结构: select 列名们 from 表名 where 条件  order by  需要排序的列名 asc(升序)/desc(降序)</span><br><span class="line">                        比如: select * from student order by score desc;   (如果字符串排序按照字典次序)</span><br><span class="line">                d) limit 语句 （限制获取的记录条数，数据库查询分页的情况使用比较多）  15(0-14) 15(15-29) 15(30-44)</span><br><span class="line">                        语句结构：select 列名们 from 表名 where 条件 limit  起始记录数(从0开始计算),获取记录的条数   </span><br><span class="line">                        比如：select * from student limit 0,3 (从第一条记录开始，获取3条数据)</span><br><span class="line">                        补充：可以结合order by使用，在排序完成以后进行数据条数的限制获取</span><br><span class="line">                 f) group by语句 （根据某个字段进行分组的操作）</span><br><span class="line">                         语句结构：select 列名们 from 表名 group by  需要分组的列名</span><br><span class="line">                         比如: select * from student group by stu_group;</span><br><span class="line">            3、内部自带的聚合函数的使用</span><br><span class="line">                 count(列名),min(列名),max(列名),sum(列名),avg(列名);</span><br><span class="line">                 比如：select count(*) from student;      可以获取有多少条student的值 (结果)</span><br><span class="line">                           select min(age) from student;     可以获取年龄最小student的值</span><br><span class="line">                           select max(age) from student;     可以获取年龄最大student的值</span><br><span class="line">                           上述的max,min可以作为where的判断条件</span><br><span class="line">                           比如:select * from student where age = (select max(age) from student);</span><br><span class="line">                 后续sum,avg一样的使用方式</span><br><span class="line">    </span><br><span class="line">          3.删除指定的数据：delete from 表名  （清除表内所有的数据）</span><br><span class="line">                                        delete from 表名 where 判断条件    </span><br><span class="line">                                        比如： delete from student where _id=3; (根据主键是3的对应数据进行删除)</span><br><span class="line">                                        当判断条件不成立的时候，删除失败，不会报错的</span><br><span class="line">          4.修改指定的数据：update 表名 set  列名1=修改的值1,列名2=修改的值2 where 条件判断</span><br><span class="line">                          比如：update student set age=50,phonenum=&apos;110&apos; where _id=1; (根据主键是1的对应的数据，修改对应列名所在的内容)</span><br><span class="line"></span><br><span class="line">补充：主外键的概念</span><br><span class="line">1.主键：记录该表数据的唯一性的标识</span><br><span class="line">2.外键： 当前表的某一列记录其他表的主键，该列就称之为外键，定义的名字一般关联表的名字+_id</span><br><span class="line"></span><br><span class="line">如何创建2张表：</span><br><span class="line">1.创建主表 （department）</span><br><span class="line">   create table department (_id integer primary key autoincrement,name text not null);</span><br><span class="line"></span><br><span class="line">2.创建关联主表主键的副表(employee)</span><br><span class="line">   create table employee (_id integer primay key autoincrement, name text not null, salary real, department_id integer, foreign key (department_id)  references  deparment(_id))；</span><br><span class="line">   规则： foreign 外键的列名 references  主表的名字(主表的主键)</span><br><span class="line">   默认情况下sqilte是关闭外键的使用：需要通过命令行手动打开外键的使用  指令:pragma foreign_keys = on;  打开外键的使用 ，如果不打开创建副表foreign不会被识别</span><br><span class="line">   1.可以确认foreign_key 是否代开的情况，输入指令：pragma foreign_keys （通过返回的0或者1进行判断,0是关闭的）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">录入： 主表录入，然后副表的外键关联就可以了</span><br><span class="line">比如主表：insert into department (name) values (&apos;android&apos;);</span><br><span class="line">          insert into department (name) values (&apos;ios&apos;);</span><br><span class="line"></span><br><span class="line">比如副表：insert into employee(name,salary,department_id) values (&apos;jimmy&apos;,3000.0,1);</span><br><span class="line">                 ......</span><br><span class="line"></span><br><span class="line">查询</span><br><span class="line">采用多表联查的方式</span><br><span class="line">select 主表名.列名1，副表名.列名1  from 主表名，副表名;</span><br><span class="line">1.主表1的显示主表1的信息，主表主表2的信息，重复显示</span><br><span class="line">2.多表查询加上查询的条件</span><br><span class="line">     //加入主外键判断条件，过滤数据</span><br><span class="line">     select employee._id,employee.name,employee.salary,department.name from employee,departmentwhere employee.department_id = deparment._id;        </span><br><span class="line">                                 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ● SQLite 简介</span><br><span class="line">本教程帮助您了解什么是 SQLite，它与 SQL 之间的不同，为什么需要它，以及它的应用程序数据库处理方式。</span><br><span class="line">SQLite是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite是一个增长最快的数据库引擎，这是在普及方面的增长，与它的尺寸大小无关。SQLite 源代码不受版权限制。</span><br><span class="line">什么是 SQLite？</span><br><span class="line">SQLite是一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。它是一个零配置的数据库，这意味着与其他数据库一样，您不需要在系统中配置。</span><br><span class="line">就像其他数据库，SQLite 引擎不是一个独立的进程，可以按应用程序需求进行静态或动态连接。SQLite 直接访问其存储文件。</span><br><span class="line">为什么要用 SQLite？</span><br><span class="line">      ○ 不需要一个单独的服务器进程或操作的系统（无服务器的）。</span><br><span class="line">      ○ SQLite 不需要配置，这意味着不需要安装或管理。</span><br><span class="line">      ○ 一个完整的 SQLite 数据库是存储在一个单一的跨平台的磁盘文件。</span><br><span class="line">      ○ SQLite 是非常小的，是轻量级的，完全配置时小于 400KiB，省略可选功能配置时小于250KiB。</span><br><span class="line">      ○ SQLite 是自给自足的，这意味着不需要任何外部的依赖。</span><br><span class="line">      ○ SQLite 事务是完全兼容 ACID 的，允许从多个进程或线程安全访问。</span><br><span class="line">      ○ SQLite 支持 SQL92（SQL2）标准的大多数查询语言的功能。</span><br><span class="line">      ○ SQLite 使用 ANSI-C 编写的，并提供了简单和易于使用的 API。</span><br><span class="line">      ○ SQLite 可在 UNIX（Linux, Mac OS-X, Android, iOS）和 Windows（Win32, WinCE, WinRT）中运行。</span><br><span class="line"></span><br><span class="line">  ● 在 Windows 上安装 SQLite</span><br><span class="line">      ○ 请访问 SQLite 下载页面，从 Windows 区下载预编译的二进制文件。</span><br><span class="line">      ○ 您需要下载 sqlite-shell-win32-*.zip 和 sqlite-dll-win32-*.zip 压缩文件。</span><br><span class="line">      ○ 创建文件夹 C:\sqlite，并在此文件夹下解压上面两个压缩文件，将得到 sqlite3.def、sqlite3.dll 和 sqlite3.exe 文件。</span><br><span class="line">      ○ 添加 C:\sqlite 到 PATH 环境变量，最后在命令提示符下，使用 sqlite3 命令，将显示如下结果。</span><br><span class="line">历史</span><br><span class="line">      a. 2000 -- D. Richard Hipp 设计 SQLite 是为了不需要管理即可操作程序。</span><br><span class="line">      b. 2000 -- 在八月，SQLite1.0 发布 GNU 数据库管理器（GNU Database Manager）。</span><br><span class="line">      c. 2011 -- Hipp 宣布，向 SQLite DB 添加 UNQl 接口，开发 UNQLite（面向文档的数据库）。</span><br><span class="line">SQLite 局限性</span><br><span class="line">在 SQLite 中，SQL92 不支持的特性如下所示：</span><br><span class="line">特性 描述</span><br><span class="line">RIGHT OUTER JOIN 只实现了 LEFT OUTER JOIN。</span><br><span class="line">FULL OUTER JOIN 只实现了 LEFT OUTER JOIN。</span><br><span class="line">ALTER TABLE 支持 RENAME TABLE 和 ALTER TABLE 的 ADD COLUMN variants 命令，不支持 DROP COLUMN、ALTER COLUMN、ADD CONSTRAINT。</span><br><span class="line">Trigger 支持 支持 FOR EACH ROW 触发器，但不支持 FOR EACH STATEMENT 触发器。</span><br><span class="line">VIEWs 在 SQLite 中，视图是只读的。您不可以在视图上执行 DELETE、INSERT 或 UPDATE 语句。</span><br><span class="line">GRANT 和 REVOKE 可以应用的唯一的访问权限是底层操作系统的正常文件访问权限。</span><br><span class="line">SQLite 命令</span><br><span class="line">与关系数据库进行交互的标准 SQLite 命令类似于 SQL。命令包括 CREATE、SELECT、INSERT、UPDATE、DELETE 和 DROP。这些命令基于它们的操作性质可分为以下几种：</span><br><span class="line">DDL - 数据定义语言</span><br><span class="line">命令 描述</span><br><span class="line">CREATE 创建一个新的表，一个表的视图，或者数据库中的其他对象。</span><br><span class="line">ALTER 修改数据库中的某个已有的数据库对象，比如一个表。</span><br><span class="line">DROP 删除整个表，或者表的视图，或者数据库中的其他对象。</span><br><span class="line">DML - 数据操作语言</span><br><span class="line">命令 描述</span><br><span class="line">INSERT 创建一条记录。</span><br><span class="line">UPDATE 修改记录。</span><br><span class="line">DELETE 删除记录。</span><br><span class="line">DQL - 数据查询语言</span><br><span class="line">命令 描述</span><br><span class="line">SELECT 从一个或多个表中检索某些记录。</span><br><span class="line">  ●</span><br></pre></td></tr></table></figure>
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>RxJava</strong></li>
+<li><strong>Kotlin</strong></li>
+<li><strong>Android Profiler</strong></li>
+<li><strong>Glide</strong></li>
+<li><strong>Stetho</strong></li>
+</ol>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="GreenDao-3"><a href="#GreenDao-3" class="headerlink" title="GreenDao 3"></a><a href="https://www.jianshu.com/p/4e6d72e7f57a" target="_blank" rel="noopener">GreenDao 3</a></h3><ul>
+<li><a href="https://link.jianshu.com/?t=https://github.com/greenrobot/greenDAO" target="_blank" rel="noopener">Github</a></li>
+<li><a href="https://link.jianshu.com/?t=http://greenrobot.org/greendao/" target="_blank" rel="noopener">官网</a></li>
+</ul>
+<hr>
+<h3 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h3><ol>
+<li>线程控制实现原理</li>
+</ol>
+<hr>
+<h3 id="Kotlin"><a href="#Kotlin" class="headerlink" title="Kotlin"></a>Kotlin</h3><ol>
+<li>xiecheng</li>
+</ol>
+<hr>
+<h3 id="Android-Profiler"><a href="#Android-Profiler" class="headerlink" title="Android Profiler"></a>Android Profiler</h3><hr>
+<h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a><a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">Glide</a></h3><hr>
+<h3 id="Stetho"><a href="#Stetho" class="headerlink" title="Stetho"></a><a href="https://github.com/facebook/stetho" target="_blank" rel="noopener">Stetho</a></h3><hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>1. </p>
+
           
         
       
@@ -2278,7 +2477,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java26-正则表达式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/2018-01-03 Native 与 H5 交互-属性动画-SnackbarUtil/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2297,7 +2496,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/Java26-正则表达式/" itemprop="url">Java26-正则表达式</a></h1>
+                <a class="post-title-link" href="/2018/01/03/2018-01-03 Native 与 H5 交互-属性动画-SnackbarUtil/" itemprop="url">Native 与 H5 交互-属性动画-SnackbarUtil.md</a></h1>
         
 
         <div class="post-meta">
@@ -2309,8 +2508,8 @@ if (i == 1) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:07:32+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T10:00:40+08:00">
+                2018-01-03
               </time>
             
 
@@ -2349,7 +2548,50 @@ if (i == 1) {
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">正则表达式语法</span><br><span class="line">字符 说明</span><br><span class="line">\ 将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，&quot;n&quot;匹配字符&quot;n&quot;。&quot;\n&quot;匹配换行符。序列&quot;\\&quot;匹配&quot;\&quot;，&quot;\(&quot;匹配&quot;(&quot;。</span><br><span class="line">^ 匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与&quot;\n&quot;或&quot;\r&quot;之后的位置匹配。</span><br><span class="line">$ 匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与&quot;\n&quot;或&quot;\r&quot;之前的位置匹配。</span><br><span class="line">* 零次或多次匹配前面的字符或子表达式。例如，zo* 匹配&quot;z&quot;和&quot;zoo&quot;。* 等效于 &#123;0,&#125;。</span><br><span class="line">+ 一次或多次匹配前面的字符或子表达式。例如，&quot;zo+&quot;与&quot;zo&quot;和&quot;zoo&quot;匹配，但与&quot;z&quot;不匹配。+ 等效于 &#123;1,&#125;。</span><br><span class="line">? 零次或一次匹配前面的字符或子表达式。例如，&quot;do(es)?&quot;匹配&quot;do&quot;或&quot;does&quot;中的&quot;do&quot;。? 等效于 &#123;0,1&#125;。</span><br><span class="line">&#123;n&#125; n 是非负整数。正好匹配 n 次。例如，&quot;o&#123;2&#125;&quot;与&quot;Bob&quot;中的&quot;o&quot;不匹配，但与&quot;food&quot;中的两个&quot;o&quot;匹配。</span><br><span class="line">&#123;n,&#125; n 是非负整数。至少匹配 n 次。例如，&quot;o&#123;2,&#125;&quot;不匹配&quot;Bob&quot;中的&quot;o&quot;，而匹配&quot;foooood&quot;中的所有 o。&quot;o&#123;1,&#125;&quot;等效于&quot;o+&quot;。&quot;o&#123;0,&#125;&quot;等效于&quot;o*&quot;。</span><br><span class="line">&#123;n,m&#125; M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，&quot;o&#123;1,3&#125;&quot;匹配&quot;fooooood&quot;中的头三个 o。&apos;o&#123;0,1&#125;&apos; 等效于 &apos;o?&apos;。注意：您不能将空格插入逗号和数字之间。</span><br><span class="line">? 当此字符紧随任何其他限定符（*、+、?、&#123;n&#125;、&#123;n,&#125;、&#123;n,m&#125;）之后时，匹配模式是&quot;非贪心的&quot;。&quot;非贪心的&quot;模式匹配搜索到的、尽可能短的字符串，而默认的&quot;贪心的&quot;模式匹配搜索到的、尽可能长的字符串。例如，在字符串&quot;oooo&quot;中，&quot;o+?&quot;只匹配单个&quot;o&quot;，而&quot;o+&quot;匹配所有&quot;o&quot;。</span><br><span class="line">. 匹配除&quot;\r\n&quot;之外的任何单个字符。若要匹配包括&quot;\r\n&quot;在内的任意字符，请使用诸如&quot;[\s\S]&quot;之类的模式。</span><br><span class="line">(pattern) 匹配 pattern 并捕获该匹配的子表达式。可以使用 $0…$9 属性从结果&quot;匹配&quot;集合中检索捕获的匹配。若要匹配括号字符 ( )，请使用&quot;\(&quot;或者&quot;\)&quot;。</span><br><span class="line">(?:pattern) 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配。这对于用&quot;or&quot;字符 (|) 组合模式部件的情况很有用。例如，&apos;industr(?:y|ies) 是比 &apos;industry|industries&apos; 更经济的表达式。</span><br><span class="line">(?=pattern) 执行正向预测先行搜索的子表达式，该表达式匹配处于匹配 pattern 的字符串的起始点的字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?=95|98|NT|2000)&apos; 匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;，但不匹配&quot;Windows 3.1&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">(?!pattern) 执行反向预测先行搜索的子表达式，该表达式匹配不处于匹配 pattern 的字符串的起始点的搜索字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?!95|98|NT|2000)&apos; 匹配&quot;Windows 3.1&quot;中的 &quot;Windows&quot;，但不匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">x|y 匹配 x 或 y。例如，&apos;z|food&apos; 匹配&quot;z&quot;或&quot;food&quot;。&apos;(z|f)ood&apos; 匹配&quot;zood&quot;或&quot;food&quot;。</span><br><span class="line">[xyz] 字符集。匹配包含的任一字符。例如，&quot;[abc]&quot;匹配&quot;plain&quot;中的&quot;a&quot;。</span><br><span class="line">[^xyz] 反向字符集。匹配未包含的任何字符。例如，&quot;[^abc]&quot;匹配&quot;plain&quot;中&quot;p&quot;，&quot;l&quot;，&quot;i&quot;，&quot;n&quot;。</span><br><span class="line">[a-z] 字符范围。匹配指定范围内的任何字符。例如，&quot;[a-z]&quot;匹配&quot;a&quot;到&quot;z&quot;范围内的任何小写字母。</span><br><span class="line">[^a-z] 反向范围字符。匹配不在指定的范围内的任何字符。例如，&quot;[^a-z]&quot;匹配任何不在&quot;a&quot;到&quot;z&quot;范围内的任何字符。</span><br><span class="line">\b 匹配一个字边界，即字与空格间的位置。例如，&quot;er\b&quot;匹配&quot;never&quot;中的&quot;er&quot;，但不匹配&quot;verb&quot;中的&quot;er&quot;。</span><br><span class="line">\B 非字边界匹配。&quot;er\B&quot;匹配&quot;verb&quot;中的&quot;er&quot;，但不匹配&quot;never&quot;中的&quot;er&quot;。</span><br><span class="line">\cx 匹配 x 指示的控制字符。例如，\cM 匹配 Control-M 或回车符。x 的值必须在 A-Z 或 a-z 之间。如果不是这样，则假定 c 就是&quot;c&quot;字符本身。</span><br><span class="line">\d 数字字符匹配。等效于 [0-9]。</span><br><span class="line">\D 非数字字符匹配。等效于 [^0-9]。</span><br><span class="line">\f 换页符匹配。等效于 \x0c 和 \cL。</span><br><span class="line">\n 换行符匹配。等效于 \x0a 和 \cJ。</span><br><span class="line">\r 匹配一个回车符。等效于 \x0d 和 \cM。</span><br><span class="line">\s 匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。</span><br><span class="line">\S 匹配任何非空白字符。与 [^ \f\n\r\t\v] 等效。</span><br><span class="line">\t 制表符匹配。与 \x09 和 \cI 等效。</span><br><span class="line">\v 垂直制表符匹配。与 \x0b 和 \cK 等效。</span><br><span class="line">\w 匹配任何字类字符，包括下划线。与&quot;[A-Za-z0-9_]&quot;等效。</span><br><span class="line">\W 与任何非单词字符匹配。与&quot;[^A-Za-z0-9_]&quot;等效。</span><br><span class="line">\xn 匹配 n，此处的 n 是一个十六进制转义码。十六进制转义码必须正好是两位数长。例如，&quot;\x41&quot;匹配&quot;A&quot;。&quot;\x041&quot;与&quot;\x04&quot;&amp;&quot;1&quot;等效。允许在正则表达式中使用 ASCII 代码。</span><br><span class="line">\num 匹配 num，此处的 num 是一个正整数。到捕获匹配的反向引用。例如，&quot;(.)\1&quot;匹配两个连续的相同字符。</span><br><span class="line">\n 标识一个八进制转义码或反向引用。如果 \n 前面至少有 n 个捕获子表达式，那么 n 是反向引用。否则，如果 n 是八进制数 (0-7)，那么 n 是八进制转义码。</span><br><span class="line">\nm 标识一个八进制转义码或反向引用。如果 \nm 前面至少有 nm 个捕获子表达式，那么 nm 是反向引用。如果 \nm 前面至少有 n 个捕获，则 n 是反向引用，后面跟有字符 m。如果两种前面的情况都不存在，则 \nm 匹配八进制值 nm，其中 n 和 m 是八进制数字 (0-7)。</span><br><span class="line">\nml 当 n 是八进制数 (0-3)，m 和 l 是八进制数 (0-7) 时，匹配八进制转义码 nml。</span><br><span class="line">\un 匹配 n，其中 n 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (©)。</span><br></pre></td></tr></table></figure>
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>A</strong></li>
+<li><strong>B</strong></li>
+<li><strong>C</strong></li>
+</ol>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="Native-与-H5-交互"><a href="#Native-与-H5-交互" class="headerlink" title="Native 与 H5 交互"></a><a href="http://blog.csdn.net/carson_ho/article/details/64904691" target="_blank" rel="noopener">Native 与 H5 交互</a></h3><ol>
+<li><p>Native 调用 JS (2种)</p>
+<ul>
+<li>loadUrl() : <code>mWebView.loadUrl(&quot;javascript:method()&quot;);</code></li>
+<li><p>evaluateJavascript() :</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mWebView.evaluateJavascript（&quot;javascript:method()&quot;, new ValueCallback&lt;String&gt;() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void onReceiveValue(String value) &#123;</span><br><span class="line">           //此处为 js 返回的结果</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 对比
+
+    调用方式 | 优点 | 缺点 | 使用场景
+    ------|-----------|------|----
+    使用loadUrl()|方便简洁|效率低；获取返回值麻烦|不需要获取返回值，对性能要求较低时
+    使用evaluateJavascript()|效率高|向下兼容差（仅 Android4.4 以上可用）|Android 4.4 以上
+</code></pre><ol>
+<li><p>JS 调用 Native (3种)</p>
+<ul>
+<li>通过 WebView 的 addJavascriptInterface() 进行对象映射 </li>
+<li>通过 WebViewClient 的 shouldOverrideUrlLoading() 方法回调拦截 url </li>
+<li>通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框 alert()、confirm()、prompt() 消息</li>
+<li><p>对比</p>
+<p>  调用方式|优点|缺点|使用场景<br>  —-|—-|—-|—-<br>  通过 addJavascriptInterface() 进行添加对象映射|方便简洁|Android 4.2 一下存在漏洞|Android 4.2 以上相对简单互调场景<br>  通过 WebViewClient 的方法 shouldOverrideUrlLoading() 回调拦截 url|不存在漏洞问题|使用复杂；需要进行协议的约束；从 Native 层往 Web 层传递值比较繁琐|不需要返回值情况下的互调场景（iOS主要使用的方式）<br>  通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框消息|不存在漏洞问题|使用复杂；需要进行协议的约束|能满足大多数情况下互调场景</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a><a href="http://blog.csdn.net/feiduclear_up/article/details/39255083" target="_blank" rel="noopener">属性动画</a></h3><ol>
+<li></li>
+</ol>
+<hr>
+<h3 id="ARouter"><a href="#ARouter" class="headerlink" title="ARouter"></a><a href="https://github.com/alibaba/ARouter" target="_blank" rel="noopener">ARouter</a></h3><hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>FastJson kotlin 变量 <code>var is_xxx : Int? = 0</code> 获取不到 json 中的数据，需要变更变量名称并加上注解 @JSONField(name=”is_xxx”)</li>
+<li>SnackbarUtil</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ****************************************************</span><br><span class="line"> * @author jameswong</span><br><span class="line"> * created on: 18/01/03 上午11:28</span><br><span class="line"> * e-mail: PassionateWsj@outlook.com</span><br><span class="line"> * name:</span><br><span class="line"> * desc:</span><br><span class="line"> * ****************************************************</span><br><span class="line"> */</span><br><span class="line">public class SnackbarUtil &#123;</span><br><span class="line"></span><br><span class="line">    public static final int Info = 1;</span><br><span class="line">    public static final int Confirm = 2;</span><br><span class="line">    public static final int Warning = 3;</span><br><span class="line">    public static final int Alert = 4;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static int red = 0xfff44336;</span><br><span class="line">    public static int green = 0xff4caf50;</span><br><span class="line">    public static int blue = 0xff2195f3;</span><br><span class="line">    public static int orange = 0xffffc107;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //选择预设类型</span><br><span class="line">    private static void switchType(Snackbar snackbar, int type) &#123;</span><br><span class="line">        switch (type) &#123;</span><br><span class="line">            case Info:</span><br><span class="line">                setSnackbarColor(snackbar, blue);</span><br><span class="line">                break;</span><br><span class="line">            case Confirm:</span><br><span class="line">                setSnackbarColor(snackbar, green);</span><br><span class="line">                break;</span><br><span class="line">            case Warning:</span><br><span class="line">                setSnackbarColor(snackbar, orange);</span><br><span class="line">                break;</span><br><span class="line">            case Alert:</span><br><span class="line">                setSnackbarColor(snackbar, Color.YELLOW, red);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar文字和背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">            ((TextView) view.findViewById(R.id.snackbar_text)).setTextColor(messageColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 向Snackbar中添加view</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param layoutId</span><br><span class="line">     * @param index    新加布局在Snackbar中的位置</span><br><span class="line">     */</span><br><span class="line">    public static void snackbarAddView(Snackbar snackbar, int layoutId, int index) &#123;</span><br><span class="line">        View snackbarview = snackbar.getView();</span><br><span class="line">        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarview;</span><br><span class="line"></span><br><span class="line">        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(layoutId, null);</span><br><span class="line"></span><br><span class="line">        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        p.gravity = Gravity.CENTER_VERTICAL;</span><br><span class="line"></span><br><span class="line">        snackbarLayout.addView(add_view, index, p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2397,7 +2639,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java25-JSON解析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2416,7 +2658,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/Java25-JSON解析/" itemprop="url">Java25-JSON解析</a></h1>
+                <a class="post-title-link" href="/2017/12/29/hello-world/" itemprop="url">Hello World</a></h1>
         
 
         <div class="post-meta">
@@ -2428,8 +2670,8 @@ if (i == 1) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:07:24+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T23:50:04+08:00">
+                2017-12-29
               </time>
             
 
@@ -2468,7 +2710,16 @@ if (i == 1) {
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">JSON: JavaScript Object Notation(JavaScript 对象表示法)</span><br><span class="line">JSON 是存储和交换文本信息的语法。类似 XML。</span><br><span class="line">JSON 比 XML 更小、更快，更易解析。</span><br><span class="line">什么是 JSON ？</span><br><span class="line">  ● JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）</span><br><span class="line">  ● JSON 是轻量级的文本数据交换格式</span><br><span class="line">  ● JSON 独立于语言 *</span><br><span class="line">  ● JSON 具有自我描述性，更易理解</span><br><span class="line">* JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器和 JSON 库支持许多不同的编程语言。 目前非常多的动态（PHP，JSP，.NET）编程语言都支持JSON。</span><br><span class="line">JSON - 转换为 JavaScript 对象</span><br><span class="line">JSON 文本格式在语法上与创建 JavaScript 对象的代码相同。</span><br><span class="line">由于这种相似性，无需解析器，JavaScript 程序能够使用内建的 eval() 函数，用 JSON 数据来生成原生的 JavaScript 对象。</span><br><span class="line">与 XML 相同之处</span><br><span class="line">  ● JSON 是纯文本</span><br><span class="line">  ● JSON 具有&quot;自我描述性&quot;（人类可读）</span><br><span class="line">  ● JSON 具有层级结构（值中存在值）</span><br><span class="line">  ● JSON 可通过 JavaScript 进行解析</span><br><span class="line">  ● JSON 数据可使用 AJAX 进行传输</span><br><span class="line">与 XML 不同之处</span><br><span class="line">  ● 没有结束标签</span><br><span class="line">  ● 更短</span><br><span class="line">  ● 读写的速度更快</span><br><span class="line">  ● 能够使用内建的 JavaScript eval() 方法进行解析</span><br><span class="line">  ● 使用数组</span><br><span class="line">  ● 不使用保留字</span><br><span class="line">为什么使用 JSON？</span><br><span class="line">对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：</span><br><span class="line">使用 XML</span><br><span class="line">  ● 读取 XML 文档</span><br><span class="line">  ● 使用 XML DOM 来循环遍历文档</span><br><span class="line">  ● 读取值并存储在变量中</span><br><span class="line">使用 JSON</span><br><span class="line">  ● 读取 JSON 字符串</span><br><span class="line">  ● 用 eval() 处理 JSON 字符串</span><br><span class="line">JSON 语法</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 语法是 JavaScript 语法的子集。</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 语法规则</span><br><span class="line">JSON 语法是 JavaScript 对象表示法语法的子集。</span><br><span class="line">  ● 数据在名称/值对中</span><br><span class="line">  ● 数据由逗号分隔</span><br><span class="line">  ● 花括号保存对象</span><br><span class="line">  ● 方括号保存数组</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 名称/值对</span><br><span class="line">JSON 数据的书写格式是：名称/值对。</span><br><span class="line">名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</span><br><span class="line">&quot;firstName&quot; : &quot;John&quot;</span><br><span class="line">这很容易理解，等价于这条 JavaScript 语句：</span><br><span class="line">firstName = &quot;John&quot;</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 值</span><br><span class="line">JSON 值可以是：</span><br><span class="line">  ● 数字（整数或浮点数）</span><br><span class="line">  ● 字符串（在双引号中）</span><br><span class="line">  ● 逻辑值（true 或 false）</span><br><span class="line">  ● 数组（在方括号中）</span><br><span class="line">  ● 对象（在花括号中）</span><br><span class="line">  ● null</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 对象</span><br><span class="line">JSON 对象在花括号中书写：</span><br><span class="line">对象可以包含多个名称/值对：</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;</span><br><span class="line">这一点也容易理解，与这条 JavaScript 语句等价：</span><br><span class="line">firstName = &quot;John&quot;</span><br><span class="line">lastName = &quot;Doe&quot;</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 数组</span><br><span class="line">JSON 数组在方括号中书写：</span><br><span class="line">数组可包含多个对象：</span><br><span class="line">&#123;</span><br><span class="line">&quot;employees&quot;: [</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;,</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; &#125;,</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; &#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">在上面的例子中，对象 &quot;employees&quot; 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</span><br></pre></td></tr></table></figure>
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
           
         
       
@@ -2516,7 +2767,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Java23-XML解析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/App启动原理详解与启动优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2535,7 +2786,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/Java23-XML解析/" itemprop="url">Java23-XML解析</a></h1>
+                <a class="post-title-link" href="/2017/12/27/App启动原理详解与启动优化/" itemprop="url">App启动原理详解与启动优化</a></h1>
         
 
         <div class="post-meta">
@@ -2547,8 +2798,8 @@ if (i == 1) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T23:07:15+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T21:48:48+08:00">
+                2017-12-27
               </time>
             
 
@@ -2587,9 +2838,253 @@ if (i == 1) {
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.简单介绍（eXtensible Markup Language）</span><br><span class="line">应用于 Web 开发的许多方面，常用于简化数据的存储和共享。</span><br><span class="line">    a).XML（可扩展标记语言）是一种数据交换格式，主要运用在配置文件的构写。</span><br><span class="line">        比如：web.xml </span><br><span class="line">                  还有html格式：&lt;html&gt;&lt;/html&gt;</span><br><span class="line">                  android界面：&lt;TextView /&gt;</span><br><span class="line">                  上述的格式都是基于xml的格式定义的配置信息‘</span><br><span class="line"></span><br><span class="line">2.规范的xml结构</span><br><span class="line">    &lt;根元素 属性&gt;    开始符号&lt;&gt;</span><br><span class="line">        &lt;子元素1 属性&gt;</span><br><span class="line">        &lt;/子元素&gt;</span><br><span class="line">        &lt;子元素2    /&gt;</span><br><span class="line">    &lt;/根元素&gt;    结束符合&lt;/&gt;</span><br><span class="line"></span><br><span class="line">3.解析XML数据格式的几种方式</span><br><span class="line">    1.Pull解析（Sax进化版）</span><br><span class="line">        特性：基于驱动型事件</span><br><span class="line">        优点：和Sax解析相比，不需要从头解析到底，想何时结束就何时结束（更灵活）</span><br><span class="line">                    对驱动事件的标识也进行优化，效率大大提高了</span><br><span class="line">             移动端采用的XML都是基于Pull解析器的解析</span><br><span class="line"></span><br><span class="line">    2.Sax解析</span><br><span class="line">        特点：基于驱动事件的解析，他把所有的标签，属性，内容划分开来，把他们做成驱动时间</span><br><span class="line">                    &lt;根元素&gt;驱动事件1</span><br><span class="line">                    &lt;/根元素&gt;驱动事件2</span><br><span class="line">                    他的解析称为事件解析</span><br><span class="line">        优点：基于是驱动型事件，逐行解析的效果，内存消耗很小（只消耗当前解析的该行）</span><br><span class="line">        缺点：如果解析中出现问题，不能回到原来的驱动事件，只能重新来过（死板一遍过，容错率低）</span><br><span class="line"></span><br><span class="line">    3.Dom解析</span><br><span class="line">        特性：将需要解析的xml文件全部加载到内存中。将所有的标签包括内容转换成树结构</span><br><span class="line">        优点：查找上的速度一般（通过树的节点查找）。添加，删除，修改效率比较高</span><br><span class="line">        缺点：消耗内存（转树形结构的时候，消耗大量内存），移动端都摒弃了该解析方式，只有服务端采用</span><br><span class="line">                  移动端一旦xml数据多的时候，内存消耗特别厉害</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/O1i4dwj.gif" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上图表示下面的 XML 中的一本书：</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line">&lt;book category=&quot;COOKING&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Giada De Laurentiis&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;30.00&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;CHILDREN&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">&lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;WEB&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Erik T. Ray&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2003&lt;/year&gt;</span><br><span class="line">&lt;price&gt;39.95&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;/bookstore&gt;</span><br><span class="line">第一行是 XML 声明。它定义 XML 的版本（1.0）和所使用的编码（ISO-8859-1 = Latin-1/西欧字符集）。</span><br><span class="line">实例中的根元素是 &lt;bookstore&gt;。文档中的所有 &lt;book&gt; 元素都被包含在 &lt;bookstore&gt; 中。</span><br><span class="line">&lt;book&gt; 元素有 4 个子元素：&lt;title&gt;、&lt;author&gt;、&lt;year&gt;、&lt;price&gt;。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么是 XML？</span><br><span class="line">  ● XML 指可扩展标记语言（EXtensible Markup Language）。</span><br><span class="line">  ● XML 是一种很像HTML的标记语言。</span><br><span class="line">  ● XML 的设计宗旨是传输数据，而不是显示数据。</span><br><span class="line">  ● XML 标签没有被预定义。您需要自行定义标签。</span><br><span class="line">  ● XML 被设计为具有自我描述性。</span><br><span class="line">  ● XML 是 W3C 的推荐标准。</span><br><span class="line">XML 和 HTML 之间的差异</span><br><span class="line">XML 不是 HTML 的替代。</span><br><span class="line">XML 和 HTML 为不同的目的而设计：</span><br><span class="line">  ● XML 被设计用来传输和存储数据，其焦点是数据的内容。</span><br><span class="line">  ● HTML 被设计用来显示数据，其焦点是数据的外观。</span><br><span class="line">HTML 旨在显示信息，而 XML 旨在传输信息</span><br><span class="line">XML 不会做任何事情</span><br><span class="line">也许这有点难以理解，但是 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息。</span><br><span class="line">下面实例是 Jani 写给 Tove 的便签，存储为 XML：</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">&lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br><span class="line">上面的这条便签具有自我描述性。它包含了发送者和接受者的信息，同时拥有标题以及消息主体。</span><br><span class="line">但是，这个 XML 文档仍然没有做任何事情。它仅仅是包装在 XML 标签中的纯粹的信息。我们需要编写软件或者程序，才能传送、接收和显示出这个文档。</span><br><span class="line">XML 无所不在</span><br><span class="line">目前，XML 在 Web 中起到的作用不会亚于一直作为 Web 基石的 HTML。</span><br><span class="line">XML 是各种应用程序之间进行数据传输的最常用的工具。</span><br><span class="line">XML 把数据从 HTML 分离</span><br><span class="line">如果您需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。</span><br><span class="line">通过 XML，数据能够存储在独立的 XML 文件中。这样您就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。</span><br><span class="line">通过使用几行 JavaScript 代码，您就可以读取一个外部 XML 文件，并更新您的网页的数据内容。</span><br><span class="line">XML 简化数据共享</span><br><span class="line">在真实的世界中，计算机系统和数据使用不兼容的格式来存储数据。</span><br><span class="line">XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。</span><br><span class="line">这让创建不同应用程序可以共享的数据变得更加容易。</span><br><span class="line">XML 简化数据传输</span><br><span class="line">对开发人员来说，其中一项最费时的挑战一直是在互联网上的不兼容系统之间交换数据。</span><br><span class="line">由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。</span><br><span class="line">XML 简化平台变更</span><br><span class="line">升级到新的系统（硬件或软件平台），总是非常费时的。必须转换大量的数据，不兼容的数据经常会丢失。</span><br><span class="line">XML 数据以文本格式存储。这使得 XML 在不损失数据的情况下，更容易扩展或升级到新的操作系统、新的应用程序或新的浏览器。</span><br><span class="line">XML 使您的数据更有用</span><br><span class="line">不同的应用程序都能够访问您的数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。</span><br><span class="line">通过 XML，您的数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。</span><br><span class="line">XML 用于创建新的互联网语言</span><br><span class="line">很多新的互联网语言是通过 XML 创建的。</span><br><span class="line">这里有一些实例：</span><br><span class="line">  ● XHTML</span><br><span class="line">  ● 用于描述可用的 Web 服务 的 WSDL</span><br><span class="line">  ● 作为手持设备的标记语言的 WAP 和 WML</span><br><span class="line">  ● 用于新闻 feed 的 RSS 语言</span><br><span class="line">  ● 描述资本和本体的 RDF 和 OWL</span><br><span class="line">  ● 用于描述针针对 Web 的多媒体 的 SMIL</span><br><span class="line">假如开发人员都是理性的</span><br><span class="line">假如他们都是理性的，就让未来的应用程序使用 XML 来交换数据吧。</span><br><span class="line">未来也许会出现某种字处理软件、电子表格程序以及数据库，它们可以使用 XML 格式读取彼此的数据，而不需要使用任何的转换程序。</span><br></pre></td></tr></table></figure>
+            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ol>
+<li><strong>App启动原理详解与启动优化</strong></li>
+<li><strong>Application如何初始化</strong></li>
+<li><strong>冷热启动，启动时间分析检测</strong></li>
+<li><strong>方法执行效率与时长计算，trace文件分析</strong></li>
+<li><strong>反编译qq代码，分析手机qq是如何做启动优化的</strong></li>
+</ol>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><ol>
+<li>在点击 App 图标进行启动的过程中，系统会预处理一些比如分配内存等的耗时操作</li>
+<li>优化：<ul>
+<li>设置 Application 的主题<ul>
+<li>添加 item : android:windowIsTranslucent 为 true，即点击应用等待界面为透明</li>
+<li>添加 item : android:windowBackground ，设置背景（会导致其他问题）    </li>
+</ul>
+</li>
+<li>设置 SplashActivity 主题<ol>
+<li>添加 item : android:windowBackground ，设置背景</li>
+<li>在 oncreate 方法中设置为原先的 Theme</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>影响加载第一帧的三点<ol>
+<li>Application 的 onCreate 方法（代码优化）<ul>
+<li>开启线程执行初始化方法，条件：<ul>
+<li>没有创建 handler</li>
+<li>没有操作 UI</li>
+<li>异步要求不是单例（如果是单例，调用的地方需要判空）</li>
+</ul>
+</li>
+<li>两种优化方式<ul>
+<li>懒加载（延时加载）：放到双重校验锁的单例util中，延时启动加载，如果调用了工具没有初始化，就初始化</li>
+<li>放入线程加载（不能有handler）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MainActivity 的 onCreate 方法（代码优化）</li>
+<li>加载 xml（嵌套不要太多）</li>
+</ol>
+</li>
+<li><p>trace 文件分析</p>
+<pre><code>File file = new File(Environment.getExternalStorageDirectory(), &quot;syp&quot;);
+Log.i(&quot;SYPApplication&quot;, &quot;onCreate ::: &quot; + file.getAbsolutePath());
+// 本地存入tracing 文件
+Debug.startMethodTracing(file.getAbsolutePath());
+……
+Debug.stopMethodTracing();
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>系统启动时间 (注意冷热启动)<ul>
+<li>log ： Display 关键字</li>
+<li>命令行： adb shell am start -W {包名}/{启动 Activity 全类名}<ul>
+<li>ThisTime</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Application 千万不要创建 Assets 对象</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/2017-12-27-App启动原理详解与启动优化-Application如何初始化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/27/2017-12-27-App启动原理详解与启动优化-Application如何初始化/" itemprop="url">2017-12-27 App启动原理详解与启动优化 & Application如何初始化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T11:05:50+08:00">
+                2017-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>## </p>
+<h5 id="12-27-2017-8-30-55-PM"><a href="#12-27-2017-8-30-55-PM" class="headerlink" title="12/27/2017 8:30:55 PM"></a>12/27/2017 8:30:55 PM</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>App启动原理详解与启动优化</strong></li>
+<li><strong>Application如何初始化</strong></li>
+<li><strong>冷热启动，启动时间分析检测</strong></li>
+<li><strong>方法执行效率与时长计算，trace文件分析</strong></li>
+<li><strong>反编译qq代码，分析手机qq是如何做启动优化的</strong></li>
+</ol>
+<p>## </p>
+<p>### </p>
+<ol>
+<li>在点击 App 图标进行启动的过程中，系统会预处理一些比如分配内存等的耗时操作</li>
+<li>优化：<ul>
+<li>设置 Application 的主题<ul>
+<li>添加 item : android:windowIsTranslucent 为 true，即点击应用等待界面为透明</li>
+<li>添加 item : android:windowBackground ，设置背景（会导致其他问题）    </li>
+</ul>
+</li>
+<li>设置 SplashActivity 主题<ol>
+<li>添加 item : android:windowBackground ，设置背景</li>
+<li>在 oncreate 方法中设置为原先的 Theme</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>影响加载第一帧的三点<ol>
+<li>Application 的 onCreate 方法（代码优化）<ul>
+<li>开启线程执行初始化方法，条件：<ul>
+<li>没有创建 handler</li>
+<li>没有操作 UI</li>
+<li>异步要求不是单例（如果是单例，调用的地方需要判空）</li>
+</ul>
+</li>
+<li>两种优化方式<ul>
+<li>懒加载（延时加载）：放到双重校验锁的单例util中，延时启动加载，如果调用了工具没有初始化，就初始化</li>
+<li>放入线程加载（不能有handler）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MainActivity 的 onCreate 方法（代码优化）</li>
+<li>加载 xml（嵌套不要太多）</li>
+</ol>
+</li>
+<li><p>trace 文件分析</p>
+<pre><code>File file = new File(Environment.getExternalStorageDirectory(), &quot;syp&quot;);
+Log.i(&quot;SYPApplication&quot;, &quot;onCreate ::: &quot; + file.getAbsolutePath());
+// 本地存入tracing 文件
+Debug.startMethodTracing(file.getAbsolutePath());
+……
+Debug.stopMethodTracing();
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>系统启动时间 (注意冷热启动)<ul>
+<li>log ： Display 关键字</li>
+<li>命令行： adb shell am start -W {包名}/{启动 Activity 全类名}<ul>
+<li>ThisTime</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Application 千万不要创建 Assets 对象</li>
+</ol>
+
           
         
       
@@ -2628,7 +3123,7 @@ if (i == 1) {
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2674,7 +3169,7 @@ if (i == 1) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

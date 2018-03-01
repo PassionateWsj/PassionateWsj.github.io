@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/21/初识Glide图片加载框架/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java14-枚举类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/21/初识Glide图片加载框架/" itemprop="url">初识Glide图片加载框架</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java14-枚举类/" itemprop="url">Java14-枚举类</a></h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-21T08:48:02+08:00">
-                2016-10-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
               </time>
             
 
@@ -303,116 +303,694 @@
       
         
           
-            <p>###Glide图片加载框架</p>
-<p>#####概述</p>
-<ol>
-<li>Google在2014推出图片加载框架Glide,很多被用于在Google的开源项目中；</li>
-<li>Glide和Picasso使用方式基本一样，但是细节有一些区别；</li>
-<li>Glide比Picasso加载速度快，但是需要更大的空间来缓存；</li>
-<li>可以加载本地资源，assets目录，sd卡，以及网络的图片；</li>
-</ol>
-<p>#####基本用法</p>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">通过关键词enum定义的类，称为枚举类</span><br><span class="line">    类似关键词class，interface</span><br><span class="line">    比如：</span><br><span class="line">    public enum SignalLight&#123;    //枚举类</span><br><span class="line">        //直接写</span><br><span class="line">        红灯，黄灯，绿灯</span><br><span class="line">        //可以写构造方法，普通方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    使用（.）： 枚举类.定义常量就可以了</span><br><span class="line">    比如：SignalLight.红灯;</span><br><span class="line">    返回对象就是枚举类实例化对象</span><br><span class="line">    枚举类和swtch-case使用比较多（switch支持int,char,String,枚举类）</span><br><span class="line"></span><br><span class="line"> 适用的场景：有多种不同的情况，通过枚举几次就能搞定的，可以定义枚举类</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java15-Set集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java15-Set集合/" itemprop="url">Java15-Set集合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Set集合特点"><a href="#Set集合特点" class="headerlink" title="Set集合特点"></a>Set集合特点</h3><p>继承于 Collection，是一个不包含重复元素的集合。<br>   在Set集合里不会有重复的元素，遍历集合的时候，获取的元素不是按照存取的顺序获取的，是无序的<br>因为没有下标这种说法，普通的for循环无法便利Set集合，所以只能用迭代器或者foreach<br>所有超级接口：<br>Collection<e>, Iterable<e><br>所有已知实现类：<br>AbstractSet, ConcurrentSkipListSet, CopyOnWriteArraySet, EnumSet, HashSet, JobStateReasons, LinkedHashSet, TreeSet<br>比较常用的Set的实现类：HashSet，TreeSet</e></e></p>
+<h3 id="HashSet（按照哈希表的散列规则进行数据的存放）"><a href="#HashSet（按照哈希表的散列规则进行数据的存放）" class="headerlink" title="HashSet（按照哈希表的散列规则进行数据的存放）"></a>HashSet（按照哈希表的散列规则进行数据的存放）</h3><p>继承了AbstractSet，并且使用一个哈希表。<br>   定义类的时候，必需要重写Obje提供的2个方法hashCode()，equals()（除了基本数据类型类和String类）<br>    这样才能保证Set集合的元素不重复<br>    直接通过equals进行对象比较，在Set集合里效率太低，需要Hash散列算法进行辅助</p>
+<p>总结HashCode的说法（散列算法保证元素尽量在hash表分配均匀）<br>    a.相同的对象，hashCode一定相同<br>    b.不同的对象，hashCode可能相同<br>    c.hashCode不同的，对象一定不同</p>
+<h3 id="TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）"><a href="#TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）" class="headerlink" title="TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）"></a>TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）</h3><p>继承于AbstractSet，使用元素的自然顺序对元素进行排序.<br>    添加，删除的操作流程都是一样的<br>    可以不需要重写hashCode和equals，必须要重写Comparable接口或者Comparator接口，没有比较的属性直接忽略（都视为相同）<br>    特点：获取的数据按照排序的规则进行实际的获取，不是无序的</p>
 <ul>
-<li>导包<ul>
-<li>在build.gradle中引入<code>compile &#39;com.github.bumptech.glide:glide:3.7.0&#39;</code></li>
-</ul>
-</li>
-<li>基本语法 <code>Glide.with(context).load(url).into(ImageView中);</code><ul>
-<li>加载本地资源：<ul>
-<li><code>Glide.with(context).load(R.mipmap.ic_launcher).into(ImageView中)</code></li>
-</ul>
-</li>
-<li>加载assets目录下：<ul>
-<li><code>Glide.with(context).load(&quot;file:///android_asset/mm.png&quot;).into(imageview);</code></li>
-<li>注意assets目录下地址：<strong>file:///android_asset/图片</strong></li>
-</ul>
-</li>
-<li>加载sd卡下：<ul>
-<li><code>Glide.with(context).load(new File(&quot;路径&quot;)).into(imageview);</code></li>
-</ul>
-</li>
-<li>加载网络图片<ul>
-<li><code>Glide.with(context).load(url地址).into(imageview);</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>#####常用的设置</p>
-<blockquote>
-<p>注意：在<strong>DrawableRequestBuilder</strong>类中的一些方法</p>
-</blockquote>
+<li><p>总结1：Comparable和Comparator的区别</p>
 <ul>
-<li>设置占位图片 <ul>
-<li>.placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)</li>
-<li>用法示例： <code>Glide.with(context).load(url地址).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageview);</code></li>
-</ul>
-</li>
-<li>淡入淡出的效果<ul>
-<li>.crossFade()</li>
-</ul>
-</li>
-<li>无动画效果<ul>
-<li>.dontAnimate()</li>
-</ul>
-</li>
-<li>调整大小<ul>
-<li>override(width,height)</li>
-</ul>
-</li>
-<li>图片剪裁类型<ul>
-<li>centerCrop()</li>
-<li>fitCenter()</li>
-</ul>
-</li>
-<li>自定义图形转换<ul>
-<li>transForm()</li>
-</ul>
-</li>
-<li>内存缓存，和磁盘的缓存<ul>
-<li>skipMemoryCache(true) <ul>
-<li>true:不要内存缓存</li>
-<li>false:也是默认的，具有内存缓存</li>
-</ul>
-</li>
-<li>diskCacheStrategy(DiskCacheStrategy.ALL)<ul>
-<li>DiskCacheStrategy.ALL 缓存所有版本的图片</li>
-<li>DiskCacheStrategy.NONE 不做缓存</li>
-<li>DiskCacheStrategy.SOURCE 仅仅只缓存原来的分辨率的图像</li>
-<li>DiskCacheStrategy.RESULT 仅仅缓存最终的图像，也就是改变大小后的图像</li>
+<li>共同点：可以自己定义规则进行对象的比较</li>
+<li>不同点：<ul>
+<li>Comparable重写的是compareTo方法，只能采用一套比较规则</li>
+<li>Comparator重写的是compare方法，只要定义类实现Comparator，可以写多个比较器，定义不同的比较规则</li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-<p>######和Picasso的对比</p>
-<ol>
-<li>with()的区别<ul>
-<li><img src="glide/pg.png" alt="picasso"></li>
-<li>如果(Activity/Fragment)作为参数<ul>
-<li>图片和Activity/Fragment的生命周期保持一致，在Pasuse()状态下停止加载，在Resumed时候又自动加载</li>
-</ul>
+<li><p>总结2：Set中操作数据add，remove所有和下标索引有关的方法都是没有的</p>
 </li>
 </ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java16-文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java16-文件/" itemprop="url">Java16-文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>介绍：<br>    在java中把文件的操作，看作和普通对象一样的操作。jdk专门提供给了这样和文件有关的操作的类File<br>Java文件类以抽象的方式代表文件名和目录路径名。该类主要用于文件和目录的创建、文件的查找和文件的删除等。<br>File对象代表磁盘中实际存在的文件和目录。通过以下构造方法创建一个File对象。<br>通过给定的父抽象路径名和子路径名字符串创建一个新的File实例。</p>
+<ul>
+<li>使用：File类的操作    （创建，删除，查看文件等操作单独进行时都要进行存在判断）<ol>
+<li>File类在java.io包中</li>
+<li>常用的方法<ol>
+<li>构造方法：一般情况填写文件、文件夹的路径，使用绝对路径（字符串表示）<br> 绝对路径和相对路径<br> 绝对路径：当前所在目录E:\java\day15\Exercise\src<br> 相对路径：\src</li>
+<li>判断文件或文件夹是否存在    exists()（都返回boolean）<br> 文件夹    isDirectory()<br> 文件    isFile()<br> 隐藏文件或文件夹    isHidden()</li>
+<li>创建<br> 文件：createNewFile()，当且仅当不存在具有此抽象路径名指定名称的文件时，不可分地创建一个新的空文件。<br> 文件夹：mkdir()（一层）    mkdirs()（多级）</li>
+<li>删除（文件夹删除（必须为空）delete()只删除最后一层，删除多级文件夹需要配合listFile()方法，进行递归删除）<br> delete()（必须先删除里面所有文件才能删除此文件夹）</li>
+<li>查看文件目录结构<br> listFiles()：返回一个抽象路径名数组File[]，这些路径名表示此抽象路径名表示的目录中的文件。<br> lists()：返回一个字符串数组Stirng[]，这些字符串指定此抽象路径名表示的目录中的文件和目录<br> listFiles(FileFilter/FilenameFilter  filter)：过滤器，重写accept()方法，需要返回true，不需要false</li>
+<li>基本属性<br> getName()    名字<br> getlength()    大小<br> getAbsolutePath()    绝对路径</li>
+</ol>
 </li>
-<li>图片的显示质量<ul>
-<li><img src="glide/02.png" alt="图片质量"></li>
-<li>Picasso默认：ARGB8888</li>
-<li>Glide默认：RGB565</li>
-</ul>
-</li>
-<li>加载动态Gif图<ul>
-<li>Picasso不能加载gif图</li>
-<li>Glide加载gif图会消耗过多内存：</li>
-</ul>
-</li>
-<li>缓存策略和加载速度<ul>
-<li>Picasso缓存是全尺寸的，而Glide缓存和ImageView的大小一致<ol>
-<li>Glide的这种特点让加载速度特别快</li>
-<li>Picasso加载时，需要调整大小会有些延迟</li>
 </ol>
 </li>
 </ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java12-异常/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java12-异常/" itemprop="url">Java12-异常</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、Java中有异常（Exception）处理的机制"><a href="#一、Java中有异常（Exception）处理的机制" class="headerlink" title="一、Java中有异常（Exception）处理的机制"></a>一、Java中有异常（Exception）处理的机制</h3><p>当你在执行程序的时候，可能这个操作是错误的，比如：10/0，null.equals(“abc”)。如何去处理这样的操作<br>Java的异常机制就是针对这样的错误操作而提供的解决方案</p>
+<h3 id="二、了解Exception的继承结构"><a href="#二、了解Exception的继承结构" class="headerlink" title="二、了解Exception的继承结构"></a>二、了解Exception的继承结构</h3><p>所有的Exception都是继承Throwable类（可抛的）<br>从Throwable角度出发，他有两个子类  Exception和Error<br>所有Error抛出的错误，正常情况下在Java代码中都无法在应用层解决（JVM FULLDisk Error 虚拟机报错），所以不去深究</p>
+<h3 id="三、异常"><a href="#三、异常" class="headerlink" title="三、异常"></a>三、异常</h3><ol>
+<li><p>异常的定义</p>
+<ul>
+<li>自己定义一个继承Exception的子类即可</li>
+</ul>
+</li>
+<li><p>异常的处理</p>
+<ul>
+<li><p>消极处理（对外抛出（Java默认大多异常的处理方式））</p>
+<ul>
+<li><p>throws（关键字）在对应的方法最后进行使用，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    void test() throws NullPointerException&#123;&#125;    //很有可能产生错误，在末尾添加关键字throws</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>积极处理（对知道可能产生的错误进行处理）</p>
+<ul>
+<li><p>try - catch模块    扩展，try - catch - finally（无论执行了try还是catch，finally都执行）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">              boolean test()&#123;</span><br><span class="line">                  try&#123;        //没异常时执行</span><br><span class="line">                  //  假如s不是null，代码没有问题，执行try模块</span><br><span class="line">                  //  假如加入的s是null，这时执行catch模块</span><br><span class="line">                  //  String s = null;</span><br><span class="line">                      s.equals(&quot;abc&quot;);</span><br><span class="line">                  &#125;catch(NullPotinterException)&#123;        //有异常时执行</span><br><span class="line">                      //处理逻辑</span><br><span class="line">                      return false;</span><br><span class="line">                  &#125;finally&#123;</span><br><span class="line">                     //finally中的逻辑肯定会执行，与返回值无关</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;   </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>如何使用自定义的异常</p>
+<ul>
+<li><p>throw关键字可以使用自定义的异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">       void test()&#123;</span><br><span class="line">           //自己的逻辑</span><br><span class="line">           throw new MyException(&quot;自己的异常&quot;);    //已经自己声明过的异常</span><br><span class="line">           //可以有两种方式处理，一种积极的处理，一种消极的处理</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>throws和throw的区别：<ol>
+<li>throws处理异常的一种消极方式</li>
+<li>throw使用自定义的异常</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java16-Map集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java16-Map集合/" itemprop="url">Java16-Map集合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">1.数据以键值对(key-value)的方式进行储存（put方法进行添加数据，clear()清空）</span><br><span class="line">   Key-Value有映射关系，通过key(不能重复)能找到value（可以重复）（由Map内部类Entry（Map.Entry）完成（Set和Collection之间）映射）</span><br><span class="line">2.并不是在Collection接口进行重写的，所以他和Set，List的存储结构，调用方法是完全不同的</span><br><span class="line">3.直接继承Object，但是要访问Map的元素还是和Iterator有关</span><br><span class="line"></span><br><span class="line">泛型扩展：</span><br><span class="line">单独的泛型定义&lt;T&gt;,&lt;E&gt;</span><br><span class="line">多组的泛型定义&lt;K,V&gt;，泛型参数之间用逗号隔开</span><br><span class="line">比如：android中有个异步任务AsyncTask&lt;K,T,V&gt;使用到了多组泛型的定义方式</span><br><span class="line"></span><br><span class="line">比较常用的Map</span><br><span class="line">1.HashMap：（允许）（Treetable线程安全，但是效率低与Vector类似，HashMap与ArrayList类似）</span><br><span class="line">（通过哈希表比较大小，相同的key不能反复录入，key是通过hash表和equals进行结合判断，一旦重复就不会录入重复的key）</span><br><span class="line">    比如：&#123;&quot;abc&quot;-&quot;哈哈&quot;&#125;&#123;&quot;abc&quot;-&quot;嘿嘿&quot;&#125;  不可以，因为String重写了hashCode，所以不可能同时录入，只能选择一                个放入map，如果key一样，录入的值会被后面的覆盖</span><br><span class="line">Map的key就是在Set集合的基础上定义完成的，不可重复</span><br><span class="line">Map的value是在Collection集合基础上定义的，可以重复</span><br><span class="line">比如：&#123;&quot;abc&quot;-&quot;哈哈&quot;&#125;&#123;&quot;zxc&quot;-&quot;哈哈&quot;&#125;    可以</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.TreeMap：</span><br><span class="line">    同理和HashMap类似，key不能重复，一定要重写Comparable或者Comparator接口，判断比较是否相同，并且一定按照某个（些）规则排序</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * Map迭代器的遍历方式</span><br><span class="line">     * 1.遍历所有的key</span><br><span class="line">     * 2.遍历所有的value</span><br><span class="line">     * 3.遍历所有的key-value,最复杂但最实用，效率最高</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    public static void iterator1(HashMap&lt;String, Integer&gt; map)&#123;</span><br><span class="line">        //获取所有的key，存放set集合中</span><br><span class="line">        Set&lt;String&gt; sets = map.keySet();</span><br><span class="line">        Iterator&lt;String&gt; iterator = sets.iterator();</span><br><span class="line">        while (iterator.hasNext()) &#123;</span><br><span class="line">            //获取key</span><br><span class="line">            String key = (String)iterator.next();</span><br><span class="line">            //根据key获取value，通过get每一个key来获取value</span><br><span class="line">            Integer value = map.get(key);</span><br><span class="line">            System.out.println(key+&quot;,&quot;+value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取map中所有value</span><br><span class="line">     */</span><br><span class="line">    public static void iterator2(HashMap&lt;String, Integer&gt; map)&#123;</span><br><span class="line">        //获取所有value</span><br><span class="line">        Collection&lt;Integer&gt; value = map.values();</span><br><span class="line">        Iterator&lt;Integer&gt; itr = value.iterator();</span><br><span class="line">        while (itr.hasNext()) &#123;</span><br><span class="line">            Integer values = (Integer) itr.next();</span><br><span class="line">            System.out.println(values);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 同时获取key-value的值</span><br><span class="line">     */</span><br><span class="line">    public static void iterator3(HashMap&lt;String, Integer&gt; map)&#123;</span><br><span class="line">        //获取Set集合,存放的是Map.Entry映射类，映射key-value关系</span><br><span class="line">        Set&lt;Map.Entry&lt;String,Integer&gt;&gt; entry = map.entrySet();</span><br><span class="line">        //迭代的元素就是Map.Entry</span><br><span class="line">        Iterator&lt;Map.Entry&lt;String, Integer&gt;&gt; itr = entry.iterator();</span><br><span class="line">        while (itr.hasNext()) &#123;</span><br><span class="line">            Map.Entry&lt;String,Integer&gt; entry2 = itr.next();</span><br><span class="line">            String key = entry2.getKey();</span><br><span class="line">            Integer value = entry2.getValue();</span><br><span class="line">            System.out.println(key+&quot;|&quot;+value);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        for (Map.Entry&lt;String, Integer&gt; entry2 : entry) &#123;</span><br><span class="line">            System.out.println(entry2.getKey()+&quot;|&quot;+entry2.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java21-网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java21-网络/" itemprop="url">Java21-网络</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ol>
+<li>网络通讯：计算机和计算机之间通过某种协议格式，进行数据交换</li>
+</ol>
+<h3 id="连接关键词："><a href="#连接关键词：" class="headerlink" title="连接关键词："></a>连接关键词：</h3><ol>
+<li>ip：Internet Protocol 互联网协议    （网络中ip是标识设备上的唯一性）</li>
+<li>port：端口号（通过冒号的方式标识在ip地址后面。，ip标识指定的设备，端口号找到指定设备中某个需要访问的程序）</li>
+<li>socket：套接字，实现网络会话层的数据交互。协议的格式可以自己定义，比如：http, tcp/ip , udp.企业中自己定义的一些协议，可以在套接字的基础上进行扩展</li>
+<li>http协议：hyper    text    transport    protocol：超文本传输协议</li>
+<li>https协议：hyper    text    transport    protocol    secret：超文本传输加密协议（安全性比较高，效率比较低）</li>
+<li>tcp/ip协议：传输控制协议/网络协议（特点：安全性高，效率低。三次握手的情况，客户端和服务端的连接要进行三次确认才能认为连接成功。只要有任何一次的失败，都判定客户端和服务端的连接是失败的）</li>
+<li>udp协议：用户数据报协议（特点：不保证安全性，但是效率较高，相对的在传输过程中数据可能会丢失），直接扔数据包给接收者，如果没有收到数据包，重新再发送</li>
+<li>ftp协议：文件传输协议</li>
+</ol>
+<h3 id="实战："><a href="#实战：" class="headerlink" title="实战："></a>实战：</h3><ol>
+<li>Socket套接字：java默认采用tcp/ip的三次握手的协议规则，安全性较高<ol>
+<li>严格区分客户端和服务端。是由客户端向服务端发起连接，然后再进行三次握手确认<br>严格区分：客户可以是多个，服务端是一个（但是不排除服务端是多个情况）<br>Socket（客户端）和ServerSocket（服务端）</li>
+<li>正常的情况下，先构建服务端，然后再引申出客户端<br>写的过程中注意：ip地址，端口号<br>详细说明ip的封装类</li>
+</ol>
 </li>
 </ol>
 
@@ -463,7 +1041,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/Week09-day01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java20-线程同步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -482,7 +1060,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/20/Week09-day01/" itemprop="url">Week09-day01</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java20-线程同步/" itemprop="url">Java20-线程同步</a></h1>
         
 
         <div class="post-meta">
@@ -494,8 +1072,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-20T17:33:49+08:00">
-                2016-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
               </time>
             
 
@@ -534,133 +1112,7 @@
       
         
           
-            <h2 id="Week09-day01"><a href="#Week09-day01" class="headerlink" title="Week09-day01"></a>Week09-day01</h2><p>##### </p>
-<h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>消息推送</strong>(三方SDK)</li>
-<li><strong>三方分享</strong>(三方SDK)</li>
-<li><strong>三方登录</strong>(三方SDK)</li>
-<li><strong>MVP</strong></li>
-</ol>
-<h2 id="课程笔记"><a href="#课程笔记" class="headerlink" title="课程笔记"></a>课程笔记</h2><h3 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h3><ol>
-<li><strong>XMPP</strong>（附Xmind）</li>
-<li><p><strong>Jpush快速集成推送</strong>（掌握）：<a href="http://docs.jiguang.cn/" target="_blank" rel="noopener">http://docs.jiguang.cn/</a></p>
-<ul>
-<li><p>jcenter 自动集成步骤</p>
-<ul>
-<li><p>说明 ： 使用jcenter自动集成的开发者，不需要在项目中添加jar和so，jcenter会自动完成依赖；在AndroidManifest.xml中不需要添加任何JPush SDK 相关的配置，jcenter会自动导入, 如果手动添加则是以开发者添加的为准覆盖掉默认配置。</p>
-<ul>
-<li>确认android studio的 Project 根目录的主 gradle 中配置了jcenter支持。（新建project默认配置就支持）</li>
-<li><pre><code>buildscript {
-    repositories {
-        jcenter()
-    }
-    ......
-}
-
-allprojets {
-    repositories {
-        jcenter()
-    }
-}    
-</code></pre></li>
-<li>在 module 的 gradle 中添加依赖和AndroidManifest的替换变量。</li>
-<li><pre><code>android {
-    ......
-    defaultConfig {
-        applicationId &quot;com.xxx.xxx&quot; //JPush上注册的包名.
-        ......
-
-        ndk {
-            //选择要添加的对应cpu类型的.so库。 
-            abiFilters &apos;armeabi&apos;, &apos;armeabi-v7a&apos;, &apos;armeabi-v8a&apos; 
-            // 还可以添加 &apos;x86&apos;, &apos;x86_64&apos;, &apos;mips&apos;, &apos;mips64&apos;
-        }
-
-        manifestPlaceholders = [
-            JPUSH_PKGNAME : applicationId,
-            JPUSH_APPKEY : &quot;你的appkey&quot;, //JPush上注册的包名对应的appkey.
-            JPUSH_CHANNEL : &quot;developer-default&quot;, //暂时填写默认值即可.
-        ]
-        ......
-    }
-    ......
-}
-
-dependencies {
-    ......
-
-    compile &apos;cn.jiguang:jpush:2.1.8&apos;  // 此处以SDK 2.1.8版本为例
-
-    ......
-}
-</code></pre></li>
-</ul>
-</li>
-<li><p>注 : 如果在添加以上 abiFilter 配置之后android Studio出现以下提示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NDK integration is deprecated in the current plugin. Consider trying the new experimental plugin.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>则在 Project 根目录的gradle.properties文件中添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.useDeprecatedNdk=true.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>添加代码</p>
-<ul>
-<li>JPush SDK 提供的 API 接口，都主要集中在 cn.jpush.android.api.JPushInterface 类里。</li>
-<li><p>基础API</p>
-<ul>
-<li><p>init 初始化SDK</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void init(Context context)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>setDebugMode 设置调试模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// You can enable debug mode in developing state. You should close debug mode when release.</span><br><span class="line">public static void setDebugMode(boolean debugEnalbed)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>调用示例代码（参考 example 项目）</p>
-<ul>
-<li>init 只需要在应用程序启动时调用一次该 API 即可。</li>
-<li>以下代码定制一个本应用程序 Application 类。需要在 AndoridManifest.xml 里配置。请参考上面 AndroidManifest.xml 片断，或者 example 项目。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleApplication extends Application &#123;</span><br><span class="line">@Override</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        JPushInterface.setDebugMode(true);</span><br><span class="line">        JPushInterface.init(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="3-友盟"><a href="#3-友盟" class="headerlink" title="3. 友盟"></a>3. 友盟</h2><h3 id="集成三方SDK基本通用步骤"><a href="#集成三方SDK基本通用步骤" class="headerlink" title="集成三方SDK基本通用步骤"></a>集成三方SDK基本通用步骤</h3><ol>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-<li>4</li>
-<li>5</li>
-<li>6</li>
-<li>7</li>
-</ol>
-<hr>
-<p>###三方分享</p>
-<ol>
-<li>shareSDK: <a href="http://www.mob.com/" target="_blank" rel="noopener">http://www.mob.com/</a></li>
-<li>Umeng</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>复习Socket</li>
-<li>CPU主要的三个平台<ol>
-<li>ARCH-ARM</li>
-<li>ARCH-mips</li>
-<li>ARCH-x86</li>
-</ol>
-</li>
-<li>自定义Dialog<ol>
-<li>setView</li>
-<li>里面的点击事件之类可以暴露方法，设置监听给外部调用</li>
-</ol>
-</li>
-</ol>
-
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">同步的概念</span><br><span class="line">1.多线程同时去访问相同的资源的时候，最多只有一个线程可以访问到资源，其他的线程都必须等待。同步的方式</span><br><span class="line">  同步的效果，当一个线程在访问资源的过程中，其他的线程全部处于阻塞状态</span><br><span class="line"> 比如：登录，当登录的线程进行验证的时候，只有一个访问这资源，其他线程都阻塞在那里</span><br><span class="line"> 同步使用场景最多的是对资源修改的时候</span><br><span class="line"></span><br><span class="line">异步的概念：</span><br><span class="line">2.多线程同时去访问相同的资源的时候，没有限制，没有个线程都可以访问，然后执行自己各有的逻辑</span><br><span class="line">  默认不进行sleep,join等操作，每个线程都不会阻塞</span><br><span class="line">  比如：图片的下载显示， 图片在下载的时候不会阻塞界面显示的线程，各自管各自运行</span><br><span class="line">            图片下载成功可以正常显示界面，下载失败界面也能正常显示，资源之间没有任何限制影响</span><br><span class="line"></span><br><span class="line">在Java中通过使用syncronized关键字，可以实现同步的效果</span><br><span class="line">1。syncronized修饰在方法</span><br><span class="line">     比如： public void method1()&#123;&#125;  变成  public syncronized void method1()&#123;&#125;</span><br><span class="line">                public static void method2()  变成 public static syncronized  void method2()&#123;&#125;</span><br><span class="line"></span><br><span class="line">2。syncronized修饰在代码块</span><br><span class="line">      a）对象锁</span><br><span class="line">      比如：</span><br><span class="line">      Object obj = new Object();   </span><br><span class="line">     //每个对象都有自己的一把锁，拿到这把锁的线程可以访问内部资源，没有这把锁的线程只能在外部等待</span><br><span class="line">     //当同步模块执行完毕以后，即释放obj的锁，让其他的线程取抢夺他</span><br><span class="line">      public void method1()&#123;</span><br><span class="line">         system.out.println(&quot;逻辑1&quot;)；</span><br><span class="line">         syncronized(obj)&#123;  //obj值得就是实例化的对象</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      b)  类锁 (针对于静态的，类可以直接访问方法的情况)</span><br><span class="line">      Class Cat&#123;</span><br><span class="line">          public static void method2()&#123;</span><br><span class="line">               System.out.println(&quot;逻辑2&quot;)；</span><br><span class="line">               //通过类进行锁</span><br><span class="line">               syncronized(Cat.class)&#123;    //外部的线程只有一个访问该静态方法</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">          &#125;  </span><br><span class="line">      &#125;    </span><br><span class="line">  总结：</span><br><span class="line">  同步代码块就是对指定的类或者对象进行锁的抢夺和释放，</span><br><span class="line">  只有拿到锁的线程可以访问对应的同步方法或者同步模块，其他线程只能在外部等待锁的释放</span><br><span class="line">  当同步方法或者同步模块执行完毕以后，锁就自动释放了</span><br><span class="line"></span><br><span class="line">  了解：</span><br><span class="line">  不能使用syncronized地方（类，接口不能修饰，构造方法也不可以修饰，变量）</span><br><span class="line">  class Parent ()&#123;</span><br><span class="line">    public syncronized void method1()&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Child extends Parent[</span><br><span class="line">    //重写（去除了同步）</span><br><span class="line">    public void method1()&#123;&#125;  //子类重写了父类的方法，但没有同步模块的处理</span><br><span class="line">    //也是重写（继续使用同步）</span><br><span class="line">    public syncronized void method1()&#123;&#125;</span><br><span class="line"></span><br><span class="line">     //自己根据实际情况可以选择</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（二）。从同步模块引申出死锁的问题</span><br><span class="line">总结：有2个可以调试用的资源，线程1抢占了第1个，线程2抢占了第2个</span><br><span class="line">          线程1希望获取线程2的资源，与此同时线程2也想获取线程1的资源</span><br><span class="line">          但线程1和线程2又不想放弃当前已经拥有的资源</span><br><span class="line">          死锁就会产生了</span><br><span class="line"></span><br><span class="line">（三）。线程中wait()和notify()的使用</span><br><span class="line">  1. wait()阻塞线程的方法，调用wait()的对象会让当前的线程进入等待</span><br><span class="line">      wait()的使用一定需要配合syncronized一起使用，否则不会有任何效果，syncronized需要锁定该对象锁</span><br><span class="line">  2. notify() 或者 notifyAll() 唤醒线程 ，唤醒的是wait()所在的线程</span><br><span class="line">      notify() 指唤醒随机的一条线程</span><br><span class="line">      notifyAll() 指唤醒所有的线程</span><br><span class="line">      notify() 或者 notifyAll() 的使用一定需要配合syncronized一起使用.</span><br><span class="line"></span><br><span class="line">(四)。生产者和消费者的模式，wait和notify使用诠释</span><br><span class="line">     1、最关键的类是仓库类，可以统一管理货物，货物就是一种资源</span><br><span class="line">     2,  仓库类需要提供同步的方法</span><br><span class="line">          a)如何生产货物的方法 ，仓库的最大容量是100，如果超过这个容量就要停止生产处于等待 （wait）。一旦仓库里的货物消费了(notify)，可以继续生产</span><br><span class="line">          b)如何消费货物的方法 ,  仓库的容量是0的时候，不能消费了，进行等待(wait),一旦仓库里的货物生产了(notify)，可以继续消费</span><br><span class="line">     3.还有货物类，生产类实现Runnable接口，消费类实现Runnable接口，测试类</span><br></pre></td></tr></table></figure>
           
         
       
@@ -708,7 +1160,7 @@ dependencies {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/19/Week08-day05/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java19-线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -727,7 +1179,7 @@ dependencies {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/19/Week08-day05/" itemprop="url">Week08-day05</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java19-线程/" itemprop="url">Java19-线程</a></h1>
         
 
         <div class="post-meta">
@@ -739,8 +1191,8 @@ dependencies {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-19T09:08:11+08:00">
-                2016-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
               </time>
             
 
@@ -779,74 +1231,9 @@ dependencies {
       
         
           
-            <h2 id="Week08-day05"><a href="#Week08-day05" class="headerlink" title="Week08-day05"></a>Week08-day05</h2><h5 id="2016-10-19-星期三-9-08-11"><a href="#2016-10-19-星期三-9-08-11" class="headerlink" title="2016/10/19 星期三 9:08:11"></a>2016/10/19 星期三 9:08:11</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>MaterialDesign(附Xmind文档)</strong></li>
-<li><strong>刷新的几种方案</strong></li>
-<li><strong>MVP(附Xmind文档)</strong></li>
-</ol>
-<h2 id="课程笔记"><a href="#课程笔记" class="headerlink" title="课程笔记"></a>课程笔记</h2><h3 id="MaterialDesign"><a href="#MaterialDesign" class="headerlink" title="MaterialDesign"></a>MaterialDesign</h3><ol>
-<li>SnackBar<ol>
-<li>封装颜色背景的类</li>
-</ol>
-</li>
-<li>FloatingActionButton</li>
-<li>TextInputLayout(一般结合EditText使用)<pre><code>- ![](http://i.imgur.com/jODmhSu.png)
-</code></pre></li>
-<li>滚动/过渡布局<ul>
-<li><img src="http://i.imgur.com/rkqJgpx.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="刷新的几种方案"><a href="#刷新的几种方案" class="headerlink" title="刷新的几种方案"></a>刷新的几种方案</h3><ol>
-<li>SwipeRefreshLayout</li>
-<li><p>ultra-pulltorefresh</p>
-<ol>
-<li><p>导包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;in.srain.cube:ultra-ptr:1.0.11&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加一些属性<img src="http://i.imgur.com/PCEuPtm.png" alt=""></p>
-</li>
-<li>刷新监听 <img src="http://i.imgur.com/1t4EJJb.png" alt=""></li>
-<li><img src="http://i.imgur.com/jEXCJ3C.png" alt=""></li>
-</ol>
-</li>
-</ol>
-<hr>
-<p>###MVC、MVP模式（附Xmind文档：Week08_05 2.xmind）</p>
-<ol>
-<li>MVC模式<ol>
-<li>MVC（Model-View-Controller）是最常见的软件架构之一，业界有着广泛应用</li>
-<li><img src="http://i.imgur.com/noFQeKg.png" alt=""></li>
-</ol>
-</li>
-<li>MVP模式：<strong>Model</strong>(数据访问层)-<strong>Presenter</strong>(业务逻辑处理)-<strong>View</strong>(展示数据,对用户行为做出反馈)<ol>
-<li>优点<ul>
-<li>易于维护</li>
-<li>易于测试</li>
-<li>松耦合度</li>
-<li>复用性高</li>
-<li>健壮稳定</li>
-</ul>
-</li>
-<li><img src="http://i.imgur.com/PL4aa4U.png" alt=""></li>
-<li><img src="http://i.imgur.com/nLY5KTM.png" alt=""></li>
-</ol>
-</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li><p>代码中颜色转换</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Color.parseColor(#RRGGBB/#AARRGGBB)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$表示内部</p>
-<ul>
-<li><img src="http://i.imgur.com/PdSqafs.png" alt=""></li>
-</ul>
-</li>
-</ol>
-
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">一、简介</span><br><span class="line">    1.进程和线程的概念</span><br><span class="line">        什么叫进程？</span><br><span class="line">        一个应用程序有自己独立的内存空间，有自己独立的数据的逻辑处理区域</span><br><span class="line">        JVM这样的应用程序称之为一个独立的进程</span><br><span class="line">        补充：操作系统里认为有独立端口号（有自己独立的内存空间和数据的逻辑处理区域）的应用程序为一个进程</span><br><span class="line">            比如：QQ，FeiQ是一个进程</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">什么是线程？</span><br><span class="line">1.进程中可以执行CPU的最小单位，称之为线程</span><br><span class="line">    比如：QQ中：1.网络下载数据（调度CPU执行）</span><br><span class="line">                          2.UI显示内容（调度CPU显示）</span><br><span class="line">                    网络下载（1个线程）和UI显示（1个线程）是独立的，各自可以执行自己的逻辑，没有直接联系</span><br><span class="line"></span><br><span class="line">线程和进程的区别：</span><br><span class="line">    1.进程：有自己独立的内存空间，有自己独立的数据的逻辑处理区域；包含一个或多个线程；进程在所有非守候线程结束后才能结束</span><br><span class="line">    2.线程：可以共享进程中相同的内存空间和逻辑区域；线程不能独立存在，必须是进程的一部分</span><br><span class="line"></span><br><span class="line">二、线程的生命周期</span><br><span class="line">    1.创建    实例化对象</span><br><span class="line">    2.就绪    对象实例化线程对象进行初始化</span><br><span class="line">    3.运行    当实例化对象调用start()方法的时候</span><br><span class="line">    4.阻塞    运行的过程中，被阻塞了（sleep()、join()、wait()、yield()）</span><br><span class="line">                  阻塞完毕后，可以重新回到运行状态</span><br><span class="line">    5.死亡    线程内部的逻辑全部执行完了，进入死亡状态，等待GC的回收。不能回到运行状态</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    currentThread()    获取线程对象</span><br><span class="line">    getName()    获取线程名称</span><br><span class="line">    isAlive()    （boolean）测试线程是否处于活动状态</span><br><span class="line">    interrupt()    中断线程</span><br><span class="line">    interrupted()    （boolean）测试当前线程是否已经中断（当线程中断时(比如sleep)，都是返回false）</span><br><span class="line">    isInterrupted()    （boolean）测试线程是否已经中断</span><br><span class="line">    getPriority()    返回线程的优先级</span><br><span class="line">    getState()    返回线程的状态</span><br><span class="line">    join()    等待该线程终止（可加时间）</span><br><span class="line">    yield()    暂停当前正在执行的线程对象，并执行其他线程</span><br><span class="line"></span><br><span class="line">三、使用</span><br><span class="line">  1。创建</span><br><span class="line">       1）继承关键类Thread类，可以自定义线程  （使用方便。但是共享数据麻烦）</span><br><span class="line">            比如  Thread thread = new 继承Thread的子类()</span><br><span class="line">       2）实现Runnable接口，可以自定义线程   （共享数据比较方便）</span><br><span class="line">            比如  Thread thread = new Thread(实现Runnable接口的类)；</span><br><span class="line">  2。就绪</span><br><span class="line">       在run方法里执行自己的逻辑</span><br><span class="line">  3。运行</span><br><span class="line">       start()</span><br><span class="line">  4。阻塞</span><br><span class="line">      1）休眠 sleep() 填写毫秒数，设置的毫秒数过去以后，继续回到运行状态</span><br><span class="line">  5。死亡</span><br><span class="line">      run方法执行完毕</span><br><span class="line"></span><br><span class="line">线程中经常使用的方法：</span><br><span class="line">1.setName() 给自定义的线程起给名字，通过构造方法也可以设置线程的名字</span><br><span class="line">   获取名字：通用的方法Thread.currentThread().getName()  获取当前线程的名字</span><br><span class="line">2.和休眠打断有关的方法</span><br><span class="line">   interrupt()方法，可以打断正在休眠的线程</span><br><span class="line">   静态方法：interrupted()方法，返回是boolean,判断打断的情况，true打断了，false没有打断</span><br><span class="line">   实例化对象调用的方法 : isInterrupt()方法，返回是boolean,判断打断的情况，true打断了，false没有打断</span><br><span class="line">   </span><br><span class="line">   判断是否打断的情况：前提条件，当前的线程没有处在中断状态，一直在运行，被打断成功会返回true</span><br><span class="line">  </span><br><span class="line">   总结：</span><br><span class="line">   所以现在：如果要打断线程运行，interrupt()是很危险的处理，发生的结果可能无法控制</span><br><span class="line">   一般都是通过boolean类型的标志变量控制线程的中断，过程可以自己控制</span><br><span class="line">   千万不要调用stop方法，很危险，后果不堪设想</span><br><span class="line"></span><br><span class="line">3.中断的方法join (连结)</span><br><span class="line">   总结：</span><br><span class="line">   当前的线程1受到线程2的影响 ，当线程2在线程1中调用join方法的时候，线程1停止运行进入阻塞状态，只有当线程2全部执行完毕以后，线程1才能继续回到运行状态。这就是join的中断方式 </span><br><span class="line"></span><br><span class="line">4.礼让的方法yield()</span><br><span class="line">   1.在给线程设置优先级完毕以后，当前的线程1 优先级 大于或等于 线程2， 线程1使用yield()方式，让线程2先运行</span><br><span class="line">      概率性比较大，就是线程2比你先运行的概率大</span><br><span class="line">     暂时释放自己已经获得CPU，把CPU的资源，让给同等级的其他线程</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Java给多线程编程提供了内置的支持。一个多线程程序包含两个或多个能并发运行的部分。程序的每一部分都称作一个线程，并且每个线程定义了一个独立的执行路径。</span><br><span class="line">多线程是多任务的一种特别的形式，但多线程使用了更小的资源开销。</span><br><span class="line">这里定义和线程相关的另一个术语 - 进程：一个进程包括由操作系统分配的内存空间，包含一个或多个线程。一个线程不能独立的存在，它必须是进程的一部分。一个进程一直运行，直到所有的非守候线程都结束运行后才能结束。</span><br><span class="line">多线程能满足程序员编写高效率的程序来达到充分利用CPU的目的。</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/CSSxgO6.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">  ● 新建状态:</span><br><span class="line">使用 new 关键字和 Thread 类或其子类建立一个线程对象后，该线程对象就处于新建状态。它保持这个状态直到程序 start() 这个线程。</span><br><span class="line">  ● 就绪状态:</span><br><span class="line">当线程对象调用了start()方法之后，该线程就进入就绪状态。就绪状态的线程处于就绪队列中，要等待JVM里线程调度器的调度。</span><br><span class="line">  ● 运行状态:</span><br><span class="line">如果就绪状态的线程获取 CPU 资源，就可以执行 run()，此时线程便处于运行状态。处于运行状态的线程最为复杂，它可以变为阻塞状态、就绪状态和死亡状态。</span><br><span class="line">  ● 阻塞状态:</span><br><span class="line">如果一个线程执行了sleep（睡眠）、suspend（挂起）等方法，失去所占用资源之后，该线程就从运行状态进入阻塞状态。在睡眠时间已到或获得设备资源后可以重新进入就绪状态。</span><br><span class="line">  ● 死亡状态:</span><br><span class="line">一个运行状态的线程完成任务或者其他终止条件发生时，该线程就切换到终止状态。</span><br><span class="line"></span><br><span class="line">线程的优先级</span><br><span class="line">每一个Java线程都有一个优先级，这样有助于操作系统确定线程的调度顺序。</span><br><span class="line">Java线程的优先级是一个整数，其取值范围是1 （Thread.MIN_PRIORITY ） - 10 （Thread.MAX_PRIORITY ）。</span><br><span class="line">默认情况下，每一个线程都会分配一个优先级NORM_PRIORITY（5）。</span><br><span class="line">具有较高优先级的线程对程序更重要，并且应该在低优先级的线程之前分配处理器资源。但是，线程优先级不能保证线程执行的顺序，而且非常依赖于平台。</span><br><span class="line"> 创建一个线程</span><br><span class="line">Java提供了两种创建线程方法：</span><br><span class="line">  ● 通过实现Runable接口；</span><br><span class="line">  ● 通过继承Thread类本身。</span><br><span class="line"></span><br><span class="line">线程的几个主要概念:</span><br><span class="line">在多线程编程时，你需要了解以下几个概念：</span><br><span class="line">  ● 线程同步</span><br><span class="line">  ● 线程间通信</span><br><span class="line">  ● 线程死锁</span><br><span class="line">  ● 线程控制：挂起、停止和恢复</span><br><span class="line">多线程的使用</span><br><span class="line">有效利用多线程的关键是理解程序是并发执行而不是串行执行的。例如：程序中有两个子系统需要并发执行，这时候就需要利用多线程编程。</span><br><span class="line">通过对多线程的使用，可以编写出非常高效的程序。不过请注意，如果你创建太多的线程，程序执行的效率实际上是降低了，而不是提升了。</span><br><span class="line">请记住，上下文的切换开销也很重要，如果你创建了太多的线程，CPU花费在上下文的切换的时间将多于执行程序的时间！</span><br><span class="line"> Thread 方法</span><br><span class="line">下表列出了Thread类的一些重要方法：</span><br><span class="line">序号 方法描述</span><br><span class="line">1 public void start()使该线程开始执行；Java 虚拟机调用该线程的 run 方法。</span><br><span class="line">2 public void run()如果该线程是使用独立的 Runnable 运行对象构造的，则调用该 Runnable 对象的 run 方法；否则，该方法不执行任何操作并返回。</span><br><span class="line">3 public final void setName(String name)改变线程名称，使之与参数 name 相同。</span><br><span class="line">4 public final void setPriority(int priority) 更改线程的优先级。</span><br><span class="line">5 public final void setDaemon(boolean on)将该线程标记为守护线程或用户线程。</span><br><span class="line">6 public final void join(long millisec)等待该线程终止的时间最长为 millis 毫秒。</span><br><span class="line">7 public void interrupt()中断线程。</span><br><span class="line">8 public final boolean isAlive()测试线程是否处于活动状态。</span><br><span class="line">测试线程是否处于活动状态。 上述方法是被Thread对象调用的。下面的方法是Thread类的静态方法。</span><br><span class="line">序号 方法描述</span><br><span class="line">1 public static void yield()暂停当前正在执行的线程对象，并执行其他线程。</span><br><span class="line">2 public static void sleep(long millisec)在指定的毫秒数内让当前正在执行的线程休眠（暂停执行），此操作受到系统计时器和调度程序精度和准确性的影响。</span><br><span class="line">3 public static boolean holdsLock(Object x)当且仅当当前线程在指定的对象上保持监视器锁时，才返回 true。</span><br><span class="line">4 public static Thread currentThread()返回对当前正在执行的线程对象的引用。</span><br><span class="line">5 public static void dumpStack()将当前线程的堆栈跟踪打印至标准错误流。</span><br></pre></td></tr></table></figure>
           
         
       
@@ -894,7 +1281,7 @@ dependencies {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/18/AndroidStudio模版编写/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java21-线程池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -913,7 +1300,7 @@ dependencies {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/18/AndroidStudio模版编写/" itemprop="url">AndroidStudio代码模版编写</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java21-线程池/" itemprop="url">Java21-线程池</a></h1>
         
 
         <div class="post-meta">
@@ -925,8 +1312,8 @@ dependencies {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-18T21:11:37+08:00">
-                2016-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
               </time>
             
 
@@ -965,50 +1352,7 @@ dependencies {
       
         
           
-            <h2 id="Week08-day02"><a href="#Week08-day02" class="headerlink" title="Week08-day02"></a>Week08-day02</h2><h5 id="2016-10-18-星期二-21-11-37"><a href="#2016-10-18-星期二-21-11-37" class="headerlink" title="2016/10/18 星期二 21:11:37"></a>2016/10/18 星期二 21:11:37</h5><ol>
-<li><strong>*创建BaseAdapter适配器中的getView</strong><ul>
-<li><img src="http://i.imgur.com/xm028Z2.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ViewHolder holder = null;</span><br><span class="line">if ($convertView$ == null) &#123;</span><br><span class="line">    $convertView$ = LayoutInflater.from($context$).inflate(R.layout.$layout$,parent$root$,false);</span><br><span class="line">    holder = new ViewHolder($convertView$);</span><br><span class="line">    $convertView$.setTag(holder);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    holder = (ViewHolder) $convertView$.getTag();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><strong>*创建有参数的Fragment实例</strong><ul>
-<li><img src="http://i.imgur.com/MjWHgI2.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static $className$ newInstance()&#123;</span><br><span class="line">    </span><br><span class="line">    $className$ mFragment = new $className$();</span><br><span class="line">    Bundle bundle = new Bundle();</span><br><span class="line">    // 存要传入的数据</span><br><span class="line">    </span><br><span class="line">    mFragment.setArguments(bundle);</span><br><span class="line">    return mFragment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下面是系统提供的<ul>
-<li><img src="http://i.imgur.com/KCSGDbe.png" alt=""></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static $fragment$ newInstance($args$) &#123;</span><br><span class="line">    $nullChecks$</span><br><span class="line">    android.os.Bundle args = new Bundle();</span><br><span class="line">    $addArgs$</span><br><span class="line">    $fragment$ fragment = new $fragment$();</span><br><span class="line">    fragment.setArguments(args);</span><br><span class="line">    return fragment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><strong>*创建双重校验锁的单例模式对象</strong><ul>
-<li><img src="http://i.imgur.com/zw49nz7.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private static $className$ mInstance = null;</span><br><span class="line">// 双重校验锁单例模式</span><br><span class="line">public static synchronized $className$ getInstance(Context context)&#123;</span><br><span class="line">    if(mInstance==null)&#123;</span><br><span class="line">        synchronized ($className$.class)</span><br><span class="line">        &#123;</span><br><span class="line">            if (mInstance == null)</span><br><span class="line">                mInstance = new $className$(context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return mInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><strong>自定义控件的3个构造方法</strong><ul>
-<li><img src="http://i.imgur.com/PwKdB6e.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public $class$(android.content.Context context) &#123;</span><br><span class="line">    this(context, null);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public $class$(Context context, android.util.AttributeSet attrs) &#123;</span><br><span class="line">    this(context, attrs, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public $class$(Context context, AttributeSet attrs, int defStyle) &#123;</span><br><span class="line">    super(context, attrs, defStyle);</span><br><span class="line">    $cursor$</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>*三目表达式</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$item$ == null ? 0$position1$ : $position2$</span><br></pre></td></tr></table></figure>
-<ol>
-<li>*switch</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">switch($view$.getId())&#123;</span><br><span class="line">    case $case1$:</span><br><span class="line">        break;</span><br><span class="line">    case $case2$:</span><br><span class="line">        break;</span><br><span class="line">    default:</span><br><span class="line">        break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line">newSingleThreadExecutor        单个后台线程</span><br><span class="line">newFixedThreadPool                 固定大小线程池</span><br><span class="line">newCachedThreadPool              无界线程池，可以进行自动线程回收</span><br><span class="line">newScheduledThreadPool</span><br><span class="line"></span><br><span class="line">在JDK帮助文档中，有如此一段话：</span><br><span class="line">“强烈建议程序员使用较为方便的Executors工厂方法Executors.newCachedThreadPool()（无界线程池，可以进行自动线程回收）、Executors.newFixedThreadPool(int)（固定大小线程池）Executors.newSingleThreadExecutor()（单个后台线程）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">一、简介</span><br><span class="line">    线程的使用在java中占有极其重要的地位，在jdk1.4极其之前的jdk版本中，关于线程池的使用是极其简陋的。在jdk1.5之后这一情况有了很大的改观。Jdk1.5之后加入了java.util.concurrent包，这个包中主要介绍java中线程以及线程池的使用。为我们在开发中处理线程的问题提供了非常大的帮助。</span><br><span class="line">二、线程池</span><br><span class="line">    线程池的作用：</span><br><span class="line">    线程池作用就是限制系统中执行线程的数量。</span><br><span class="line">    根据系统的环境情况，可以自动或手动设置线程数量，达到运行的最佳效果；少了浪费了系统资源，多了造成系统拥挤效率不高。用线程池控制线程数量，其他线程排队等候。一个任务执行完毕，再从队列的中取最前面的任务开始执行。若队列中没有等待进程，线程池的这一资源处于等待。当一个新任务需要运行时，如果线程池中有等待的工作线程，就可以开始运行了；否则进入等待队列。</span><br><span class="line">   比如：线程池说只能运行2个线程。外面有100个线程。让随机让2个线程先执行，然后让其他的98个线程排队。最多让哪些线程运行，哪些线程外部排队，可以自己设定</span><br><span class="line">为什么要用线程池:</span><br><span class="line">1.减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</span><br><span class="line">2.可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。</span><br><span class="line">Java里面线程池的顶级接口是Executor，但是严格意义上讲Executor并不是一个线程池，而只是一个执行线程的工具。真正的线程池接口是ExecutorService。</span><br><span class="line">比较重要的几个类：</span><br><span class="line">ExecutorService 真正的线程池接口。</span><br><span class="line">ScheduledExecutorService 能和Timer/TimerTask类似，解决那些需要任务重复执行的问题。</span><br><span class="line">ThreadPoolExecutor ExecutorService的默认实现。</span><br><span class="line">ScheduledThreadPoolExecutor 继承ThreadPoolExecutor的ScheduledExecutorService接口实现，周期性任务调度的类实现。</span><br><span class="line">要配置一个线程池是比较复杂的，尤其是对于线程池的原理不是很清楚的情况下，很有可能配置的线程池不是较优的，因此在Executors类里面提供了一些静态工厂，生成一些常用的线程池。</span><br><span class="line">1. newSingleThreadExecutor</span><br><span class="line">    创建一个单线程的线程池。这个线程池只有一个线程在工作，也就是相当于单线程串行执行所有任务。如果这个唯一的线程因为异常结束，那么会有一个新的线程来替代它。此线程池保证所有任务的执行顺序按照任务的提交顺序执行。</span><br><span class="line">2.newFixedThreadPool</span><br><span class="line">    创建固定大小的线程池。每次提交一个任务就创建一个线程，直到线程达到线程池的最大大小。线程池的大小一旦达到最大值就会保持不变，如果某个线程因为执行异常而结束，那么线程池会补充一个新线程。</span><br><span class="line">3. newCachedThreadPool</span><br><span class="line">    创建一个可缓存的线程池。如果线程池的大小超过了处理任务所需要的线程，</span><br><span class="line">那么就会回收部分空闲（60秒不执行任务）的线程，当任务数增加时，此线程池又可以智能的添加新线程来处理任务。此线程池不会对线程池大小做限制，线程池大小完全依赖于操作系统（或者说JVM）能够创建的最大线程大小。</span><br><span class="line">4.newScheduledThreadPool</span><br><span class="line">    创建一个大小无限的线程池。此线程池支持定时以及周期性执行任务的需求。</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line">1、newSingleThreadExecutor</span><br><span class="line">MyThread.java</span><br><span class="line">public class MyThread extends Thread &#123;    @Override    public void run() &#123;        System.out.println(Thread.currentThread().getName() + &quot;正在执行。。。&quot;);    &#125;&#125;</span><br><span class="line">TestSingleThreadExecutor.java</span><br><span class="line">public class TestSingleThreadExecutor &#123;    public static void main(String[] args) &#123;        //创建一个可重用固定线程数的线程池        ExecutorService pool = Executors. newSingleThreadExecutor();        //创建实现了Runnable接口对象，Thread对象当然也实现了Runnable接口        Thread t1 = new MyThread();        Thread t2 = new MyThread();        Thread t3 = new MyThread();        Thread t4 = new MyThread();        Thread t5 = new MyThread();        //将线程放入池中进行执行        pool.execute(t1);        pool.execute(t2);        pool.execute(t3);        pool.execute(t4);        pool.execute(t5);        //关闭线程池        pool.shutdown();    &#125;&#125;</span><br><span class="line">输出结果</span><br><span class="line">pool-1-thread-1正在执行。。。pool-1-thread-1正在执行。。。pool-1-thread-1正在执行。。。pool-1-thread-1正在执行。。。pool-1-thread-1正在执行。。。</span><br><span class="line"></span><br><span class="line">2、newFixedThreadPool</span><br><span class="line">TestFixedThreadPool.Java</span><br><span class="line">public class TestFixedThreadPool &#123;    public static void main(String[] args) &#123;        //创建一个可重用固定线程数的线程池        ExecutorService pool = Executors.newFixedThreadPool(2);        //创建实现了Runnable接口对象，Thread对象当然也实现了Runnable接口        Thread t1 = new MyThread();        Thread t2 = new MyThread();        Thread t3 = new MyThread();        Thread t4 = new MyThread();        Thread t5 = new MyThread();        //将线程放入池中进行执行        pool.execute(t1);        pool.execute(t2);        pool.execute(t3);        pool.execute(t4);        pool.execute(t5);        //关闭线程池        pool.shutdown();    &#125;&#125;</span><br><span class="line">输出结果</span><br><span class="line">pool-1-thread-1正在执行。。。pool-1-thread-2正在执行。。。pool-1-thread-1正在执行。。。pool-1-thread-2正在执行。。。pool-1-thread-1正在执行。。。</span><br><span class="line">3、newCachedThreadPool</span><br><span class="line">TestCachedThreadPool.java</span><br><span class="line">public class TestCachedThreadPool &#123;    public static void main(String[] args) &#123;        //创建一个可重用固定线程数的线程池        ExecutorService pool = Executors.newCachedThreadPool();        //创建实现了Runnable接口对象，Thread对象当然也实现了Runnable接口        Thread t1 = new MyThread();        Thread t2 = new MyThread();        Thread t3 = new MyThread();        Thread t4 = new MyThread();        Thread t5 = new MyThread();        //将线程放入池中进行执行        pool.execute(t1);        pool.execute(t2);        pool.execute(t3);        pool.execute(t4);        pool.execute(t5);        //关闭线程池        pool.shutdown();    &#125;&#125;</span><br><span class="line">输出结果：</span><br><span class="line">pool-1-thread-2正在执行。。。pool-1-thread-4正在执行。。。pool-1-thread-3正在执行。。。pool-1-thread-1正在执行。。。pool-1-thread-5正在执行。。。</span><br><span class="line">4、newScheduledThreadPool</span><br><span class="line">TestScheduledThreadPoolExecutor.java</span><br><span class="line">public class TestScheduledThreadPoolExecutor &#123;    public static void main(String[] args) &#123;        ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);        exec.scheduleAtFixedRate(new Runnable() &#123;//每隔一段时间就触发异常                      @Override                      publicvoid run() &#123;                           //throw new RuntimeException();                           System.out.println(&quot;================&quot;);                      &#125;                  &#125;, 1000, 5000, TimeUnit.MILLISECONDS);        exec.scheduleAtFixedRate(new Runnable() &#123;//每隔一段时间打印系统时间，证明两者是互不影响的                      @Override                      publicvoid run() &#123;                           System.out.println(System.nanoTime());                      &#125;                  &#125;, 1000, 2000, TimeUnit.MILLISECONDS);    &#125;&#125;</span><br><span class="line">输出结果</span><br><span class="line">================838464454951683866438290348388643830710================839064385138383926438793198400643939383</span><br><span class="line"></span><br><span class="line">三：ThreadPoolExecutor详解</span><br><span class="line">ThreadPoolExecutor的完整构造方法的签名是：ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue&lt;Runnable&gt; workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) .</span><br><span class="line">    corePoolSize - 池中所保存的线程数，包括空闲线程。 5   </span><br><span class="line">    maximumPoolSize-池中允许的最大线程数。  8  当前运行7  （6.7准备运行 2不执行任务（2s））</span><br><span class="line">    keepAliveTime - 当线程数大于核心时，此为终止前多余的空闲线程等待新任务的最长时间。 2</span><br><span class="line">    unit - keepAliveTime 参数的时间单位。hour</span><br><span class="line">    workQueue - 执行前用于保持任务的队列。此队列仅保持由 execute方法提交的 Runnable任务。</span><br><span class="line">    threadFactory - 执行程序创建新线程时使用的工厂。</span><br><span class="line">    handler - 由于超出线程范围和队列容量而使执行被阻塞时所使用的处理程序。</span><br><span class="line">    ThreadPoolExecutor是Executors类的底层实现。</span><br><span class="line"></span><br><span class="line">在JDK帮助文档中，有如此一段话：</span><br><span class="line">“强烈建议程序员使用较为方便的Executors工厂方法Executors.newCachedThreadPool()（无界线程池，可以进行自动线程回收）、Executors.newFixedThreadPool(int)（固定大小线程池）Executors.newSingleThreadExecutor()（单个后台线程）</span><br><span class="line">它们均为大多数使用场景预定义了设置。”</span><br><span class="line">下面介绍一下几个类的源码：</span><br><span class="line">ExecutorService  newFixedThreadPool (int nThreads):固定大小线程池。</span><br><span class="line">可以看到，corePoolSize和maximumPoolSize的大小是一样的（实际上，后面会介绍，如果使用无界queue的话maximumPoolSize参数是没有意义的），keepAliveTime和unit的设值表名什么？-就是该实现不想keep alive！最后的BlockingQueue选择了LinkedBlockingQueue，该queue有一个特点，他是无界的。</span><br><span class="line">1.     public static ExecutorService newFixedThreadPool(int nThreads) &#123;   2.             return new ThreadPoolExecutor(nThreads, nThreads,   3.                                           0L, TimeUnit.MILLISECONDS,   4.                                           new LinkedBlockingQueue&lt;Runnable&gt;());   5.         &#125;</span><br><span class="line">ExecutorService  newSingleThreadExecutor()：单线程</span><br><span class="line">1.     public static ExecutorService newSingleThreadExecutor() &#123;   2.             return new FinalizableDelegatedExecutorService   3.                 (new ThreadPoolExecutor(1, 1,   4.                                         0L, TimeUnit.MILLISECONDS,   5.                                         new LinkedBlockingQueue&lt;Runnable&gt;()));   6.         &#125;</span><br><span class="line">ExecutorService newCachedThreadPool()：无界线程池，可以进行自动线程回收</span><br><span class="line">这个实现就有意思了。首先是无界的线程池，所以我们可以发现maximumPoolSize为big big。其次BlockingQueue的选择上使用SynchronousQueue。可能对于该BlockingQueue有些陌生，简单说：该QUEUE中，每个插入操作必须等待另一个线程的对应移除操作。</span><br><span class="line">1.     public static ExecutorService newCachedThreadPool() &#123;   2.             return new ThreadPoolExecutor(0, Integer.MAX_VALUE,   3.                                           60L, TimeUnit.SECONDS,   4.                                           new SynchronousQueue&lt;Runnable&gt;());       1.     &#125;</span><br><span class="line">先从BlockingQueue&lt;Runnable&gt; workQueue这个入参开始说起。在JDK中，其实已经说得很清楚了，一共有三种类型的queue。</span><br><span class="line">所有BlockingQueue 都可用于传输和保持提交的任务。可以使用此队列与池大小进行交互：</span><br><span class="line">如果运行的线程少于 corePoolSize，则 Executor始终首选添加新的线程，而不进行排队。（如果当前运行的线程小于corePoolSize，则任务根本不会存放，添加到queue中，而是直接抄家伙（thread）开始运行）</span><br><span class="line">如果运行的线程等于或多于 corePoolSize，则 Executor始终首选将请求加入队列，而不添加新的线程。</span><br><span class="line">如果无法将请求加入队列，则创建新的线程，除非创建此线程超出 maximumPoolSize，在这种情况下，任务将被拒绝。</span><br><span class="line">queue上的三种类型。</span><br><span class="line">排队有三种通用策略：</span><br><span class="line">直接提交。工作队列的默认选项是 SynchronousQueue，它将任务直接提交给线程而不保持它们。在此，如果不存在可用于立即运行任务的线程，则试图把任务加入队列将失败，因此会构造一个新的线程。此策略可以避免在处理可能具有内部依赖性的请求集时出现锁。直接提交通常要求无界 maximumPoolSizes 以避免拒绝新提交的任务。当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。</span><br><span class="line">无界队列。使用无界队列（例如，不具有预定义容量的 LinkedBlockingQueue）将导致在所有corePoolSize 线程都忙时新任务在队列中等待。这样，创建的线程就不会超过 corePoolSize。（因此，maximumPoolSize的值也就无效了。）当每个任务完全独立于其他任务，即任务执行互不影响时，适合于使用无界队列；例如，在 Web页服务器中。这种排队可用于处理瞬态突发请求，当命令以超过队列所能处理的平均数连续到达时，此策略允许无界线程具有增长的可能性。</span><br><span class="line">有界队列。当使用有限的 maximumPoolSizes时，有界队列（如 ArrayBlockingQueue）有助于防止资源耗尽，但是可能较难调整和控制。队列大小和最大池大小可能需要相互折衷：使用大型队列和小型池可以最大限度地降低 CPU 使用率、操作系统资源和上下文切换开销，但是可能导致人工降低吞吐量。如果任务频繁阻塞（例如，如果它们是 I/O边界），则系统可能为超过您许可的更多线程安排时间。使用小型队列通常要求较大的池大小，CPU使用率较高，但是可能遇到不可接受的调度开销，这样也会降低吞吐量。  </span><br><span class="line">BlockingQueue的选择。</span><br><span class="line">例子一：使用直接提交策略，也即SynchronousQueue。</span><br><span class="line">首先SynchronousQueue是无界的，也就是说他存数任务的能力是没有限制的，但是由于该Queue本身的特性，在某次添加元素后必须等待其他线程取走后才能继续添加。在这里不是核心线程便是新创建的线程，但是我们试想一样下，下面的场景。</span><br><span class="line">我们使用一下参数构造ThreadPoolExecutor：</span><br><span class="line">new ThreadPoolExecutor(</span><br><span class="line">  2, 3, 30, TimeUnit.SECONDS,</span><br><span class="line">  new SynchronousQueue&lt;Runnable&gt;(),</span><br><span class="line">  new RecorderThreadFactory(&quot;CookieRecorderPool&quot;),</span><br><span class="line">  new ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line"> 当核心线程已经有2个正在运行.</span><br><span class="line">    1. 此时继续来了一个任务（A），根据前面介绍的“如果运行的线程等于或多于 corePoolSize，则Executor始终首选将请求加入队列，而不添加新的线程。”,所以A被添加到queue中。</span><br><span class="line">    2. 又来了一个任务（B），且核心2个线程还没有忙完，OK，接下来首先尝试1中描述，但是由于使用的SynchronousQueue，所以一定无法加入进去。</span><br><span class="line">    3. 此时便满足了上面提到的“如果无法将请求加入队列，则创建新的线程，除非创建此线程超出maximumPoolSize，在这种情况下，任务将被拒绝。”，所以必然会新建一个线程来运行这个任务。</span><br><span class="line">    4. 暂时还可以，但是如果这三个任务都还没完成，连续来了两个任务，第一个添加入queue中，后一个呢？queue中无法插入，而线程数达到了maximumPoolSize，所以只好执行异常策略了。</span><br><span class="line">所以在使用SynchronousQueue通常要求maximumPoolSize是无界的，这样就可以避免上述情况发生（如果希望限制就直接使用有界队列）。对于使用SynchronousQueue的作用jdk中写的很清楚：此策略可以避免在处理可能具有内部依赖性的请求集时出现锁。</span><br><span class="line">什么意思？如果你的任务A1，A2有内部关联，A1需要先运行，那么先提交A1，再提交A2，当使用SynchronousQueue我们可以保证，A1必定先被执行，在A1么有被执行前，A2不可能添加入queue中。</span><br><span class="line">例子二：使用无界队列策略，即LinkedBlockingQueue</span><br><span class="line">这个就拿newFixedThreadPool来说，根据前文提到的规则：</span><br><span class="line">如果运行的线程少于 corePoolSize，则 Executor 始终首选添加新的线程，而不进行排队。那么当任务继续增加，会发生什么呢？</span><br><span class="line">如果运行的线程等于或多于 corePoolSize，则 Executor 始终首选将请求加入队列，而不添加新的线程。OK，此时任务变加入队列之中了，那什么时候才会添加新线程呢？</span><br><span class="line">如果无法将请求加入队列，则创建新的线程，除非创建此线程超出 maximumPoolSize，在这种情况下，任务将被拒绝。这里就很有意思了，可能会出现无法加入队列吗？不像SynchronousQueue那样有其自身的特点，对于无界队列来说，总是可以加入的（资源耗尽，当然另当别论）。换句说，永远也不会触发产生新的线程！corePoolSize大小的线程数会一直运行，忙完当前的，就从队列中拿任务开始运行。所以要防止任务疯长，比如任务运行的实行比较长，而添加任务的速度远远超过处理任务的时间，而且还不断增加，不一会儿就爆了。</span><br><span class="line">例子三：有界队列，使用ArrayBlockingQueue。</span><br><span class="line">这个是最为复杂的使用，所以JDK不推荐使用也有些道理。与上面的相比，最大的特点便是可以防止资源耗尽的情况发生。</span><br><span class="line">举例来说，请看如下构造方法：</span><br><span class="line">new ThreadPoolExecutor(</span><br><span class="line">    2, 4, 30, TimeUnit.SECONDS,</span><br><span class="line">    new ArrayBlockingQueue&lt;Runnable&gt;(2),</span><br><span class="line">    new RecorderThreadFactory(&quot;CookieRecorderPool&quot;),</span><br><span class="line">    new ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line">假设，所有的任务都永远无法执行完。</span><br><span class="line">对于首先来的A,B来说直接运行，接下来，如果来了C,D，他们会被放到queue中，如果接下来再来E,F，则增加线程运行E，F。但是如果再来任务，队列无法再接受了，线程数也到达最大的限制了，所以就会使用拒绝策略来处理。</span><br><span class="line">keepAliveTime</span><br><span class="line">jdk中的解释是：当线程数大于核心时，此为终止前多余的空闲线程等待新任务的最长时间。</span><br><span class="line">有点拗口，其实这个不难理解，在使用了“池”的应用中，大多都有类似的参数需要配置。比如数据库连接池，DBCP中的maxIdle，minIdle参数。</span><br><span class="line">什么意思？接着上面的解释，后来向老板派来的工人始终是“借来的”，俗话说“有借就有还”，但这里的问题就是什么时候还了，如果借来的工人刚完成一个任务就还回去，后来发现任务还有，那岂不是又要去借？这一来一往，老板肯定头也大死了。</span><br><span class="line"> </span><br><span class="line">合理的策略：既然借了，那就多借一会儿。直到“某一段”时间后，发现再也用不到这些工人时，便可以还回去了。这里的某一段时间便是keepAliveTime的含义，TimeUnit为keepAliveTime值的度量。</span><br><span class="line"> </span><br><span class="line">RejectedExecutionHandler</span><br><span class="line">另一种情况便是，即使向老板借了工人，但是任务还是继续过来，还是忙不过来，这时整个队伍只好拒绝接受了。</span><br><span class="line">RejectedExecutionHandler接口提供了对于拒绝任务的处理的自定方法的机会。在ThreadPoolExecutor中已经默认包含了4中策略，因为源码非常简单，这里直接贴出来。</span><br><span class="line">CallerRunsPolicy：线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。</span><br><span class="line">1.     public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;   </span><br><span class="line">2.                 if (!e.isShutdown()) &#123;   </span><br><span class="line">3.                     r.run();   </span><br><span class="line">4.                 &#125;   </span><br><span class="line">5.             &#125;  </span><br><span class="line">public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;</span><br><span class="line">           if (!e.isShutdown()) &#123;</span><br><span class="line">               r.run();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">这个策略显然不想放弃执行任务。但是由于池中已经没有任何资源了，那么就直接使用调用该execute的线程本身来执行。</span><br><span class="line">AbortPolicy：处理程序遭到拒绝将抛出运行时RejectedExecutionException</span><br><span class="line">1.     public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;   </span><br><span class="line">2.                 throw new RejectedExecutionException();   </span><br><span class="line">3.             &#125;  </span><br><span class="line">public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;</span><br><span class="line">           throw new RejectedExecutionException();</span><br><span class="line">       &#125;</span><br><span class="line"> 这种策略直接抛出异常，丢弃任务。</span><br><span class="line">DiscardPolicy：不能执行的任务将被删除</span><br><span class="line">1.     public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;   </span><br><span class="line">2.             &#125;  </span><br><span class="line">public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;</span><br><span class="line">       &#125;</span><br><span class="line"> 这种策略和AbortPolicy几乎一样，也是丢弃任务，只不过他不抛出异常。</span><br><span class="line">DiscardOldestPolicy：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）</span><br><span class="line">1.     public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;   </span><br><span class="line">2.                 if (!e.isShutdown()) &#123;   </span><br><span class="line">3.                     e.getQueue().poll();   </span><br><span class="line">4.                     e.execute(r);   </span><br><span class="line">5.                 &#125;   </span><br><span class="line">    1.         &#125;  </span><br><span class="line">public void rejectedExecution(Runnable r, ThreadPoolExecutor e) &#123;</span><br><span class="line">           if (!e.isShutdown()) &#123;</span><br><span class="line">               e.getQueue().poll();</span><br><span class="line">               e.execute(r);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">该策略就稍微复杂一些，在pool没有关闭的前提下首先丢掉缓存在队列中的最早的任务，然后重新尝试运行该任务。这个策略需要适当小心。</span><br><span class="line">设想:如果其他线程都还在运行，那么新来任务踢掉旧任务，缓存在queue中，再来一个任务又会踢掉queue中最老任务。</span><br><span class="line">总结：</span><br><span class="line">keepAliveTime和maximumPoolSize及BlockingQueue的类型均有关系。如果BlockingQueue是无界的，那么永远不会触发maximumPoolSize，自然keepAliveTime也就没有了意义。</span><br><span class="line">反之，如果核心数较小，有界BlockingQueue数值又较小，同时keepAliveTime又设的很小，如果任务频繁，那么系统就会频繁的申请回收线程。</span><br><span class="line">public static ExecutorService newFixedThreadPool(int nThreads) &#123;</span><br><span class="line">       return new ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                     0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                     new LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1056,7 +1400,7 @@ dependencies {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/18/Week08-day04/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java23-XML解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -1075,7 +1419,7 @@ dependencies {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/18/Week08-day04/" itemprop="url">Week08-day04</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java23-XML解析/" itemprop="url">Java23-XML解析</a></h1>
         
 
         <div class="post-meta">
@@ -1087,8 +1431,8 @@ dependencies {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-18T09:01:27+08:00">
-                2016-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
               </time>
             
 
@@ -1127,1031 +1471,9 @@ dependencies {
       
         
           
-            <h2 id="Week08-day04"><a href="#Week08-day04" class="headerlink" title="Week08-day04"></a>Week08-day04</h2><h5 id="2016-10-18-星期二-9-01-27"><a href="#2016-10-18-星期二-9-01-27" class="headerlink" title="2016/10/18 星期二 9:01:27"></a>2016/10/18 星期二 9:01:27</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾Picasso框架、ViewPagerIndicator</strong></li>
-<li><strong>视频播放</strong></li>
-<li><strong>数据库框架</strong></li>
-</ol>
-<hr>
-<h3 id="修改Picasso使用OkHttp3的下载器"><a href="#修改Picasso使用OkHttp3的下载器" class="headerlink" title="修改Picasso使用OkHttp3的下载器"></a>修改Picasso使用OkHttp3的下载器</h3><ol>
-<li>用默认的2.x的OkHttp</li>
-<li>自己写基于Okhttp3的OkHttpDownloader</li>
-</ol>
-<hr>
-<h3 id="视频播放"><a href="#视频播放" class="headerlink" title="视频播放"></a>视频播放</h3><ol>
-<li><strong>VideoView</strong><ol>
-<li>放raw目录下</li>
-</ol>
-</li>
-<li><strong>MediaPlayer+SurfaceView</strong><ol>
-<li>放assets目录下</li>
-<li><img src="http://i.imgur.com/A8ErzfG.png" alt=""><ul>
-<li>双缓冲：帧动画，开启新线程提前画好下一帧，然后不擦除，直接替换</li>
-</ul>
-</li>
-<li><img src="http://i.imgur.com/MyveLA3.png" alt=""></li>
-<li><img src="http://i.imgur.com/eQzlF6g.png" alt=""></li>
-</ol>
-</li>
-<li><p><strong>三方框架：Vitamio</strong></p>
-<ol>
-<li><p>在清单配置文件中注册Vitamiosdk</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Don&apos;t forgot InitActivity --&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=&quot;io.vov.vitamio.activity.InitActivity&quot;</span><br><span class="line">            android:configChanges=&quot;orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation&quot;</span><br><span class="line">            android:launchMode=&quot;singleTop&quot;</span><br><span class="line">            android:theme=&quot;@android:style/Theme.NoTitleBar&quot;</span><br><span class="line">            android:windowSoftInputMode=&quot;stateAlwaysHidden&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>初始化vitamio的sdk</p>
-<ul>
-<li><img src="http://i.imgur.com/9oIGR3R.png" alt=""></li>
-</ul>
-</li>
-<li><img src="http://i.imgur.com/ahHyDLf.png" alt=""></li>
-<li><img src="http://i.imgur.com/3GVX9f4.png" alt=""></li>
-<li><img src="http://i.imgur.com/zTDl0wg.png" alt=""></li>
-<li><img src="http://i.imgur.com/ifdxRhn.png" alt=""></li>
-</ol>
-</li>
-</ol>
-<hr>
-<p>###数据库框架</p>
-<p>####ORMLite框架（基于ORM的数据库框架）:ORM：对象 - 关系 映射,即一个对象 对应 数据库中一个表</p>
-<pre><code>1. 导包
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.j256.ormlite:ormlite-android:5.0&apos;</span><br></pre></td></tr></table></figure>
-
-2. 创建一个数据库帮助类继承OrmLiteSqliteOpenHelper（单例）
-    - ![](http://i.imgur.com/fjUZXcE.png)
-3. 创建对象类，一定要有一个无参构造方法
-    - ![](http://i.imgur.com/YzBcB8f.png)
-4. 在帮助类创建表
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">            //创建一张Person表</span><br><span class="line">            TableUtils.createTable(connectionSource,Person.class);</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-5. 一个表对应一个Dao，在帮助类中写一个暴露的方法，获得即数据库的业务类，里面会封装CURD的方法
-    - ![](http://i.imgur.com/rwAZMNA.png)
-6. 插入一条数据
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private void insertData() &#123;</span><br><span class="line">        //插入一条数据</span><br><span class="line">        int age = (int) (Math.random() * 100);</span><br><span class="line">        Person person = new Person(&quot;hjj&quot;, age, &quot;zz一枚&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            mPersonDao.createIfNotExists(person);</span><br><span class="line"></span><br><span class="line">            mAdapeter.setData(queryAllData());</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-7. 删除一条数据
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">private void deleteData() &#123;</span><br><span class="line">        if (queryAllData() != null) &#123;</span><br><span class="line">            Person person = queryAllData().get(0);</span><br><span class="line">            try &#123;</span><br><span class="line">                mPersonDao.delete(person);</span><br><span class="line">                mAdapeter.setData(queryAllData());</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-8. 查询
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Person&gt; data = mPersonDao.queryBuilder().where().like(&quot;age&quot;, s + &quot;%&quot;).query();</span><br></pre></td></tr></table></figure>
-</code></pre><hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>GC会优先回收null的对象</li>
-<li>View的手势监听<ul>
-<li><img src="http://i.imgur.com/4GOxn9g.png" alt=""></li>
-<li><img src="http://i.imgur.com/JlqXO6F.png" alt=""></li>
-</ul>
-</li>
-<li>记一些常见的异常<ol>
-<li>NullPointerException - 空指针引用异常<br>ClassCastException - 类型强制转换异常。<br>IllegalArgumentException - 传递非法参数异常。<br>ArithmeticException - 算术运算异常<br>ArrayStoreException - 向数组中存放与声明类型不兼容对象异常<br>IndexOutOfBoundsException - 下标越界异常<br>NegativeArraySizeException - 创建一个大小为负数的数组错误异常<br>NumberFormatException - 数字格式异常<br>SecurityException - 安全异常<br>UnsupportedOperationException - 不支持的操作异常</li>
-<li>算术异常类：ArithmeticExecption<br>空指针异常类：NullPointerException<br>类型强制转换异常：ClassCastException<br>数组负下标异常：NegativeArrayException<br>数组下标越界异常：ArrayIndexOutOfBoundsException<br>违背安全原则异常：SecturityException<br>文件已结束异常：EOFException<br>文件未找到异常：FileNotFoundException<br>字符串转换为数字异常：NumberFormatException<br>操作数据库异常：SQLException<br>输入输出异常：IOException<br>方法未找到异常：NoSuchMethodException<br>Java.lang.AbstractMethodError<br>抽象方法错误。当应用试图调用抽象方法时抛出。</li>
-</ol>
-</li>
-</ol>
-<p>java.lang.AssertionError<br>断言错。用来指示一个断言失败的情况。</p>
-<p>java.lang.ClassCircularityError<br>类循环依赖错误。在初始化一个类时，若检测到类之间循环依赖则抛出该异常。</p>
-<p>java.lang.ClassFormatError<br>类格式错误。当Java虚拟机试图从一个文件中读取Java类，而检测到该文件的内容不符合类的有效格式时抛出。</p>
-<p>java.lang.Error<br>错误。是所有错误的基类，用于标识严重的程序运行问题。这些问题通常描述一些不应被应用程序捕获的反常情况。</p>
-<p>java.lang.ExceptionInInitializerError<br>初始化程序错误。当执行一个类的静态初始化程序的过程中，发生了异常时抛出。静态初始化程序是指直接包含于类中的static语句段。</p>
-<p>java.lang.IllegalAccessError<br>违法访问错误。当一个应用试图访问、修改某个类的域（Field）或者调用其方法，但是又违反域或方法的可见性声明，则抛出该异常。</p>
-<p>java.lang.IncompatibleClassChangeError<br>不兼容的类变化错误。当正在执行的方法所依赖的类定义发生了不兼容的改变时，抛出该异常。一般在修改了应用中的某些类的声明定义而没有对整个应用重新编译而直接运行的情况下，容易引发该错误。</p>
-<p>java.lang.InstantiationError<br>实例化错误。当一个应用试图通过Java的new操作符构造一个抽象类或者接口时抛出该异常.</p>
-<p>java.lang.InternalError<br>内部错误。用于指示Java虚拟机发生了内部错误。</p>
-<p>java.lang.LinkageError<br>链接错误。该错误及其所有子类指示某个类依赖于另外一些类，在该类编译之后，被依赖的类改变了其类定义而没有重新编译所有的类，进而引发错误的情况。</p>
-<p>java.lang.NoClassDefFoundError<br>未找到类定义错误。当Java虚拟机或者类装载器试图实例化某个类，而找不到该类的定义时抛出该错误。</p>
-<p>java.lang.NoSuchFieldError<br>域不存在错误。当应用试图访问或者修改某类的某个域，而该类的定义中没有该域的定义时抛出该错误。</p>
-<p>java.lang.NoSuchMethodError<br>方法不存在错误。当应用试图调用某类的某个方法，而该类的定义中没有该方法的定义时抛出该错误。</p>
-<p>java.lang.OutOfMemoryError<br>内存不足错误。当可用内存不足以让Java虚拟机分配给一个对象时抛出该错误。</p>
-<p>java.lang.StackOverflowError<br>堆栈溢出错误。当一个应用递归调用的层次太深而导致堆栈溢出时抛出该错误。</p>
-<p>java.lang.ThreadDeath<br>线程结束。当调用Thread类的stop方法时抛出该错误，用于指示线程结束。</p>
-<p>java.lang.UnknownError<br>未知错误。用于指示Java虚拟机发生了未知严重错误的情况。</p>
-<p>java.lang.UnsatisfiedLinkError<br>未满足的链接错误。当Java虚拟机未找到某个类的声明为native方法的本机语言定义时抛出。</p>
-<p>java.lang.UnsupportedClassVersionError<br>不支持的类版本错误。当Java虚拟机试图从读取某个类文件，但是发现该文件的主、次版本号不被当前Java虚拟机支持的时候，抛出该错误。</p>
-<p>java.lang.VerifyError<br>验证错误。当验证器检测到某个类文件中存在内部不兼容或者安全问题时抛出该错误。</p>
-<p>java.lang.VirtualMachineError<br>虚拟机错误。用于指示虚拟机被破坏或者继续执行操作所需的资源不足的情况。</p>
-<p>java.lang.ArithmeticException<br>算术条件异常。譬如：整数除零等。</p>
-<p>java.lang.ArrayIndexOutOfBoundsException<br>数组索引越界异常。当对数组的索引值为负数或大于等于数组大小时抛出。</p>
-<p>java.lang.ArrayStoreException<br>数组存储异常。当向数组中存放非数组声明类型对象时抛出。</p>
-<p>java.lang.ClassCastException<br>类造型异常。假设有类A和B（A不是B的父类或子类），O是A的实例，那么当强制将O构造为类B的实例时抛出该异常。该异常经常被称为强制类型转换异常。</p>
-<p>java.lang.ClassNotFoundException<br>找不到类异常。当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH之后找不到对应名称的class文件时，抛出该异常。</p>
-<p>java.lang.CloneNotSupportedException<br>不支持克隆异常。当没有实现Cloneable接口或者不支持克隆方法时,调用其clone()方法则抛出该异常。</p>
-<p>java.lang.EnumConstantNotPresentException<br>枚举常量不存在异常。当应用试图通过名称和枚举类型访问一个枚举对象，但该枚举对象并不包含常量时，抛出该异常。</p>
-<p>java.lang.Exception<br>根异常。用以描述应用程序希望捕获的情况。</p>
-<p>java.lang.IllegalAccessException<br>违法的访问异常。当应用试图通过反射方式创建某个类的实例、访问该类属性、调用该类方法，而当时又无法访问类的、属性的、方法的或构造方法的定义时抛出该异常。</p>
-<p>java.lang.IllegalMonitorStateException<br>违法的监控状态异常。当某个线程试图等待一个自己并不拥有的对象（O）的监控器或者通知其他线程等待该对象（O）的监控器时，抛出该异常。</p>
-<p>java.lang.IllegalStateException<br>违法的状态异常。当在Java环境和应用尚未处于某个方法的合法调用状态，而调用了该方法时，抛出该异常。</p>
-<p>java.lang.IllegalThreadStateException<br>违法的线程状态异常。当县城尚未处于某个方法的合法调用状态，而调用了该方法时，抛出异常。</p>
-<p>java.lang.IndexOutOfBoundsException<br>索引越界异常。当访问某个序列的索引值小于0或大于等于序列大小时，抛出该异常。</p>
-<p>java.lang.InstantiationException<br>实例化异常。当试图通过newInstance()方法创建某个类的实例，而该类是一个抽象类或接口时，抛出该异常。</p>
-<p>java.lang.InterruptedException<br>被中止异常。当某个线程处于长时间的等待、休眠或其他暂停状态，而此时其他的线程通过Thread的interrupt方法终止该线程时抛出该异常。</p>
-<p>java.lang.NegativeArraySizeException<br>数组大小为负值异常。当使用负数大小值创建数组时抛出该异常。</p>
-<p>java.lang.NoSuchFieldException<br>属性不存在异常。当访问某个类的不存在的属性时抛出该异常。</p>
-<p>java.lang.NoSuchMethodException<br>方法不存在异常。当访问某个类的不存在的方法时抛出该异常。</p>
-<p>java.lang.NullPointerException<br>空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等。</p>
-<p>java.lang.NumberFormatException<br>数字格式异常。当试图将一个String转换为指定的数字类型，而该字符串确不满足数字类型要求的格式时，抛出该异常。</p>
-<p>java.lang.RuntimeException<br>运行时异常。是所有Java虚拟机正常操作期间可以被抛出的异常的父类。</p>
-<p>java.lang.SecurityException<br>安全异常。由安全管理器抛出，用于指示违反安全情况的异常。</p>
-<p>java.lang.StringIndexOutOfBoundsException<br>字符串索引越界异常。当使用索引值访问某个字符串中的字符，而该索引值小于0或大于等于序列大小时，抛出该异常。</p>
-<p>java.lang.TypeNotPresentException<br>类型不存在异常。当应用试图以某个类型名称的字符串表达方式访问该类型，但是根据给定的名称又找不到该类型是抛出该异常。该异常与ClassNotFoundException的区别在于该异常是unchecked（不被检查）异常，而ClassNotFoundException是checked（被检查）异常。</p>
-<p>java.lang.UnsupportedOperationException<br>不支持的方法异常。指明请求的方法不被支持情况的异常。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/17/Week08-day03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/17/Week08-day03/" itemprop="url">Week08-day03</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-17T09:01:28+08:00">
-                2016-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week08-day03"><a href="#Week08-day03" class="headerlink" title="Week08-day03"></a>Week08-day03</h2><h5 id="2016-10-17-星期一-9-01-28"><a href="#2016-10-17-星期一-9-01-28" class="headerlink" title="2016/10/17 星期一 9:01:28"></a>2016/10/17 星期一 9:01:28</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>作业</strong></li>
-<li><strong>Picasso</strong></li>
-<li><strong>视频或者数据库</strong></li>
-</ol>
-<h3 id="Picasso"><a href="#Picasso" class="headerlink" title="Picasso"></a>Picasso</h3><ol>
-<li><p>最基本的使用方式：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(&quot;http://i.imgur.com/DvpvklR.png&quot;).into(imageView);</span><br><span class="line">Picasso.with(context).load(R.drawable.landing_screen).into(imageView1);</span><br><span class="line">Picasso.with(context).load(&quot;file:///android_asset/DvpvklR.png&quot;).into(imageView2);</span><br><span class="line">Picasso.with(context).load(new File(...)).into(imageView3);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><img src="http://i.imgur.com/0GRFPon.png" alt=""></li>
-</ul>
-</li>
-<li><p>添加加载中、加载失败的图片显示</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">    .load(url)</span><br><span class="line">    .placeholder(R.drawable.user_placeholder)</span><br><span class="line">    .error(R.drawable.user_placeholder_error)</span><br><span class="line">    .into(imageView);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义图形转换</p>
-</li>
-<li>Application中进行全局配置<ul>
-<li><img src="http://i.imgur.com/RAa8y8r.png" alt=""></li>
-<li><img src="http://i.imgur.com/vZQwePW.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<h3 id="ViewPagerIndicator（JakeWharton）"><a href="#ViewPagerIndicator（JakeWharton）" class="headerlink" title="ViewPagerIndicator（JakeWharton）"></a>ViewPagerIndicator（JakeWharton）</h3><p>1.在attrs下看自定义属性</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/13/Week08-day01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/13/Week08-day01/" itemprop="url">Week08-day01</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T09:16:14+08:00">
-                2016-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week08-day01"><a href="#Week08-day01" class="headerlink" title="Week08-day01"></a>Week08-day01</h2><h5 id="2016-10-13-星期四-9-16-14"><a href="#2016-10-13-星期四-9-16-14" class="headerlink" title="2016/10/13 星期四 9:16:14"></a>2016/10/13 星期四 9:16:14</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾Http协议</strong></li>
-<li><strong>OKHttp3</strong></li>
-<li><strong>Picasso</strong></li>
-</ol>
-<h3 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h3><ol>
-<li>Android中通信常用方式（<strong>两种</strong>）<ol>
-<li>一种基于<strong>Http</strong>协议<ul>
-<li>下方详情：<strong>HTTP协议你所需要知道的</strong></li>
-<li>Http协议基于请求响应模式：服务端高冷，要客户端向服务器请求</li>
-<li>三次握手<ul>
-<li><img src="http://i.imgur.com/OC4uLad.png" alt=""></li>
-<li><img src="http://i.imgur.com/SwttWre.gif" alt=""></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>一种基于<strong>Socket</strong>协议</li>
-<li>OKHttpDemo<ol>
-<li><strong>Get请求</strong><ul>
-<li><strong>同步请求方式</strong>：<ul>
-<li><img src="http://i.imgur.com/KDukRrM.png" alt=""></li>
-<li><img src="http://i.imgur.com/tHSwOGa.png" alt=""></li>
-<li><img src="http://i.imgur.com/yLply08.png" alt=""></li>
-</ul>
-</li>
-<li><strong>异步请求方式</strong><ul>
-<li><img src="http://i.imgur.com/lG9DTy8.png" alt=""></li>
-<li>注意runOnUiThread()<img src="http://i.imgur.com/qjhvMv4.png" alt=""></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Post请求</strong><img src="http://i.imgur.com/wLIZ2Yh.png" alt=""><ul>
-<li>同步请求方式<ul>
-<li>普通请求<img src="http://i.imgur.com/Ti0obvr.png" alt=""></li>
-<li>json请求</li>
-</ul>
-</li>
-<li>异步请求方式<ul>
-<li><img src="http://i.imgur.com/BFLmmFf.png" alt=""></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>下载</strong><ul>
-<li><img src="http://i.imgur.com/JDqLfrU.png" alt=""></li>
-</ul>
-</li>
-<li><strong>在文件系统中开启响应缓存</strong><ul>
-<li><img src="http://i.imgur.com/7YrRo5Z.png" alt=""></li>
-<li>（2.0版本）</li>
-<li><img src="http://i.imgur.com/D5dqJ3Q.png" alt=""> </li>
-</ul>
-</li>
-<li><strong>指定超时时间</strong><ul>
-<li>连接超时15s</li>
-<li>读写超时20s</li>
-<li>（2.0版本）</li>
-<li><img src="http://i.imgur.com/C2sFNcX.png" alt=""></li>
-</ul>
-</li>
-<li><strong>设置tag标记</strong><ul>
-<li>在request中设置tag</li>
-<li>遍历call的两个队列，取消对应request的tag的call的请求<ul>
-<li><img src="http://i.imgur.com/ZO0oDQD.png" alt=""></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h3 id="Android-studio模版修改"><a href="#Android-studio模版修改" class="headerlink" title="Android studio模版修改"></a>Android studio模版修改</h3><ol>
-<li>Android studio安装目录—&gt;plugins—&gt;android—&gt;lib—&gt;templates—&gt;gradle-projects(<strong>先备份</strong>)—&gt;NewAndroidProject—&gt;root<ul>
-<li><img src="http://i.imgur.com/YDZOgzI.png" alt=""></li>
-<li><code>//新添加的ButterKnife的apt的插件</code></li>
-<li><code>classpath &#39;com.neenbedankt.gradle.plugins:android-apt:1.8&#39;</code></li>
-</ul>
-</li>
-<li>…—&gt;NewAndroidModule—&gt;root<ul>
-<li><img src="http://i.imgur.com/bH48opI.png" alt=""></li>
-<li><code>//添加了 引入：apt插件</code></li>
-<li><code>apply plugin: &#39;android-apt&#39;</code></li>
-<li><img src="http://i.imgur.com/NvXfvGp.png" alt=""></li>
-<li><code>//butterknife的包的导入</code></li>
-<li><code>compile &#39;com.jakewharton:butterknife:8.4.0&#39;</code></li>
-<li><code>apt &#39;com.jakewharton:butterknife-compiler:8.4.0&#39;</code></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="HTTP协议你所需要知道的（扩展）"><a href="#HTTP协议你所需要知道的（扩展）" class="headerlink" title="##HTTP协议你所需要知道的（扩展）"></a>##HTTP协议你所需要知道的（扩展）</h2><h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><ul>
-<li>虽然现在已经有很多的开源库帮助我们可以轻而易举的访问网络,  但是我们还是得知道HTTP协议原理。</li>
-</ul>
-<p>###Http简介</p>
-<ul>
-<li>HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。</li>
-<li>基于TCP的协议</li>
-<li>HTTP默认端口号：80</li>
-<li>端口：<ul>
-<li>TCP 0–65535,建议0–1024预留给操作系统，</li>
-<li>UDP 0–65535,</li>
-</ul>
-</li>
-<li><code>HTTP协议基于请求响应模式</code><ul>
-<li>必须先发送请求，服务器才能做出响应</li>
-<li>请求与响应成对的</li>
-</ul>
-</li>
-<li>HTTP协议的版本<ul>
-<li>HTTP/1.1  建立一个连接，可以发送多次请求</li>
-<li>HTTP/1.0  建立一个连接，发送一次请求，断开连接</li>
-</ul>
-</li>
-</ul>
-<p>###HTTP请求</p>
-<pre><code>- Http请求行，请求头，请求体
-</code></pre><ul>
-<li>请求行<ul>
-<li>格式： 请求方式  请求资源路径                协议/版本号</li>
-<li>例如： GET     /video/2015/0709/_wpd.mp4 HTTP/1.1<ul>
-<li>请求方式 Http协议提供了7种方式，常用的有两种get,post</li>
-<li>get:将请求参数追加的url之后，传递到服务器<ul>
-<li>例如：<a href="http://***//video/2015/0709/_wpd.mp4?username=1&amp;page=1&amp;size=10" target="_blank" rel="noopener">http://***//video/2015/0709/_wpd.mp4?username=1&amp;page=1&amp;size=10</a>;</li>
-</ul>
-</li>
-<li>post:将请求参数放置请求体重，用户看不到：所以安全，可以传递大量数据</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>请求头<ul>
-<li>Accept:text/html,image/*    – 支持的数据类型<ul>
-<li>MIME类型格式：大类型/小类型;例如text/html,text/css,text/javascript</li>
-<li>image;application;Video;Audio;message;multipart等等</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Accept-Encoding:gzip        – 支持压缩格式</li>
-<li>Host:<a href="http://www.alex.com" target="_blank" rel="noopener">http://www.alex.com</a> –访问的主机</li>
-</ul>
-</li>
-<li>请求体<ul>
-<li>请求体，用于提交Post请求提交的数据；最后一个请求头和请求体之间存在一个空行</li>
-</ul>
-</li>
-</ul>
-<p>###HTTP响应    </p>
-<pre><code>- 格式：响应行，响应头，响应体
-</code></pre><ol>
-<li>响应行<ul>
-<li>格式：  协议/格式  响应码  </li>
-<li>例如：  HTTP/1.1 200    OK</li>
-</ul>
-</li>
-<li>响应头<ul>
-<li>Server: nginx/1.6.0     – 服务器型号</li>
-<li>Date: Mon, 27 Jun 2016 05:51:06 GMT –时间</li>
-<li>Content-Type: application/json;charset=UTF-8 –数据类型</li>
-<li>Transfer-Encoding: chunked</li>
-<li>Connection: keep-alive 连接状态</li>
-<li>Access-Control-Allow-Origin: *</li>
-</ul>
-</li>
-<li>响应体<ul>
-<li>返回我们需要的数据，比如我们经常拿到的json或者xml等等</li>
-</ul>
-</li>
-</ol>
-<hr>
-<p>###Tips</p>
-<ol>
-<li>将字符串的#rgb转成color资源<ul>
-<li>Color.parseColor(String)</li>
-<li><img src="http://i.imgur.com/qL3WyLY.png" alt=""></li>
-</ul>
-</li>
-<li>Android TextView中可以设置html代码<ul>
-<li><img src="http://i.imgur.com/XY0qSNS.png" alt=""></li>
-<li><img src="http://i.imgur.com/ojqKnRE.png" alt=""></li>
-</ul>
-</li>
-<li>OKHttp工具类的封装<ul>
-<li><img src="http://i.imgur.com/ec1Vykw.png" alt=""></li>
-</ul>
-</li>
-<li>复习接口回调<ul>
-<li><img src="http://i.imgur.com/fCipI12.png" alt=""></li>
-</ul>
-</li>
-<li>复习Handler<ul>
-<li><img src="http://i.imgur.com/I0BYrEE.png" alt=""></li>
-<li><img src="http://i.imgur.com/O8BaNeG.png" alt=""></li>
-</ul>
-</li>
-<li>Map遍历foreach（需要的数据类型：数据源map.entrySet()）</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/13/Week08-09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/13/Week08-09/" itemprop="url">Week08-09</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-13T09:02:11+08:00">
-                2016-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week08-09概要"><a href="#Week08-09概要" class="headerlink" title="Week08-09概要"></a>Week08-09概要</h2><h5 id="2016-10-13-星期四-9-02-11"><a href="#2016-10-13-星期四-9-02-11" class="headerlink" title="2016/10/13 星期四 9:02:11"></a>2016/10/13 星期四 9:02:11</h5><h1 id="主要学习，三方开元框架-和-三方的SDK"><a href="#主要学习，三方开元框架-和-三方的SDK" class="headerlink" title="主要学习，三方开元框架 和 三方的SDK"></a>主要学习，三方开元框架 和 三方的SDK</h1><h3 id="三方开源框架"><a href="#三方开源框架" class="headerlink" title="三方开源框架"></a>三方开源框架</h3><ul>
-<li><strong>网络请求：OKHttp3、Retrofit2</strong></li>
-<li><strong>图片加载：Picasso、Glide</strong></li>
-<li><strong>数据库框架：OrmLite</strong></li>
-<li><strong>刷新框架：Ultra pull to refresh、SwipeRefreshLayout</strong></li>
-<li><strong>测拉框架：SlidingMenu</strong></li>
-<li><strong>视频框架：Vitamio</strong></li>
-<li>…</li>
-</ul>
-<h3 id="三方的SDK"><a href="#三方的SDK" class="headerlink" title="三方的SDK"></a>三方的SDK</h3><ul>
-<li>百度地图</li>
-<li>三方分享</li>
-<li>推送</li>
-<li>三方登陆</li>
-<li>支付</li>
-<li>…</li>
-</ul>
-<h3 id="其他Android高级知识"><a href="#其他Android高级知识" class="headerlink" title="其他Android高级知识"></a>其他Android高级知识</h3><ul>
-<li>android的一些新特性</li>
-<li>版本控制工具</li>
-<li>…</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/11/Week07-Day04笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/11/Week07-Day04笔记/" itemprop="url">Week07_Day04笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-11T11:23:17+08:00">
-                2016-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week07-day04"><a href="#Week07-day04" class="headerlink" title="Week07-day04"></a>Week07-day04</h2><h5 id="2016-10-11-星期二-11-23-17"><a href="#2016-10-11-星期二-11-23-17" class="headerlink" title="2016/10/11 星期二 11:23:17"></a>2016/10/11 星期二 11:23:17</h5><ol>
-<li><strong>自定义进度条</strong> <ol>
-<li>自定义属性获得<ul>
-<li><img src="http://i.imgur.com/V4WJhfJ.png" alt=""></li>
-</ul>
-</li>
-<li>Paint的3种样式<ul>
-<li><img src="http://i.imgur.com/qpP6Hsd.png" alt=""></li>
-</ul>
-</li>
-<li><img src="http://i.imgur.com/tbUgVHJ.png" alt=""></li>
-<li><img src="http://i.imgur.com/VrLDxuH.png" alt=""></li>
-<li><img src="http://i.imgur.com/et8EPeP.png" alt=""></li>
-<li>设置当前进度<ul>
-<li><img src="http://i.imgur.com/1uCikko.png" alt=""></li>
-</ul>
-</li>
-</ol>
-</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/10/Week07-Day03笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/10/Week07-Day03笔记/" itemprop="url">Week07_Day03笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T09:41:32+08:00">
-                2016-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week07-day03"><a href="#Week07-day03" class="headerlink" title="Week07-day03"></a>Week07-day03</h2><h5 id="2016-10-10-星期一-9-41-32"><a href="#2016-10-10-星期一-9-41-32" class="headerlink" title="2016/10/10 星期一 9:41:32"></a>2016/10/10 星期一 9:41:32</h5><ol>
-<li><h3 id="在res下新建color文件夹，可以创建颜色选择器"><a href="#在res下新建color文件夹，可以创建颜色选择器" class="headerlink" title="在res下新建color文件夹，可以创建颜色选择器"></a>在res下新建color文件夹，可以创建颜色选择器</h3><ul>
-<li><img src="http://i.imgur.com/xVb96Z6.png" alt=""></li>
-</ul>
-</li>
-<li><h3 id="butterknife-JamesWharton：依赖注入框架，省去findViewByID，-APT-编译时注解的方式"><a href="#butterknife-JamesWharton：依赖注入框架，省去findViewByID，-APT-编译时注解的方式" class="headerlink" title="butterknife-JamesWharton：依赖注入框架，省去findViewByID，(APT)编译时注解的方式"></a>butterknife-JamesWharton：依赖注入框架，省去findViewByID，(APT)<strong>编译时</strong>注解的方式</h3><ul>
-<li><img src="http://i.imgur.com/8F0giyl.png" alt=""></li>
-<li><img src="http://i.imgur.com/UsTr10s.png" alt=""></li>
-<li><img src="http://i.imgur.com/QaWSZ6V.png" alt=""></li>
-<li>Plugins(插件)：搜索butter Knife<ul>
-<li><img src="http://i.imgur.com/7i9ASn1.png" alt=""></li>
-<li><img src="http://i.imgur.com/VetgJzC.png" alt=""></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><h3 id="Fragment的hide与show的使用"><a href="#Fragment的hide与show的使用" class="headerlink" title="Fragment的hide与show的使用"></a>Fragment的hide与show的使用</h3><ul>
-<li><img src="http://i.imgur.com/xpghCWy.png" alt=""></li>
-<li>My<img src="http://i.imgur.com/Sf2wduK.png" alt=""></li>
-</ul>
-</li>
-<li><h3 id="SideBar-自定义"><a href="#SideBar-自定义" class="headerlink" title="SideBar(自定义)"></a>SideBar(自定义)</h3><ul>
-<li><img src="http://i.imgur.com/nZGcdob.png" alt=""></li>
-<li><img src="http://i.imgur.com/v7wUgvB.png" alt=""></li>
-<li><img src="http://i.imgur.com/xuunuKp.png" alt=""></li>
-</ul>
-</li>
-<li><h3 id="复习接口回调"><a href="#复习接口回调" class="headerlink" title="复习接口回调"></a>复习接口回调</h3><ul>
-<li><img src="http://i.imgur.com/qtUug9s.png" alt=""></li>
-<li><img src="http://i.imgur.com/GTIM2v4.png" alt=""></li>
-<li><img src="http://i.imgur.com/GAbSv5g.png" alt=""></li>
-</ul>
-</li>
-</ol>
-
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.简单介绍（eXtensible Markup Language）</span><br><span class="line">应用于 Web 开发的许多方面，常用于简化数据的存储和共享。</span><br><span class="line">    a).XML（可扩展标记语言）是一种数据交换格式，主要运用在配置文件的构写。</span><br><span class="line">        比如：web.xml </span><br><span class="line">                  还有html格式：&lt;html&gt;&lt;/html&gt;</span><br><span class="line">                  android界面：&lt;TextView /&gt;</span><br><span class="line">                  上述的格式都是基于xml的格式定义的配置信息‘</span><br><span class="line"></span><br><span class="line">2.规范的xml结构</span><br><span class="line">    &lt;根元素 属性&gt;    开始符号&lt;&gt;</span><br><span class="line">        &lt;子元素1 属性&gt;</span><br><span class="line">        &lt;/子元素&gt;</span><br><span class="line">        &lt;子元素2    /&gt;</span><br><span class="line">    &lt;/根元素&gt;    结束符合&lt;/&gt;</span><br><span class="line"></span><br><span class="line">3.解析XML数据格式的几种方式</span><br><span class="line">    1.Pull解析（Sax进化版）</span><br><span class="line">        特性：基于驱动型事件</span><br><span class="line">        优点：和Sax解析相比，不需要从头解析到底，想何时结束就何时结束（更灵活）</span><br><span class="line">                    对驱动事件的标识也进行优化，效率大大提高了</span><br><span class="line">             移动端采用的XML都是基于Pull解析器的解析</span><br><span class="line"></span><br><span class="line">    2.Sax解析</span><br><span class="line">        特点：基于驱动事件的解析，他把所有的标签，属性，内容划分开来，把他们做成驱动时间</span><br><span class="line">                    &lt;根元素&gt;驱动事件1</span><br><span class="line">                    &lt;/根元素&gt;驱动事件2</span><br><span class="line">                    他的解析称为事件解析</span><br><span class="line">        优点：基于是驱动型事件，逐行解析的效果，内存消耗很小（只消耗当前解析的该行）</span><br><span class="line">        缺点：如果解析中出现问题，不能回到原来的驱动事件，只能重新来过（死板一遍过，容错率低）</span><br><span class="line"></span><br><span class="line">    3.Dom解析</span><br><span class="line">        特性：将需要解析的xml文件全部加载到内存中。将所有的标签包括内容转换成树结构</span><br><span class="line">        优点：查找上的速度一般（通过树的节点查找）。添加，删除，修改效率比较高</span><br><span class="line">        缺点：消耗内存（转树形结构的时候，消耗大量内存），移动端都摒弃了该解析方式，只有服务端采用</span><br><span class="line">                  移动端一旦xml数据多的时候，内存消耗特别厉害</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/O1i4dwj.gif" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上图表示下面的 XML 中的一本书：</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line">&lt;book category=&quot;COOKING&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Giada De Laurentiis&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;30.00&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;CHILDREN&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">&lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;WEB&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Erik T. Ray&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2003&lt;/year&gt;</span><br><span class="line">&lt;price&gt;39.95&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;/bookstore&gt;</span><br><span class="line">第一行是 XML 声明。它定义 XML 的版本（1.0）和所使用的编码（ISO-8859-1 = Latin-1/西欧字符集）。</span><br><span class="line">实例中的根元素是 &lt;bookstore&gt;。文档中的所有 &lt;book&gt; 元素都被包含在 &lt;bookstore&gt; 中。</span><br><span class="line">&lt;book&gt; 元素有 4 个子元素：&lt;title&gt;、&lt;author&gt;、&lt;year&gt;、&lt;price&gt;。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么是 XML？</span><br><span class="line">  ● XML 指可扩展标记语言（EXtensible Markup Language）。</span><br><span class="line">  ● XML 是一种很像HTML的标记语言。</span><br><span class="line">  ● XML 的设计宗旨是传输数据，而不是显示数据。</span><br><span class="line">  ● XML 标签没有被预定义。您需要自行定义标签。</span><br><span class="line">  ● XML 被设计为具有自我描述性。</span><br><span class="line">  ● XML 是 W3C 的推荐标准。</span><br><span class="line">XML 和 HTML 之间的差异</span><br><span class="line">XML 不是 HTML 的替代。</span><br><span class="line">XML 和 HTML 为不同的目的而设计：</span><br><span class="line">  ● XML 被设计用来传输和存储数据，其焦点是数据的内容。</span><br><span class="line">  ● HTML 被设计用来显示数据，其焦点是数据的外观。</span><br><span class="line">HTML 旨在显示信息，而 XML 旨在传输信息</span><br><span class="line">XML 不会做任何事情</span><br><span class="line">也许这有点难以理解，但是 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息。</span><br><span class="line">下面实例是 Jani 写给 Tove 的便签，存储为 XML：</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">&lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br><span class="line">上面的这条便签具有自我描述性。它包含了发送者和接受者的信息，同时拥有标题以及消息主体。</span><br><span class="line">但是，这个 XML 文档仍然没有做任何事情。它仅仅是包装在 XML 标签中的纯粹的信息。我们需要编写软件或者程序，才能传送、接收和显示出这个文档。</span><br><span class="line">XML 无所不在</span><br><span class="line">目前，XML 在 Web 中起到的作用不会亚于一直作为 Web 基石的 HTML。</span><br><span class="line">XML 是各种应用程序之间进行数据传输的最常用的工具。</span><br><span class="line">XML 把数据从 HTML 分离</span><br><span class="line">如果您需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。</span><br><span class="line">通过 XML，数据能够存储在独立的 XML 文件中。这样您就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。</span><br><span class="line">通过使用几行 JavaScript 代码，您就可以读取一个外部 XML 文件，并更新您的网页的数据内容。</span><br><span class="line">XML 简化数据共享</span><br><span class="line">在真实的世界中，计算机系统和数据使用不兼容的格式来存储数据。</span><br><span class="line">XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。</span><br><span class="line">这让创建不同应用程序可以共享的数据变得更加容易。</span><br><span class="line">XML 简化数据传输</span><br><span class="line">对开发人员来说，其中一项最费时的挑战一直是在互联网上的不兼容系统之间交换数据。</span><br><span class="line">由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。</span><br><span class="line">XML 简化平台变更</span><br><span class="line">升级到新的系统（硬件或软件平台），总是非常费时的。必须转换大量的数据，不兼容的数据经常会丢失。</span><br><span class="line">XML 数据以文本格式存储。这使得 XML 在不损失数据的情况下，更容易扩展或升级到新的操作系统、新的应用程序或新的浏览器。</span><br><span class="line">XML 使您的数据更有用</span><br><span class="line">不同的应用程序都能够访问您的数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。</span><br><span class="line">通过 XML，您的数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。</span><br><span class="line">XML 用于创建新的互联网语言</span><br><span class="line">很多新的互联网语言是通过 XML 创建的。</span><br><span class="line">这里有一些实例：</span><br><span class="line">  ● XHTML</span><br><span class="line">  ● 用于描述可用的 Web 服务 的 WSDL</span><br><span class="line">  ● 作为手持设备的标记语言的 WAP 和 WML</span><br><span class="line">  ● 用于新闻 feed 的 RSS 语言</span><br><span class="line">  ● 描述资本和本体的 RDF 和 OWL</span><br><span class="line">  ● 用于描述针针对 Web 的多媒体 的 SMIL</span><br><span class="line">假如开发人员都是理性的</span><br><span class="line">假如他们都是理性的，就让未来的应用程序使用 XML 来交换数据吧。</span><br><span class="line">未来也许会出现某种字处理软件、电子表格程序以及数据库，它们可以使用 XML 格式读取彼此的数据，而不需要使用任何的转换程序。</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2190,7 +1512,7 @@ dependencies {
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2236,7 +1558,7 @@ dependencies {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
