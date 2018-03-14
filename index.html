@@ -324,15 +324,18 @@
 <li>要点 : 如果 Widget 改变了，就一定是 Stateful 的，但是如果它的父布局没变，那么父布局依然可以是 Stateless 的</li>
 </ul>
 </li>
-<li>这么敲布局？ 我的 XML 呢？<ul>
+<li><p>这么敲布局？ 我的 XML 呢？</p>
+<ul>
 <li>Android 中使用 XML 敲布局 ; Flutter 用 Widget tree 编写布局</li>
-<li>例子：</li>
+<li><p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return new Scaffold(</span><br><span class="line">    appBar: new AppBar(</span><br><span class="line">      title: new Text(&quot;Sample App&quot;),</span><br><span class="line">    ),</span><br><span class="line">    body: new Center(</span><br><span class="line">      child: new MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: new Text(&apos;Hello&apos;),</span><br><span class="line">        padding: new EdgeInsets.only(left: 10.0, right: 10.0),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://flutter.io/widgets/layout/" target="_blank" rel="noopener"><font color="#69f">Flutter所提供的所有布局</font></a></p>
+</li>
 </ul>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return new Scaffold(</span><br><span class="line">    appBar: new AppBar(</span><br><span class="line">      title: new Text(&quot;Sample App&quot;),</span><br><span class="line">    ),</span><br><span class="line">    body: new Center(</span><br><span class="line">      child: new MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: new Text(&apos;Hello&apos;),</span><br><span class="line">        padding: new EdgeInsets.only(left: 10.0, right: 10.0),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>- [Flutter所提供的所有布局](https://flutter.io/widgets/layout/)
-</code></pre>
+
           
         
       
