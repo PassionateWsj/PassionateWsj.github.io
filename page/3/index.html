@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/2017-03-18-RxJava-学习整理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/2017-03-20-Android-Preference实践-Ubuntu-jdk8环境配置添加-hide方法注释/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -251,7 +251,196 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/18/2017-03-18-RxJava-学习整理/" itemprop="url">RxJava 学习整理</a></h1>
+                <a class="post-title-link" href="/2017/03/20/2017-03-20-Android-Preference实践-Ubuntu-jdk8环境配置添加-hide方法注释/" itemprop="url">Android Preference实践 Ubuntu jdk8环境配置添加 @hide方法注释</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T12:47:58+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>Preference</strong></li>
+<li><strong>Ubuntu jdk8环境配置添加</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Preference"><a href="#Preference" class="headerlink" title="Preference"></a>Preference</h3><ol>
+<li>自己写一个类TextPreference，继承Preference,调用自定义布局文件如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;PreferenceScreen xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:title=&quot;@string/storage_settings_title&quot; &gt;</span><br><span class="line">    &lt;PreferenceCategory</span><br><span class="line">        android:key=&quot;phone_memory_category&quot;</span><br><span class="line">        android:title=&quot;@string/storage_settings_title&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;com.android.settings.deviceinfo.TextPreference //自定义类</span><br><span class="line">        android:fragment=&quot;com.android.settings.deviceinfo.Memory&quot;</span><br><span class="line">        android:key=&quot;phone_memory_ll&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">    &lt;/PreferenceCategory&gt;</span><br><span class="line">&lt;/PreferenceScreen&gt;</span><br></pre></td></tr></table></figure>
+<p>在TextPreference类里面复写onCreateView方法，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">protected View onCreateView(ViewGroup parent) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	LayoutInflater inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line">	View layout = inflater.inflate(R.layout.phone_memory_linear_layout, null);</span><br><span class="line">	mMaxTitle = (TextView)layout.findViewById(R.id.max_title);</span><br><span class="line">	return layout;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Ubuntu-jdk8环境配置添加"><a href="#Ubuntu-jdk8环境配置添加" class="headerlink" title="Ubuntu jdk8环境配置添加"></a>Ubuntu jdk8环境配置添加</h3><ol>
+<li>环境安装<ul>
+<li>在代码idh.code\build\jdk文件夹下有安装包</li>
+<li>安装openjdk8<br><code>sudo dpkg -i openjdk-8-jdk_8u45-b14-1_amd64.deb openjdk-8-jre_8u45-b14-1_amd64.deb openjdk-8-jre-headless_8u45-b14-1_amd64.deb</code></li>
+<li>安装完上一步中的jdk后，系统的java版本会被替换为openjdk8, 为兼容6.0/5.1的编译，需要把jdk换回来（设置好后会在当前的java版本前有个*号，确保为java-7）<br><code>sudo update-alternatives --config java</code><br><code>sudo update-alternatives --config javac</code><br><code>sudo update-alternatives --config javah</code><br><code>sudo update-alternatives --config javadoc</code><br><code>sudo update-alternatives --config javap</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>X50142机器不识别<ul>
+<li>USB模式设为virtual drive</li>
+<li>识别出设备安装驱动</li>
+<li>usb改vid，C:\Users\用户.android下，adb_usb.ini文件中加上0x1BBB，重启adb</li>
+</ul>
+</li>
+<li>X50142全编不成功<ul>
+<li>jdk1.8<ul>
+<li>要先update，sudo apt-get update</li>
+<li>sudo apt-get install openjdk-8-jdk</li>
+</ul>
+</li>
+<li>提示<ul>
+<li><img src="http://i.imgur.com/TZOKAxX.png" alt=""></li>
+<li>sudo apt-get install mkisofs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>以/<em>*@hide</em>/注释的API为隐藏，就算是public也是无法被调用的，可以用反射机制进行调用</li>
+<li>adb查看log<ul>
+<li>adb logcat -c 清除</li>
+<li>adb logcat -s 过滤搜索</li>
+<li>fatal：崩溃信息</li>
+</ul>
+</li>
+<li><p>导入三方apk</p>
+<ul>
+<li><p>vendor\ThirdpartApp\对应项目</p>
+<ul>
+<li>apk</li>
+<li><p>Android.mk</p>
+<ul>
+<li>选择相应的项目名</li>
+<li>添加apk的include</li>
+<li><p>System\App:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_MODULE := Xender</span><br><span class="line">LOCAL_MODULE_TAGS := optional</span><br><span class="line">LOCAL_SRC_FILES := 3rd_APKs/xender_intex_india_1_3.4.0419_20170208.apk</span><br><span class="line">LOCAL_MODULE_CLASS := APPS</span><br><span class="line">LOCAL_DEX_PREOPT := true</span><br><span class="line">LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)</span><br><span class="line">LOCAL_CERTIFICATE := PRESIGNED</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>System/Priv-app:添加 <code>LOCAL_PRIVILEGED_MODULE := true</code></p>
+</li>
+<li>Uninstall mode:添加 <code>LOCAL_MODULE_PATH := $(TARGET_OUT)/preloadapp</code></li>
+</ul>
+</li>
+<li>install.mk:添加<code>Android.mk</code>中相应<code>MODULE</code>名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/RxJava-学习整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/18/RxJava-学习整理/" itemprop="url">RxJava 学习整理</a></h1>
         
 
         <div class="post-meta">
@@ -663,7 +852,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/2017-03-15-bugreport基本信息-ViewPage中fragment替换/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/bugreport基本信息-ViewPage中fragment替换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -682,7 +871,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/15/2017-03-15-bugreport基本信息-ViewPage中fragment替换/" itemprop="url">bugreport基本信息 ViewPage中fragment替换</a></h1>
+                <a class="post-title-link" href="/2017/03/15/bugreport基本信息-ViewPage中fragment替换/" itemprop="url">bugreport基本信息 ViewPage中fragment替换</a></h1>
         
 
         <div class="post-meta">
@@ -835,7 +1024,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/14/2017-03-14-Launcher3-代码覆盖插件-签名/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/14/Launcher3-代码覆盖插件-签名/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -854,7 +1043,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/14/2017-03-14-Launcher3-代码覆盖插件-签名/" itemprop="url">Launcher3 代码覆盖插件 签名</a></h1>
+                <a class="post-title-link" href="/2017/03/14/Launcher3-代码覆盖插件-签名/" itemprop="url">Launcher3 代码覆盖插件 签名</a></h1>
         
 
         <div class="post-meta">
@@ -2251,7 +2440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/2017-03-10-Launcher3基础-adb命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/Launcher3基础-adb命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2270,7 +2459,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/10/2017-03-10-Launcher3基础-adb命令/" itemprop="url">Launcher3基础 adb命令</a></h1>
+                <a class="post-title-link" href="/2017/03/10/Launcher3基础-adb命令/" itemprop="url">Launcher3基础 adb命令</a></h1>
         
 
         <div class="post-meta">
@@ -2977,192 +3166,6 @@ dependencies {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/19/Week08-day05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/19/Week08-day05/" itemprop="url">Week08-day05</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-19T09:08:11+08:00">
-                2016-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week08-day05"><a href="#Week08-day05" class="headerlink" title="Week08-day05"></a>Week08-day05</h2><h5 id="2016-10-19-星期三-9-08-11"><a href="#2016-10-19-星期三-9-08-11" class="headerlink" title="2016/10/19 星期三 9:08:11"></a>2016/10/19 星期三 9:08:11</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>MaterialDesign(附Xmind文档)</strong></li>
-<li><strong>刷新的几种方案</strong></li>
-<li><strong>MVP(附Xmind文档)</strong></li>
-</ol>
-<h2 id="课程笔记"><a href="#课程笔记" class="headerlink" title="课程笔记"></a>课程笔记</h2><h3 id="MaterialDesign"><a href="#MaterialDesign" class="headerlink" title="MaterialDesign"></a>MaterialDesign</h3><ol>
-<li>SnackBar<ol>
-<li>封装颜色背景的类</li>
-</ol>
-</li>
-<li>FloatingActionButton</li>
-<li>TextInputLayout(一般结合EditText使用)<pre><code>- ![](http://i.imgur.com/jODmhSu.png)
-</code></pre></li>
-<li>滚动/过渡布局<ul>
-<li><img src="http://i.imgur.com/rkqJgpx.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="刷新的几种方案"><a href="#刷新的几种方案" class="headerlink" title="刷新的几种方案"></a>刷新的几种方案</h3><ol>
-<li>SwipeRefreshLayout</li>
-<li><p>ultra-pulltorefresh</p>
-<ol>
-<li><p>导包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;in.srain.cube:ultra-ptr:1.0.11&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加一些属性<img src="http://i.imgur.com/PCEuPtm.png" alt=""></p>
-</li>
-<li>刷新监听 <img src="http://i.imgur.com/1t4EJJb.png" alt=""></li>
-<li><img src="http://i.imgur.com/jEXCJ3C.png" alt=""></li>
-</ol>
-</li>
-</ol>
-<hr>
-<p>###MVC、MVP模式（附Xmind文档：Week08_05 2.xmind）</p>
-<ol>
-<li>MVC模式<ol>
-<li>MVC（Model-View-Controller）是最常见的软件架构之一，业界有着广泛应用</li>
-<li><img src="http://i.imgur.com/noFQeKg.png" alt=""></li>
-</ol>
-</li>
-<li>MVP模式：<strong>Model</strong>(数据访问层)-<strong>Presenter</strong>(业务逻辑处理)-<strong>View</strong>(展示数据,对用户行为做出反馈)<ol>
-<li>优点<ul>
-<li>易于维护</li>
-<li>易于测试</li>
-<li>松耦合度</li>
-<li>复用性高</li>
-<li>健壮稳定</li>
-</ul>
-</li>
-<li><img src="http://i.imgur.com/PL4aa4U.png" alt=""></li>
-<li><img src="http://i.imgur.com/nLY5KTM.png" alt=""></li>
-</ol>
-</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li><p>代码中颜色转换</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Color.parseColor(#RRGGBB/#AARRGGBB)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$表示内部</p>
-<ul>
-<li><img src="http://i.imgur.com/PdSqafs.png" alt=""></li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3213,7 +3216,7 @@ dependencies {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3226,7 +3229,7 @@ dependencies {
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

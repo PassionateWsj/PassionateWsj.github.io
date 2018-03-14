@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="日常笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2017/4/7 9:41今日概要 回顾昨日知识点 Android 平台语言支持  笔记Android 平台语言支持   Language English Name Chinese Name Code     العربية Arabic(Israel) 阿拉伯语(以色列) ar_IL   العربية Arabic(Egypt) 阿拉伯语(埃及) ar_EG   中文 Chinese Simp">
+<meta name="keywords" content="日常笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android语言国际化支持">
+<meta property="og:url" content="http://yoursite.com/2017/04/07/Android语言国际化支持/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="2017/4/7 9:41今日概要 回顾昨日知识点 Android 平台语言支持  笔记Android 平台语言支持   Language English Name Chinese Name Code     العربية Arabic(Israel) 阿拉伯语(以色列) ar_IL   العربية Arabic(Egypt) 阿拉伯语(埃及) ar_EG   中文 Chinese Simp">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-11T09:08:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android语言国际化支持">
+<meta name="twitter:description" content="2017/4/7 9:41今日概要 回顾昨日知识点 Android 平台语言支持  笔记Android 平台语言支持   Language English Name Chinese Name Code     العربية Arabic(Israel) 阿拉伯语(以色列) ar_IL   العربية Arabic(Egypt) 阿拉伯语(埃及) ar_EG   中文 Chinese Simp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/07/Android语言国际化支持/"/>
+
+
+
+
+
+  <title>Android语言国际化支持 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/07/Android语言国际化支持/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android语言国际化支持</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T09:41:16+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2017-4-7-9-41"><a href="#2017-4-7-9-41" class="headerlink" title="2017/4/7 9:41"></a>2017/4/7 9:41</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>Android 平台语言支持</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Android-平台语言支持"><a href="#Android-平台语言支持" class="headerlink" title="Android 平台语言支持"></a>Android 平台语言支持</h3><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>English Name</th>
+<th>Chinese Name</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>العربية</td>
+<td>Arabic(Israel)</td>
+<td>阿拉伯语(以色列)</td>
+<td>ar_IL</td>
+</tr>
+<tr>
+<td>العربية</td>
+<td>Arabic(Egypt)</td>
+<td>阿拉伯语(埃及)</td>
+<td>ar_EG</td>
+</tr>
+<tr>
+<td>中文</td>
+<td>Chinese Simplified</td>
+<td>中文简体</td>
+<td>zh_CN</td>
+</tr>
+<tr>
+<td>中文</td>
+<td>Chinese Tradition</td>
+<td>中文繁体</td>
+<td>zh_TW</td>
+</tr>
+<tr>
+<td>中文</td>
+<td>Chinese</td>
+<td>中文(香港)</td>
+<td>zh_HK</td>
+</tr>
+<tr>
+<td>Nederlands</td>
+<td>Dutch (Netherlands)</td>
+<td>荷兰语</td>
+<td>nl_NL</td>
+</tr>
+<tr>
+<td>Nederlands</td>
+<td>Dutch (Netherlands)</td>
+<td>荷兰语(比利时)</td>
+<td>nl_BE</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(United States)</td>
+<td>英语(美国)</td>
+<td>en_US</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(Australia)</td>
+<td>英语(澳大利亚)</td>
+<td>en_AU</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(Canada)</td>
+<td>英语(加拿大)</td>
+<td>en_CA</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(India)</td>
+<td>英语(印度)</td>
+<td>en_IN</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(Ireland)</td>
+<td>英语(爱尔兰)</td>
+<td>en_IE</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(New Zealand)</td>
+<td>英语(新西兰)</td>
+<td>en_NZ</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(Singapore)</td>
+<td>英语(新加波)</td>
+<td>en_SG</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(South Africa)</td>
+<td>英语(南非)</td>
+<td>en_ZA</td>
+</tr>
+<tr>
+<td>English</td>
+<td>English(United Kingdom)</td>
+<td>英语(英国)</td>
+<td>en_GB</td>
+</tr>
+<tr>
+<td>Français</td>
+<td>French</td>
+<td>法语</td>
+<td>fr_FR</td>
+</tr>
+<tr>
+<td>Français</td>
+<td>French</td>
+<td>法语(比利时)</td>
+<td>fr_BE</td>
+</tr>
+<tr>
+<td>Français</td>
+<td>French</td>
+<td>法语(加拿大)</td>
+<td>fr_CA</td>
+</tr>
+<tr>
+<td>Français</td>
+<td>French</td>
+<td>法语(瑞士)</td>
+<td>fr_CH</td>
+</tr>
+<tr>
+<td>Deutsch</td>
+<td>German</td>
+<td>德语</td>
+<td>de_DE</td>
+</tr>
+<tr>
+<td>Deutsch</td>
+<td>German</td>
+<td>德语(列支敦斯登)</td>
+<td>de_LI</td>
+</tr>
+<tr>
+<td>Deutsch</td>
+<td>German</td>
+<td>德语(奥地利)</td>
+<td>de_AT</td>
+</tr>
+<tr>
+<td>Deutsch</td>
+<td>German</td>
+<td>德语(瑞士)</td>
+<td>de_CH</td>
+</tr>
+<tr>
+<td>Italiano</td>
+<td>Italian</td>
+<td>意大利语</td>
+<td>it_IT</td>
+</tr>
+<tr>
+<td>Italiano</td>
+<td>Italian</td>
+<td>意大利语(瑞士)</td>
+<td>it_CH</td>
+</tr>
+<tr>
+<td>Protuguês</td>
+<td>Portuguese</td>
+<td>葡萄牙语（巴西）</td>
+<td>pt_BR</td>
+</tr>
+<tr>
+<td>Protuguês</td>
+<td>Portuguese</td>
+<td>葡萄牙语</td>
+<td>pt_PT</td>
+</tr>
+<tr>
+<td>Español</td>
+<td>Spanish</td>
+<td>西班牙语</td>
+<td>es_ES</td>
+</tr>
+<tr>
+<td>Español</td>
+<td>Spanish</td>
+<td>西班牙语(美国)</td>
+<td>es_US</td>
+</tr>
+<tr>
+<td>বাংলা</td>
+<td>Bengali</td>
+<td>孟加拉语</td>
+<td>bn_BD</td>
+</tr>
+<tr>
+<td>বাংলা</td>
+<td>Bengali</td>
+<td>孟加拉语(印度)</td>
+<td>bn_IN</td>
+</tr>
+<tr>
+<td>hrvatski</td>
+<td>Croatian</td>
+<td>克罗地亚语</td>
+<td>hr_HR</td>
+</tr>
+<tr>
+<td>čeština</td>
+<td>Czech</td>
+<td>捷克语</td>
+<td>cs_CZ</td>
+</tr>
+<tr>
+<td>Dansk</td>
+<td>Danish</td>
+<td>丹麦语</td>
+<td>da_DK</td>
+</tr>
+<tr>
+<td>ελληνικά</td>
+<td>Greek</td>
+<td>希腊语</td>
+<td>el_GR</td>
+</tr>
+<tr>
+<td>עברית</td>
+<td>Hebrew</td>
+<td>希伯来语(以色列)</td>
+<td>he_IL</td>
+</tr>
+<tr>
+<td>עברית</td>
+<td>Hebrew</td>
+<td>希伯来语(以色列)</td>
+<td>iw_IL</td>
+</tr>
+<tr>
+<td>हिंदी</td>
+<td>Hindi</td>
+<td>印度语</td>
+<td>hi_IN</td>
+</tr>
+<tr>
+<td>Magyar</td>
+<td>Hungarian</td>
+<td>匈牙利语</td>
+<td>hu_HU</td>
+</tr>
+<tr>
+<td>Bahasa Indonesia</td>
+<td>Indonesian</td>
+<td>印度尼西亚语</td>
+<td>in_ID</td>
+</tr>
+<tr>
+<td>日本語の言語</td>
+<td>Japanese</td>
+<td>日语</td>
+<td>ja_JP</td>
+</tr>
+<tr>
+<td>한국의</td>
+<td>Korean</td>
+<td>韩语（朝鲜语）</td>
+<td>ko_KR</td>
+</tr>
+<tr>
+<td>Bahasa Melayu</td>
+<td>Malay</td>
+<td>马来语</td>
+<td>ms_MY</td>
+</tr>
+<tr>
+<td>فارسی</td>
+<td>Perisan</td>
+<td>波斯语</td>
+<td>fa_IR</td>
+</tr>
+<tr>
+<td>Polski</td>
+<td>Polish</td>
+<td>波兰语</td>
+<td>pl_PL</td>
+</tr>
+<tr>
+<td>româna</td>
+<td>Romanian</td>
+<td>罗马尼亚语</td>
+<td>ro_RO</td>
+</tr>
+<tr>
+<td>Русский</td>
+<td>Russian</td>
+<td>俄罗斯语</td>
+<td>ru_RU</td>
+</tr>
+<tr>
+<td>српски</td>
+<td>Serbian</td>
+<td>塞尔维亚语</td>
+<td>sr_RS</td>
+</tr>
+<tr>
+<td>Svenska</td>
+<td>Swedish</td>
+<td>瑞典语</td>
+<td>sv_SE</td>
+</tr>
+<tr>
+<td>ไทย</td>
+<td>Thai</td>
+<td>泰语</td>
+<td>th_TH</td>
+</tr>
+<tr>
+<td>Türkçe</td>
+<td>Turkey</td>
+<td>土耳其语</td>
+<td>tr_TR</td>
+</tr>
+<tr>
+<td>اردو</td>
+<td>Urdu</td>
+<td>乌尔都语</td>
+<td>ur_PK</td>
+</tr>
+<tr>
+<td>tiếng việt</td>
+<td>Vietnamese</td>
+<td>越南语</td>
+<td>vi_VN</td>
+</tr>
+<tr>
+<td>catalá</td>
+<td>Catalan</td>
+<td>加泰隆语(西班牙)</td>
+<td>ca_ES</td>
+</tr>
+<tr>
+<td>latviešu</td>
+<td>Latviesu</td>
+<td>拉脱维亚语</td>
+<td>lv_LV</td>
+</tr>
+<tr>
+<td>Lietuvių</td>
+<td>Lithuanian</td>
+<td>立陶宛语</td>
+<td>lt_LT</td>
+</tr>
+<tr>
+<td>Norsk bokmal</td>
+<td>Norwegian</td>
+<td>挪威语</td>
+<td>nb_NO</td>
+</tr>
+<tr>
+<td>Slovenčina</td>
+<td>slovencina</td>
+<td>斯洛伐克语</td>
+<td>sk_SK</td>
+</tr>
+<tr>
+<td>Slovenščina</td>
+<td>Slovenian</td>
+<td>斯洛文尼亚语</td>
+<td>sl_SI</td>
+</tr>
+<tr>
+<td>български</td>
+<td>bulgarian</td>
+<td>保加利亚语</td>
+<td>bg_BG</td>
+</tr>
+<tr>
+<td>українська</td>
+<td>Ukrainian</td>
+<td>乌克兰语</td>
+<td>uk_UA</td>
+</tr>
+<tr>
+<td>Tagalog</td>
+<td>Filipino</td>
+<td>菲律宾语</td>
+<td>tl_PH</td>
+</tr>
+<tr>
+<td>Suomi</td>
+<td>Finnish</td>
+<td>芬兰语</td>
+<td>fi_FI</td>
+</tr>
+<tr>
+<td>Afrikaans</td>
+<td>Afrikaans</td>
+<td>南非语</td>
+<td>af_ZA</td>
+</tr>
+<tr>
+<td>Rumantsch</td>
+<td>Romansh</td>
+<td>罗曼什语(瑞士)</td>
+<td>rm_CH</td>
+</tr>
+<tr>
+<td>Burmese</td>
+<td>Burmese(Zawgyi)</td>
+<td>缅甸语</td>
+<td>my_ZG</td>
+</tr>
+<tr>
+<td>Burmese</td>
+<td>Burmese</td>
+<td>缅甸语</td>
+<td>my_MM</td>
+</tr>
+<tr>
+<td>ខ្មែរ</td>
+<td>Khmer</td>
+<td>柬埔寨语</td>
+<td>km_KH</td>
+</tr>
+<tr>
+<td>አማርኛ</td>
+<td>Amharic</td>
+<td>阿姆哈拉语(埃塞俄比亚)</td>
+<td>am_ET</td>
+</tr>
+<tr>
+<td>беларуская</td>
+<td>Belarusian</td>
+<td>白俄罗斯语</td>
+<td>be_BY</td>
+</tr>
+<tr>
+<td>eesti</td>
+<td>Estonian</td>
+<td>爱沙尼亚语</td>
+<td>et_EE</td>
+</tr>
+<tr>
+<td>Kiswahili</td>
+<td>Swahili</td>
+<td>斯瓦希里语(坦桑尼亚)</td>
+<td>sw_TZ</td>
+</tr>
+<tr>
+<td>isiZulu</td>
+<td>Zulu</td>
+<td>祖鲁语(南非)</td>
+<td>zu_ZA</td>
+</tr>
+<tr>
+<td>azərbaycanca</td>
+<td>Azerbaijani</td>
+<td>阿塞拜疆语</td>
+<td>az_AZ</td>
+</tr>
+<tr>
+<td>Հայերէն</td>
+<td>Armenian</td>
+<td>亚美尼亚语(亚美尼亚)</td>
+<td>hy_AM</td>
+</tr>
+<tr>
+<td>ქართული</td>
+<td>Georgian</td>
+<td>格鲁吉亚语(格鲁吉亚)</td>
+<td>ka_GE</td>
+</tr>
+<tr>
+<td>ລາວ</td>
+<td>Laotian</td>
+<td>老挝语(老挝)</td>
+<td>lo_LA</td>
+</tr>
+<tr>
+<td>Монгол</td>
+<td>Mongolian</td>
+<td>蒙古语</td>
+<td>mn_MN</td>
+</tr>
+<tr>
+<td>नेपाली</td>
+<td>Nepali</td>
+<td>尼泊尔语</td>
+<td>ne_NP</td>
+</tr>
+<tr>
+<td>қазақ тілі</td>
+<td>Kazakh</td>
+<td>哈萨克语</td>
+<td>kk_KZ</td>
+</tr>
+<tr>
+<td>සිංහල</td>
+<td>Sinhala</td>
+<td>僧加罗语(斯里兰卡)</td>
+<td>si_LK</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常笔记/" rel="tag"># 日常笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/2017-04-01-Launcher3介绍附Github地址-Launcher3壁纸-系统默认值wifi-字体/" rel="next" title="Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体">
+                <i class="fa fa-chevron-left"></i> Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/27/2017-07-小知识点整理/" rel="prev" title="2017-07-27 小知识点整理">
+                2017-07-27 小知识点整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2017-4-7-9-41"><span class="nav-number">1.</span> <span class="nav-text">2017/4/7 9:41</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日概要"><span class="nav-number">2.</span> <span class="nav-text">今日概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记"><span class="nav-number">3.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-平台语言支持"><span class="nav-number">3.1.</span> <span class="nav-text">Android 平台语言支持</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="日常笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="笔记RxJava学习 RxJava 是什么:异步 好在哪:简洁   API介绍和原理简析 RxJava的异步实现，是通过一种扩展的观察者模式来实现的   基本概念：Observable和Observer通过subscribe()方法实现订阅关系，从而Observable可以在需要的时候发出事件通知Observer Observable：可观察者，即被观察者 Observer：观察者 subscri">
+<meta name="keywords" content="日常笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava 学习整理">
+<meta property="og:url" content="http://yoursite.com/2017/03/18/RxJava-学习整理/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="笔记RxJava学习 RxJava 是什么:异步 好在哪:简洁   API介绍和原理简析 RxJava的异步实现，是通过一种扩展的观察者模式来实现的   基本概念：Observable和Observer通过subscribe()方法实现订阅关系，从而Observable可以在需要的时候发出事件通知Observer Observable：可观察者，即被观察者 Observer：观察者 subscri">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/f4cgZhK.jpg">
+<meta property="og:image" content="http://i.imgur.com/O4IzraD.jpg">
+<meta property="og:image" content="http://i.imgur.com/sT9ZQb9.jpg">
+<meta property="og:image" content="http://i.imgur.com/Aq3Ih36.jpg">
+<meta property="og:image" content="http://i.imgur.com/6rJOnz1.png">
+<meta property="og:image" content="http://i.imgur.com/f1XaTqP.png">
+<meta property="og:image" content="http://i.imgur.com/Q45n2gZ.png">
+<meta property="og:image" content="http://i.imgur.com/dtR95Ph.png">
+<meta property="og:image" content="http://i.imgur.com/5HzRlC3.png">
+<meta property="og:image" content="http://i.imgur.com/Oedxw8A.png">
+<meta property="og:image" content="http://i.imgur.com/ZuO9HVt.png">
+<meta property="og:image" content="http://i.imgur.com/5vPVGS6.png">
+<meta property="og:image" content="http://i.imgur.com/51zSBq6.png">
+<meta property="og:image" content="http://i.imgur.com/1aiqX8s.jpg">
+<meta property="og:updated_time" content="2018-01-11T09:34:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJava 学习整理">
+<meta name="twitter:description" content="笔记RxJava学习 RxJava 是什么:异步 好在哪:简洁   API介绍和原理简析 RxJava的异步实现，是通过一种扩展的观察者模式来实现的   基本概念：Observable和Observer通过subscribe()方法实现订阅关系，从而Observable可以在需要的时候发出事件通知Observer Observable：可观察者，即被观察者 Observer：观察者 subscri">
+<meta name="twitter:image" content="http://i.imgur.com/f4cgZhK.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/18/RxJava-学习整理/"/>
+
+
+
+
+
+  <title>RxJava 学习整理 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/RxJava-学习整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RxJava 学习整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T12:44:39+08:00">
+                2017-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="RxJava学习"><a href="#RxJava学习" class="headerlink" title="RxJava学习"></a>RxJava学习</h3><ol>
+<li>RxJava<ul>
+<li>是什么:<strong>异步</strong></li>
+<li>好在哪:<strong>简洁</strong></li>
+</ul>
+</li>
+<li>API介绍和原理简析<ul>
+<li>RxJava的异步实现，是通过一种<strong>扩展的观察者模式</strong>来实现的</li>
+<li><img src="http://i.imgur.com/f4cgZhK.jpg" alt=""></li>
+<li><img src="http://i.imgur.com/O4IzraD.jpg" alt=""><ul>
+<li><strong>基本概念</strong>：Observable和Observer通过subscribe()方法实现订阅关系，从而Observable可以在需要的时候发出事件通知Observer<ul>
+<li>Observable：可观察者，即被观察者</li>
+<li>Observer：观察者</li>
+<li>subscribe：订阅、事件</li>
+</ul>
+</li>
+<li><strong>事件回调方法</strong><ul>
+<li><img src="http://i.imgur.com/sT9ZQb9.jpg" alt=""></li>
+<li>onNext()：相当于onClick()/onEvent()</li>
+<li>onCompleted()：事件队列完结。RxJava不仅把每个时间单独处理，还会把它们看做一个队列。RxJava规定，当不会再有新的onNext()发出时，需要触发onCompleted()方法作为标志。</li>
+<li>onError()：事件队列异常。在事件处理过程中出异常时，onError()会被触发，同时终止队列，不允许再有事件发出</li>
+<li>onCompleted()与onError()方法必触发一个，且只触发一个</li>
+</ul>
+</li>
+<li><strong>RxJava基本实现步骤</strong><ul>
+<li><img src="http://i.imgur.com/Aq3Ih36.jpg" alt=""></li>
+</ul>
+<ol>
+<li>创建Observer（它决定事件触发的时候将有怎样的行为）<ul>
+<li><img src="http://i.imgur.com/6rJOnz1.png" alt=""></li>
+<li><strong>Oberver和Subscriber不同点</strong>(Subscriber是Oberver的扩展)<ul>
+<li>onStart()：这是 Subscriber 增加的方法。它会在 subscribe 刚开始，而事件还未发送之前被调用，可以用于做一些准备工作，例如数据的清零或重置。这是一个可选方法，默认情况下它的实现为空。需要注意的是，如果对准备工作的线程有要求（例如弹出一个显示进度的对话框，这必须在主线程执行）， onStart() 就不适用了，因为它总是在 subscribe 所发生的线程被调用，而不能指定线程。要在指定的线程来做准备工作，可以使用 doOnSubscribe() 方法，具体可以在后面的文中看到。</li>
+<li>unsubscribe()：这是 Subscriber 所实现的另一个接口 Subscription 的方法，用于取消订阅。在这个方法被调用后，Subscriber 将不再接收事件。一般在这个方法调用前，可以使用 isUnsubscribed() 先判断一下状态。 unsubscribe() 这个方法很重要，因为在 subscribe() 之后， Observable 会持有 Subscriber 的引用，这个引用如果不能及时被释放，将有内存泄露的风险。所以最好保持一个原则：要在不再使用的时候尽快在合适的地方（例如 onPause() onStop() 等方法中）调用 unsubscribe() 来解除引用关系，以避免内存泄露的发生。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建Observable（它决定什么时候触发事件以及触发怎样的事件，用<code>create()</code>方法创建） <ul>
+<li><img src="http://i.imgur.com/f1XaTqP.png" alt=""></li>
+<li>参数OnSubscribe 会被存储在返回的 Observable 对象中，它的作用相当于一个计划表，当 Observable 被订阅的时候，OnSubscribe 的 call() 方法会自动被调用，事件序列就会依照设定依次触发。</li>
+<li><strong>RxJava创造事件序列的方法</strong>(三者等价)<ul>
+<li><code>create()</code></li>
+<li><code>just(T...)</code>：将传入的参数依次发出</li>
+<li><code>from(T[])</code>/<code>from(Iterable&lt;? extends T&gt;)</code>：将传入的数组或Iterable拆分成具体对象，依次发出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Subscribe(订阅)<ul>
+<li><img src="http://i.imgur.com/Q45n2gZ.png" alt=""></li>
+</ul>
+</li>
+<li>实例<ul>
+<li><img src="http://i.imgur.com/dtR95Ph.png" alt=""></li>
+<li><img src="http://i.imgur.com/5HzRlC3.png" alt=""></li>
+<li><img src="http://i.imgur.com/Oedxw8A.png" alt=""></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>线程控制–Scheduler<ul>
+<li>subscribeOn() 和 observeOn() 两个方法来对线程进行控制<ul>
+<li><strong>subscribeOn()</strong>: 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程</li>
+<li><strong>observeOn()</strong>: 指定 Subscriber 所运行在的线程。或者叫做事件消费的线程</li>
+<li><code>Schedulers.immediate()</code>：默认，在当前线程运行</li>
+<li><code>Schedulers.newThread()</code>：总是启用新线程，并在新线程执行操作</li>
+<li><code>Schedulers.io()</code>：I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler。行为模式和 newThread() 差不多，区别在于 io() 的内部实现是是用一个无数量上限的线程池，可以重用空闲的线程，因此多数情况下 io() 比 newThread() 更有效率。不要把计算工作放在 io() 中，可以避免创建不必要的线程。</li>
+<li><code>Schedulers.computation()</code>：计算所使用的 Scheduler。这个计算指的是 CPU 密集型计算，即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 Scheduler 使用的固定的线程池，大小为 CPU 核数。不要把 I/O 操作放在 computation() 中，否则 I/O 操作的等待时间会浪费 CPU。</li>
+<li><code>AndroidSchedulers.mainThread()</code>：在 Android 主线程运行</li>
+</ul>
+</li>
+<li>实例<ul>
+<li><img src="http://i.imgur.com/ZuO9HVt.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>变换<ul>
+<li><code>map()</code>:事件对象的直接变换<ul>
+<li><img src="http://i.imgur.com/5vPVGS6.png" alt=""></li>
+</ul>
+</li>
+<li><code>flatmap()</code>: flatMap() 和 map() 有一个相同点：它也是把传入的参数转化之后返回另一个对象。但需要注意，和 map() 不同的是， flatMap() 中返回的是个 Observable 对象，并且这个 Observable 对象并不是被直接发送到了 Subscriber 的回调方法中。 flatMap() 的原理是这样的：1. 使用传入的事件对象创建一个 Observable 对象；2. 并不发送这个 Observable, 而是将它激活，于是它开始发送事件；3. 每一个创建出来的 Observable 发送的事件，都被汇入同一个 Observable ，而这个 Observable 负责将这些事件统一交给 Subscriber 的回调方法。这三个步骤，把事件拆成了两级，通过一组新创建的 Observable 将初始的对象『铺平』之后通过统一路径分发了下去。而这个『铺平』就是 flatMap() 所谓的 flat。<ul>
+<li><img src="http://i.imgur.com/51zSBq6.png" alt=""></li>
+<li><img src="http://i.imgur.com/1aiqX8s.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>参考 : <a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="noopener">http://gank.io/post/560e15be2dca930e00da1083</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常笔记/" rel="tag"># 日常笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/18/RxJava整理/" rel="next" title="RxJava整理">
+                <i class="fa fa-chevron-left"></i> RxJava整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/20/2017-03-20-Android-Preference实践-Ubuntu-jdk8环境配置添加-hide方法注释/" rel="prev" title="Android Preference实践 Ubuntu jdk8环境配置添加 @hide方法注释">
+                Android Preference实践 Ubuntu jdk8环境配置添加 @hide方法注释 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记"><span class="nav-number">1.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RxJava学习"><span class="nav-number">1.1.</span> <span class="nav-text">RxJava学习</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

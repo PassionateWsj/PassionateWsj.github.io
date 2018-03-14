@@ -232,815 +232,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java14-枚举类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java14-枚举类/" itemprop="url">Java14-枚举类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">通过关键词enum定义的类，称为枚举类</span><br><span class="line">    类似关键词class，interface</span><br><span class="line">    比如：</span><br><span class="line">    public enum SignalLight&#123;    //枚举类</span><br><span class="line">        //直接写</span><br><span class="line">        红灯，黄灯，绿灯</span><br><span class="line">        //可以写构造方法，普通方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    使用（.）： 枚举类.定义常量就可以了</span><br><span class="line">    比如：SignalLight.红灯;</span><br><span class="line">    返回对象就是枚举类实例化对象</span><br><span class="line">    枚举类和swtch-case使用比较多（switch支持int,char,String,枚举类）</span><br><span class="line"></span><br><span class="line"> 适用的场景：有多种不同的情况，通过枚举几次就能搞定的，可以定义枚举类</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java15-Set集合/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java15-Set集合/" itemprop="url">Java15-Set集合</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Set集合特点"><a href="#Set集合特点" class="headerlink" title="Set集合特点"></a>Set集合特点</h3><p>继承于 Collection，是一个不包含重复元素的集合。<br>   在Set集合里不会有重复的元素，遍历集合的时候，获取的元素不是按照存取的顺序获取的，是无序的<br>因为没有下标这种说法，普通的for循环无法便利Set集合，所以只能用迭代器或者foreach<br>所有超级接口：<br>Collection<e>, Iterable<e><br>所有已知实现类：<br>AbstractSet, ConcurrentSkipListSet, CopyOnWriteArraySet, EnumSet, HashSet, JobStateReasons, LinkedHashSet, TreeSet<br>比较常用的Set的实现类：HashSet，TreeSet</e></e></p>
-<h3 id="HashSet（按照哈希表的散列规则进行数据的存放）"><a href="#HashSet（按照哈希表的散列规则进行数据的存放）" class="headerlink" title="HashSet（按照哈希表的散列规则进行数据的存放）"></a>HashSet（按照哈希表的散列规则进行数据的存放）</h3><p>继承了AbstractSet，并且使用一个哈希表。<br>   定义类的时候，必需要重写Obje提供的2个方法hashCode()，equals()（除了基本数据类型类和String类）<br>    这样才能保证Set集合的元素不重复<br>    直接通过equals进行对象比较，在Set集合里效率太低，需要Hash散列算法进行辅助</p>
-<p>总结HashCode的说法（散列算法保证元素尽量在hash表分配均匀）<br>    a.相同的对象，hashCode一定相同<br>    b.不同的对象，hashCode可能相同<br>    c.hashCode不同的，对象一定不同</p>
-<h3 id="TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）"><a href="#TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）" class="headerlink" title="TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）"></a>TreeSet（通过Comparable和Comparator来排序的同时判断是否重复）（一定要有一种（些）顺序排序）</h3><p>继承于AbstractSet，使用元素的自然顺序对元素进行排序.<br>    添加，删除的操作流程都是一样的<br>    可以不需要重写hashCode和equals，必须要重写Comparable接口或者Comparator接口，没有比较的属性直接忽略（都视为相同）<br>    特点：获取的数据按照排序的规则进行实际的获取，不是无序的</p>
-<ul>
-<li><p>总结1：Comparable和Comparator的区别</p>
-<ul>
-<li>共同点：可以自己定义规则进行对象的比较</li>
-<li>不同点：<ul>
-<li>Comparable重写的是compareTo方法，只能采用一套比较规则</li>
-<li>Comparator重写的是compare方法，只要定义类实现Comparator，可以写多个比较器，定义不同的比较规则</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>总结2：Set中操作数据add，remove所有和下标索引有关的方法都是没有的</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java16-文件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java16-文件/" itemprop="url">Java16-文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>介绍：<br>    在java中把文件的操作，看作和普通对象一样的操作。jdk专门提供给了这样和文件有关的操作的类File<br>Java文件类以抽象的方式代表文件名和目录路径名。该类主要用于文件和目录的创建、文件的查找和文件的删除等。<br>File对象代表磁盘中实际存在的文件和目录。通过以下构造方法创建一个File对象。<br>通过给定的父抽象路径名和子路径名字符串创建一个新的File实例。</p>
-<ul>
-<li>使用：File类的操作    （创建，删除，查看文件等操作单独进行时都要进行存在判断）<ol>
-<li>File类在java.io包中</li>
-<li>常用的方法<ol>
-<li>构造方法：一般情况填写文件、文件夹的路径，使用绝对路径（字符串表示）<br> 绝对路径和相对路径<br> 绝对路径：当前所在目录E:\java\day15\Exercise\src<br> 相对路径：\src</li>
-<li>判断文件或文件夹是否存在    exists()（都返回boolean）<br> 文件夹    isDirectory()<br> 文件    isFile()<br> 隐藏文件或文件夹    isHidden()</li>
-<li>创建<br> 文件：createNewFile()，当且仅当不存在具有此抽象路径名指定名称的文件时，不可分地创建一个新的空文件。<br> 文件夹：mkdir()（一层）    mkdirs()（多级）</li>
-<li>删除（文件夹删除（必须为空）delete()只删除最后一层，删除多级文件夹需要配合listFile()方法，进行递归删除）<br> delete()（必须先删除里面所有文件才能删除此文件夹）</li>
-<li>查看文件目录结构<br> listFiles()：返回一个抽象路径名数组File[]，这些路径名表示此抽象路径名表示的目录中的文件。<br> lists()：返回一个字符串数组Stirng[]，这些字符串指定此抽象路径名表示的目录中的文件和目录<br> listFiles(FileFilter/FilenameFilter  filter)：过滤器，重写accept()方法，需要返回true，不需要false</li>
-<li>基本属性<br> getName()    名字<br> getlength()    大小<br> getAbsolutePath()    绝对路径</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java12-异常/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java12-异常/" itemprop="url">Java12-异常</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、Java中有异常（Exception）处理的机制"><a href="#一、Java中有异常（Exception）处理的机制" class="headerlink" title="一、Java中有异常（Exception）处理的机制"></a>一、Java中有异常（Exception）处理的机制</h3><p>当你在执行程序的时候，可能这个操作是错误的，比如：10/0，null.equals(“abc”)。如何去处理这样的操作<br>Java的异常机制就是针对这样的错误操作而提供的解决方案</p>
-<h3 id="二、了解Exception的继承结构"><a href="#二、了解Exception的继承结构" class="headerlink" title="二、了解Exception的继承结构"></a>二、了解Exception的继承结构</h3><p>所有的Exception都是继承Throwable类（可抛的）<br>从Throwable角度出发，他有两个子类  Exception和Error<br>所有Error抛出的错误，正常情况下在Java代码中都无法在应用层解决（JVM FULLDisk Error 虚拟机报错），所以不去深究</p>
-<h3 id="三、异常"><a href="#三、异常" class="headerlink" title="三、异常"></a>三、异常</h3><ol>
-<li><p>异常的定义</p>
-<ul>
-<li>自己定义一个继承Exception的子类即可</li>
-</ul>
-</li>
-<li><p>异常的处理</p>
-<ul>
-<li><p>消极处理（对外抛出（Java默认大多异常的处理方式））</p>
-<ul>
-<li><p>throws（关键字）在对应的方法最后进行使用，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    void test() throws NullPointerException&#123;&#125;    //很有可能产生错误，在末尾添加关键字throws</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>积极处理（对知道可能产生的错误进行处理）</p>
-<ul>
-<li><p>try - catch模块    扩展，try - catch - finally（无论执行了try还是catch，finally都执行）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">              boolean test()&#123;</span><br><span class="line">                  try&#123;        //没异常时执行</span><br><span class="line">                  //  假如s不是null，代码没有问题，执行try模块</span><br><span class="line">                  //  假如加入的s是null，这时执行catch模块</span><br><span class="line">                  //  String s = null;</span><br><span class="line">                      s.equals(&quot;abc&quot;);</span><br><span class="line">                  &#125;catch(NullPotinterException)&#123;        //有异常时执行</span><br><span class="line">                      //处理逻辑</span><br><span class="line">                      return false;</span><br><span class="line">                  &#125;finally&#123;</span><br><span class="line">                     //finally中的逻辑肯定会执行，与返回值无关</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;   </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>如何使用自定义的异常</p>
-<ul>
-<li><p>throw关键字可以使用自定义的异常</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">       void test()&#123;</span><br><span class="line">           //自己的逻辑</span><br><span class="line">           throw new MyException(&quot;自己的异常&quot;);    //已经自己声明过的异常</span><br><span class="line">           //可以有两种方式处理，一种积极的处理，一种消极的处理</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>throws和throw的区别：<ol>
-<li>throws处理异常的一种消极方式</li>
-<li>throw使用自定义的异常</li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java16-Map集合/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java16-Map集合/" itemprop="url">Java16-Map集合</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">1.数据以键值对(key-value)的方式进行储存（put方法进行添加数据，clear()清空）</span><br><span class="line">   Key-Value有映射关系，通过key(不能重复)能找到value（可以重复）（由Map内部类Entry（Map.Entry）完成（Set和Collection之间）映射）</span><br><span class="line">2.并不是在Collection接口进行重写的，所以他和Set，List的存储结构，调用方法是完全不同的</span><br><span class="line">3.直接继承Object，但是要访问Map的元素还是和Iterator有关</span><br><span class="line"></span><br><span class="line">泛型扩展：</span><br><span class="line">单独的泛型定义&lt;T&gt;,&lt;E&gt;</span><br><span class="line">多组的泛型定义&lt;K,V&gt;，泛型参数之间用逗号隔开</span><br><span class="line">比如：android中有个异步任务AsyncTask&lt;K,T,V&gt;使用到了多组泛型的定义方式</span><br><span class="line"></span><br><span class="line">比较常用的Map</span><br><span class="line">1.HashMap：（允许）（Treetable线程安全，但是效率低与Vector类似，HashMap与ArrayList类似）</span><br><span class="line">（通过哈希表比较大小，相同的key不能反复录入，key是通过hash表和equals进行结合判断，一旦重复就不会录入重复的key）</span><br><span class="line">    比如：&#123;&quot;abc&quot;-&quot;哈哈&quot;&#125;&#123;&quot;abc&quot;-&quot;嘿嘿&quot;&#125;  不可以，因为String重写了hashCode，所以不可能同时录入，只能选择一                个放入map，如果key一样，录入的值会被后面的覆盖</span><br><span class="line">Map的key就是在Set集合的基础上定义完成的，不可重复</span><br><span class="line">Map的value是在Collection集合基础上定义的，可以重复</span><br><span class="line">比如：&#123;&quot;abc&quot;-&quot;哈哈&quot;&#125;&#123;&quot;zxc&quot;-&quot;哈哈&quot;&#125;    可以</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.TreeMap：</span><br><span class="line">    同理和HashMap类似，key不能重复，一定要重写Comparable或者Comparator接口，判断比较是否相同，并且一定按照某个（些）规则排序</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * Map迭代器的遍历方式</span><br><span class="line">     * 1.遍历所有的key</span><br><span class="line">     * 2.遍历所有的value</span><br><span class="line">     * 3.遍历所有的key-value,最复杂但最实用，效率最高</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    public static void iterator1(HashMap&lt;String, Integer&gt; map)&#123;</span><br><span class="line">        //获取所有的key，存放set集合中</span><br><span class="line">        Set&lt;String&gt; sets = map.keySet();</span><br><span class="line">        Iterator&lt;String&gt; iterator = sets.iterator();</span><br><span class="line">        while (iterator.hasNext()) &#123;</span><br><span class="line">            //获取key</span><br><span class="line">            String key = (String)iterator.next();</span><br><span class="line">            //根据key获取value，通过get每一个key来获取value</span><br><span class="line">            Integer value = map.get(key);</span><br><span class="line">            System.out.println(key+&quot;,&quot;+value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取map中所有value</span><br><span class="line">     */</span><br><span class="line">    public static void iterator2(HashMap&lt;String, Integer&gt; map)&#123;</span><br><span class="line">        //获取所有value</span><br><span class="line">        Collection&lt;Integer&gt; value = map.values();</span><br><span class="line">        Iterator&lt;Integer&gt; itr = value.iterator();</span><br><span class="line">        while (itr.hasNext()) &#123;</span><br><span class="line">            Integer values = (Integer) itr.next();</span><br><span class="line">            System.out.println(values);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 同时获取key-value的值</span><br><span class="line">     */</span><br><span class="line">    public static void iterator3(HashMap&lt;String, Integer&gt; map)&#123;</span><br><span class="line">        //获取Set集合,存放的是Map.Entry映射类，映射key-value关系</span><br><span class="line">        Set&lt;Map.Entry&lt;String,Integer&gt;&gt; entry = map.entrySet();</span><br><span class="line">        //迭代的元素就是Map.Entry</span><br><span class="line">        Iterator&lt;Map.Entry&lt;String, Integer&gt;&gt; itr = entry.iterator();</span><br><span class="line">        while (itr.hasNext()) &#123;</span><br><span class="line">            Map.Entry&lt;String,Integer&gt; entry2 = itr.next();</span><br><span class="line">            String key = entry2.getKey();</span><br><span class="line">            Integer value = entry2.getValue();</span><br><span class="line">            System.out.println(key+&quot;|&quot;+value);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        for (Map.Entry&lt;String, Integer&gt; entry2 : entry) &#123;</span><br><span class="line">            System.out.println(entry2.getKey()+&quot;|&quot;+entry2.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java21-网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java21-网络/" itemprop="url">Java21-网络</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ol>
-<li>网络通讯：计算机和计算机之间通过某种协议格式，进行数据交换</li>
-</ol>
-<h3 id="连接关键词："><a href="#连接关键词：" class="headerlink" title="连接关键词："></a>连接关键词：</h3><ol>
-<li>ip：Internet Protocol 互联网协议    （网络中ip是标识设备上的唯一性）</li>
-<li>port：端口号（通过冒号的方式标识在ip地址后面。，ip标识指定的设备，端口号找到指定设备中某个需要访问的程序）</li>
-<li>socket：套接字，实现网络会话层的数据交互。协议的格式可以自己定义，比如：http, tcp/ip , udp.企业中自己定义的一些协议，可以在套接字的基础上进行扩展</li>
-<li>http协议：hyper    text    transport    protocol：超文本传输协议</li>
-<li>https协议：hyper    text    transport    protocol    secret：超文本传输加密协议（安全性比较高，效率比较低）</li>
-<li>tcp/ip协议：传输控制协议/网络协议（特点：安全性高，效率低。三次握手的情况，客户端和服务端的连接要进行三次确认才能认为连接成功。只要有任何一次的失败，都判定客户端和服务端的连接是失败的）</li>
-<li>udp协议：用户数据报协议（特点：不保证安全性，但是效率较高，相对的在传输过程中数据可能会丢失），直接扔数据包给接收者，如果没有收到数据包，重新再发送</li>
-<li>ftp协议：文件传输协议</li>
-</ol>
-<h3 id="实战："><a href="#实战：" class="headerlink" title="实战："></a>实战：</h3><ol>
-<li>Socket套接字：java默认采用tcp/ip的三次握手的协议规则，安全性较高<ol>
-<li>严格区分客户端和服务端。是由客户端向服务端发起连接，然后再进行三次握手确认<br>严格区分：客户可以是多个，服务端是一个（但是不排除服务端是多个情况）<br>Socket（客户端）和ServerSocket（服务端）</li>
-<li>正常的情况下，先构建服务端，然后再引申出客户端<br>写的过程中注意：ip地址，端口号<br>详细说明ip的封装类</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java20-线程同步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1400,6 +591,244 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java25-JSON解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java25-JSON解析/" itemprop="url">Java25-JSON解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">JSON: JavaScript Object Notation(JavaScript 对象表示法)</span><br><span class="line">JSON 是存储和交换文本信息的语法。类似 XML。</span><br><span class="line">JSON 比 XML 更小、更快，更易解析。</span><br><span class="line">什么是 JSON ？</span><br><span class="line">  ● JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）</span><br><span class="line">  ● JSON 是轻量级的文本数据交换格式</span><br><span class="line">  ● JSON 独立于语言 *</span><br><span class="line">  ● JSON 具有自我描述性，更易理解</span><br><span class="line">* JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器和 JSON 库支持许多不同的编程语言。 目前非常多的动态（PHP，JSP，.NET）编程语言都支持JSON。</span><br><span class="line">JSON - 转换为 JavaScript 对象</span><br><span class="line">JSON 文本格式在语法上与创建 JavaScript 对象的代码相同。</span><br><span class="line">由于这种相似性，无需解析器，JavaScript 程序能够使用内建的 eval() 函数，用 JSON 数据来生成原生的 JavaScript 对象。</span><br><span class="line">与 XML 相同之处</span><br><span class="line">  ● JSON 是纯文本</span><br><span class="line">  ● JSON 具有&quot;自我描述性&quot;（人类可读）</span><br><span class="line">  ● JSON 具有层级结构（值中存在值）</span><br><span class="line">  ● JSON 可通过 JavaScript 进行解析</span><br><span class="line">  ● JSON 数据可使用 AJAX 进行传输</span><br><span class="line">与 XML 不同之处</span><br><span class="line">  ● 没有结束标签</span><br><span class="line">  ● 更短</span><br><span class="line">  ● 读写的速度更快</span><br><span class="line">  ● 能够使用内建的 JavaScript eval() 方法进行解析</span><br><span class="line">  ● 使用数组</span><br><span class="line">  ● 不使用保留字</span><br><span class="line">为什么使用 JSON？</span><br><span class="line">对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：</span><br><span class="line">使用 XML</span><br><span class="line">  ● 读取 XML 文档</span><br><span class="line">  ● 使用 XML DOM 来循环遍历文档</span><br><span class="line">  ● 读取值并存储在变量中</span><br><span class="line">使用 JSON</span><br><span class="line">  ● 读取 JSON 字符串</span><br><span class="line">  ● 用 eval() 处理 JSON 字符串</span><br><span class="line">JSON 语法</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 语法是 JavaScript 语法的子集。</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 语法规则</span><br><span class="line">JSON 语法是 JavaScript 对象表示法语法的子集。</span><br><span class="line">  ● 数据在名称/值对中</span><br><span class="line">  ● 数据由逗号分隔</span><br><span class="line">  ● 花括号保存对象</span><br><span class="line">  ● 方括号保存数组</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 名称/值对</span><br><span class="line">JSON 数据的书写格式是：名称/值对。</span><br><span class="line">名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：</span><br><span class="line">&quot;firstName&quot; : &quot;John&quot;</span><br><span class="line">这很容易理解，等价于这条 JavaScript 语句：</span><br><span class="line">firstName = &quot;John&quot;</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 值</span><br><span class="line">JSON 值可以是：</span><br><span class="line">  ● 数字（整数或浮点数）</span><br><span class="line">  ● 字符串（在双引号中）</span><br><span class="line">  ● 逻辑值（true 或 false）</span><br><span class="line">  ● 数组（在方括号中）</span><br><span class="line">  ● 对象（在花括号中）</span><br><span class="line">  ● null</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 对象</span><br><span class="line">JSON 对象在花括号中书写：</span><br><span class="line">对象可以包含多个名称/值对：</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;</span><br><span class="line">这一点也容易理解，与这条 JavaScript 语句等价：</span><br><span class="line">firstName = &quot;John&quot;</span><br><span class="line">lastName = &quot;Doe&quot;</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">JSON 数组</span><br><span class="line">JSON 数组在方括号中书写：</span><br><span class="line">数组可包含多个对象：</span><br><span class="line">&#123;</span><br><span class="line">&quot;employees&quot;: [</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;John&quot; , &quot;lastName&quot;:&quot;Doe&quot; &#125;,</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;Anna&quot; , &quot;lastName&quot;:&quot;Smith&quot; &#125;,</span><br><span class="line">&#123; &quot;firstName&quot;:&quot;Peter&quot; , &quot;lastName&quot;:&quot;Jones&quot; &#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">在上面的例子中，对象 &quot;employees&quot; 是包含三个对象的数组。每个对象代表一条关于某人（有姓和名）的记录。</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java22-网络Http通讯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java22-网络Http通讯/" itemprop="url">Java22-网络Http通讯</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">简介：</span><br><span class="line">1.通过浏览器访问网络资源，经常通过http协议的方式进行网络资源的访问，他符合w3c组织提出的超文本通讯协议</span><br><span class="line">    现在也可以通过终端的方式访问网络资源。</span><br><span class="line">    网络资源都是存放在服务端的，无论是浏览器还是终端都可以通过ip地址和端口号访问服务器端的资源</span><br><span class="line">2.关键名词：B/S构架，C/S构架</span><br><span class="line">    Browers/Server 浏览器/服务器</span><br><span class="line">    Client/Server    客户端/服务器</span><br><span class="line"></span><br><span class="line">3.引入servlet的概念</span><br><span class="line">    1.他是提供web端通过http协议允许浏览器或者终端进行服务端的资源访问的接口</span><br><span class="line">    2.可以进行实际的http网络通讯。该需要有容器可以承载接口里面的内容。</span><br><span class="line">        tomcat就是其中比较常用的支持servlet接口的容器之一（轻便，开源）</span><br><span class="line"></span><br><span class="line">4.所以要使用支持J2EE的eclipse，进行web项目的构建</span><br><span class="line">   注意：Servlet的创建，web.xml的配置 和 Tomcat运行环境的搭建</span><br><span class="line"></span><br><span class="line">5.用javaSE端模拟访问 Web端Servlet提供的数据，核心的类:URL,HttpURLConnection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">服务端：</span><br><span class="line"></span><br><span class="line">在Tomcat环境下，构建Web Project，自定义各种不同HttpServlet接口进行数据的交互</span><br><span class="line">    1.Servlet通过doGet的方式进行数据的交互（外部默认请求的方式）</span><br><span class="line">        a.通过response对外部写数据（OutputStream）</span><br><span class="line">        b.通过request进行数据的获取（InputStream）</span><br><span class="line">            1）通过request可以获取指定服务端目录下的文件（getRealPath）</span><br><span class="line">            2）通过request可以获取终端写入的数据，键值对的数据（username，zhangsan）</span><br><span class="line"></span><br><span class="line">    2.通过doPost的方式进行数据的交互</span><br><span class="line">        a.通过response对外部写数据（OutputStream）</span><br><span class="line">        b.通过request进行数据的获取（InputStream）</span><br><span class="line">            1）通过request可以获取终端写入的数据，键值对的数据（username，zhangsan）</span><br><span class="line">            2）通过request读取上传的文件，Apache下commons中提供upfileload.jar包，io.jar包，</span><br><span class="line">                  通过工具类可以将读取上传的文件写入到服务端指定的目录中</span><br><span class="line"></span><br><span class="line">客户端：</span><br><span class="line"></span><br><span class="line">    1.URL构建</span><br><span class="line">    2.创建HttpURLConnection    （强转）(HttpURLConnection) url.openConnection()</span><br><span class="line">    3.设置HttpURLConnection的属性 setRequestMethod(&quot;GET&quot;)（GET，POST）</span><br><span class="line">        扩展：通过conn.getOutputStream向服务器写内容（一般设置POST属性写入内容）</span><br><span class="line">           1.可以写入基本的键值对形式 key1=value1&amp;key2=value2</span><br><span class="line">           2.可以写入文件上传的格式（参考代码）</span><br><span class="line">    4.进行连接（connection()）</span><br><span class="line">    5.判断返回的HttpCode编码，conn.getResponseCode() == HttpURLConnection.HTTP_OK（即200）表示成功</span><br><span class="line">        扩展：通过conn.getInputStream读取内容</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java23-XML解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1508,6 +937,502 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java21-网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java21-网络/" itemprop="url">Java21-网络</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ol>
+<li>网络通讯：计算机和计算机之间通过某种协议格式，进行数据交换</li>
+</ol>
+<h3 id="连接关键词："><a href="#连接关键词：" class="headerlink" title="连接关键词："></a>连接关键词：</h3><ol>
+<li>ip：Internet Protocol 互联网协议    （网络中ip是标识设备上的唯一性）</li>
+<li>port：端口号（通过冒号的方式标识在ip地址后面。，ip标识指定的设备，端口号找到指定设备中某个需要访问的程序）</li>
+<li>socket：套接字，实现网络会话层的数据交互。协议的格式可以自己定义，比如：http, tcp/ip , udp.企业中自己定义的一些协议，可以在套接字的基础上进行扩展</li>
+<li>http协议：hyper    text    transport    protocol：超文本传输协议</li>
+<li>https协议：hyper    text    transport    protocol    secret：超文本传输加密协议（安全性比较高，效率比较低）</li>
+<li>tcp/ip协议：传输控制协议/网络协议（特点：安全性高，效率低。三次握手的情况，客户端和服务端的连接要进行三次确认才能认为连接成功。只要有任何一次的失败，都判定客户端和服务端的连接是失败的）</li>
+<li>udp协议：用户数据报协议（特点：不保证安全性，但是效率较高，相对的在传输过程中数据可能会丢失），直接扔数据包给接收者，如果没有收到数据包，重新再发送</li>
+<li>ftp协议：文件传输协议</li>
+</ol>
+<h3 id="实战："><a href="#实战：" class="headerlink" title="实战："></a>实战：</h3><ol>
+<li>Socket套接字：java默认采用tcp/ip的三次握手的协议规则，安全性较高<ol>
+<li>严格区分客户端和服务端。是由客户端向服务端发起连接，然后再进行三次握手确认<br>严格区分：客户可以是多个，服务端是一个（但是不排除服务端是多个情况）<br>Socket（客户端）和ServerSocket（服务端）</li>
+<li>正常的情况下，先构建服务端，然后再引申出客户端<br>写的过程中注意：ip地址，端口号<br>详细说明ip的封装类</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java26-正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java26-正则表达式/" itemprop="url">Java26-正则表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">正则表达式语法</span><br><span class="line">字符 说明</span><br><span class="line">\ 将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，&quot;n&quot;匹配字符&quot;n&quot;。&quot;\n&quot;匹配换行符。序列&quot;\\&quot;匹配&quot;\&quot;，&quot;\(&quot;匹配&quot;(&quot;。</span><br><span class="line">^ 匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与&quot;\n&quot;或&quot;\r&quot;之后的位置匹配。</span><br><span class="line">$ 匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与&quot;\n&quot;或&quot;\r&quot;之前的位置匹配。</span><br><span class="line">* 零次或多次匹配前面的字符或子表达式。例如，zo* 匹配&quot;z&quot;和&quot;zoo&quot;。* 等效于 &#123;0,&#125;。</span><br><span class="line">+ 一次或多次匹配前面的字符或子表达式。例如，&quot;zo+&quot;与&quot;zo&quot;和&quot;zoo&quot;匹配，但与&quot;z&quot;不匹配。+ 等效于 &#123;1,&#125;。</span><br><span class="line">? 零次或一次匹配前面的字符或子表达式。例如，&quot;do(es)?&quot;匹配&quot;do&quot;或&quot;does&quot;中的&quot;do&quot;。? 等效于 &#123;0,1&#125;。</span><br><span class="line">&#123;n&#125; n 是非负整数。正好匹配 n 次。例如，&quot;o&#123;2&#125;&quot;与&quot;Bob&quot;中的&quot;o&quot;不匹配，但与&quot;food&quot;中的两个&quot;o&quot;匹配。</span><br><span class="line">&#123;n,&#125; n 是非负整数。至少匹配 n 次。例如，&quot;o&#123;2,&#125;&quot;不匹配&quot;Bob&quot;中的&quot;o&quot;，而匹配&quot;foooood&quot;中的所有 o。&quot;o&#123;1,&#125;&quot;等效于&quot;o+&quot;。&quot;o&#123;0,&#125;&quot;等效于&quot;o*&quot;。</span><br><span class="line">&#123;n,m&#125; M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，&quot;o&#123;1,3&#125;&quot;匹配&quot;fooooood&quot;中的头三个 o。&apos;o&#123;0,1&#125;&apos; 等效于 &apos;o?&apos;。注意：您不能将空格插入逗号和数字之间。</span><br><span class="line">? 当此字符紧随任何其他限定符（*、+、?、&#123;n&#125;、&#123;n,&#125;、&#123;n,m&#125;）之后时，匹配模式是&quot;非贪心的&quot;。&quot;非贪心的&quot;模式匹配搜索到的、尽可能短的字符串，而默认的&quot;贪心的&quot;模式匹配搜索到的、尽可能长的字符串。例如，在字符串&quot;oooo&quot;中，&quot;o+?&quot;只匹配单个&quot;o&quot;，而&quot;o+&quot;匹配所有&quot;o&quot;。</span><br><span class="line">. 匹配除&quot;\r\n&quot;之外的任何单个字符。若要匹配包括&quot;\r\n&quot;在内的任意字符，请使用诸如&quot;[\s\S]&quot;之类的模式。</span><br><span class="line">(pattern) 匹配 pattern 并捕获该匹配的子表达式。可以使用 $0…$9 属性从结果&quot;匹配&quot;集合中检索捕获的匹配。若要匹配括号字符 ( )，请使用&quot;\(&quot;或者&quot;\)&quot;。</span><br><span class="line">(?:pattern) 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配。这对于用&quot;or&quot;字符 (|) 组合模式部件的情况很有用。例如，&apos;industr(?:y|ies) 是比 &apos;industry|industries&apos; 更经济的表达式。</span><br><span class="line">(?=pattern) 执行正向预测先行搜索的子表达式，该表达式匹配处于匹配 pattern 的字符串的起始点的字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?=95|98|NT|2000)&apos; 匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;，但不匹配&quot;Windows 3.1&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">(?!pattern) 执行反向预测先行搜索的子表达式，该表达式匹配不处于匹配 pattern 的字符串的起始点的搜索字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?!95|98|NT|2000)&apos; 匹配&quot;Windows 3.1&quot;中的 &quot;Windows&quot;，但不匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">x|y 匹配 x 或 y。例如，&apos;z|food&apos; 匹配&quot;z&quot;或&quot;food&quot;。&apos;(z|f)ood&apos; 匹配&quot;zood&quot;或&quot;food&quot;。</span><br><span class="line">[xyz] 字符集。匹配包含的任一字符。例如，&quot;[abc]&quot;匹配&quot;plain&quot;中的&quot;a&quot;。</span><br><span class="line">[^xyz] 反向字符集。匹配未包含的任何字符。例如，&quot;[^abc]&quot;匹配&quot;plain&quot;中&quot;p&quot;，&quot;l&quot;，&quot;i&quot;，&quot;n&quot;。</span><br><span class="line">[a-z] 字符范围。匹配指定范围内的任何字符。例如，&quot;[a-z]&quot;匹配&quot;a&quot;到&quot;z&quot;范围内的任何小写字母。</span><br><span class="line">[^a-z] 反向范围字符。匹配不在指定的范围内的任何字符。例如，&quot;[^a-z]&quot;匹配任何不在&quot;a&quot;到&quot;z&quot;范围内的任何字符。</span><br><span class="line">\b 匹配一个字边界，即字与空格间的位置。例如，&quot;er\b&quot;匹配&quot;never&quot;中的&quot;er&quot;，但不匹配&quot;verb&quot;中的&quot;er&quot;。</span><br><span class="line">\B 非字边界匹配。&quot;er\B&quot;匹配&quot;verb&quot;中的&quot;er&quot;，但不匹配&quot;never&quot;中的&quot;er&quot;。</span><br><span class="line">\cx 匹配 x 指示的控制字符。例如，\cM 匹配 Control-M 或回车符。x 的值必须在 A-Z 或 a-z 之间。如果不是这样，则假定 c 就是&quot;c&quot;字符本身。</span><br><span class="line">\d 数字字符匹配。等效于 [0-9]。</span><br><span class="line">\D 非数字字符匹配。等效于 [^0-9]。</span><br><span class="line">\f 换页符匹配。等效于 \x0c 和 \cL。</span><br><span class="line">\n 换行符匹配。等效于 \x0a 和 \cJ。</span><br><span class="line">\r 匹配一个回车符。等效于 \x0d 和 \cM。</span><br><span class="line">\s 匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。</span><br><span class="line">\S 匹配任何非空白字符。与 [^ \f\n\r\t\v] 等效。</span><br><span class="line">\t 制表符匹配。与 \x09 和 \cI 等效。</span><br><span class="line">\v 垂直制表符匹配。与 \x0b 和 \cK 等效。</span><br><span class="line">\w 匹配任何字类字符，包括下划线。与&quot;[A-Za-z0-9_]&quot;等效。</span><br><span class="line">\W 与任何非单词字符匹配。与&quot;[^A-Za-z0-9_]&quot;等效。</span><br><span class="line">\xn 匹配 n，此处的 n 是一个十六进制转义码。十六进制转义码必须正好是两位数长。例如，&quot;\x41&quot;匹配&quot;A&quot;。&quot;\x041&quot;与&quot;\x04&quot;&amp;&quot;1&quot;等效。允许在正则表达式中使用 ASCII 代码。</span><br><span class="line">\num 匹配 num，此处的 num 是一个正整数。到捕获匹配的反向引用。例如，&quot;(.)\1&quot;匹配两个连续的相同字符。</span><br><span class="line">\n 标识一个八进制转义码或反向引用。如果 \n 前面至少有 n 个捕获子表达式，那么 n 是反向引用。否则，如果 n 是八进制数 (0-7)，那么 n 是八进制转义码。</span><br><span class="line">\nm 标识一个八进制转义码或反向引用。如果 \nm 前面至少有 nm 个捕获子表达式，那么 nm 是反向引用。如果 \nm 前面至少有 n 个捕获，则 n 是反向引用，后面跟有字符 m。如果两种前面的情况都不存在，则 \nm 匹配八进制值 nm，其中 n 和 m 是八进制数字 (0-7)。</span><br><span class="line">\nml 当 n 是八进制数 (0-3)，m 和 l 是八进制数 (0-7) 时，匹配八进制转义码 nml。</span><br><span class="line">\un 匹配 n，其中 n 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (©)。</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java知识点整理1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java知识点整理1/" itemprop="url">Java知识点整理1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">包定义的规范</span><br><span class="line">com.alibaba.view   com.alibaba.bean   com.alibaba.dao</span><br><span class="line"></span><br><span class="line">三目表达式：表达式1 ？表达式2 ： 表达式3</span><br><span class="line"></span><br><span class="line">（i++与++i的区别     i++先执行，++i先赋值）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String -- 字符串类型  printin 在字符串后面的所有“+“号都为连接符  数字1变为字符1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">static关键字：表示静态的，静态声明的属性表示全局变量，在类声明前就已经执行（只执行1次）。静态方法只能调用静态的属性和方法（可以直接类名+方法（属性）调用），静态类里不存在this</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this和super：用来区分重复的变量，super（虚方法）大多用在继承中子类的构造方法里</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">多态：扩展性，</span><br><span class="line">条件：</span><br><span class="line">1.继承</span><br><span class="line">2.方法重写</span><br><span class="line">3.父类引用指向子类对象</span><br><span class="line"></span><br><span class="line">final关键字：final能声明类（不能被继承），方法（不能被重写），属性变量（变成常量要大写）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">修饰符</span><br><span class="line">                                                           不同包             不同包但有继承            同包         同包同类</span><br><span class="line">    public                                               可以                可以                            可以            可以</span><br><span class="line">    protected                                       不可以              可以                            可以            可以</span><br><span class="line">    default(friendly)默认不写                不可以            不可以                          可以            可以</span><br><span class="line">    private                                            不可以            不可以                         不可以         可以</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">抽象类：一定包含抽象方法的类，不能实例化对象必须被继承，包含子类常见的方法（抽象表示，没有方法体）</span><br><span class="line">任何子类必须重写父类的抽象方法，或者声明自身为抽象类。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">接口：  </span><br><span class="line">一个接口（interface）可以有全局常量（final static ）和多个方法（必须为抽象方法），可以被多实现（implements）</span><br><span class="line">接口不能包含成员变量，除了static和final变量。</span><br><span class="line">所有实现接口的类中方法都为public</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">内部类的使用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">数组</span><br><span class="line">foreach循环：foreach(int i in arr)</span><br><span class="line">java.util.Arrays    Arrays.toString(arr);</span><br><span class="line"></span><br><span class="line">在数据的类中重写toString方法，来偷懒：public</span><br><span class="line">判断一个字符串A中是否包含字符串B：A.indexOf(B)，如果包含返回0，不包含返回-1</span><br><span class="line">Math.random()方法返回一个[0-1)的随机数，想要随机0-10整数可以强转(int)Math.random();</span><br><span class="line"></span><br><span class="line">String s = &quot;a&quot;+&quot;b&quot;+&quot;c&quot;;效率比较低，常量池会产生3个字符串，a,ab,abc</span><br><span class="line">StringBulider  线程不安全，效率高</span><br><span class="line">StringBuffer    线程安全</span><br><span class="line">字符串：  toCharArry()    字符串转换字符数组    </span><br><span class="line">               charAt()    从字符串中提取指定位置的字符</span><br><span class="line">               compareTo()    根据字典的次序，对应的字符进行逐个比较(&gt;返回正数，=返回0，&lt;返回负数)</span><br><span class="line">               compareToIngoreCase()    同上（无视大小写进行比较）</span><br><span class="line">               getBytes()    与byte数组的转换    </span><br><span class="line">               indexOf()    过滤字符串中存在的字符，存在返回index，不存在返回-1</span><br><span class="line">               trim()        去掉字符串的前后空格</span><br><span class="line">               subString()    从字符串中取出子字符串（index来索引截取，结束index不包含）</span><br><span class="line">               toLowerCase()    toUpperCase()    大小写转换</span><br><span class="line">               endsWith()    startsWith()    判断字符串的开头结尾字符</span><br><span class="line">               replace()    替换String字符串中的一个字符（返回String），也可删除指定字符，用&quot;&quot;来替换即可</span><br><span class="line">               concat()    拼接字符串，返回String</span><br><span class="line">               contains()    判断是否包含字符串，返回boolean</span><br><span class="line">               valueOf()    将基本数据类型转成实际的字符串(这个方法是静态方法)</span><br><span class="line">                上个方法通常不用，最直接为***+&quot;&quot;直接将***变为字符串进行拼接</span><br><span class="line"></span><br><span class="line">StringBuffer（需要实例化，省内存空间（StringBuilding更快但是需要在单线程使用，并且不安全））</span><br><span class="line">                append()    添加字符</span><br><span class="line">                insert()</span><br><span class="line">                replace(a,b,&quot;c&quot;)</span><br><span class="line">                indexOf()</span><br><span class="line"></span><br><span class="line">eclipse快速查找类方法</span><br><span class="line">ctrl+o    ctrl+oo    当前类（ctrl+左键系统自带类，jdk目录导入源代码）</span><br><span class="line">ctrl+shift+t    快速定位任何类</span><br><span class="line">ctrl+T    查看类的继承结构</span><br><span class="line">ctrl+F    查找关键字</span><br><span class="line">ctrl+L    定位到指定行</span><br><span class="line"></span><br><span class="line">在finally中关闭流 .close()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java28-反射机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java28-反射机制/" itemprop="url">Java28-反射机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">一、什么是反射机制</span><br><span class="line">        简单的来说，反射机制指的是程序在运行时能够获取自身的信息。在java中，只要给定类的名字， 那么就可以通过反射机制来获得类的所有信息。</span><br><span class="line">  </span><br><span class="line">二、哪里用到反射机制</span><br><span class="line">        有些时候，我们用过一些知识，但是并不知道它的专业术语是什么，在刚刚学jdbc时用过一行代码， Class.forName(&quot;com.mysql.jdbc.Driver.class&quot;).newInstance();但是那时候只知道那行代码是生成驱动对象实例，并不知道它的具体含义。听了反射机制这节课后，才知道，原来这就是反射，现在很多开框架都用到反射机制，hibernate、struts都是用反射机制实现的。</span><br><span class="line"></span><br><span class="line">三、反射机制的优点与缺点</span><br><span class="line">        为什么要用反射机制？直接创建对象不就可以了吗，这就涉及到了动态与静态的概念，</span><br><span class="line">  ●  静态编译：在编译时确定类型，绑定对象,即通过。  </span><br><span class="line">  ●  动态编译：运行时确定类型，绑定对象。动态编译最大限度发挥了java的灵活性，体现了多态的应用，有以降低类之间的藕合性。  </span><br><span class="line">        一句话，反射机制的优点就是可以实现动态创建对象和编译，体现出很大的灵活性，特别是在J2EE的开发中它的灵活性就表现的十分明显。比如，一个大型的软件，不可能一次就把把它设计的很完美，当这个程序编译后，发布了，当发现需要更新某些功能时，我们不可能要用户把以前的卸载，再重新安装新的版本，假如这样的话，这个软件肯定是没有多少人用的。采用静态的话，需要把整个程序重新编译一次才可以实现功能的更新，而采用反射机制的话，它就可以不用卸载，只需要在运行时才动态的创建和编译，就可以实现该功能。</span><br><span class="line">       它的缺点是对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满足我们的要求。这类操作总是慢于只直接执行相同的操作。</span><br><span class="line"></span><br><span class="line">四、利用反射机制能获得什么信息</span><br><span class="line">       一句话，类中有什么信息，它就可以获得什么信息，不过前提是得知道类的名字，要不就没有后文了,首先得根据传入的类的全名来创建Class对象。  </span><br><span class="line">        Class c=Class.forName(&quot;className&quot;);          //注明：className必须为全名，也就是得包含包名，比如，com.jimmy.UserInfo;</span><br><span class="line">        Object obj=c.newInstance();                        //创建对象的实例</span><br><span class="line">  </span><br><span class="line">        以下所有的方法全部通过class调用</span><br><span class="line"></span><br><span class="line">    1、获得构造函数的方法  </span><br><span class="line">         Constructor getConstructor(Class[] params)                            //根据指定参数获得public构造器</span><br><span class="line">         Constructor[] getConstructors()                                                //获得public的所有构造器</span><br><span class="line">         Constructor getDeclaredConstructor(Class[] params)             //根据指定参数获得public和非public的构造器</span><br><span class="line">         Constructor[] getDeclaredConstructors()                                 //获得public和非public的所有构造器 </span><br><span class="line"></span><br><span class="line">     2、获得类方法的方法  </span><br><span class="line">         Method getMethod(String name, Class[] params)    //根据方法名，参数类型获得方法</span><br><span class="line">         Method[] getMethods()                                              //获得所有的public方法 </span><br><span class="line">         Method getDeclaredMethod(String name, Class[] params)        //根据方法名和参数类型，获得public和非public的方法</span><br><span class="line">         Method[] getDeclaredMethods()                                                  //获得所以的public和非public方法</span><br><span class="line">   </span><br><span class="line">    3、 获得类中属性的方法</span><br><span class="line">        Field getField(String name)                    //根据变量名得到相应的public变量</span><br><span class="line">        Field[] getFields()                                    //获得类中所以public的变量的方法</span><br><span class="line">        Field getDeclaredField(String name)    //根据方法名获得public和非public变量</span><br><span class="line">        Field[] getDeclaredFields()                    //获得类中所有的public和非public方法 </span><br><span class="line"></span><br><span class="line">注意：一般使用框架用到反射，对默认的架构不满意，重新搭建新的架构</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1558,7 +1483,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1571,7 +1496,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -232,6 +232,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/2018-03-14-Android-与-Flutter-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/2018-03-14-Android-与-Flutter-一/" itemprop="url">2018-03-14 Android 与 Flutter (一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T23:06:45+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h3><ol>
+<li>Q : 在 Flutter 中与 View 等同的是啥？<ul>
+<li>Android : 如 Buttons, Toolbars, Inputs，总之什么都是一个 View</li>
+<li>Flutter : Widget</li>
+<li>Q : But 区别又是啥？ <ol>
+<li>View 自身是不会进行重绘的，除非调用 invalidate ; Widget 只支持一帧，然后每一帧 Flutter 的 framework 都会创建一个 Widget 实例树</li>
+<li>View 是可变的 ; Widget 是不可变的，因此超轻量</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>如何更新 Widgets ?<ul>
+<li>View 可以直接改变来更新 ; Widget 是不可变的，只能通过它的 state</li>
+</ul>
+</li>
+<li>有两种 state 类型的 Widget，一种是 StatelessWidget，另一种是 StatefulWidget<ul>
+<li>StatelessWidget : 表示没有 state 状态信息的 Widget，对于所描述的用户界面部分不依赖于对象中的配置信息以外的其他任何内容时，这种组件很有用，就比如 Android 中不会改变的 ImageView ，可以使用 StatelessWidget</li>
+<li>StatefulWidget : 如果是网络请求动态改变界面的，就必须使用 StatefulWidget 来告诉 widget 状态 state 已更新，以便 widget 进行更新</li>
+<li>要点 : 如果 Widget 改变了，就一定是 Stateful 的，但是如果它的父布局没变，那么父布局依然可以是 Stateless 的</li>
+</ul>
+</li>
+<li>这么敲布局？ 我的 XML 呢？<ul>
+<li>Android 中使用 XML 敲布局 ; Flutter 用 Widget tree 编写布局</li>
+<li>例子：</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return new Scaffold(</span><br><span class="line">    appBar: new AppBar(</span><br><span class="line">      title: new Text(&quot;Sample App&quot;),</span><br><span class="line">    ),</span><br><span class="line">    body: new Center(</span><br><span class="line">      child: new MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: new Text(&apos;Hello&apos;),</span><br><span class="line">        padding: new EdgeInsets.only(left: 10.0, right: 10.0),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>- [Flutter所提供的所有布局](https://flutter.io/widgets/layout/)
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/Retrofit-更换-host & Retrofit-离线缓存 & WebView 离线缓存 & X5 WebView 滑动冲突 和 滚动条/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1628,7 +1776,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/2018-01-11-Android的-so文件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/Android的-so文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -1647,7 +1795,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/11/2018-01-11-Android的-so文件/" itemprop="url">Android的.so文件</a></h1>
+                <a class="post-title-link" href="/2018/01/11/Android的-so文件/" itemprop="url">Android的.so文件</a></h1>
         
 
         <div class="post-meta">
@@ -1802,7 +1950,7 @@ if (i == 1) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/2018-01-10-MySql基本语法及存储过程学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/MySql基本语法及存储过程学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -1821,7 +1969,7 @@ if (i == 1) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/10/2018-01-10-MySql基本语法及存储过程学习/" itemprop="url">MySql基本语法及存储过程学习</a></h1>
+                <a class="post-title-link" href="/2018/01/10/MySql基本语法及存储过程学习/" itemprop="url">MySql基本语法及存储过程学习</a></h1>
         
 
         <div class="post-meta">
@@ -2334,7 +2482,7 @@ mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); 
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/04/2018-01-04 RxJava Kotlin Android Profiler Glide Stetho 待整理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/04/2018-01-04-RxJava-Kotlin-Android-Profiler-Glide-Stetho-待整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2353,7 +2501,7 @@ mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); 
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/04/2018-01-04 RxJava Kotlin Android Profiler Glide Stetho 待整理/" itemprop="url">RxJava Kotlin Android Profiler Glide Stetho 待整理</a></h1>
+                <a class="post-title-link" href="/2018/01/04/2018-01-04-RxJava-Kotlin-Android-Profiler-Glide-Stetho-待整理/" itemprop="url">RxJava Kotlin Android Profiler Glide Stetho 待整理</a></h1>
         
 
         <div class="post-meta">
@@ -2477,7 +2625,7 @@ mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); 
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/2018-01-03 Native 与 H5 交互-属性动画-SnackbarUtil/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/2018-01-03-Native-与-H5-交互-属性动画-SnackbarUtil/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -2496,7 +2644,7 @@ mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); 
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/03/2018-01-03 Native 与 H5 交互-属性动画-SnackbarUtil/" itemprop="url">Native 与 H5 交互-属性动画-SnackbarUtil.md</a></h1>
+                <a class="post-title-link" href="/2018/01/03/2018-01-03-Native-与-H5-交互-属性动画-SnackbarUtil/" itemprop="url">Native 与 H5 交互-属性动画-SnackbarUtil.md</a></h1>
         
 
         <div class="post-meta">
@@ -2935,190 +3083,6 @@ Debug.stopMethodTracing();
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/2017-12-27-App启动原理详解与启动优化-Application如何初始化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/27/2017-12-27-App启动原理详解与启动优化-Application如何初始化/" itemprop="url">2017-12-27 App启动原理详解与启动优化 & Application如何初始化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T11:05:50+08:00">
-                2017-12-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>## </p>
-<h5 id="12-27-2017-8-30-55-PM"><a href="#12-27-2017-8-30-55-PM" class="headerlink" title="12/27/2017 8:30:55 PM"></a>12/27/2017 8:30:55 PM</h5><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>App启动原理详解与启动优化</strong></li>
-<li><strong>Application如何初始化</strong></li>
-<li><strong>冷热启动，启动时间分析检测</strong></li>
-<li><strong>方法执行效率与时长计算，trace文件分析</strong></li>
-<li><strong>反编译qq代码，分析手机qq是如何做启动优化的</strong></li>
-</ol>
-<p>## </p>
-<p>### </p>
-<ol>
-<li>在点击 App 图标进行启动的过程中，系统会预处理一些比如分配内存等的耗时操作</li>
-<li>优化：<ul>
-<li>设置 Application 的主题<ul>
-<li>添加 item : android:windowIsTranslucent 为 true，即点击应用等待界面为透明</li>
-<li>添加 item : android:windowBackground ，设置背景（会导致其他问题）    </li>
-</ul>
-</li>
-<li>设置 SplashActivity 主题<ol>
-<li>添加 item : android:windowBackground ，设置背景</li>
-<li>在 oncreate 方法中设置为原先的 Theme</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>影响加载第一帧的三点<ol>
-<li>Application 的 onCreate 方法（代码优化）<ul>
-<li>开启线程执行初始化方法，条件：<ul>
-<li>没有创建 handler</li>
-<li>没有操作 UI</li>
-<li>异步要求不是单例（如果是单例，调用的地方需要判空）</li>
-</ul>
-</li>
-<li>两种优化方式<ul>
-<li>懒加载（延时加载）：放到双重校验锁的单例util中，延时启动加载，如果调用了工具没有初始化，就初始化</li>
-<li>放入线程加载（不能有handler）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>MainActivity 的 onCreate 方法（代码优化）</li>
-<li>加载 xml（嵌套不要太多）</li>
-</ol>
-</li>
-<li><p>trace 文件分析</p>
-<pre><code>File file = new File(Environment.getExternalStorageDirectory(), &quot;syp&quot;);
-Log.i(&quot;SYPApplication&quot;, &quot;onCreate ::: &quot; + file.getAbsolutePath());
-// 本地存入tracing 文件
-Debug.startMethodTracing(file.getAbsolutePath());
-……
-Debug.stopMethodTracing();
-</code></pre></li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>系统启动时间 (注意冷热启动)<ul>
-<li>log ： Display 关键字</li>
-<li>命令行： adb shell am start -W {包名}/{启动 Activity 全类名}<ul>
-<li>ThisTime</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Application 千万不要创建 Assets 对象</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3169,7 +3133,7 @@ Debug.stopMethodTracing();
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3182,7 +3146,7 @@ Debug.stopMethodTracing();
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

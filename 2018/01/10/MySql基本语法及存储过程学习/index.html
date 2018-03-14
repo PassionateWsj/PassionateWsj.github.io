@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="日常笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今日概要 MySql 基本语法学习 MySql 存储过程 WebView 嵌入 JavaScript 代码 WebView 修改 UserAgent X5 访问外链的坑 Kotlin 正则表达式   MySql 基本语法学习大纲 数据库的连接 数据库里的信息 查看数据库信息 调用存储过程  内容数据库的连接连接 MySQL 时需要提供 IP 地址、端口号、用户名、密码； 根据业务需求给该连接起个连">
+<meta name="keywords" content="日常笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql基本语法及存储过程学习">
+<meta property="og:url" content="http://yoursite.com/2018/01/10/MySql基本语法及存储过程学习/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="今日概要 MySql 基本语法学习 MySql 存储过程 WebView 嵌入 JavaScript 代码 WebView 修改 UserAgent X5 访问外链的坑 Kotlin 正则表达式   MySql 基本语法学习大纲 数据库的连接 数据库里的信息 查看数据库信息 调用存储过程  内容数据库的连接连接 MySQL 时需要提供 IP 地址、端口号、用户名、密码； 根据业务需求给该连接起个连">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-11T09:07:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySql基本语法及存储过程学习">
+<meta name="twitter:description" content="今日概要 MySql 基本语法学习 MySql 存储过程 WebView 嵌入 JavaScript 代码 WebView 修改 UserAgent X5 访问外链的坑 Kotlin 正则表达式   MySql 基本语法学习大纲 数据库的连接 数据库里的信息 查看数据库信息 调用存储过程  内容数据库的连接连接 MySQL 时需要提供 IP 地址、端口号、用户名、密码； 根据业务需求给该连接起个连">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/10/MySql基本语法及存储过程学习/"/>
+
+
+
+
+
+  <title>MySql基本语法及存储过程学习 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/MySql基本语法及存储过程学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySql基本语法及存储过程学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T10:00:40+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>MySql 基本语法学习</strong></li>
+<li><strong>MySql 存储过程</strong></li>
+<li><strong>WebView 嵌入 JavaScript 代码</strong></li>
+<li><strong>WebView 修改 UserAgent</strong></li>
+<li><strong>X5 访问外链的坑</strong></li>
+<li><strong>Kotlin 正则表达式</strong></li>
+</ol>
+<hr>
+<h3 id="MySql-基本语法学习"><a href="#MySql-基本语法学习" class="headerlink" title="MySql 基本语法学习"></a><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">MySql 基本语法学习</a></h3><h4 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h4><ul>
+<li>数据库的连接</li>
+<li>数据库里的信息</li>
+<li>查看数据库信息</li>
+<li>调用存储过程</li>
+</ul>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><h5 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h5><p>连接 MySQL 时需要提供 IP 地址、端口号、用户名、密码；</p>
+<p>根据业务需求给该连接起个连接名称。</p>
+<h5 id="数据库里的信息"><a href="#数据库里的信息" class="headerlink" title="数据库里的信息"></a>数据库里的信息</h5><p>数据库里信息只需要关注数据表、函数（存储过程）、查询。</p>
+<ul>
+<li>数据表：项目中使用的业务数据存储的地方</li>
+<li>函数（存储过程）：常用查询代码的整理</li>
+<li>查询：每天都会重复写的查询代码，可以保存在这里，不必须重复敲码</li>
+</ul>
+<h5 id="数据表"><a href="#数据表" class="headerlink" title="数据表"></a>数据表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据表</span><br><span class="line">create table</span><br></pre></td></tr></table></figure>
+<h5 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h5><p>没有参数时，直接调用存储过程名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call pro_version</span><br></pre></td></tr></table></figure>
+<p>需要传参数时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call pro_query_app_report_etl(9903, 3)</span><br></pre></td></tr></table></figure>
+<p>《调试文档 - 报表刷新状态》</p>
+<p>查看存储过程需要传的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create procedure pro_query_app_report_etl</span><br></pre></td></tr></table></figure>
+<p>把 create procedure 字段的内存拷贝出来就可以看到存储过程的定义，及参数的定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE DEFINER=`shengyiplus`@`%` PROCEDURE </span><br><span class="line">`pro_query_app_report_etl`</span><br><span class="line">(in var_report_id varchar(50),in var_day varchar(50))</span><br><span class="line">...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>返回结果，存储过程中 <code>select</code> 的结果集就是返回的结果。</p>
+<h4 id="接口调用"><a href="#接口调用" class="headerlink" title="接口调用"></a>接口调用</h4><ol>
+<li>实现存储过程</li>
+<li>通过调用接口，把存储过程名称作为参数传入</li>
+<li>通过接口获取存储过程执行的结果</li>
+</ol>
+<h5 id="实现存储过程"><a href="#实现存储过程" class="headerlink" title="实现存储过程"></a>实现存储过程</h5><p>如上</p>
+<h5 id="通过调用接口，把存储过程名称作为参数传入"><a href="#通过调用接口，把存储过程名称作为参数传入" class="headerlink" title="通过调用接口，把存储过程名称作为参数传入"></a>通过调用接口，把存储过程名称作为参数传入</h5><p>存储过程若无参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get /api/v2/procedure/data?api_token=288d848d3bdf31ec764e2af72669bb90&amp;procedure=shengyiplus_s.pro_manage_expense_p1&amp;ordered_params</span><br></pre></td></tr></table></figure>
+<p>有参数时使用 <code>ordered_params=one@two&amp;one=1&amp;two=2</code></p>
+<ul>
+<li>ordered_params 决定了参数的数量及顺序</li>
+<li>后面给 ordered_params 中的参数赋值，若无则赋值为空</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get /api/v2/procedure/data?api_token=288d848d3bdf31ec764e2af72669bb90&amp;procedure= shengyiplus_s.pro_manage_expense_chart&amp;ordered_params=month@city&amp;month=201711&amp;city=深圳市</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="MySql存储过程"><a href="#MySql存储过程" class="headerlink" title="MySql存储过程"></a><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">MySql存储过程</a></h3><h4 id="delimiter"><a href="#delimiter" class="headerlink" title="delimiter"></a>delimiter</h4><p>delimiter 告诉 mysql 解释器，该段命令是否已结束。</p>
+<p>默认情况下，delimiter 是分号 ;</p>
+<p>在命令行客户端中，如果有一行命令以分号结束，那么回车后，mysql 将会执行该命令。</p>
+<p>输入下面的语句:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msyql&gt; select * from test_table;</span><br></pre></td></tr></table></figure>
+<p>然后回车，那么 mysql 会立即执行该语句。</p>
+<p>但有时候，不希望 mysql 这么做，可能输入较多的语句，且语句中包含有分号。</p>
+<p>如试图在命令行客户端中输入如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists pr_param_in;</span><br><span class="line">create procedure pr_param_in(in id int)</span><br><span class="line">begin</span><br><span class="line">    if (id is not null) then</span><br><span class="line">        set id = id + 1;</span><br><span class="line">    end if;</span><br><span class="line"></span><br><span class="line">    select id as id_inner;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<p>默认情况下，不可能等到用户把这些语句全部输入完之后，再执行整段语句。</p>
+<p>因为 MySQL 一遇到分号，它就要自动执行。</p>
+<p>这种情况下，就需要事先把 delimiter 换成其它符号，如 ;;</p>
+<p>这样只有当 ;; 出现之后，MySQL 解释器才会执行这段语句</p>
+<p>完整的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists pr_param_in;</span><br><span class="line"></span><br><span class="line">delimiter ;; -- 声明以 ;; 作为结束符告诉 mysql 已可以运行</span><br><span class="line"></span><br><span class="line">create procedure pr_param_in(in id int)</span><br><span class="line">begin</span><br><span class="line">    if (id is not null) then</span><br><span class="line">        set id = id + 1;</span><br><span class="line">    end if;</span><br><span class="line"></span><br><span class="line">    select id as id_inner;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">;; -- 告诉 mysql 可以执行上述代码</span><br><span class="line"></span><br><span class="line">delimiter ; -- 恢复结束符</span><br></pre></td></tr></table></figure>
+<h4 id="存储过程-1"><a href="#存储过程-1" class="headerlink" title="存储过程"></a>存储过程</h4><p>一组 sql 语句集，功能强大，可以实现一些比较复杂的逻辑功能；</p>
+<p>存储过程跟触发器有点类似，都是一组 sql 集，但是存储过程是主动调用的，且功能比触发器更加强大，触发器是某件事触发后自动调用；</p>
+<p><strong>每句 sql 记得在行尾加分号</strong></p>
+<p>基本语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists `proc_if`;</span><br><span class="line">delimiter ;;</span><br><span class="line">create definer=`root`@`localhost` procedure `proc_if`</span><br><span class="line">begin</span><br><span class="line">end</span><br><span class="line">;;</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>delimiter ;;：之前说过了，把默认的输入的结束符;替换成;;。</li>
+<li>definer：创建者；</li>
+</ul>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>三种定义方式：</p>
+<ol>
+<li>declare</li>
+</ol>
+<p>这种方式定义的变量，语句的位置必须在begin下,同时要带上参数类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">declare tname varchar(50);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>set</li>
+</ol>
+<p>这种方式定义的变量，定义同时赋值，语句的位置可以任意出现，不需要带上参数类型，但定义的变量是会话变量，如果想定义局部变量，那么变量名加上’@’。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set @aa=&apos;xxx&apos;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>select</li>
+</ol>
+<p>性质同上一个set，但是这个可以通过插询记录去赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set @var=(select cnm from tbnm);</span><br><span class="line">select @var=cnm from tbnm;</span><br></pre></td></tr></table></figure>
+<h4 id="prepare"><a href="#prepare" class="headerlink" title="prepare"></a>prepare</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prepare statement_name from sql_text /*定义*/   </span><br><span class="line">execute statement_name [using variable [,variable...]] /*执行预处理语句*/   </span><br><span class="line">deallocate prepare statement_name /*删除定义*/</span><br></pre></td></tr></table></figure>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>更新所有数据表的字符串为 utf8</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">begin  </span><br><span class="line">    declare done boolean default 0;</span><br><span class="line">    declare tbl_name varchar(255);  </span><br><span class="line">  </span><br><span class="line">    declare t_index cursor for select ist.table_name from information_schema.tables as ist where ist.table_schema = &apos;shengyiplus_pro&apos; and ist.table_type = &apos;base table&apos;;</span><br><span class="line">    declare continue handler for sqlstate &apos;02000&apos; set done = 1;  </span><br><span class="line">  </span><br><span class="line">open t_index;  </span><br><span class="line">repeat  </span><br><span class="line">        fetch t_index into tbl_name;  </span><br><span class="line">        set @sql = concat(&apos;alter table &apos;, tbl_name, &apos; convert to character set utf8;&apos;);</span><br><span class="line"></span><br><span class="line">        prepare stmt from @sql; -- 定义</span><br><span class="line">        execute stmt;           -- 执行</span><br><span class="line">        deallocate prepare stmt;-- 释放</span><br><span class="line"></span><br><span class="line">until done end repeat;  </span><br><span class="line">close t_index;  </span><br><span class="line">  </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h4 id="存储过程列表"><a href="#存储过程列表" class="headerlink" title="存储过程列表"></a>存储过程列表</h4><p>方法一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show procedure status;</span><br></pre></td></tr></table></figure>
+<p>方法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">  routine_schema as database_name</span><br><span class="line">  , routine_name as procedure_name</span><br><span class="line">from information_schema.routines </span><br><span class="line">where routine_schema = database()</span><br><span class="line">and routine_name like &apos;pro_%&apos;</span><br><span class="line">and routine_type = &apos;PROCEDURE&apos;</span><br><span class="line">order by routine_name asc</span><br></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="http://www.cnblogs.com/chenpi/p/5136483.html" target="_blank" rel="noopener">mysql 中的存储过程</a></li>
+<li><a href="http://www.cnblogs.com/colder/p/3142067.html" target="_blank" rel="noopener">mysql 存储过程之游标遍历数据表</a></li>
+<li><a href="http://www.iteye.com/problems/100884" target="_blank" rel="noopener">mysql 存储过程执行动态sql的问题</a></li>
+<li><a href="http://blog.csdn.net/luo4105/article/details/51501245" target="_blank" rel="noopener">mysql 存储过程—-三种定义变量方式</a></li>
+<li><a href="http://blog.csdn.net/zhxp_870516/article/details/8531378" target="_blank" rel="noopener">mysql prepare语句使用</a></li>
+<li><a href="http://blog.csdn.net/u010003835/article/details/50716610" target="_blank" rel="noopener">数据库_MySQL 游标的使用和结果集的遍历</a></li>
+<li><a href="http://blog.csdn.net/k346k346/article/details/51892492" target="_blank" rel="noopener">MySQL 对 CREATE TABLE IF NOT EXISTS SELECT 的处理</a></li>
+<li><a href="http://book.51cto.com/art/201012/240986.htm" target="_blank" rel="noopener">从 information_schema.Routines 表中查看存储过程和函数的信息</a></li>
+</ul>
+<hr>
+<h2 id="WebView-嵌入-JavaScript-代码"><a href="#WebView-嵌入-JavaScript-代码" class="headerlink" title="WebView 嵌入 JavaScript 代码"></a>WebView 嵌入 JavaScript 代码</h2><ol>
+<li>方法写在 WebView 的 WebViewClient 的 onPageFinished 方法中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> public void onPageFinished(WebView view, String url) </span><br><span class="line">  &#123;</span><br><span class="line">       super.onPageFinished(view, url);</span><br><span class="line">        webview.loadUrl(&quot;javascript:(function()&#123;&quot; +</span><br><span class="line">                &quot;var objs=document.getElementsByTagName(\&quot;span\&quot;);&quot; +</span><br><span class="line">                &quot;for(var i=0;i&lt;objs.length;i++)&quot; +</span><br><span class="line">                &quot;&#123;&quot;</span><br><span class="line">                + &quot;      objs[i].onclick=function()  &quot; +</span><br><span class="line">                &quot;    &#123;   &quot;</span><br><span class="line">                + &quot;     window.authorlistener.openAuthor(this.getAttribute(&apos;data-author-id&apos;));     &quot; +</span><br><span class="line">                &quot; window.textlistener.openText(this.getAttribute(&apos;data-source-id&apos;)); &quot;+</span><br><span class="line">                &quot;    &#125;  &quot; +</span><br><span class="line">                &quot;&#125;&quot; +</span><br><span class="line">                &quot;&#125;)()&quot;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Kotlin-正则表达式"><a href="#Kotlin-正则表达式" class="headerlink" title="Kotlin 正则表达式"></a><a href="http://www.jb51.net/article/130009.htm" target="_blank" rel="noopener">Kotlin 正则表达式</a></h2><ol>
+<li><p>替换 UserAgent 中的 Chrome 版本为最新</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val userAgentWithNewChromeVersion = Regex(&quot;[Cc]hrome/[0-9.]*\\s+&quot;).replace(webSettings?.userAgentString!!, &quot;Chrome/57.0.2987.132 &quot;)</span><br><span class="line">webSettings.setUserAgent(userAgentWithNewChromeVersion)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>Linux Mint 学习安装<ul>
+<li><a href="http://www.binarytides.com/better-linux-mint-17-cinnamon/" target="_blank" rel="noopener">安装Linux Mint 17后要做的20件事</a></li>
+</ul>
+</li>
+<li><a href="https://stackoverflow.com/questions/19716840/handle-arrow-keys-from-d-pad-on-webview-google-tv-app" target="_blank" rel="noopener">Android Native 与 H5 适配 TV 遥控器按键</a></li>
+<li>Q : 阿里云数据可视化网页打开提示”请尝试使用Chrome最新版本浏览”<ul>
+<li>A : 查看网页源码，发现有一个浏览器检查的 <a href="https://cdn-service.datav.aliyun.com/datav-static/1.4.0_44/js/libs/browser-check.js" target="_blank" rel="noopener">js</a> ， js 使用了查看浏览器版本信息的 UserAgent 插件 <a href="https://github.com/faisalman/ua-parser-js" target="_blank" rel="noopener">UAParser</a> <a href="https://faisalman.github.io/ua-parser-js/" target="_blank" rel="noopener">测试连接</a> ，js 中通过插件获取浏览器信息，发现只支持 Chrome (主版本大于等50) 和 Safari(主版本大于等于10)</li>
+<li>而我们的应用嵌入了 X5 内核浏览器，综上所诉三个坑<ol>
+<li>设备在硬件上不支持 X5</li>
+<li>js 没有判断腾讯的 X5 内核浏览器（既 MQQBrowser）</li>
+<li>在把 UserAgent 中的 X5 信息去掉之后，依然有问题，<code>去掉 wv 会提示 Browser 为Android Browser ，再去掉 Version/4.0 之后 Browser 变为 Chrome</code><ul>
+<li>Browser 为 Chrome WebView<br><code>Mozilla/5.0 (Linux; Android 6.0.1; SM919 Build/MXB48T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 Mobile Safari/537.36</code></li>
+<li>Browser 为 Chrome<br><code>Mozilla/5.0 (Linux; Android 6.0.1; SM919 Build/MXB48T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.97 Mobile Safari/537.36</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常笔记/" rel="tag"># 日常笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/09/Android基础知识点整理/" rel="next" title="Android基础知识点整理(1)">
+                <i class="fa fa-chevron-left"></i> Android基础知识点整理(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/11/Android的-so文件/" rel="prev" title="Android的.so文件">
+                Android的.so文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#今日概要"><span class="nav-number">1.</span> <span class="nav-text">今日概要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql-基本语法学习"><span class="nav-number">1.1.</span> <span class="nav-text">MySql 基本语法学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#大纲"><span class="nav-number">1.1.1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内容"><span class="nav-number">1.1.2.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库的连接"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据库的连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库里的信息"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">数据库里的信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据表"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#存储过程"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">存储过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口调用"><span class="nav-number">1.1.3.</span> <span class="nav-text">接口调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实现存储过程"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">实现存储过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过调用接口，把存储过程名称作为参数传入"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">通过调用接口，把存储过程名称作为参数传入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql存储过程"><span class="nav-number">1.2.</span> <span class="nav-text">MySql存储过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#delimiter"><span class="nav-number">1.2.1.</span> <span class="nav-text">delimiter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储过程-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量"><span class="nav-number">1.2.3.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prepare"><span class="nav-number">1.2.4.</span> <span class="nav-text">prepare</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">1.2.5.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储过程列表"><span class="nav-number">1.2.6.</span> <span class="nav-text">存储过程列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">1.2.7.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView-嵌入-JavaScript-代码"><span class="nav-number">2.</span> <span class="nav-text">WebView 嵌入 JavaScript 代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kotlin-正则表达式"><span class="nav-number">3.</span> <span class="nav-text">Kotlin 正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">4.</span> <span class="nav-text">Tips</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
