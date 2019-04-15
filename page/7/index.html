@@ -407,7 +407,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java16-文件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java20-线程同步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -426,7 +426,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java16-文件/" itemprop="url">Java16-文件</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java20-线程同步/" itemprop="url">Java20-线程同步</a></h1>
         
 
         <div class="post-meta">
@@ -478,22 +478,142 @@
       
         
           
-            <p>介绍：<br>    在java中把文件的操作，看作和普通对象一样的操作。jdk专门提供给了这样和文件有关的操作的类File<br>Java文件类以抽象的方式代表文件名和目录路径名。该类主要用于文件和目录的创建、文件的查找和文件的删除等。<br>File对象代表磁盘中实际存在的文件和目录。通过以下构造方法创建一个File对象。<br>通过给定的父抽象路径名和子路径名字符串创建一个新的File实例。</p>
-<ul>
-<li>使用：File类的操作    （创建，删除，查看文件等操作单独进行时都要进行存在判断）<ol>
-<li>File类在java.io包中</li>
-<li>常用的方法<ol>
-<li>构造方法：一般情况填写文件、文件夹的路径，使用绝对路径（字符串表示）<br> 绝对路径和相对路径<br> 绝对路径：当前所在目录E:\java\day15\Exercise\src<br> 相对路径：\src</li>
-<li>判断文件或文件夹是否存在    exists()（都返回boolean）<br> 文件夹    isDirectory()<br> 文件    isFile()<br> 隐藏文件或文件夹    isHidden()</li>
-<li>创建<br> 文件：createNewFile()，当且仅当不存在具有此抽象路径名指定名称的文件时，不可分地创建一个新的空文件。<br> 文件夹：mkdir()（一层）    mkdirs()（多级）</li>
-<li>删除（文件夹删除（必须为空）delete()只删除最后一层，删除多级文件夹需要配合listFile()方法，进行递归删除）<br> delete()（必须先删除里面所有文件才能删除此文件夹）</li>
-<li>查看文件目录结构<br> listFiles()：返回一个抽象路径名数组File[]，这些路径名表示此抽象路径名表示的目录中的文件。<br> lists()：返回一个字符串数组Stirng[]，这些字符串指定此抽象路径名表示的目录中的文件和目录<br> listFiles(FileFilter/FilenameFilter  filter)：过滤器，重写accept()方法，需要返回true，不需要false</li>
-<li>基本属性<br> getName()    名字<br> getlength()    大小<br> getAbsolutePath()    绝对路径</li>
-</ol>
-</li>
-</ol>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">同步的概念</span><br><span class="line">1.多线程同时去访问相同的资源的时候，最多只有一个线程可以访问到资源，其他的线程都必须等待。同步的方式</span><br><span class="line">  同步的效果，当一个线程在访问资源的过程中，其他的线程全部处于阻塞状态</span><br><span class="line"> 比如：登录，当登录的线程进行验证的时候，只有一个访问这资源，其他线程都阻塞在那里</span><br><span class="line"> 同步使用场景最多的是对资源修改的时候</span><br><span class="line"></span><br><span class="line">异步的概念：</span><br><span class="line">2.多线程同时去访问相同的资源的时候，没有限制，没有个线程都可以访问，然后执行自己各有的逻辑</span><br><span class="line">  默认不进行sleep,join等操作，每个线程都不会阻塞</span><br><span class="line">  比如：图片的下载显示， 图片在下载的时候不会阻塞界面显示的线程，各自管各自运行</span><br><span class="line">            图片下载成功可以正常显示界面，下载失败界面也能正常显示，资源之间没有任何限制影响</span><br><span class="line"></span><br><span class="line">在Java中通过使用syncronized关键字，可以实现同步的效果</span><br><span class="line">1。syncronized修饰在方法</span><br><span class="line">     比如： public void method1()&#123;&#125;  变成  public syncronized void method1()&#123;&#125;</span><br><span class="line">                public static void method2()  变成 public static syncronized  void method2()&#123;&#125;</span><br><span class="line"></span><br><span class="line">2。syncronized修饰在代码块</span><br><span class="line">      a）对象锁</span><br><span class="line">      比如：</span><br><span class="line">      Object obj = new Object();   </span><br><span class="line">     //每个对象都有自己的一把锁，拿到这把锁的线程可以访问内部资源，没有这把锁的线程只能在外部等待</span><br><span class="line">     //当同步模块执行完毕以后，即释放obj的锁，让其他的线程取抢夺他</span><br><span class="line">      public void method1()&#123;</span><br><span class="line">         system.out.println(&quot;逻辑1&quot;)；</span><br><span class="line">         syncronized(obj)&#123;  //obj值得就是实例化的对象</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      b)  类锁 (针对于静态的，类可以直接访问方法的情况)</span><br><span class="line">      Class Cat&#123;</span><br><span class="line">          public static void method2()&#123;</span><br><span class="line">               System.out.println(&quot;逻辑2&quot;)；</span><br><span class="line">               //通过类进行锁</span><br><span class="line">               syncronized(Cat.class)&#123;    //外部的线程只有一个访问该静态方法</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">          &#125;  </span><br><span class="line">      &#125;    </span><br><span class="line">  总结：</span><br><span class="line">  同步代码块就是对指定的类或者对象进行锁的抢夺和释放，</span><br><span class="line">  只有拿到锁的线程可以访问对应的同步方法或者同步模块，其他线程只能在外部等待锁的释放</span><br><span class="line">  当同步方法或者同步模块执行完毕以后，锁就自动释放了</span><br><span class="line"></span><br><span class="line">  了解：</span><br><span class="line">  不能使用syncronized地方（类，接口不能修饰，构造方法也不可以修饰，变量）</span><br><span class="line">  class Parent ()&#123;</span><br><span class="line">    public syncronized void method1()&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Child extends Parent[</span><br><span class="line">    //重写（去除了同步）</span><br><span class="line">    public void method1()&#123;&#125;  //子类重写了父类的方法，但没有同步模块的处理</span><br><span class="line">    //也是重写（继续使用同步）</span><br><span class="line">    public syncronized void method1()&#123;&#125;</span><br><span class="line"></span><br><span class="line">     //自己根据实际情况可以选择</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（二）。从同步模块引申出死锁的问题</span><br><span class="line">总结：有2个可以调试用的资源，线程1抢占了第1个，线程2抢占了第2个</span><br><span class="line">          线程1希望获取线程2的资源，与此同时线程2也想获取线程1的资源</span><br><span class="line">          但线程1和线程2又不想放弃当前已经拥有的资源</span><br><span class="line">          死锁就会产生了</span><br><span class="line"></span><br><span class="line">（三）。线程中wait()和notify()的使用</span><br><span class="line">  1. wait()阻塞线程的方法，调用wait()的对象会让当前的线程进入等待</span><br><span class="line">      wait()的使用一定需要配合syncronized一起使用，否则不会有任何效果，syncronized需要锁定该对象锁</span><br><span class="line">  2. notify() 或者 notifyAll() 唤醒线程 ，唤醒的是wait()所在的线程</span><br><span class="line">      notify() 指唤醒随机的一条线程</span><br><span class="line">      notifyAll() 指唤醒所有的线程</span><br><span class="line">      notify() 或者 notifyAll() 的使用一定需要配合syncronized一起使用.</span><br><span class="line"></span><br><span class="line">(四)。生产者和消费者的模式，wait和notify使用诠释</span><br><span class="line">     1、最关键的类是仓库类，可以统一管理货物，货物就是一种资源</span><br><span class="line">     2,  仓库类需要提供同步的方法</span><br><span class="line">          a)如何生产货物的方法 ，仓库的最大容量是100，如果超过这个容量就要停止生产处于等待 （wait）。一旦仓库里的货物消费了(notify)，可以继续生产</span><br><span class="line">          b)如何消费货物的方法 ,  仓库的容量是0的时候，不能消费了，进行等待(wait),一旦仓库里的货物生产了(notify)，可以继续消费</span><br><span class="line">     3.还有货物类，生产类实现Runnable接口，消费类实现Runnable接口，测试类</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java09-设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java09-设计模式/" itemprop="url">Java09-设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。</p>
+<h3 id="二、设计模式的分类"><a href="#二、设计模式的分类" class="headerlink" title="二、设计模式的分类"></a>二、设计模式的分类</h3><ul>
+<li>总体来说设计模式分为三大类：<ul>
+<li>创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。</li>
+<li>结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。</li>
+<li>行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。</li>
+</ul>
 </li>
 </ul>
+<h3 id="三、设计模式的六大原则"><a href="#三、设计模式的六大原则" class="headerlink" title="三、设计模式的六大原则"></a>三、设计模式的六大原则</h3><ol>
+<li>开闭原则（Open Close Principle）<br>开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</li>
+<li>里氏代换原则（Liskov Substitution Principle）<br>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科</li>
+<li>依赖倒转原则（Dependence Inversion Principle）<br>这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。</li>
+<li>接口隔离原则（Interface Segregation Principle）<br>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</li>
+<li>迪米特法则（最少知道原则）（Demeter Principle）<br>为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。</li>
+<li>合成复用原则（Composite Reuse Principle）<br>原则是尽量使用合成/聚合的方式，而不是使用继承。</li>
+</ol>
 
           
         
@@ -663,7 +783,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java20-线程同步/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java23-XML解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -682,7 +802,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java20-线程同步/" itemprop="url">Java20-线程同步</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java23-XML解析/" itemprop="url">Java23-XML解析</a></h1>
         
 
         <div class="post-meta">
@@ -734,7 +854,9 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">同步的概念</span><br><span class="line">1.多线程同时去访问相同的资源的时候，最多只有一个线程可以访问到资源，其他的线程都必须等待。同步的方式</span><br><span class="line">  同步的效果，当一个线程在访问资源的过程中，其他的线程全部处于阻塞状态</span><br><span class="line"> 比如：登录，当登录的线程进行验证的时候，只有一个访问这资源，其他线程都阻塞在那里</span><br><span class="line"> 同步使用场景最多的是对资源修改的时候</span><br><span class="line"></span><br><span class="line">异步的概念：</span><br><span class="line">2.多线程同时去访问相同的资源的时候，没有限制，没有个线程都可以访问，然后执行自己各有的逻辑</span><br><span class="line">  默认不进行sleep,join等操作，每个线程都不会阻塞</span><br><span class="line">  比如：图片的下载显示， 图片在下载的时候不会阻塞界面显示的线程，各自管各自运行</span><br><span class="line">            图片下载成功可以正常显示界面，下载失败界面也能正常显示，资源之间没有任何限制影响</span><br><span class="line"></span><br><span class="line">在Java中通过使用syncronized关键字，可以实现同步的效果</span><br><span class="line">1。syncronized修饰在方法</span><br><span class="line">     比如： public void method1()&#123;&#125;  变成  public syncronized void method1()&#123;&#125;</span><br><span class="line">                public static void method2()  变成 public static syncronized  void method2()&#123;&#125;</span><br><span class="line"></span><br><span class="line">2。syncronized修饰在代码块</span><br><span class="line">      a）对象锁</span><br><span class="line">      比如：</span><br><span class="line">      Object obj = new Object();   </span><br><span class="line">     //每个对象都有自己的一把锁，拿到这把锁的线程可以访问内部资源，没有这把锁的线程只能在外部等待</span><br><span class="line">     //当同步模块执行完毕以后，即释放obj的锁，让其他的线程取抢夺他</span><br><span class="line">      public void method1()&#123;</span><br><span class="line">         system.out.println(&quot;逻辑1&quot;)；</span><br><span class="line">         syncronized(obj)&#123;  //obj值得就是实例化的对象</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      b)  类锁 (针对于静态的，类可以直接访问方法的情况)</span><br><span class="line">      Class Cat&#123;</span><br><span class="line">          public static void method2()&#123;</span><br><span class="line">               System.out.println(&quot;逻辑2&quot;)；</span><br><span class="line">               //通过类进行锁</span><br><span class="line">               syncronized(Cat.class)&#123;    //外部的线程只有一个访问该静态方法</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">          &#125;  </span><br><span class="line">      &#125;    </span><br><span class="line">  总结：</span><br><span class="line">  同步代码块就是对指定的类或者对象进行锁的抢夺和释放，</span><br><span class="line">  只有拿到锁的线程可以访问对应的同步方法或者同步模块，其他线程只能在外部等待锁的释放</span><br><span class="line">  当同步方法或者同步模块执行完毕以后，锁就自动释放了</span><br><span class="line"></span><br><span class="line">  了解：</span><br><span class="line">  不能使用syncronized地方（类，接口不能修饰，构造方法也不可以修饰，变量）</span><br><span class="line">  class Parent ()&#123;</span><br><span class="line">    public syncronized void method1()&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Child extends Parent[</span><br><span class="line">    //重写（去除了同步）</span><br><span class="line">    public void method1()&#123;&#125;  //子类重写了父类的方法，但没有同步模块的处理</span><br><span class="line">    //也是重写（继续使用同步）</span><br><span class="line">    public syncronized void method1()&#123;&#125;</span><br><span class="line"></span><br><span class="line">     //自己根据实际情况可以选择</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（二）。从同步模块引申出死锁的问题</span><br><span class="line">总结：有2个可以调试用的资源，线程1抢占了第1个，线程2抢占了第2个</span><br><span class="line">          线程1希望获取线程2的资源，与此同时线程2也想获取线程1的资源</span><br><span class="line">          但线程1和线程2又不想放弃当前已经拥有的资源</span><br><span class="line">          死锁就会产生了</span><br><span class="line"></span><br><span class="line">（三）。线程中wait()和notify()的使用</span><br><span class="line">  1. wait()阻塞线程的方法，调用wait()的对象会让当前的线程进入等待</span><br><span class="line">      wait()的使用一定需要配合syncronized一起使用，否则不会有任何效果，syncronized需要锁定该对象锁</span><br><span class="line">  2. notify() 或者 notifyAll() 唤醒线程 ，唤醒的是wait()所在的线程</span><br><span class="line">      notify() 指唤醒随机的一条线程</span><br><span class="line">      notifyAll() 指唤醒所有的线程</span><br><span class="line">      notify() 或者 notifyAll() 的使用一定需要配合syncronized一起使用.</span><br><span class="line"></span><br><span class="line">(四)。生产者和消费者的模式，wait和notify使用诠释</span><br><span class="line">     1、最关键的类是仓库类，可以统一管理货物，货物就是一种资源</span><br><span class="line">     2,  仓库类需要提供同步的方法</span><br><span class="line">          a)如何生产货物的方法 ，仓库的最大容量是100，如果超过这个容量就要停止生产处于等待 （wait）。一旦仓库里的货物消费了(notify)，可以继续生产</span><br><span class="line">          b)如何消费货物的方法 ,  仓库的容量是0的时候，不能消费了，进行等待(wait),一旦仓库里的货物生产了(notify)，可以继续消费</span><br><span class="line">     3.还有货物类，生产类实现Runnable接口，消费类实现Runnable接口，测试类</span><br></pre></td></tr></table></figure>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.简单介绍（eXtensible Markup Language）</span><br><span class="line">应用于 Web 开发的许多方面，常用于简化数据的存储和共享。</span><br><span class="line">    a).XML（可扩展标记语言）是一种数据交换格式，主要运用在配置文件的构写。</span><br><span class="line">        比如：web.xml </span><br><span class="line">                  还有html格式：&lt;html&gt;&lt;/html&gt;</span><br><span class="line">                  android界面：&lt;TextView /&gt;</span><br><span class="line">                  上述的格式都是基于xml的格式定义的配置信息‘</span><br><span class="line"></span><br><span class="line">2.规范的xml结构</span><br><span class="line">    &lt;根元素 属性&gt;    开始符号&lt;&gt;</span><br><span class="line">        &lt;子元素1 属性&gt;</span><br><span class="line">        &lt;/子元素&gt;</span><br><span class="line">        &lt;子元素2    /&gt;</span><br><span class="line">    &lt;/根元素&gt;    结束符合&lt;/&gt;</span><br><span class="line"></span><br><span class="line">3.解析XML数据格式的几种方式</span><br><span class="line">    1.Pull解析（Sax进化版）</span><br><span class="line">        特性：基于驱动型事件</span><br><span class="line">        优点：和Sax解析相比，不需要从头解析到底，想何时结束就何时结束（更灵活）</span><br><span class="line">                    对驱动事件的标识也进行优化，效率大大提高了</span><br><span class="line">             移动端采用的XML都是基于Pull解析器的解析</span><br><span class="line"></span><br><span class="line">    2.Sax解析</span><br><span class="line">        特点：基于驱动事件的解析，他把所有的标签，属性，内容划分开来，把他们做成驱动时间</span><br><span class="line">                    &lt;根元素&gt;驱动事件1</span><br><span class="line">                    &lt;/根元素&gt;驱动事件2</span><br><span class="line">                    他的解析称为事件解析</span><br><span class="line">        优点：基于是驱动型事件，逐行解析的效果，内存消耗很小（只消耗当前解析的该行）</span><br><span class="line">        缺点：如果解析中出现问题，不能回到原来的驱动事件，只能重新来过（死板一遍过，容错率低）</span><br><span class="line"></span><br><span class="line">    3.Dom解析</span><br><span class="line">        特性：将需要解析的xml文件全部加载到内存中。将所有的标签包括内容转换成树结构</span><br><span class="line">        优点：查找上的速度一般（通过树的节点查找）。添加，删除，修改效率比较高</span><br><span class="line">        缺点：消耗内存（转树形结构的时候，消耗大量内存），移动端都摒弃了该解析方式，只有服务端采用</span><br><span class="line">                  移动端一旦xml数据多的时候，内存消耗特别厉害</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/O1i4dwj.gif" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上图表示下面的 XML 中的一本书：</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line">&lt;book category=&quot;COOKING&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Giada De Laurentiis&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;30.00&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;CHILDREN&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">&lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;WEB&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Erik T. Ray&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2003&lt;/year&gt;</span><br><span class="line">&lt;price&gt;39.95&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;/bookstore&gt;</span><br><span class="line">第一行是 XML 声明。它定义 XML 的版本（1.0）和所使用的编码（ISO-8859-1 = Latin-1/西欧字符集）。</span><br><span class="line">实例中的根元素是 &lt;bookstore&gt;。文档中的所有 &lt;book&gt; 元素都被包含在 &lt;bookstore&gt; 中。</span><br><span class="line">&lt;book&gt; 元素有 4 个子元素：&lt;title&gt;、&lt;author&gt;、&lt;year&gt;、&lt;price&gt;。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么是 XML？</span><br><span class="line">  ● XML 指可扩展标记语言（EXtensible Markup Language）。</span><br><span class="line">  ● XML 是一种很像HTML的标记语言。</span><br><span class="line">  ● XML 的设计宗旨是传输数据，而不是显示数据。</span><br><span class="line">  ● XML 标签没有被预定义。您需要自行定义标签。</span><br><span class="line">  ● XML 被设计为具有自我描述性。</span><br><span class="line">  ● XML 是 W3C 的推荐标准。</span><br><span class="line">XML 和 HTML 之间的差异</span><br><span class="line">XML 不是 HTML 的替代。</span><br><span class="line">XML 和 HTML 为不同的目的而设计：</span><br><span class="line">  ● XML 被设计用来传输和存储数据，其焦点是数据的内容。</span><br><span class="line">  ● HTML 被设计用来显示数据，其焦点是数据的外观。</span><br><span class="line">HTML 旨在显示信息，而 XML 旨在传输信息</span><br><span class="line">XML 不会做任何事情</span><br><span class="line">也许这有点难以理解，但是 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息。</span><br><span class="line">下面实例是 Jani 写给 Tove 的便签，存储为 XML：</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">&lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br><span class="line">上面的这条便签具有自我描述性。它包含了发送者和接受者的信息，同时拥有标题以及消息主体。</span><br><span class="line">但是，这个 XML 文档仍然没有做任何事情。它仅仅是包装在 XML 标签中的纯粹的信息。我们需要编写软件或者程序，才能传送、接收和显示出这个文档。</span><br><span class="line">XML 无所不在</span><br><span class="line">目前，XML 在 Web 中起到的作用不会亚于一直作为 Web 基石的 HTML。</span><br><span class="line">XML 是各种应用程序之间进行数据传输的最常用的工具。</span><br><span class="line">XML 把数据从 HTML 分离</span><br><span class="line">如果您需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。</span><br><span class="line">通过 XML，数据能够存储在独立的 XML 文件中。这样您就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。</span><br><span class="line">通过使用几行 JavaScript 代码，您就可以读取一个外部 XML 文件，并更新您的网页的数据内容。</span><br><span class="line">XML 简化数据共享</span><br><span class="line">在真实的世界中，计算机系统和数据使用不兼容的格式来存储数据。</span><br><span class="line">XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。</span><br><span class="line">这让创建不同应用程序可以共享的数据变得更加容易。</span><br><span class="line">XML 简化数据传输</span><br><span class="line">对开发人员来说，其中一项最费时的挑战一直是在互联网上的不兼容系统之间交换数据。</span><br><span class="line">由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。</span><br><span class="line">XML 简化平台变更</span><br><span class="line">升级到新的系统（硬件或软件平台），总是非常费时的。必须转换大量的数据，不兼容的数据经常会丢失。</span><br><span class="line">XML 数据以文本格式存储。这使得 XML 在不损失数据的情况下，更容易扩展或升级到新的操作系统、新的应用程序或新的浏览器。</span><br><span class="line">XML 使您的数据更有用</span><br><span class="line">不同的应用程序都能够访问您的数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。</span><br><span class="line">通过 XML，您的数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。</span><br><span class="line">XML 用于创建新的互联网语言</span><br><span class="line">很多新的互联网语言是通过 XML 创建的。</span><br><span class="line">这里有一些实例：</span><br><span class="line">  ● XHTML</span><br><span class="line">  ● 用于描述可用的 Web 服务 的 WSDL</span><br><span class="line">  ● 作为手持设备的标记语言的 WAP 和 WML</span><br><span class="line">  ● 用于新闻 feed 的 RSS 语言</span><br><span class="line">  ● 描述资本和本体的 RDF 和 OWL</span><br><span class="line">  ● 用于描述针针对 Web 的多媒体 的 SMIL</span><br><span class="line">假如开发人员都是理性的</span><br><span class="line">假如他们都是理性的，就让未来的应用程序使用 XML 来交换数据吧。</span><br><span class="line">未来也许会出现某种字处理软件、电子表格程序以及数据库，它们可以使用 XML 格式读取彼此的数据，而不需要使用任何的转换程序。</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1040,127 +1162,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java23-XML解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java23-XML解析/" itemprop="url">Java23-XML解析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.简单介绍（eXtensible Markup Language）</span><br><span class="line">应用于 Web 开发的许多方面，常用于简化数据的存储和共享。</span><br><span class="line">    a).XML（可扩展标记语言）是一种数据交换格式，主要运用在配置文件的构写。</span><br><span class="line">        比如：web.xml </span><br><span class="line">                  还有html格式：&lt;html&gt;&lt;/html&gt;</span><br><span class="line">                  android界面：&lt;TextView /&gt;</span><br><span class="line">                  上述的格式都是基于xml的格式定义的配置信息‘</span><br><span class="line"></span><br><span class="line">2.规范的xml结构</span><br><span class="line">    &lt;根元素 属性&gt;    开始符号&lt;&gt;</span><br><span class="line">        &lt;子元素1 属性&gt;</span><br><span class="line">        &lt;/子元素&gt;</span><br><span class="line">        &lt;子元素2    /&gt;</span><br><span class="line">    &lt;/根元素&gt;    结束符合&lt;/&gt;</span><br><span class="line"></span><br><span class="line">3.解析XML数据格式的几种方式</span><br><span class="line">    1.Pull解析（Sax进化版）</span><br><span class="line">        特性：基于驱动型事件</span><br><span class="line">        优点：和Sax解析相比，不需要从头解析到底，想何时结束就何时结束（更灵活）</span><br><span class="line">                    对驱动事件的标识也进行优化，效率大大提高了</span><br><span class="line">             移动端采用的XML都是基于Pull解析器的解析</span><br><span class="line"></span><br><span class="line">    2.Sax解析</span><br><span class="line">        特点：基于驱动事件的解析，他把所有的标签，属性，内容划分开来，把他们做成驱动时间</span><br><span class="line">                    &lt;根元素&gt;驱动事件1</span><br><span class="line">                    &lt;/根元素&gt;驱动事件2</span><br><span class="line">                    他的解析称为事件解析</span><br><span class="line">        优点：基于是驱动型事件，逐行解析的效果，内存消耗很小（只消耗当前解析的该行）</span><br><span class="line">        缺点：如果解析中出现问题，不能回到原来的驱动事件，只能重新来过（死板一遍过，容错率低）</span><br><span class="line"></span><br><span class="line">    3.Dom解析</span><br><span class="line">        特性：将需要解析的xml文件全部加载到内存中。将所有的标签包括内容转换成树结构</span><br><span class="line">        优点：查找上的速度一般（通过树的节点查找）。添加，删除，修改效率比较高</span><br><span class="line">        缺点：消耗内存（转树形结构的时候，消耗大量内存），移动端都摒弃了该解析方式，只有服务端采用</span><br><span class="line">                  移动端一旦xml数据多的时候，内存消耗特别厉害</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/O1i4dwj.gif" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上图表示下面的 XML 中的一本书：</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line">&lt;book category=&quot;COOKING&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Giada De Laurentiis&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;30.00&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;CHILDREN&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">&lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">&lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;book category=&quot;WEB&quot;&gt;</span><br><span class="line">&lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;</span><br><span class="line">&lt;author&gt;Erik T. Ray&lt;/author&gt;</span><br><span class="line">&lt;year&gt;2003&lt;/year&gt;</span><br><span class="line">&lt;price&gt;39.95&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line">&lt;/bookstore&gt;</span><br><span class="line">第一行是 XML 声明。它定义 XML 的版本（1.0）和所使用的编码（ISO-8859-1 = Latin-1/西欧字符集）。</span><br><span class="line">实例中的根元素是 &lt;bookstore&gt;。文档中的所有 &lt;book&gt; 元素都被包含在 &lt;bookstore&gt; 中。</span><br><span class="line">&lt;book&gt; 元素有 4 个子元素：&lt;title&gt;、&lt;author&gt;、&lt;year&gt;、&lt;price&gt;。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">什么是 XML？</span><br><span class="line">  ● XML 指可扩展标记语言（EXtensible Markup Language）。</span><br><span class="line">  ● XML 是一种很像HTML的标记语言。</span><br><span class="line">  ● XML 的设计宗旨是传输数据，而不是显示数据。</span><br><span class="line">  ● XML 标签没有被预定义。您需要自行定义标签。</span><br><span class="line">  ● XML 被设计为具有自我描述性。</span><br><span class="line">  ● XML 是 W3C 的推荐标准。</span><br><span class="line">XML 和 HTML 之间的差异</span><br><span class="line">XML 不是 HTML 的替代。</span><br><span class="line">XML 和 HTML 为不同的目的而设计：</span><br><span class="line">  ● XML 被设计用来传输和存储数据，其焦点是数据的内容。</span><br><span class="line">  ● HTML 被设计用来显示数据，其焦点是数据的外观。</span><br><span class="line">HTML 旨在显示信息，而 XML 旨在传输信息</span><br><span class="line">XML 不会做任何事情</span><br><span class="line">也许这有点难以理解，但是 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息。</span><br><span class="line">下面实例是 Jani 写给 Tove 的便签，存储为 XML：</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">&lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br><span class="line">上面的这条便签具有自我描述性。它包含了发送者和接受者的信息，同时拥有标题以及消息主体。</span><br><span class="line">但是，这个 XML 文档仍然没有做任何事情。它仅仅是包装在 XML 标签中的纯粹的信息。我们需要编写软件或者程序，才能传送、接收和显示出这个文档。</span><br><span class="line">XML 无所不在</span><br><span class="line">目前，XML 在 Web 中起到的作用不会亚于一直作为 Web 基石的 HTML。</span><br><span class="line">XML 是各种应用程序之间进行数据传输的最常用的工具。</span><br><span class="line">XML 把数据从 HTML 分离</span><br><span class="line">如果您需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。</span><br><span class="line">通过 XML，数据能够存储在独立的 XML 文件中。这样您就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。</span><br><span class="line">通过使用几行 JavaScript 代码，您就可以读取一个外部 XML 文件，并更新您的网页的数据内容。</span><br><span class="line">XML 简化数据共享</span><br><span class="line">在真实的世界中，计算机系统和数据使用不兼容的格式来存储数据。</span><br><span class="line">XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。</span><br><span class="line">这让创建不同应用程序可以共享的数据变得更加容易。</span><br><span class="line">XML 简化数据传输</span><br><span class="line">对开发人员来说，其中一项最费时的挑战一直是在互联网上的不兼容系统之间交换数据。</span><br><span class="line">由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。</span><br><span class="line">XML 简化平台变更</span><br><span class="line">升级到新的系统（硬件或软件平台），总是非常费时的。必须转换大量的数据，不兼容的数据经常会丢失。</span><br><span class="line">XML 数据以文本格式存储。这使得 XML 在不损失数据的情况下，更容易扩展或升级到新的操作系统、新的应用程序或新的浏览器。</span><br><span class="line">XML 使您的数据更有用</span><br><span class="line">不同的应用程序都能够访问您的数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。</span><br><span class="line">通过 XML，您的数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。</span><br><span class="line">XML 用于创建新的互联网语言</span><br><span class="line">很多新的互联网语言是通过 XML 创建的。</span><br><span class="line">这里有一些实例：</span><br><span class="line">  ● XHTML</span><br><span class="line">  ● 用于描述可用的 Web 服务 的 WSDL</span><br><span class="line">  ● 作为手持设备的标记语言的 WAP 和 WML</span><br><span class="line">  ● 用于新闻 feed 的 RSS 语言</span><br><span class="line">  ● 描述资本和本体的 RDF 和 OWL</span><br><span class="line">  ● 用于描述针针对 Web 的多媒体 的 SMIL</span><br><span class="line">假如开发人员都是理性的</span><br><span class="line">假如他们都是理性的，就让未来的应用程序使用 XML 来交换数据吧。</span><br><span class="line">未来也许会出现某种字处理软件、电子表格程序以及数据库，它们可以使用 XML 格式读取彼此的数据，而不需要使用任何的转换程序。</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java22-网络Http通讯/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1399,7 +1400,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java28-反射机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java26-正则表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -1418,7 +1419,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java28-反射机制/" itemprop="url">Java28-反射机制</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java26-正则表达式/" itemprop="url">Java26-正则表达式</a></h1>
         
 
         <div class="post-meta">
@@ -1470,7 +1471,7 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">一、什么是反射机制</span><br><span class="line">        简单的来说，反射机制指的是程序在运行时能够获取自身的信息。在java中，只要给定类的名字， 那么就可以通过反射机制来获得类的所有信息。</span><br><span class="line">  </span><br><span class="line">二、哪里用到反射机制</span><br><span class="line">        有些时候，我们用过一些知识，但是并不知道它的专业术语是什么，在刚刚学jdbc时用过一行代码， Class.forName(&quot;com.mysql.jdbc.Driver.class&quot;).newInstance();但是那时候只知道那行代码是生成驱动对象实例，并不知道它的具体含义。听了反射机制这节课后，才知道，原来这就是反射，现在很多开框架都用到反射机制，hibernate、struts都是用反射机制实现的。</span><br><span class="line"></span><br><span class="line">三、反射机制的优点与缺点</span><br><span class="line">        为什么要用反射机制？直接创建对象不就可以了吗，这就涉及到了动态与静态的概念，</span><br><span class="line">  ●  静态编译：在编译时确定类型，绑定对象,即通过。  </span><br><span class="line">  ●  动态编译：运行时确定类型，绑定对象。动态编译最大限度发挥了java的灵活性，体现了多态的应用，有以降低类之间的藕合性。  </span><br><span class="line">        一句话，反射机制的优点就是可以实现动态创建对象和编译，体现出很大的灵活性，特别是在J2EE的开发中它的灵活性就表现的十分明显。比如，一个大型的软件，不可能一次就把把它设计的很完美，当这个程序编译后，发布了，当发现需要更新某些功能时，我们不可能要用户把以前的卸载，再重新安装新的版本，假如这样的话，这个软件肯定是没有多少人用的。采用静态的话，需要把整个程序重新编译一次才可以实现功能的更新，而采用反射机制的话，它就可以不用卸载，只需要在运行时才动态的创建和编译，就可以实现该功能。</span><br><span class="line">       它的缺点是对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满足我们的要求。这类操作总是慢于只直接执行相同的操作。</span><br><span class="line"></span><br><span class="line">四、利用反射机制能获得什么信息</span><br><span class="line">       一句话，类中有什么信息，它就可以获得什么信息，不过前提是得知道类的名字，要不就没有后文了,首先得根据传入的类的全名来创建Class对象。  </span><br><span class="line">        Class c=Class.forName(&quot;className&quot;);          //注明：className必须为全名，也就是得包含包名，比如，com.jimmy.UserInfo;</span><br><span class="line">        Object obj=c.newInstance();                        //创建对象的实例</span><br><span class="line">  </span><br><span class="line">        以下所有的方法全部通过class调用</span><br><span class="line"></span><br><span class="line">    1、获得构造函数的方法  </span><br><span class="line">         Constructor getConstructor(Class[] params)                            //根据指定参数获得public构造器</span><br><span class="line">         Constructor[] getConstructors()                                                //获得public的所有构造器</span><br><span class="line">         Constructor getDeclaredConstructor(Class[] params)             //根据指定参数获得public和非public的构造器</span><br><span class="line">         Constructor[] getDeclaredConstructors()                                 //获得public和非public的所有构造器 </span><br><span class="line"></span><br><span class="line">     2、获得类方法的方法  </span><br><span class="line">         Method getMethod(String name, Class[] params)    //根据方法名，参数类型获得方法</span><br><span class="line">         Method[] getMethods()                                              //获得所有的public方法 </span><br><span class="line">         Method getDeclaredMethod(String name, Class[] params)        //根据方法名和参数类型，获得public和非public的方法</span><br><span class="line">         Method[] getDeclaredMethods()                                                  //获得所以的public和非public方法</span><br><span class="line">   </span><br><span class="line">    3、 获得类中属性的方法</span><br><span class="line">        Field getField(String name)                    //根据变量名得到相应的public变量</span><br><span class="line">        Field[] getFields()                                    //获得类中所以public的变量的方法</span><br><span class="line">        Field getDeclaredField(String name)    //根据方法名获得public和非public变量</span><br><span class="line">        Field[] getDeclaredFields()                    //获得类中所有的public和非public方法 </span><br><span class="line"></span><br><span class="line">注意：一般使用框架用到反射，对默认的架构不满意，重新搭建新的架构</span><br></pre></td></tr></table></figure>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">正则表达式语法</span><br><span class="line">字符 说明</span><br><span class="line">\ 将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，&quot;n&quot;匹配字符&quot;n&quot;。&quot;\n&quot;匹配换行符。序列&quot;\\&quot;匹配&quot;\&quot;，&quot;\(&quot;匹配&quot;(&quot;。</span><br><span class="line">^ 匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与&quot;\n&quot;或&quot;\r&quot;之后的位置匹配。</span><br><span class="line">$ 匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与&quot;\n&quot;或&quot;\r&quot;之前的位置匹配。</span><br><span class="line">* 零次或多次匹配前面的字符或子表达式。例如，zo* 匹配&quot;z&quot;和&quot;zoo&quot;。* 等效于 &#123;0,&#125;。</span><br><span class="line">+ 一次或多次匹配前面的字符或子表达式。例如，&quot;zo+&quot;与&quot;zo&quot;和&quot;zoo&quot;匹配，但与&quot;z&quot;不匹配。+ 等效于 &#123;1,&#125;。</span><br><span class="line">? 零次或一次匹配前面的字符或子表达式。例如，&quot;do(es)?&quot;匹配&quot;do&quot;或&quot;does&quot;中的&quot;do&quot;。? 等效于 &#123;0,1&#125;。</span><br><span class="line">&#123;n&#125; n 是非负整数。正好匹配 n 次。例如，&quot;o&#123;2&#125;&quot;与&quot;Bob&quot;中的&quot;o&quot;不匹配，但与&quot;food&quot;中的两个&quot;o&quot;匹配。</span><br><span class="line">&#123;n,&#125; n 是非负整数。至少匹配 n 次。例如，&quot;o&#123;2,&#125;&quot;不匹配&quot;Bob&quot;中的&quot;o&quot;，而匹配&quot;foooood&quot;中的所有 o。&quot;o&#123;1,&#125;&quot;等效于&quot;o+&quot;。&quot;o&#123;0,&#125;&quot;等效于&quot;o*&quot;。</span><br><span class="line">&#123;n,m&#125; M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，&quot;o&#123;1,3&#125;&quot;匹配&quot;fooooood&quot;中的头三个 o。&apos;o&#123;0,1&#125;&apos; 等效于 &apos;o?&apos;。注意：您不能将空格插入逗号和数字之间。</span><br><span class="line">? 当此字符紧随任何其他限定符（*、+、?、&#123;n&#125;、&#123;n,&#125;、&#123;n,m&#125;）之后时，匹配模式是&quot;非贪心的&quot;。&quot;非贪心的&quot;模式匹配搜索到的、尽可能短的字符串，而默认的&quot;贪心的&quot;模式匹配搜索到的、尽可能长的字符串。例如，在字符串&quot;oooo&quot;中，&quot;o+?&quot;只匹配单个&quot;o&quot;，而&quot;o+&quot;匹配所有&quot;o&quot;。</span><br><span class="line">. 匹配除&quot;\r\n&quot;之外的任何单个字符。若要匹配包括&quot;\r\n&quot;在内的任意字符，请使用诸如&quot;[\s\S]&quot;之类的模式。</span><br><span class="line">(pattern) 匹配 pattern 并捕获该匹配的子表达式。可以使用 $0…$9 属性从结果&quot;匹配&quot;集合中检索捕获的匹配。若要匹配括号字符 ( )，请使用&quot;\(&quot;或者&quot;\)&quot;。</span><br><span class="line">(?:pattern) 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配。这对于用&quot;or&quot;字符 (|) 组合模式部件的情况很有用。例如，&apos;industr(?:y|ies) 是比 &apos;industry|industries&apos; 更经济的表达式。</span><br><span class="line">(?=pattern) 执行正向预测先行搜索的子表达式，该表达式匹配处于匹配 pattern 的字符串的起始点的字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?=95|98|NT|2000)&apos; 匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;，但不匹配&quot;Windows 3.1&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">(?!pattern) 执行反向预测先行搜索的子表达式，该表达式匹配不处于匹配 pattern 的字符串的起始点的搜索字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?!95|98|NT|2000)&apos; 匹配&quot;Windows 3.1&quot;中的 &quot;Windows&quot;，但不匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">x|y 匹配 x 或 y。例如，&apos;z|food&apos; 匹配&quot;z&quot;或&quot;food&quot;。&apos;(z|f)ood&apos; 匹配&quot;zood&quot;或&quot;food&quot;。</span><br><span class="line">[xyz] 字符集。匹配包含的任一字符。例如，&quot;[abc]&quot;匹配&quot;plain&quot;中的&quot;a&quot;。</span><br><span class="line">[^xyz] 反向字符集。匹配未包含的任何字符。例如，&quot;[^abc]&quot;匹配&quot;plain&quot;中&quot;p&quot;，&quot;l&quot;，&quot;i&quot;，&quot;n&quot;。</span><br><span class="line">[a-z] 字符范围。匹配指定范围内的任何字符。例如，&quot;[a-z]&quot;匹配&quot;a&quot;到&quot;z&quot;范围内的任何小写字母。</span><br><span class="line">[^a-z] 反向范围字符。匹配不在指定的范围内的任何字符。例如，&quot;[^a-z]&quot;匹配任何不在&quot;a&quot;到&quot;z&quot;范围内的任何字符。</span><br><span class="line">\b 匹配一个字边界，即字与空格间的位置。例如，&quot;er\b&quot;匹配&quot;never&quot;中的&quot;er&quot;，但不匹配&quot;verb&quot;中的&quot;er&quot;。</span><br><span class="line">\B 非字边界匹配。&quot;er\B&quot;匹配&quot;verb&quot;中的&quot;er&quot;，但不匹配&quot;never&quot;中的&quot;er&quot;。</span><br><span class="line">\cx 匹配 x 指示的控制字符。例如，\cM 匹配 Control-M 或回车符。x 的值必须在 A-Z 或 a-z 之间。如果不是这样，则假定 c 就是&quot;c&quot;字符本身。</span><br><span class="line">\d 数字字符匹配。等效于 [0-9]。</span><br><span class="line">\D 非数字字符匹配。等效于 [^0-9]。</span><br><span class="line">\f 换页符匹配。等效于 \x0c 和 \cL。</span><br><span class="line">\n 换行符匹配。等效于 \x0a 和 \cJ。</span><br><span class="line">\r 匹配一个回车符。等效于 \x0d 和 \cM。</span><br><span class="line">\s 匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。</span><br><span class="line">\S 匹配任何非空白字符。与 [^ \f\n\r\t\v] 等效。</span><br><span class="line">\t 制表符匹配。与 \x09 和 \cI 等效。</span><br><span class="line">\v 垂直制表符匹配。与 \x0b 和 \cK 等效。</span><br><span class="line">\w 匹配任何字类字符，包括下划线。与&quot;[A-Za-z0-9_]&quot;等效。</span><br><span class="line">\W 与任何非单词字符匹配。与&quot;[^A-Za-z0-9_]&quot;等效。</span><br><span class="line">\xn 匹配 n，此处的 n 是一个十六进制转义码。十六进制转义码必须正好是两位数长。例如，&quot;\x41&quot;匹配&quot;A&quot;。&quot;\x041&quot;与&quot;\x04&quot;&amp;&quot;1&quot;等效。允许在正则表达式中使用 ASCII 代码。</span><br><span class="line">\num 匹配 num，此处的 num 是一个正整数。到捕获匹配的反向引用。例如，&quot;(.)\1&quot;匹配两个连续的相同字符。</span><br><span class="line">\n 标识一个八进制转义码或反向引用。如果 \n 前面至少有 n 个捕获子表达式，那么 n 是反向引用。否则，如果 n 是八进制数 (0-7)，那么 n 是八进制转义码。</span><br><span class="line">\nm 标识一个八进制转义码或反向引用。如果 \nm 前面至少有 nm 个捕获子表达式，那么 nm 是反向引用。如果 \nm 前面至少有 n 个捕获，则 n 是反向引用，后面跟有字符 m。如果两种前面的情况都不存在，则 \nm 匹配八进制值 nm，其中 n 和 m 是八进制数字 (0-7)。</span><br><span class="line">\nml 当 n 是八进制数 (0-3)，m 和 l 是八进制数 (0-7) 时，匹配八进制转义码 nml。</span><br><span class="line">\un 匹配 n，其中 n 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (©)。</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1568,7 +1569,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

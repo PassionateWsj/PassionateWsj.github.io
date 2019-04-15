@@ -351,344 +351,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java10-数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java10-数组/" itemprop="url">Java10-数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><ul>
-<li>数组是一种数据结构，在内存空间里连续开辟空间，依次存放数据的数据结构<br>在Java里数据开辟的内存空间全部是在堆里开辟空间的,他的类型一定是引用类型</li>
-</ul>
-<h3 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h3><ol>
-<li><p> int[] arr;    //声明<br> System.out.println(arr);    //这个数组的地址<br> int[] arr = new int[1];    //初始化。new开辟空间，数字不可省略<br> 规定：java中给数组分配的空间必须确认大小，否则不可以使用</p>
-</li>
-<li><p>关于数组的赋值</p>
-<ul>
-<li>在初始化的时候赋值（在{}中直接填入具体的值，逗号隔开）<pre><code>int[] arr = new int[]{1,2,3,4,5};    或者 int[] arr = {1,2,3,4,5};
-</code></pre></li>
-<li>在初始化完毕后进行赋值</li>
-</ul>
-</li>
-</ol>
-<p>对于有规律性的比较多的数据，可以采用循环的方式进行赋值<br>比如要录入1000个数字<br><code>int[] arr = new int[1000];
-for(int index = 0 ;index &lt;1000;index++){
-    arr[index] = index+1;
-}</code></p>
-<p>因为String重写了Object中的toString()方法</p>
-<h3 id="二、引用类型的数组对象，一样的声明，初始化和赋值"><a href="#二、引用类型的数组对象，一样的声明，初始化和赋值" class="headerlink" title="二、引用类型的数组对象，一样的声明，初始化和赋值"></a>二、引用类型的数组对象，一样的声明，初始化和赋值</h3><pre><code>比如：
-class Student{
-    int age;
-    String name;
-}
-//声明
-Student[] stus; 类似的代码 String[] args ,main把他作为形参的表示，只要声明下就可以了
-//初始化
-Student[] stus = new Student[10];    //10还是一定要写的，默认值都是null
-//赋值
-//初始化赋值
-Student stu1 = new Student();
-Student stu2 = new Student();
-Student[] stus = new Student[]{stu1,stu2};    //放入实例化的学生
-Student[] stus = {stu1，stu2};
-//动态赋值   
-Student[] stus = new Student[2];
-stus[0] = stu1;
-stus[1] = stu2;
-</code></pre><p>//如果打印每个student的名字和年龄<br>//循环遍历对象数组，找到里面每一个对象，然后每个对象获取内部的属性值，进行打印</p>
-<h3 id="三、基本数据类型数组的排序"><a href="#三、基本数据类型数组的排序" class="headerlink" title="三、基本数据类型数组的排序"></a>三、基本数据类型数组的排序</h3><p>目的：将数组中一系列无需的数据按照指定的规则，进行重新排列次序的操作<br>    {6，82，4，5，32，56，2}    –&gt;    {2,4,5,6,32,56,82}</p>
-<pre><code>- 冒泡算法
-- 选择排序算法（特点：变量多了，但是交换的次数大大降低，提高了效率）
-</code></pre><p>（sort(Object[] a)    升序）</p>
-<p>打印数组内容的工具类，这个类是java.util.Arrays</p>
-<p><img src="https://i.imgur.com/kpsKIze.jpg" alt=""></p>
-<h4 id="foreach循环"><a href="#foreach循环" class="headerlink" title="foreach循环"></a>foreach循环</h4><p>foreach(int i in arr)</p>
-<p>JDK 1.5 引进了一种新的循环类型，被称为foreach循环或者加强型循环，它能在不使用下标的情况下遍历数组。<br>publicclassTestArray{publicstaticvoid main(String[] args){double[] myList ={1.9,2.9,3.4,3.5};// 打印所有数组元素for(double element: myList){System.out.println(element);}}}</p>
-<h4 id="Arrays-类"><a href="#Arrays-类" class="headerlink" title="Arrays 类"></a>Arrays 类</h4><ul>
-<li>java.util.Arrays类能方便地操作数组，它提供的所有方法都是静态的。具有以下功能：<ul>
-<li>给数组赋值：通过fill方法。</li>
-<li>对数组排序：通过sort方法,按升序。</li>
-<li>比较数组：通过equals方法比较数组中元素值是否相等。</li>
-<li>查找数组元素：通过binarySearch方法能对排序好的数组进行二分查找法操作。</li>
-</ul>
-</li>
-</ul>
-<p>具体说明请查看下表：</p>
-<table>
-<thead>
-<tr>
-<th>序号</th>
-<th>方法和说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>public static int binarySearch(Object[] a, Object key)用二分查找算法在给定数组中搜索给定值的对象(Byte,Int,double等)。数组在调用前必须排序好的。如果查找值包含在数组中，则返回搜索键的索引；否则返回 (-(插入点) - 1)。</td>
-</tr>
-<tr>
-<td>2</td>
-<td>public static boolean equals(long[] a, long[] a2)如果两个指定的 long 型数组彼此相等，则返回 true。如果两个数组包含相同数量的元素，并且两个数组中的所有相应元素对都是相等的，则认为这两个数组是相等的。换句话说，如果两个数组以相同顺序包 含相同的元素，则两个数组是相等的。同样的方法适用于所有的其他基本数据类型（Byte，short，Int等）。</td>
-</tr>
-<tr>
-<td>3</td>
-<td>public static void fill(int[] a, int val)将指定的 int 值分配给指定 int 型数组指定范围中的每个元素。同样的方法适用于所有的其他基本数据类型（Byte，short，Int等）。</td>
-</tr>
-<tr>
-<td>4</td>
-<td>public static void sort(Object[] a)对指定对象数组根据其元素的自然顺序进行升序排列。同样的方法适用于所有的其他基本数据类型（Byte，short，Int等）。</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java09-设计模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java09-设计模式/" itemprop="url">Java09-设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。</p>
-<h3 id="二、设计模式的分类"><a href="#二、设计模式的分类" class="headerlink" title="二、设计模式的分类"></a>二、设计模式的分类</h3><ul>
-<li>总体来说设计模式分为三大类：<ul>
-<li>创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。</li>
-<li>结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。</li>
-<li>行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。</li>
-</ul>
-</li>
-</ul>
-<h3 id="三、设计模式的六大原则"><a href="#三、设计模式的六大原则" class="headerlink" title="三、设计模式的六大原则"></a>三、设计模式的六大原则</h3><ol>
-<li>开闭原则（Open Close Principle）<br>开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</li>
-<li>里氏代换原则（Liskov Substitution Principle）<br>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科</li>
-<li>依赖倒转原则（Dependence Inversion Principle）<br>这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。</li>
-<li>接口隔离原则（Interface Segregation Principle）<br>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</li>
-<li>迪米特法则（最少知道原则）（Demeter Principle）<br>为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。</li>
-<li>合成复用原则（Composite Reuse Principle）<br>原则是尽量使用合成/聚合的方式，而不是使用继承。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java12-异常/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1103,7 +765,7 @@ stus[1] = stu2;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java06-从内存的角度分析对象/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java10-数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -1122,7 +784,7 @@ stus[1] = stu2;
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java06-从内存的角度分析对象/" itemprop="url">Java06从内存的角度分析对象</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java10-数组/" itemprop="url">Java10-数组</a></h1>
         
 
         <div class="post-meta">
@@ -1174,13 +836,209 @@ stus[1] = stu2;
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.Java语言而言，最主要的有三块区域：栈区，堆区，逻辑区（也称方法区）</span><br><span class="line">特点：</span><br><span class="line">    栈区：执行速度快（仅次于最快的CPU执行寄存区的速度）</span><br><span class="line">              空间大小有限，比堆区，方法区都要小</span><br><span class="line">        在Java中基本数据类型都是在栈区的，开辟的空间是系统自动分配的，空间有自己的地址记录</span><br><span class="line">        Java中所有的变量都在栈区</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/jkuLy9r.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">堆区：执行速度没有栈区快，但是内存空间远远大于栈区</span><br><span class="line">          如果需要使用堆区空间，必须使用new的方法开辟空间</span><br><span class="line">          所有引用类型的对象都在堆区开辟空间，包括字符串String</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/TwpkR5x.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">无论是堆区还是栈区，不用的内存空间是一定要释放的，如果内存不释放会导致内存溢出</span><br><span class="line">Java对内存的回收是不需要编程者管理的，Java有内存回收的机制，称之为GC机制（垃圾收集机制）</span><br><span class="line">不使用的内存垃圾不是立即回收，只有等垃圾回收器空闲的时候会回收，回收的效率会比较低</span><br><span class="line"></span><br><span class="line">展示自定义的class Cat在内存里的操作</span><br><span class="line">Cat cat = new Cat();</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/hNhUhXR.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">思考：</span><br><span class="line">Cat cat1 = new Cat();</span><br><span class="line">cat.name = &quot;小黄&quot;;</span><br><span class="line">Cat cat2 = new Cat();</span><br><span class="line">cat.name = &quot;小红&quot;;</span><br><span class="line">//操作</span><br><span class="line">cat1 = cat2;</span><br><span class="line">//1.打印出来cat1和cat2的名字各是什么？</span><br><span class="line">//2.如果cat1.name = &quot;花花&quot;;这时候打印出来的cat1和cat2的名字是什么？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3.方法区：逐行执行逻辑代码的地方</span><br><span class="line">在Java中方法的记录时间：在类加载的时候，方法区里就开始存放该类的方法了</span><br><span class="line">所有类的加载在系统运行前就操作了，往JVM中加载class</span><br><span class="line"></span><br><span class="line">class Test&#123;</span><br><span class="line">    //等Test类加载完毕以后，main就开始进入到方法区了</span><br><span class="line">    public static void main(String []args)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//方法去记录的是整个方法的签名</span><br><span class="line">/如何组成方法签名    类名+方法名字+参数列表（保证这个方法是独一无二的）</span><br></pre></td></tr></table></figure>
+            <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><ul>
+<li>数组是一种数据结构，在内存空间里连续开辟空间，依次存放数据的数据结构<br>在Java里数据开辟的内存空间全部是在堆里开辟空间的,他的类型一定是引用类型</li>
+</ul>
+<h3 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h3><ol>
+<li><p> int[] arr;    //声明<br> System.out.println(arr);    //这个数组的地址<br> int[] arr = new int[1];    //初始化。new开辟空间，数字不可省略<br> 规定：java中给数组分配的空间必须确认大小，否则不可以使用</p>
+</li>
+<li><p>关于数组的赋值</p>
+<ul>
+<li>在初始化的时候赋值（在{}中直接填入具体的值，逗号隔开）<pre><code>int[] arr = new int[]{1,2,3,4,5};    或者 int[] arr = {1,2,3,4,5};
+</code></pre></li>
+<li>在初始化完毕后进行赋值</li>
+</ul>
+</li>
+</ol>
+<p>对于有规律性的比较多的数据，可以采用循环的方式进行赋值<br>比如要录入1000个数字<br><code>int[] arr = new int[1000];
+for(int index = 0 ;index &lt;1000;index++){
+    arr[index] = index+1;
+}</code></p>
+<p>因为String重写了Object中的toString()方法</p>
+<h3 id="二、引用类型的数组对象，一样的声明，初始化和赋值"><a href="#二、引用类型的数组对象，一样的声明，初始化和赋值" class="headerlink" title="二、引用类型的数组对象，一样的声明，初始化和赋值"></a>二、引用类型的数组对象，一样的声明，初始化和赋值</h3><pre><code>比如：
+class Student{
+    int age;
+    String name;
+}
+//声明
+Student[] stus; 类似的代码 String[] args ,main把他作为形参的表示，只要声明下就可以了
+//初始化
+Student[] stus = new Student[10];    //10还是一定要写的，默认值都是null
+//赋值
+//初始化赋值
+Student stu1 = new Student();
+Student stu2 = new Student();
+Student[] stus = new Student[]{stu1,stu2};    //放入实例化的学生
+Student[] stus = {stu1，stu2};
+//动态赋值   
+Student[] stus = new Student[2];
+stus[0] = stu1;
+stus[1] = stu2;
+</code></pre><p>//如果打印每个student的名字和年龄<br>//循环遍历对象数组，找到里面每一个对象，然后每个对象获取内部的属性值，进行打印</p>
+<h3 id="三、基本数据类型数组的排序"><a href="#三、基本数据类型数组的排序" class="headerlink" title="三、基本数据类型数组的排序"></a>三、基本数据类型数组的排序</h3><p>目的：将数组中一系列无需的数据按照指定的规则，进行重新排列次序的操作<br>    {6，82，4，5，32，56，2}    –&gt;    {2,4,5,6,32,56,82}</p>
+<pre><code>- 冒泡算法
+- 选择排序算法（特点：变量多了，但是交换的次数大大降低，提高了效率）
+</code></pre><p>（sort(Object[] a)    升序）</p>
+<p>打印数组内容的工具类，这个类是java.util.Arrays</p>
+<p><img src="https://i.imgur.com/kpsKIze.jpg" alt=""></p>
+<h4 id="foreach循环"><a href="#foreach循环" class="headerlink" title="foreach循环"></a>foreach循环</h4><p>foreach(int i in arr)</p>
+<p>JDK 1.5 引进了一种新的循环类型，被称为foreach循环或者加强型循环，它能在不使用下标的情况下遍历数组。<br>publicclassTestArray{publicstaticvoid main(String[] args){double[] myList ={1.9,2.9,3.4,3.5};// 打印所有数组元素for(double element: myList){System.out.println(element);}}}</p>
+<h4 id="Arrays-类"><a href="#Arrays-类" class="headerlink" title="Arrays 类"></a>Arrays 类</h4><ul>
+<li>java.util.Arrays类能方便地操作数组，它提供的所有方法都是静态的。具有以下功能：<ul>
+<li>给数组赋值：通过fill方法。</li>
+<li>对数组排序：通过sort方法,按升序。</li>
+<li>比较数组：通过equals方法比较数组中元素值是否相等。</li>
+<li>查找数组元素：通过binarySearch方法能对排序好的数组进行二分查找法操作。</li>
+</ul>
+</li>
+</ul>
+<p>具体说明请查看下表：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法和说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>public static int binarySearch(Object[] a, Object key)用二分查找算法在给定数组中搜索给定值的对象(Byte,Int,double等)。数组在调用前必须排序好的。如果查找值包含在数组中，则返回搜索键的索引；否则返回 (-(插入点) - 1)。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>public static boolean equals(long[] a, long[] a2)如果两个指定的 long 型数组彼此相等，则返回 true。如果两个数组包含相同数量的元素，并且两个数组中的所有相应元素对都是相等的，则认为这两个数组是相等的。换句话说，如果两个数组以相同顺序包 含相同的元素，则两个数组是相等的。同样的方法适用于所有的其他基本数据类型（Byte，short，Int等）。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>public static void fill(int[] a, int val)将指定的 int 值分配给指定 int 型数组指定范围中的每个元素。同样的方法适用于所有的其他基本数据类型（Byte，short，Int等）。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>public static void sort(Object[] a)对指定对象数组根据其元素的自然顺序进行升序排列。同样的方法适用于所有的其他基本数据类型（Byte，short，Int等）。</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java14-枚举类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java14-枚举类/" itemprop="url">Java14-枚举类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">通过关键词enum定义的类，称为枚举类</span><br><span class="line">    类似关键词class，interface</span><br><span class="line">    比如：</span><br><span class="line">    public enum SignalLight&#123;    //枚举类</span><br><span class="line">        //直接写</span><br><span class="line">        红灯，黄灯，绿灯</span><br><span class="line">        //可以写构造方法，普通方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    使用（.）： 枚举类.定义常量就可以了</span><br><span class="line">    比如：SignalLight.红灯;</span><br><span class="line">    返回对象就是枚举类实例化对象</span><br><span class="line">    枚举类和swtch-case使用比较多（switch支持int,char,String,枚举类）</span><br><span class="line"></span><br><span class="line"> 适用的场景：有多种不同的情况，通过枚举几次就能搞定的，可以定义枚举类</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1821,6 +1679,141 @@ stus[1] = stu2;
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java16-文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java16-文件/" itemprop="url">Java16-文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>介绍：<br>    在java中把文件的操作，看作和普通对象一样的操作。jdk专门提供给了这样和文件有关的操作的类File<br>Java文件类以抽象的方式代表文件名和目录路径名。该类主要用于文件和目录的创建、文件的查找和文件的删除等。<br>File对象代表磁盘中实际存在的文件和目录。通过以下构造方法创建一个File对象。<br>通过给定的父抽象路径名和子路径名字符串创建一个新的File实例。</p>
+<ul>
+<li>使用：File类的操作    （创建，删除，查看文件等操作单独进行时都要进行存在判断）<ol>
+<li>File类在java.io包中</li>
+<li>常用的方法<ol>
+<li>构造方法：一般情况填写文件、文件夹的路径，使用绝对路径（字符串表示）<br> 绝对路径和相对路径<br> 绝对路径：当前所在目录E:\java\day15\Exercise\src<br> 相对路径：\src</li>
+<li>判断文件或文件夹是否存在    exists()（都返回boolean）<br> 文件夹    isDirectory()<br> 文件    isFile()<br> 隐藏文件或文件夹    isHidden()</li>
+<li>创建<br> 文件：createNewFile()，当且仅当不存在具有此抽象路径名指定名称的文件时，不可分地创建一个新的空文件。<br> 文件夹：mkdir()（一层）    mkdirs()（多级）</li>
+<li>删除（文件夹删除（必须为空）delete()只删除最后一层，删除多级文件夹需要配合listFile()方法，进行递归删除）<br> delete()（必须先删除里面所有文件才能删除此文件夹）</li>
+<li>查看文件目录结构<br> listFiles()：返回一个抽象路径名数组File[]，这些路径名表示此抽象路径名表示的目录中的文件。<br> lists()：返回一个字符串数组Stirng[]，这些字符串指定此抽象路径名表示的目录中的文件和目录<br> listFiles(FileFilter/FilenameFilter  filter)：过滤器，重写accept()方法，需要返回true，不需要false</li>
+<li>基本属性<br> getName()    名字<br> getlength()    大小<br> getAbsolutePath()    绝对路径</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1884,7 +1877,7 @@ stus[1] = stu2;
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

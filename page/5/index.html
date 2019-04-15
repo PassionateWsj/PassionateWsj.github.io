@@ -1521,6 +1521,127 @@ vp_main.setOffscreenPageLimit(4);
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java07-对象的继承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java07-对象的继承/" itemprop="url">Java07-对象的继承</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">一、</span><br><span class="line">1.现在有个类Animal动物    还有个类Cat 猫</span><br><span class="line">    因为猫是动物，所以猫是继承自动物的</span><br><span class="line">比如：人类  老师（继承关系）     老师  学生（没有继承关系）</span><br><span class="line">类 金丝猴    类 值钱的（从句法上来说有继承关系）</span><br><span class="line"></span><br><span class="line">2.继承关系的特点：如果A继承B，A拥有B的属性，A拥有B的行为方式，但是A还可以拥有自己的一些特有的行为和属性</span><br><span class="line"></span><br><span class="line">3.在java里怎么表示继承：</span><br><span class="line">    a) class B&#123;&#125;</span><br><span class="line">    b) class A extends B&#123;&#125;</span><br><span class="line"></span><br><span class="line">4.继承的好处：可以大大降低重复属性和行为方法的出现</span><br><span class="line"></span><br><span class="line">5.java中继承的限制：java中只支持单继承，不支持多继承</span><br><span class="line">比如：A继承于B，还要继承于C，是不可以的，金丝猴继承动物类以后，不可以再继承值钱的类</span><br><span class="line"></span><br><span class="line">但是：B可以被多个类继承</span><br><span class="line"></span><br><span class="line">二、通过继承关系引申出来的概念</span><br><span class="line">重写：（最好  复制-粘贴）</span><br><span class="line">概念：通过继承引出方法重写，前提必须要有继承关系，否则不存方法重写的概念</span><br><span class="line">动物里有个吃的方法:动物吃东西</span><br><span class="line">猫继承动物，有你更有动物的吃的方法，猫对这个吃的方法不满意，想重新再写这个方法，这个时候就构成了方法的重写</span><br><span class="line"></span><br><span class="line">方法重写的最大特点：重写的方法和原来父类定义的方法必须一模一样（方法名，参数列表，返回值）</span><br><span class="line">                                 如果不符合上述条件，叫定义了新的方法，不叫方法重写</span><br><span class="line">重写的好处：业务逻辑上清楚，方便代码管理</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">区分重载和重写的区别：</span><br><span class="line">重写必须要有继承关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">关键字super的概念：</span><br><span class="line">    指向父类的引用，可以调用父类的成员变量，方法，构造方法</span><br><span class="line"></span><br><span class="line">    public class B&#123;</span><br><span class="line">        String name;</span><br><span class="line">    &#125;</span><br><span class="line">    public class A extends B&#123;</span><br><span class="line">        String name;</span><br><span class="line"></span><br><span class="line">        A()&#123;</span><br><span class="line">            super();//调用了父类的构造方法，默认父类就有无参的构造方法</span><br><span class="line">        &#125;</span><br><span class="line">        //打印B中的name</span><br><span class="line">        void print()&#123;</span><br><span class="line">            System.out.println(super.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">总结：关于super( )构造方法的使用</span><br><span class="line">    1.如果父类有无参的构造方法，子类可以不写super(); 默认子类的构造方法调用的都是父类的无参构造方法</span><br><span class="line">    2.如果父类没有无参的构造方法，子类自己调用父类存在的有参的构造方法，不能省略不写 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">三、多态的概念（OOP编程，封装、继承、多态）</span><br><span class="line">多态是同一个行为具有多个不同表现形式或形态的能力。</span><br><span class="line">多态性是对象多种表现形式的体现。</span><br><span class="line">多态存在的三个必要条件:</span><br><span class="line">  ● 继承</span><br><span class="line">  ● 重写</span><br><span class="line">  ● 父类引用指向子类对象</span><br><span class="line"></span><br><span class="line">定义：在代码运行的时候，才会知道真正调用方的对象具体是谁，这种表现形式称为多态。</span><br><span class="line">          在代码没有运行的时候，就不知道真正执行方法的对象是谁</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/2A5mxTZ.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">final关键字：</span><br><span class="line">1.如果final修饰的是class，表示这个类不允许被继承</span><br><span class="line">2.如果final修饰的是方法，表示该方法不允许被重写</span><br><span class="line">3.如果final修饰的是成员变量，表示该变量不允许被修改</span><br><span class="line">   如果final修饰的变量不是基本数据类型，是引用型的怎么办？</span><br><span class="line">   final修饰的引用变量不能改引用的地址</span><br><span class="line"></span><br><span class="line">    public final class String&#123;&#125;</span><br><span class="line">    为想写个类 public class MyString extends String&#123;&#125; //因为final，所以不能被继承</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java08-抽象类和接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1652,139 +1773,6 @@ vp_main.setOffscreenPageLimit(4);
 </ul>
 </li>
 </ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java06-静态关键字static/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java06-静态关键字static/" itemprop="url">Java06-静态关键字static</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.关键字static，静态的意思<br>    特点：在类加载的时候就会把所有static的关键字内容进行全部加载<br>比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">    static int RECORD_POSITION;//静态的变量为了和一般的成员变量或者局部变量区分开来，使用纯大写</span><br><span class="line">    static int getPosition(); //静态方法</span><br><span class="line">    //内部的类可以是静态的</span><br><span class="line">    static class Persion&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    //静态模块，只执行一次，不会多次运行，在类加载的时候执行唯一的一次</span><br><span class="line">    static int T;</span><br><span class="line">    static&#123;</span><br><span class="line">               //可以初始化变量，都行</span><br><span class="line">                T = 10;</span><br><span class="line">                T++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>规则：静态模块，静态方法里使用的变量或者方法只能是静态的<br>    所有静态的变量，方法直接通过类名调用就可以了，不需要通过对象调用<br>    比如：Test.RECORD_POSITION;<br>              Test.getPosition();<br>反过来说，如果直接通过类名调用的变量和方法，那该变量和方法必定是静态的<br>    比如：<br>System.in    //这时候in一定是静态变量<br>System.out.println();    //println();一定是静态方法</p>
-<p><img src="https://i.imgur.com/IwV3niq.png" alt=""></p>
-<p>动态模块与静态模块最大的区别<br>静态模块：只执行一次，不会多次运行，在类加载的时候执行唯一的一次<br>动态模块：只要实例化对象，就会进行加载</p>
-<p><img src="https://i.imgur.com/cGBC08b.png" alt=""></p>
-<p>//Java设计模式（Java一共有23种设计模式，由4个外国人总结提炼出来的）<br>    一般去搭建框架会用到各种Java的设计模式</p>
-<p>1.建造类的模式之一，和new有关的，就是构造对象的角度出发</p>
-<pre><code>单例模式（Singlton model）
-    功能点：保持构建的对象只有一个，并且是唯一的，无论一个类new多少次，对象都是唯一的
-    比如：Android中窗口对象就是单例的，画笔无论new多少次，都是同一支笔
-</code></pre><p>遵循的三个规则：<br>1.内部定义静态的成员变量，这个成员变量类型是当前的类名<br>2.私有化构造方法（不让外部直接调用构造方法）<br>3.自己定义静态方法，内部实现new的操作<br>*.通过new的地方不同，在单例模式中分为懒汉式和饿汉式两种。饿汉式线程安全</p>
-<p>代码示例（懒汉式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singlton&#123;//单例的意思</span><br><span class="line">    private static Singlton singlton;    //声明</span><br><span class="line"></span><br><span class="line">    //私有化构造方法，外部不能访问，只能自己调用</span><br><span class="line">    private Singlton()&#123;    </span><br><span class="line">    &#125;</span><br><span class="line">    //外部只要访问getInstance方法就能获取实例化对象了</span><br><span class="line">    public static Singlton getInstance()&#123;</span><br><span class="line">            if(singlton == 0 )     //null表示singlton没有开辟空间，为了保证singlton是唯一的</span><br><span class="line">            singlton = new Singlton();    //实例化对象</span><br><span class="line">            return singlton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码示例（饿汉式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//对第一行static的一些解释</span><br><span class="line">// java允许我们在一个类里面定义静态类。比如内部类（nested class）。</span><br><span class="line">//把nested class封闭起来的类叫外部类。</span><br><span class="line">//在java中，我们不能用static修饰顶级类（top level class）。</span><br><span class="line">//只有内部类可以为static。</span><br><span class="line">public class Singleton&#123;</span><br><span class="line">    //在自己内部定义自己的一个实例，只供内部调用</span><br><span class="line">    private static final Singleton instance = new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;</span><br><span class="line">    //这里提供了一个供外部访问本class的静态方法，可以直接访问</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -2004,7 +1992,7 @@ vp_main.setOffscreenPageLimit(4);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

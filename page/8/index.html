@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java26-正则表达式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java28-反射机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java26-正则表达式/" itemprop="url">Java26-正则表达式</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java28-反射机制/" itemprop="url">Java28-反射机制</a></h1>
         
 
         <div class="post-meta">
@@ -303,7 +303,7 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">正则表达式语法</span><br><span class="line">字符 说明</span><br><span class="line">\ 将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，&quot;n&quot;匹配字符&quot;n&quot;。&quot;\n&quot;匹配换行符。序列&quot;\\&quot;匹配&quot;\&quot;，&quot;\(&quot;匹配&quot;(&quot;。</span><br><span class="line">^ 匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与&quot;\n&quot;或&quot;\r&quot;之后的位置匹配。</span><br><span class="line">$ 匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与&quot;\n&quot;或&quot;\r&quot;之前的位置匹配。</span><br><span class="line">* 零次或多次匹配前面的字符或子表达式。例如，zo* 匹配&quot;z&quot;和&quot;zoo&quot;。* 等效于 &#123;0,&#125;。</span><br><span class="line">+ 一次或多次匹配前面的字符或子表达式。例如，&quot;zo+&quot;与&quot;zo&quot;和&quot;zoo&quot;匹配，但与&quot;z&quot;不匹配。+ 等效于 &#123;1,&#125;。</span><br><span class="line">? 零次或一次匹配前面的字符或子表达式。例如，&quot;do(es)?&quot;匹配&quot;do&quot;或&quot;does&quot;中的&quot;do&quot;。? 等效于 &#123;0,1&#125;。</span><br><span class="line">&#123;n&#125; n 是非负整数。正好匹配 n 次。例如，&quot;o&#123;2&#125;&quot;与&quot;Bob&quot;中的&quot;o&quot;不匹配，但与&quot;food&quot;中的两个&quot;o&quot;匹配。</span><br><span class="line">&#123;n,&#125; n 是非负整数。至少匹配 n 次。例如，&quot;o&#123;2,&#125;&quot;不匹配&quot;Bob&quot;中的&quot;o&quot;，而匹配&quot;foooood&quot;中的所有 o。&quot;o&#123;1,&#125;&quot;等效于&quot;o+&quot;。&quot;o&#123;0,&#125;&quot;等效于&quot;o*&quot;。</span><br><span class="line">&#123;n,m&#125; M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，&quot;o&#123;1,3&#125;&quot;匹配&quot;fooooood&quot;中的头三个 o。&apos;o&#123;0,1&#125;&apos; 等效于 &apos;o?&apos;。注意：您不能将空格插入逗号和数字之间。</span><br><span class="line">? 当此字符紧随任何其他限定符（*、+、?、&#123;n&#125;、&#123;n,&#125;、&#123;n,m&#125;）之后时，匹配模式是&quot;非贪心的&quot;。&quot;非贪心的&quot;模式匹配搜索到的、尽可能短的字符串，而默认的&quot;贪心的&quot;模式匹配搜索到的、尽可能长的字符串。例如，在字符串&quot;oooo&quot;中，&quot;o+?&quot;只匹配单个&quot;o&quot;，而&quot;o+&quot;匹配所有&quot;o&quot;。</span><br><span class="line">. 匹配除&quot;\r\n&quot;之外的任何单个字符。若要匹配包括&quot;\r\n&quot;在内的任意字符，请使用诸如&quot;[\s\S]&quot;之类的模式。</span><br><span class="line">(pattern) 匹配 pattern 并捕获该匹配的子表达式。可以使用 $0…$9 属性从结果&quot;匹配&quot;集合中检索捕获的匹配。若要匹配括号字符 ( )，请使用&quot;\(&quot;或者&quot;\)&quot;。</span><br><span class="line">(?:pattern) 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配。这对于用&quot;or&quot;字符 (|) 组合模式部件的情况很有用。例如，&apos;industr(?:y|ies) 是比 &apos;industry|industries&apos; 更经济的表达式。</span><br><span class="line">(?=pattern) 执行正向预测先行搜索的子表达式，该表达式匹配处于匹配 pattern 的字符串的起始点的字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?=95|98|NT|2000)&apos; 匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;，但不匹配&quot;Windows 3.1&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">(?!pattern) 执行反向预测先行搜索的子表达式，该表达式匹配不处于匹配 pattern 的字符串的起始点的搜索字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?!95|98|NT|2000)&apos; 匹配&quot;Windows 3.1&quot;中的 &quot;Windows&quot;，但不匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">x|y 匹配 x 或 y。例如，&apos;z|food&apos; 匹配&quot;z&quot;或&quot;food&quot;。&apos;(z|f)ood&apos; 匹配&quot;zood&quot;或&quot;food&quot;。</span><br><span class="line">[xyz] 字符集。匹配包含的任一字符。例如，&quot;[abc]&quot;匹配&quot;plain&quot;中的&quot;a&quot;。</span><br><span class="line">[^xyz] 反向字符集。匹配未包含的任何字符。例如，&quot;[^abc]&quot;匹配&quot;plain&quot;中&quot;p&quot;，&quot;l&quot;，&quot;i&quot;，&quot;n&quot;。</span><br><span class="line">[a-z] 字符范围。匹配指定范围内的任何字符。例如，&quot;[a-z]&quot;匹配&quot;a&quot;到&quot;z&quot;范围内的任何小写字母。</span><br><span class="line">[^a-z] 反向范围字符。匹配不在指定的范围内的任何字符。例如，&quot;[^a-z]&quot;匹配任何不在&quot;a&quot;到&quot;z&quot;范围内的任何字符。</span><br><span class="line">\b 匹配一个字边界，即字与空格间的位置。例如，&quot;er\b&quot;匹配&quot;never&quot;中的&quot;er&quot;，但不匹配&quot;verb&quot;中的&quot;er&quot;。</span><br><span class="line">\B 非字边界匹配。&quot;er\B&quot;匹配&quot;verb&quot;中的&quot;er&quot;，但不匹配&quot;never&quot;中的&quot;er&quot;。</span><br><span class="line">\cx 匹配 x 指示的控制字符。例如，\cM 匹配 Control-M 或回车符。x 的值必须在 A-Z 或 a-z 之间。如果不是这样，则假定 c 就是&quot;c&quot;字符本身。</span><br><span class="line">\d 数字字符匹配。等效于 [0-9]。</span><br><span class="line">\D 非数字字符匹配。等效于 [^0-9]。</span><br><span class="line">\f 换页符匹配。等效于 \x0c 和 \cL。</span><br><span class="line">\n 换行符匹配。等效于 \x0a 和 \cJ。</span><br><span class="line">\r 匹配一个回车符。等效于 \x0d 和 \cM。</span><br><span class="line">\s 匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。</span><br><span class="line">\S 匹配任何非空白字符。与 [^ \f\n\r\t\v] 等效。</span><br><span class="line">\t 制表符匹配。与 \x09 和 \cI 等效。</span><br><span class="line">\v 垂直制表符匹配。与 \x0b 和 \cK 等效。</span><br><span class="line">\w 匹配任何字类字符，包括下划线。与&quot;[A-Za-z0-9_]&quot;等效。</span><br><span class="line">\W 与任何非单词字符匹配。与&quot;[^A-Za-z0-9_]&quot;等效。</span><br><span class="line">\xn 匹配 n，此处的 n 是一个十六进制转义码。十六进制转义码必须正好是两位数长。例如，&quot;\x41&quot;匹配&quot;A&quot;。&quot;\x041&quot;与&quot;\x04&quot;&amp;&quot;1&quot;等效。允许在正则表达式中使用 ASCII 代码。</span><br><span class="line">\num 匹配 num，此处的 num 是一个正整数。到捕获匹配的反向引用。例如，&quot;(.)\1&quot;匹配两个连续的相同字符。</span><br><span class="line">\n 标识一个八进制转义码或反向引用。如果 \n 前面至少有 n 个捕获子表达式，那么 n 是反向引用。否则，如果 n 是八进制数 (0-7)，那么 n 是八进制转义码。</span><br><span class="line">\nm 标识一个八进制转义码或反向引用。如果 \nm 前面至少有 nm 个捕获子表达式，那么 nm 是反向引用。如果 \nm 前面至少有 n 个捕获，则 n 是反向引用，后面跟有字符 m。如果两种前面的情况都不存在，则 \nm 匹配八进制值 nm，其中 n 和 m 是八进制数字 (0-7)。</span><br><span class="line">\nml 当 n 是八进制数 (0-3)，m 和 l 是八进制数 (0-7) 时，匹配八进制转义码 nml。</span><br><span class="line">\un 匹配 n，其中 n 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (©)。</span><br></pre></td></tr></table></figure>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">一、什么是反射机制</span><br><span class="line">        简单的来说，反射机制指的是程序在运行时能够获取自身的信息。在java中，只要给定类的名字， 那么就可以通过反射机制来获得类的所有信息。</span><br><span class="line">  </span><br><span class="line">二、哪里用到反射机制</span><br><span class="line">        有些时候，我们用过一些知识，但是并不知道它的专业术语是什么，在刚刚学jdbc时用过一行代码， Class.forName(&quot;com.mysql.jdbc.Driver.class&quot;).newInstance();但是那时候只知道那行代码是生成驱动对象实例，并不知道它的具体含义。听了反射机制这节课后，才知道，原来这就是反射，现在很多开框架都用到反射机制，hibernate、struts都是用反射机制实现的。</span><br><span class="line"></span><br><span class="line">三、反射机制的优点与缺点</span><br><span class="line">        为什么要用反射机制？直接创建对象不就可以了吗，这就涉及到了动态与静态的概念，</span><br><span class="line">  ●  静态编译：在编译时确定类型，绑定对象,即通过。  </span><br><span class="line">  ●  动态编译：运行时确定类型，绑定对象。动态编译最大限度发挥了java的灵活性，体现了多态的应用，有以降低类之间的藕合性。  </span><br><span class="line">        一句话，反射机制的优点就是可以实现动态创建对象和编译，体现出很大的灵活性，特别是在J2EE的开发中它的灵活性就表现的十分明显。比如，一个大型的软件，不可能一次就把把它设计的很完美，当这个程序编译后，发布了，当发现需要更新某些功能时，我们不可能要用户把以前的卸载，再重新安装新的版本，假如这样的话，这个软件肯定是没有多少人用的。采用静态的话，需要把整个程序重新编译一次才可以实现功能的更新，而采用反射机制的话，它就可以不用卸载，只需要在运行时才动态的创建和编译，就可以实现该功能。</span><br><span class="line">       它的缺点是对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满足我们的要求。这类操作总是慢于只直接执行相同的操作。</span><br><span class="line"></span><br><span class="line">四、利用反射机制能获得什么信息</span><br><span class="line">       一句话，类中有什么信息，它就可以获得什么信息，不过前提是得知道类的名字，要不就没有后文了,首先得根据传入的类的全名来创建Class对象。  </span><br><span class="line">        Class c=Class.forName(&quot;className&quot;);          //注明：className必须为全名，也就是得包含包名，比如，com.jimmy.UserInfo;</span><br><span class="line">        Object obj=c.newInstance();                        //创建对象的实例</span><br><span class="line">  </span><br><span class="line">        以下所有的方法全部通过class调用</span><br><span class="line"></span><br><span class="line">    1、获得构造函数的方法  </span><br><span class="line">         Constructor getConstructor(Class[] params)                            //根据指定参数获得public构造器</span><br><span class="line">         Constructor[] getConstructors()                                                //获得public的所有构造器</span><br><span class="line">         Constructor getDeclaredConstructor(Class[] params)             //根据指定参数获得public和非public的构造器</span><br><span class="line">         Constructor[] getDeclaredConstructors()                                 //获得public和非public的所有构造器 </span><br><span class="line"></span><br><span class="line">     2、获得类方法的方法  </span><br><span class="line">         Method getMethod(String name, Class[] params)    //根据方法名，参数类型获得方法</span><br><span class="line">         Method[] getMethods()                                              //获得所有的public方法 </span><br><span class="line">         Method getDeclaredMethod(String name, Class[] params)        //根据方法名和参数类型，获得public和非public的方法</span><br><span class="line">         Method[] getDeclaredMethods()                                                  //获得所以的public和非public方法</span><br><span class="line">   </span><br><span class="line">    3、 获得类中属性的方法</span><br><span class="line">        Field getField(String name)                    //根据变量名得到相应的public变量</span><br><span class="line">        Field[] getFields()                                    //获得类中所以public的变量的方法</span><br><span class="line">        Field getDeclaredField(String name)    //根据方法名获得public和非public变量</span><br><span class="line">        Field[] getDeclaredFields()                    //获得类中所有的public和非public方法 </span><br><span class="line"></span><br><span class="line">注意：一般使用框架用到反射，对默认的架构不满意，重新搭建新的架构</span><br></pre></td></tr></table></figure>
           
         
       
@@ -708,7 +708,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java14-枚举类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java06-从内存的角度分析对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -727,7 +727,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java14-枚举类/" itemprop="url">Java14-枚举类</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java06-从内存的角度分析对象/" itemprop="url">Java06从内存的角度分析对象</a></h1>
         
 
         <div class="post-meta">
@@ -779,7 +779,146 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">通过关键词enum定义的类，称为枚举类</span><br><span class="line">    类似关键词class，interface</span><br><span class="line">    比如：</span><br><span class="line">    public enum SignalLight&#123;    //枚举类</span><br><span class="line">        //直接写</span><br><span class="line">        红灯，黄灯，绿灯</span><br><span class="line">        //可以写构造方法，普通方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    使用（.）： 枚举类.定义常量就可以了</span><br><span class="line">    比如：SignalLight.红灯;</span><br><span class="line">    返回对象就是枚举类实例化对象</span><br><span class="line">    枚举类和swtch-case使用比较多（switch支持int,char,String,枚举类）</span><br><span class="line"></span><br><span class="line"> 适用的场景：有多种不同的情况，通过枚举几次就能搞定的，可以定义枚举类</span><br></pre></td></tr></table></figure>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.Java语言而言，最主要的有三块区域：栈区，堆区，逻辑区（也称方法区）</span><br><span class="line">特点：</span><br><span class="line">    栈区：执行速度快（仅次于最快的CPU执行寄存区的速度）</span><br><span class="line">              空间大小有限，比堆区，方法区都要小</span><br><span class="line">        在Java中基本数据类型都是在栈区的，开辟的空间是系统自动分配的，空间有自己的地址记录</span><br><span class="line">        Java中所有的变量都在栈区</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/jkuLy9r.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">堆区：执行速度没有栈区快，但是内存空间远远大于栈区</span><br><span class="line">          如果需要使用堆区空间，必须使用new的方法开辟空间</span><br><span class="line">          所有引用类型的对象都在堆区开辟空间，包括字符串String</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/TwpkR5x.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">无论是堆区还是栈区，不用的内存空间是一定要释放的，如果内存不释放会导致内存溢出</span><br><span class="line">Java对内存的回收是不需要编程者管理的，Java有内存回收的机制，称之为GC机制（垃圾收集机制）</span><br><span class="line">不使用的内存垃圾不是立即回收，只有等垃圾回收器空闲的时候会回收，回收的效率会比较低</span><br><span class="line"></span><br><span class="line">展示自定义的class Cat在内存里的操作</span><br><span class="line">Cat cat = new Cat();</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/hNhUhXR.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">思考：</span><br><span class="line">Cat cat1 = new Cat();</span><br><span class="line">cat.name = &quot;小黄&quot;;</span><br><span class="line">Cat cat2 = new Cat();</span><br><span class="line">cat.name = &quot;小红&quot;;</span><br><span class="line">//操作</span><br><span class="line">cat1 = cat2;</span><br><span class="line">//1.打印出来cat1和cat2的名字各是什么？</span><br><span class="line">//2.如果cat1.name = &quot;花花&quot;;这时候打印出来的cat1和cat2的名字是什么？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3.方法区：逐行执行逻辑代码的地方</span><br><span class="line">在Java中方法的记录时间：在类加载的时候，方法区里就开始存放该类的方法了</span><br><span class="line">所有类的加载在系统运行前就操作了，往JVM中加载class</span><br><span class="line"></span><br><span class="line">class Test&#123;</span><br><span class="line">    //等Test类加载完毕以后，main就开始进入到方法区了</span><br><span class="line">    public static void main(String []args)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//方法去记录的是整个方法的签名</span><br><span class="line">/如何组成方法签名    类名+方法名字+参数列表（保证这个方法是独一无二的）</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java06-静态关键字static/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java06-静态关键字static/" itemprop="url">Java06-静态关键字static</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.关键字static，静态的意思<br>    特点：在类加载的时候就会把所有static的关键字内容进行全部加载<br>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">    static int RECORD_POSITION;//静态的变量为了和一般的成员变量或者局部变量区分开来，使用纯大写</span><br><span class="line">    static int getPosition(); //静态方法</span><br><span class="line">    //内部的类可以是静态的</span><br><span class="line">    static class Persion&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    //静态模块，只执行一次，不会多次运行，在类加载的时候执行唯一的一次</span><br><span class="line">    static int T;</span><br><span class="line">    static&#123;</span><br><span class="line">               //可以初始化变量，都行</span><br><span class="line">                T = 10;</span><br><span class="line">                T++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>规则：静态模块，静态方法里使用的变量或者方法只能是静态的<br>    所有静态的变量，方法直接通过类名调用就可以了，不需要通过对象调用<br>    比如：Test.RECORD_POSITION;<br>              Test.getPosition();<br>反过来说，如果直接通过类名调用的变量和方法，那该变量和方法必定是静态的<br>    比如：<br>System.in    //这时候in一定是静态变量<br>System.out.println();    //println();一定是静态方法</p>
+<p><img src="https://i.imgur.com/IwV3niq.png" alt=""></p>
+<p>动态模块与静态模块最大的区别<br>静态模块：只执行一次，不会多次运行，在类加载的时候执行唯一的一次<br>动态模块：只要实例化对象，就会进行加载</p>
+<p><img src="https://i.imgur.com/cGBC08b.png" alt=""></p>
+<p>//Java设计模式（Java一共有23种设计模式，由4个外国人总结提炼出来的）<br>    一般去搭建框架会用到各种Java的设计模式</p>
+<p>1.建造类的模式之一，和new有关的，就是构造对象的角度出发</p>
+<pre><code>单例模式（Singlton model）
+    功能点：保持构建的对象只有一个，并且是唯一的，无论一个类new多少次，对象都是唯一的
+    比如：Android中窗口对象就是单例的，画笔无论new多少次，都是同一支笔
+</code></pre><p>遵循的三个规则：<br>1.内部定义静态的成员变量，这个成员变量类型是当前的类名<br>2.私有化构造方法（不让外部直接调用构造方法）<br>3.自己定义静态方法，内部实现new的操作<br>*.通过new的地方不同，在单例模式中分为懒汉式和饿汉式两种。饿汉式线程安全</p>
+<p>代码示例（懒汉式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singlton&#123;//单例的意思</span><br><span class="line">    private static Singlton singlton;    //声明</span><br><span class="line"></span><br><span class="line">    //私有化构造方法，外部不能访问，只能自己调用</span><br><span class="line">    private Singlton()&#123;    </span><br><span class="line">    &#125;</span><br><span class="line">    //外部只要访问getInstance方法就能获取实例化对象了</span><br><span class="line">    public static Singlton getInstance()&#123;</span><br><span class="line">            if(singlton == 0 )     //null表示singlton没有开辟空间，为了保证singlton是唯一的</span><br><span class="line">            singlton = new Singlton();    //实例化对象</span><br><span class="line">            return singlton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码示例（饿汉式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//对第一行static的一些解释</span><br><span class="line">// java允许我们在一个类里面定义静态类。比如内部类（nested class）。</span><br><span class="line">//把nested class封闭起来的类叫外部类。</span><br><span class="line">//在java中，我们不能用static修饰顶级类（top level class）。</span><br><span class="line">//只有内部类可以为static。</span><br><span class="line">public class Singleton&#123;</span><br><span class="line">    //在自己内部定义自己的一个实例，只供内部调用</span><br><span class="line">    private static final Singleton instance = new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;</span><br><span class="line">    //这里提供了一个供外部访问本class的静态方法，可以直接访问</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -941,127 +1080,6 @@
 </tbody>
 </table>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java07-对象的继承/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java07-对象的继承/" itemprop="url">Java07-对象的继承</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">一、</span><br><span class="line">1.现在有个类Animal动物    还有个类Cat 猫</span><br><span class="line">    因为猫是动物，所以猫是继承自动物的</span><br><span class="line">比如：人类  老师（继承关系）     老师  学生（没有继承关系）</span><br><span class="line">类 金丝猴    类 值钱的（从句法上来说有继承关系）</span><br><span class="line"></span><br><span class="line">2.继承关系的特点：如果A继承B，A拥有B的属性，A拥有B的行为方式，但是A还可以拥有自己的一些特有的行为和属性</span><br><span class="line"></span><br><span class="line">3.在java里怎么表示继承：</span><br><span class="line">    a) class B&#123;&#125;</span><br><span class="line">    b) class A extends B&#123;&#125;</span><br><span class="line"></span><br><span class="line">4.继承的好处：可以大大降低重复属性和行为方法的出现</span><br><span class="line"></span><br><span class="line">5.java中继承的限制：java中只支持单继承，不支持多继承</span><br><span class="line">比如：A继承于B，还要继承于C，是不可以的，金丝猴继承动物类以后，不可以再继承值钱的类</span><br><span class="line"></span><br><span class="line">但是：B可以被多个类继承</span><br><span class="line"></span><br><span class="line">二、通过继承关系引申出来的概念</span><br><span class="line">重写：（最好  复制-粘贴）</span><br><span class="line">概念：通过继承引出方法重写，前提必须要有继承关系，否则不存方法重写的概念</span><br><span class="line">动物里有个吃的方法:动物吃东西</span><br><span class="line">猫继承动物，有你更有动物的吃的方法，猫对这个吃的方法不满意，想重新再写这个方法，这个时候就构成了方法的重写</span><br><span class="line"></span><br><span class="line">方法重写的最大特点：重写的方法和原来父类定义的方法必须一模一样（方法名，参数列表，返回值）</span><br><span class="line">                                 如果不符合上述条件，叫定义了新的方法，不叫方法重写</span><br><span class="line">重写的好处：业务逻辑上清楚，方便代码管理</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">区分重载和重写的区别：</span><br><span class="line">重写必须要有继承关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">关键字super的概念：</span><br><span class="line">    指向父类的引用，可以调用父类的成员变量，方法，构造方法</span><br><span class="line"></span><br><span class="line">    public class B&#123;</span><br><span class="line">        String name;</span><br><span class="line">    &#125;</span><br><span class="line">    public class A extends B&#123;</span><br><span class="line">        String name;</span><br><span class="line"></span><br><span class="line">        A()&#123;</span><br><span class="line">            super();//调用了父类的构造方法，默认父类就有无参的构造方法</span><br><span class="line">        &#125;</span><br><span class="line">        //打印B中的name</span><br><span class="line">        void print()&#123;</span><br><span class="line">            System.out.println(super.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">总结：关于super( )构造方法的使用</span><br><span class="line">    1.如果父类有无参的构造方法，子类可以不写super(); 默认子类的构造方法调用的都是父类的无参构造方法</span><br><span class="line">    2.如果父类没有无参的构造方法，子类自己调用父类存在的有参的构造方法，不能省略不写 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">三、多态的概念（OOP编程，封装、继承、多态）</span><br><span class="line">多态是同一个行为具有多个不同表现形式或形态的能力。</span><br><span class="line">多态性是对象多种表现形式的体现。</span><br><span class="line">多态存在的三个必要条件:</span><br><span class="line">  ● 继承</span><br><span class="line">  ● 重写</span><br><span class="line">  ● 父类引用指向子类对象</span><br><span class="line"></span><br><span class="line">定义：在代码运行的时候，才会知道真正调用方的对象具体是谁，这种表现形式称为多态。</span><br><span class="line">          在代码没有运行的时候，就不知道真正执行方法的对象是谁</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/2A5mxTZ.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">final关键字：</span><br><span class="line">1.如果final修饰的是class，表示这个类不允许被继承</span><br><span class="line">2.如果final修饰的是方法，表示该方法不允许被重写</span><br><span class="line">3.如果final修饰的是成员变量，表示该变量不允许被修改</span><br><span class="line">   如果final修饰的变量不是基本数据类型，是引用型的怎么办？</span><br><span class="line">   final修饰的引用变量不能改引用的地址</span><br><span class="line"></span><br><span class="line">    public final class String&#123;&#125;</span><br><span class="line">    为想写个类 public class MyString extends String&#123;&#125; //因为final，所以不能被继承</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1520,7 +1538,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
