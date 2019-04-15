@@ -232,6 +232,660 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/2017-04-01-Launcher3介绍附Github地址-Launcher3壁纸-系统默认值wifi-字体/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/01/2017-04-01-Launcher3介绍附Github地址-Launcher3壁纸-系统默认值wifi-字体/" itemprop="url">Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T09:22:30+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2017-4-1-9-22"><a href="#2017-4-1-9-22" class="headerlink" title="2017/4/1 9:22"></a>2017/4/1 9:22</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>Launcher3</strong></li>
+<li><strong>Launcher3壁纸修改</strong></li>
+<li><strong>根据plmn获取不同主页</strong></li>
+<li><strong>修改系统默认值</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher3"><a href="#Launcher3" class="headerlink" title="Launcher3"></a>Launcher3</h3><ol>
+<li>结构示意图<ul>
+<li><img src="http://i.imgur.com/wi7sDBc.png" alt=""></li>
+</ul>
+</li>
+<li>github：<a href="https://github.com/fookwood/Launcher3" target="_blank" rel="noopener">https://github.com/fookwood/Launcher3</a></li>
+</ol>
+<h3 id="Launcher3壁纸修改"><a href="#Launcher3壁纸修改" class="headerlink" title="Launcher3壁纸修改"></a>Launcher3壁纸修改</h3><ol>
+<li>将资源图片放在<code>Launcher3\WallpaperPicker\res\drawable</code>目录下，并改好缩略图，命名规则为资源图后加<code>_small</code></li>
+<li>在<code>Launcher3\WallpaperPicker\res\values-nodpi\wallpapers.xml</code>文件中声明资源图片，可不包含后缀名</li>
+</ol>
+<h3 id="根据plmn获取不同主页"><a href="#根据plmn获取不同主页" class="headerlink" title="根据plmn获取不同主页"></a>根据plmn获取不同主页</h3><ol>
+<li><code>Browser\src\com\android\browser\BrowserSettings.java</code>文件中<code>getHomePageFromPLMN()</code>方法添加case</li>
+<li>并且在<code>setHomePage()</code>方法中添加相应项目的判断<pre><code>if(SystemProperties.get(&quot;ro.project.customer_name&quot;).equals(&quot;Bmobile&quot;)){
+            sFactoryResetUrl = getHomePageFromPLMN();
+        }
+</code></pre></li>
+</ol>
+<h3 id="修改系统默认值"><a href="#修改系统默认值" class="headerlink" title="修改系统默认值"></a>修改系统默认值</h3><ol>
+<li>修改<code>frameworks\base\packages\SettingsProvider\res\values\defaults.xml</code>文件中对应的值，比如：def_wifi_display_on和def_wifi_on设置为默认开启</li>
+<li>字体的修改在<code>\frameworks\base\core\java\android\content\res\Configuration.java</code>文件的<code>setToDefaults()</code>方法中，fontScale = 1； //normal value is 1</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre><code>@ALL MTK 7.0 平台 Kernel开启了device-mapper-verity (dm-verity) 功能导致userdebug版本无法remount /system为rw模式
+
+需要 
+1)执行adb disable-verity 
+2) reboot
+3) 重新root /remount 
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/2017-03-31-编译指令-Launcher3常用类分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/31/2017-03-31-编译指令-Launcher3常用类分析/" itemprop="url">Android 源码编译指令 Launcher3常用类分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T10:50:26+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2017-3-31-10-50"><a href="#2017-3-31-10-50" class="headerlink" title="2017/3/31 10:50"></a>2017/3/31 10:50</h2><p>##### </p>
+<h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>Launcher3常用类分析</strong></li>
+<li><strong>编译指令</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher3常用类分析"><a href="#Launcher3常用类分析" class="headerlink" title="Launcher3常用类分析"></a>Launcher3常用类分析</h3><ol>
+<li>Launcher：Launcher中常用的Activity</li>
+<li>Workspace：抽象的桌面</li>
+<li>CellLayout：Workspace的一个子View</li>
+<li>FoldIcon：文件夹的图标</li>
+<li>BubbleTextView：图标，一个一个快捷方式</li>
+<li>ItemInfo：从快捷方式、文件夹、小部件抽象出来的数据模型</li>
+<li>LauncherModel：封装的对数据库的操作</li>
+<li>LauncherProvider:Launcher的数据库，里面存储一些默认操作</li>
+<li>LauncherAppState：初始化一些对象</li>
+<li>DragLayout：Launcher layout的rootview 处理拖动事件</li>
+<li>DragController：为Drag定义的一个接口</li>
+<li>DragVIew：拖动图标的时候跟随手指移动的View</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>adb安装apk<ul>
+<li>adb push [apk所在目录] system/app/包：将apk push进手机中</li>
+<li>adb shell pm -r [完整包名]：进行安装</li>
+</ul>
+</li>
+<li>SystemProperty </li>
+<li>查看设备agent<ul>
+<li><a href="http://www.whoishostingthis.com/tools/user-agent/" target="_blank" rel="noopener">http://www.whoishostingthis.com/tools/user-agent/</a></li>
+</ul>
+</li>
+<li>Launcher3单双层切换<ul>
+<li>LauncherAppState.isDisableAllApps</li>
+</ul>
+</li>
+<li>adb pull [资料路径] [目标路径]<ul>
+<li>导出代码（需要root）</li>
+<li>应用databases所在路径（data/data/com.android.launcher3/databases） </li>
+</ul>
+</li>
+<li>vendor文件夹覆盖<ul>
+<li>sprocomm_overlays\项目名\相对路径（idh.code下）</li>
+</ul>
+</li>
+<li>通常对项目资源的的修改都是放在覆盖目录下，以实现不同项目的不同需求，同时保持源码的完整性</li>
+<li>编译指令<ul>
+<li>m：所有资源文件执行搜索操作</li>
+<li>mm：Build 当前目录下的模块</li>
+<li>mmm：Build 指定目录下的模块</li>
+<li>mma：编译当前路径下所有模块，且包含依赖</li>
+<li>mmma：编译指定路径下所有模块，且包含依赖</li>
+<li>make \：无参数则表示编译整个Android代码</li>
+</ul>
+</li>
+<li>搜索指令<ul>
+<li>cgrep：在所有 C/C++ 文件上执行 grep</li>
+<li>jgrep：在所有 C/C++ 文件上执行 grep</li>
+<li>resgrep：在所有 res/*.xml 文件上执行 grep</li>
+<li>mangrep：所有 AndroidManifest.xml 文件执行搜索操作</li>
+<li>sepgrep：所有 sepolicy 文件执行搜索操作</li>
+<li>sgerp：所有资源文件执行搜索操作</li>
+</ul>
+</li>
+<li>git使用<ul>
+<li>解决pull冲突<ul>
+<li>git stash：将本地修改保存起来（git stash list查看保存信息）</li>
+<li>git pull：更新代码</li>
+<li>git stash pop stash@{0}：还原修改内容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>git cherry-pick <commit id="">的使用<ul>
+<li>可以选择某一个分支中的一个或几个commit(s)来进行操作</li>
+<li>例如，假设我们有个稳定版本的分支，叫v2.0，另外还有个开发版本的分支v3.0，我们不能直接把两个分支合并，这样会导致稳定版本混乱，但是又想增加一个v3.0中的功能到v2.0中，这里就可以使用cherry-pick了。</li>
+</ul>
+</commit></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/Android开关机动画铃声 修改默认铃声/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/27/Android开关机动画铃声 修改默认铃声/" itemprop="url">Android开关机动画铃声 修改默认铃声</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T10:15:05+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2017-3-27-10-15"><a href="#2017-3-27-10-15" class="headerlink" title="2017/3/27 10:15"></a>2017/3/27 10:15</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>回顾昨日知识点</strong></li>
+<li><strong>Android开关机动画铃声</strong></li>
+<li><strong>修改默认铃声</strong></li>
+</ol>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Android开关机动画铃声"><a href="#Android开关机动画铃声" class="headerlink" title="Android开关机动画铃声"></a>Android开关机动画铃声</h3><ol>
+<li>开关机动画的启动<ul>
+<li>Android系统在init.rc中定义了很多Service，定义的Service将会被init进程创建，其中的服务包含开机动画</li>
+</ul>
+</li>
+<li>源文件SurfaceFlinger.cpp<ul>
+<li>当android系统boot时，开始加载动画和开机铃声<pre><code>status_tSurfaceFlinger::readyToRun()
+{
+// start boot animation service  
+property_set(&quot;ctl.start&quot;, &quot;bootanim&quot;);//  
+}
+</code></pre></li>
+<li>当Android完成boot后，关闭动画和开机铃声<pre><code>voidSurfaceFlinger::bootFinished()  
+{  
+//stop bootanim service  
+property_set(&quot;ctl.stop&quot;, &quot;bootanim&quot;);  
+}  
+</code></pre></li>
+</ul>
+</li>
+<li><p>bootanimationservice详解</p>
+<ul>
+<li>所在位置：/frameworks/base/cmds/bootanimation, 主要有两个文件<ul>
+<li>bootanimation_main.cpp</li>
+<li>bootAnimation.cpp</li>
+</ul>
+</li>
+<li><p>bootanimation_main.cpp是主入口文件</p>
+<ul>
+<li><p>其主要的功能是根据传进来的参数决定是是要播放开机还是关机动画/铃音，并且启动BootAnimation:<br>BootAnimation.cpp集成自Thread，在创建时会调用readyToRun()-&gt;threadLoop():</p>
+<pre><code>int main(intargc, char** argv)  
+{  
+   // ...  
+if(argc &gt; 1){  
+   if(!strcmp(argv[1],&quot;shut&quot;))  
+  setBoot =false;  
+  }  
+
+  if(argc &gt; 2){  
+  if(!strcmp(argv[2],&quot;nomp3&quot;))  
+  sePaly =false;  
+  }  
+
+  if(argc &gt; 3){  
+   if(!strcmp(argv[3],&quot;rotate&quot;))  
+  setRotated= true;  
+  }  
+
+// ...  
+
+sp&lt;BootAnimation&gt;boot = new BootAnimation(setBoot,sePaly,setRotated);  
+
+XLOGD(&quot;joinThreadPool...&quot;);  
+IPCThreadState::self()-&gt;joinThreadPool();  
+XLOGD(&quot;exit bootanimation...&quot;);  
+}  
+
+return 0;  
+
+}  
+</code></pre></li>
+</ul>
+</li>
+<li><p>readyToRun() 方法判断/system/media/bootanimation.zip(shutanimaion.zip)是否存在，如果存在，则将 mAndroidAnimation 设置false，这个变量决定threadLoop中调用android（）还是movie（）来具体实现动画的播放。</p>
+<pre><code>status_tBootAnimation::readyToRun() {  
+……………………………………  
+mAndroidAnimation = false;  
+   if(bBootOrShutDown){  
+
+status_terr = mZip.open(&quot;/data/local/bootanimation.zip&quot;);  
+
+if(err != NO_ERROR) {  
+
+   err =mZip.open(&quot;/system/media/bootanimation.zip&quot;);  
+
+   if (err != NO_ERROR) {  
+
+   mAndroidAnimation = true;  
+
+   }  
+
+}  
+
+   }else {  
+
+   if(!bShutRotate){  
+
+  status_terr = mZip.open(&quot;/data/local/shutanimation.zip&quot;);  
+
+  if (err != NO_ERROR) {  
+
+  err= mZip.open(&quot;/system/media/shutanimation.zip&quot;);  
+
+  if (err != NO_ERROR) {  
+
+  mAndroidAnimation = true;  
+
+  }  
+
+  }  
+
+   }  
+
+   }  
+
+return NO_ERROR;  
+
+}  
+boolBootAnimation::threadLoop()  
+{  
+//  …................  
+   if(!bBootOrShutDown){  
+
+  pSoundFileName=&quot;/data/local/shutaudio.mp3&quot;;  
+
+  pBackupSoundFileName=&quot;/system/media/shutaudio.mp3&quot;;  
+
+   } else {  
+
+  pSoundFileName=&quot;/data/local/bootaudio.mp3&quot;;  
+
+ pBackupSoundFileName=&quot;/system/media/bootaudio.mp3&quot;;  
+
+   }  
+
+   …...............  
+
+   mediastatus =mediaplayer-&gt;setDataSource(pBackupSoundFileName, NULL);  
+
+   mediaplayer-&gt;setAudioStreamType(AudioSystem::BOOT);  
+
+   mediastatus = mediaplayer-&gt;prepare();  
+
+   mediaplayer-&gt;setAudioStreamType(AudioSystem::BOOT);  
+
+   mediastatus =mediaplayer-&gt;prepare();  
+
+   mediaplayer-&gt;setVolume(0.28,0.28);  
+
+   mediastatus =mediaplayer-&gt;start();  
+
+ …..........................  
+
+   if (mAndroidAnimation）  
+
+  r = &lt;span style=&quot;background-color: rgb(255, 255, 102); &quot;&gt;android&lt;/span&gt;()；  
+
+} else {  
+
+   r = movie();  
+
+   }  
+
+}  
+</code></pre></li>
+<li>threadLoop首先判断system/media/bootaudio.mp3(shutaudio.mp3)文件是否存在，如果存在则调用mediaplayer的接口播放（setdatasoruce，prepare，setvolume，start）。<br>然后根据 mAndroidAnimation 变量调用android()/movie(). 如果system/media/shutanimation.zip/bootanimation.zip存在的话，调用movie（），该接口会解析zip文件中的desc.txt文件，根据txt文件中的配置来播放动画。</li>
+</ul>
+</li>
+<li>bootanimation.zip中desc.txt播放规则<ul>
+<li>1920 1080 15 —-第一位宽 第二位是高 第三位是帧率也就是一秒播放多少帧(多少张图片)</li>
+<li>p 1 0 part1—-第二位表示part1部分也就是包含图片的文件夹播放次数，第二位表示这部分播完后下部分开始的间隔，默认为0第三位表示文件夹名称</li>
+<li><strong>在编写完你所需要的设置后，最后一行要换行，切记，否则系统无法读取开机广告</strong></li>
+<li><img src="http://i.imgur.com/ASKTvQM.png" alt=""></li>
+<li><strong>zip资源是以存储的形式打包</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>修改默认铃声需要更改的几个位置<ul>
+<li>资源：frameworks\base\data\sounds</li>
+<li>mk资源列表：frameworks\base\data\sounds</li>
+<li>默认铃声：build\buildplus\buildspec\对应项目spec、RO_CONFIG_RINGTONE</li>
+<li>如果需要针对不同机型，需要在devices\sprd\sounds.mk中进行资源文件夹的选择判断</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/2017-03-20-Android-Preference实践-Ubuntu-jdk8环境配置添加-hide方法注释/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2427,750 +3081,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/Launcher3基础-adb命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/10/Launcher3基础-adb命令/" itemprop="url">Launcher3基础 adb命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T10:17:40+08:00">
-                2017-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2017-3-10-10-17"><a href="#2017-3-10-10-17" class="headerlink" title="2017/3/10 10:17"></a>2017/3/10 10:17</h2><p>##### </p>
-<h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>了解Launcher</strong></li>
-<li><strong>adb命令</strong></li>
-</ol>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher"><a href="#Launcher" class="headerlink" title="Launcher"></a>Launcher</h3><ol>
-<li>Framework启动Launcher流程<ul>
-<li><img src="http://i.imgur.com/4yLgYys.png" alt=""></li>
-</ul>
-</li>
-<li>PackageManger管理类<ul>
-<li>负责管理应用程序包，可以通过它获取应用程序信息，通过getPacageManager方法得到这个类</li>
-<li>ResolveInfo：这个类是通过解析一个与IntentFilter相对应的intent得到的信息。它部分地对应于从AndroidManifest.xml的<intent>标签收集到的信息。</intent></li>
-</ul>
-</li>
-<li>简易LauncherDemo步骤<ol>
-<li>搭建两个布局：主界面（GridView）、item布局（图标、app名称）</li>
-<li>Launcher.java<ol>
-<li>获取PackageManger</li>
-<li>通过action获取intent<ul>
-<li>Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);<br>mainIntent.addCategory(Intent.CATEGORY_LAUNCHER); </li>
-</ul>
-</li>
-<li>根据intent查处所有app信息<ul>
-<li>mAllApps = mPackageManager.queryIntentActivities(mainIntent, 0); </li>
-</ul>
-</li>
-<li>设置到GridView上</li>
-<li>给item添加点击时间<ul>
-<li>通过ResoveInfo获取目标app的包名和入口Activity</li>
-<li>用ComponentName启动app</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>CellLayout：存放大小不一的控件</li>
-</ol>
-<h3 id="adb命令-Android-Debug-Bridge"><a href="#adb命令-Android-Debug-Bridge" class="headerlink" title="adb命令(Android Debug Bridge)"></a>adb命令(Android Debug Bridge)</h3><ol>
-<li>常用命令<ul>
-<li>查看设备<ul>
-<li>adb devices</li>
-</ul>
-</li>
-<li>安装apk<ul>
-<li>adb install [-r重新安装，-s安装到sd卡] [路径]</li>
-</ul>
-</li>
-<li>卸载软件<ul>
-<li>adb uninstall [-k删除配置和缓存] [软件名com.jameswong.demo]</li>
-</ul>
-</li>
-<li>进入设备或模拟器的shell<ul>
-<li>adb shell</li>
-<li>adb shell [command]：adb shell dmesg会打印出内核的调试信息</li>
-</ul>
-</li>
-<li>从电脑发送文件到设备<ul>
-<li>adb push [本地路径] [远程路径]</li>
-</ul>
-</li>
-<li>从设备下载文件到电脑<ul>
-<li>adb pull [远程路径] [本地路径]</li>
-</ul>
-</li>
-<li>查看bug报告<ul>
-<li>adb bugreport</li>
-</ul>
-</li>
-<li>启动Server<ul>
-<li>adb start-server</li>
-</ul>
-</li>
-<li>停止Server<ul>
-<li>adb kill-server</li>
-</ul>
-</li>
-<li>清除应用数据与缓存<ul>
-<li>adb shell pm clear [packagename]</li>
-</ul>
-</li>
-<li>启动应用<ul>
-<li>adb shell am start -n com.stormzhang.demo/.ui.SplashActivity</li>
-</ul>
-</li>
-<li>强制停止应用<ul>
-<li>adb shell am force-stop <packagename></packagename></li>
-</ul>
-</li>
-<li>查看日志<ul>
-<li>adb logcat</li>
-</ul>
-</li>
-<li>重启<ul>
-<li>adb reboot</li>
-</ul>
-</li>
-<li>获取root权限<ul>
-<li>adb root</li>
-</ul>
-</li>
-<li>重新挂载系统分区<ul>
-<li>adb remount</li>
-</ul>
-</li>
-<li>获取序列号<ul>
-<li>adb get-serialno</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li><strong>Dalvik</strong>与<strong>ART(Android runtime)</strong><ul>
-<li>Google公司自己设计用于Android平台的Java虚拟机</li>
-<li>2014年Google I/O 删除Dalvik，用<strong>ART</strong>替代</li>
-<li>区别<ul>
-<li><img src="http://i.imgur.com/Z8BJ9HI.png" alt=""></li>
-<li><strong>ART模式</strong>：是Android runtime的简称。在ART虚拟机环境下，Android对程序只进行一次编译，就是在程序安装时。在安装应用时，ART虚拟机就先将程序的Java语言转化为适合Android系统运行的机器语言，而且是一次编译终身受用。这样就免于程序每次运行时，都要重新编译的麻烦了，系统的运行效率被大大提高。</li>
-<li><strong>Dalvik</strong>：是Google公司自己设计用于Android平台的Java虚拟机。Dalvik虚拟机是Google等厂商合作开发的Android移动设备平台的核心组成部分之一。它可以支持已转换为 .dex（即Dalvik Executable）格式的Java应用程序的运行，.dex格式是专为Dalvik设计的一种压缩格式，适合内存和处理器速度有限的系统。Dalvik 经过优化，允许在有限的内存中同时运行多个虚拟机的实例，并且[1] 每一个Dalvik 应用作为一个独立的Linux 进程执行。独立的进程可以防止在虚拟机崩溃的时候所有程序都被关闭。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>onAttachedToWindow()是在onResume()方法之后执行</li>
-<li>View中的onFinishInflate()方法<ul>
-<li>当View中所有的子控件均被映射成xml后触发，即MyView mv = (MyView)View.inflate (context,R.layout.my_view,null);之后执行</li>
-</ul>
-</li>
-<li>AS查找快捷键<ul>
-<li>Ctrl+F：在当前窗口查找文本</li>
-<li>Ctrl+Shift+F：在当前工程内查找文本</li>
-<li>Ctrl+N：查找类</li>
-<li>Ctrl+Shift+N：查找文件</li>
-<li>Ctrl+Shift+Alt+N：查找项目中的方法或变量</li>
-<li>光标停留类名，右键”Find Usages”(快捷键Alt+F7)：查找类/方法/变量引用的地方</li>
-<li>ctrl+F7：该方法在当前类中的被使用到的地方</li>
-<li>Ctrl+F12：在类中快速定位某个方法或属性</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/21/初识Glide图片加载框架/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/21/初识Glide图片加载框架/" itemprop="url">初识Glide图片加载框架</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-21T08:48:02+08:00">
-                2016-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###Glide图片加载框架</p>
-<p>#####概述</p>
-<ol>
-<li>Google在2014推出图片加载框架Glide,很多被用于在Google的开源项目中；</li>
-<li>Glide和Picasso使用方式基本一样，但是细节有一些区别；</li>
-<li>Glide比Picasso加载速度快，但是需要更大的空间来缓存；</li>
-<li>可以加载本地资源，assets目录，sd卡，以及网络的图片；</li>
-</ol>
-<p>#####基本用法</p>
-<ul>
-<li>导包<ul>
-<li>在build.gradle中引入<code>compile &#39;com.github.bumptech.glide:glide:3.7.0&#39;</code></li>
-</ul>
-</li>
-<li>基本语法 <code>Glide.with(context).load(url).into(ImageView中);</code><ul>
-<li>加载本地资源：<ul>
-<li><code>Glide.with(context).load(R.mipmap.ic_launcher).into(ImageView中)</code></li>
-</ul>
-</li>
-<li>加载assets目录下：<ul>
-<li><code>Glide.with(context).load(&quot;file:///android_asset/mm.png&quot;).into(imageview);</code></li>
-<li>注意assets目录下地址：<strong>file:///android_asset/图片</strong></li>
-</ul>
-</li>
-<li>加载sd卡下：<ul>
-<li><code>Glide.with(context).load(new File(&quot;路径&quot;)).into(imageview);</code></li>
-</ul>
-</li>
-<li>加载网络图片<ul>
-<li><code>Glide.with(context).load(url地址).into(imageview);</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>#####常用的设置</p>
-<blockquote>
-<p>注意：在<strong>DrawableRequestBuilder</strong>类中的一些方法</p>
-</blockquote>
-<ul>
-<li>设置占位图片 <ul>
-<li>.placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)</li>
-<li>用法示例： <code>Glide.with(context).load(url地址).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageview);</code></li>
-</ul>
-</li>
-<li>淡入淡出的效果<ul>
-<li>.crossFade()</li>
-</ul>
-</li>
-<li>无动画效果<ul>
-<li>.dontAnimate()</li>
-</ul>
-</li>
-<li>调整大小<ul>
-<li>override(width,height)</li>
-</ul>
-</li>
-<li>图片剪裁类型<ul>
-<li>centerCrop()</li>
-<li>fitCenter()</li>
-</ul>
-</li>
-<li>自定义图形转换<ul>
-<li>transForm()</li>
-</ul>
-</li>
-<li>内存缓存，和磁盘的缓存<ul>
-<li>skipMemoryCache(true) <ul>
-<li>true:不要内存缓存</li>
-<li>false:也是默认的，具有内存缓存</li>
-</ul>
-</li>
-<li>diskCacheStrategy(DiskCacheStrategy.ALL)<ul>
-<li>DiskCacheStrategy.ALL 缓存所有版本的图片</li>
-<li>DiskCacheStrategy.NONE 不做缓存</li>
-<li>DiskCacheStrategy.SOURCE 仅仅只缓存原来的分辨率的图像</li>
-<li>DiskCacheStrategy.RESULT 仅仅缓存最终的图像，也就是改变大小后的图像</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>######和Picasso的对比</p>
-<ol>
-<li>with()的区别<ul>
-<li><img src="glide/pg.png" alt="picasso"></li>
-<li>如果(Activity/Fragment)作为参数<ul>
-<li>图片和Activity/Fragment的生命周期保持一致，在Pasuse()状态下停止加载，在Resumed时候又自动加载</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>图片的显示质量<ul>
-<li><img src="glide/02.png" alt="图片质量"></li>
-<li>Picasso默认：ARGB8888</li>
-<li>Glide默认：RGB565</li>
-</ul>
-</li>
-<li>加载动态Gif图<ul>
-<li>Picasso不能加载gif图</li>
-<li>Glide加载gif图会消耗过多内存：</li>
-</ul>
-</li>
-<li>缓存策略和加载速度<ul>
-<li>Picasso缓存是全尺寸的，而Glide缓存和ImageView的大小一致<ol>
-<li>Glide的这种特点让加载速度特别快</li>
-<li>Picasso加载时，需要调整大小会有些延迟</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/Week09-day01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/20/Week09-day01/" itemprop="url">Week09-day01</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-20T17:33:49+08:00">
-                2016-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Week09-day01"><a href="#Week09-day01" class="headerlink" title="Week09-day01"></a>Week09-day01</h2><p>##### </p>
-<h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>消息推送</strong>(三方SDK)</li>
-<li><strong>三方分享</strong>(三方SDK)</li>
-<li><strong>三方登录</strong>(三方SDK)</li>
-<li><strong>MVP</strong></li>
-</ol>
-<h2 id="课程笔记"><a href="#课程笔记" class="headerlink" title="课程笔记"></a>课程笔记</h2><h3 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h3><ol>
-<li><strong>XMPP</strong>（附Xmind）</li>
-<li><p><strong>Jpush快速集成推送</strong>（掌握）：<a href="http://docs.jiguang.cn/" target="_blank" rel="noopener">http://docs.jiguang.cn/</a></p>
-<ul>
-<li><p>jcenter 自动集成步骤</p>
-<ul>
-<li><p>说明 ： 使用jcenter自动集成的开发者，不需要在项目中添加jar和so，jcenter会自动完成依赖；在AndroidManifest.xml中不需要添加任何JPush SDK 相关的配置，jcenter会自动导入, 如果手动添加则是以开发者添加的为准覆盖掉默认配置。</p>
-<ul>
-<li>确认android studio的 Project 根目录的主 gradle 中配置了jcenter支持。（新建project默认配置就支持）</li>
-<li><pre><code>buildscript {
-    repositories {
-        jcenter()
-    }
-    ......
-}
-
-allprojets {
-    repositories {
-        jcenter()
-    }
-}    
-</code></pre></li>
-<li>在 module 的 gradle 中添加依赖和AndroidManifest的替换变量。</li>
-<li><pre><code>android {
-    ......
-    defaultConfig {
-        applicationId &quot;com.xxx.xxx&quot; //JPush上注册的包名.
-        ......
-
-        ndk {
-            //选择要添加的对应cpu类型的.so库。 
-            abiFilters &apos;armeabi&apos;, &apos;armeabi-v7a&apos;, &apos;armeabi-v8a&apos; 
-            // 还可以添加 &apos;x86&apos;, &apos;x86_64&apos;, &apos;mips&apos;, &apos;mips64&apos;
-        }
-
-        manifestPlaceholders = [
-            JPUSH_PKGNAME : applicationId,
-            JPUSH_APPKEY : &quot;你的appkey&quot;, //JPush上注册的包名对应的appkey.
-            JPUSH_CHANNEL : &quot;developer-default&quot;, //暂时填写默认值即可.
-        ]
-        ......
-    }
-    ......
-}
-
-dependencies {
-    ......
-
-    compile &apos;cn.jiguang:jpush:2.1.8&apos;  // 此处以SDK 2.1.8版本为例
-
-    ......
-}
-</code></pre></li>
-</ul>
-</li>
-<li><p>注 : 如果在添加以上 abiFilter 配置之后android Studio出现以下提示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NDK integration is deprecated in the current plugin. Consider trying the new experimental plugin.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>则在 Project 根目录的gradle.properties文件中添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.useDeprecatedNdk=true.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>添加代码</p>
-<ul>
-<li>JPush SDK 提供的 API 接口，都主要集中在 cn.jpush.android.api.JPushInterface 类里。</li>
-<li><p>基础API</p>
-<ul>
-<li><p>init 初始化SDK</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void init(Context context)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>setDebugMode 设置调试模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// You can enable debug mode in developing state. You should close debug mode when release.</span><br><span class="line">public static void setDebugMode(boolean debugEnalbed)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>调用示例代码（参考 example 项目）</p>
-<ul>
-<li>init 只需要在应用程序启动时调用一次该 API 即可。</li>
-<li>以下代码定制一个本应用程序 Application 类。需要在 AndoridManifest.xml 里配置。请参考上面 AndroidManifest.xml 片断，或者 example 项目。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleApplication extends Application &#123;</span><br><span class="line">@Override</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        JPushInterface.setDebugMode(true);</span><br><span class="line">        JPushInterface.init(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="3-友盟"><a href="#3-友盟" class="headerlink" title="3. 友盟"></a>3. 友盟</h2><h3 id="集成三方SDK基本通用步骤"><a href="#集成三方SDK基本通用步骤" class="headerlink" title="集成三方SDK基本通用步骤"></a>集成三方SDK基本通用步骤</h3><ol>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-<li>4</li>
-<li>5</li>
-<li>6</li>
-<li>7</li>
-</ol>
-<hr>
-<p>###三方分享</p>
-<ol>
-<li>shareSDK: <a href="http://www.mob.com/" target="_blank" rel="noopener">http://www.mob.com/</a></li>
-<li>Umeng</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>复习Socket</li>
-<li>CPU主要的三个平台<ol>
-<li>ARCH-ARM</li>
-<li>ARCH-mips</li>
-<li>ARCH-x86</li>
-</ol>
-</li>
-<li>自定义Dialog<ol>
-<li>setView</li>
-<li>里面的点击事件之类可以暴露方法，设置监听给外部调用</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3216,7 +3131,7 @@ dependencies {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3266,7 +3181,7 @@ dependencies {
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

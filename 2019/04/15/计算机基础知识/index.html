@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计算机硬件 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组  12南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机基础知识">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/计算机基础知识/index.html">
+<meta property="og:site_name" content="JamesWong&#39;s Notes">
+<meta property="og:description" content="计算机硬件 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组  12南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-15T09:28:34.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机基础知识">
+<meta name="twitter:description" content="计算机硬件 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组  12南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/15/计算机基础知识/"/>
+
+
+
+
+
+  <title>计算机基础知识 | JamesWong's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JamesWong's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/计算机基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T10:05:46+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="计算机硬件"><a href="#计算机硬件" class="headerlink" title="计算机硬件"></a>计算机硬件</h3><ol>
+<li>PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作</li>
+<li>MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标</li>
+<li><p>主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互相沟通，而不需要依赖于CPU的大量中断负载) 。</span><br><span class="line">北桥（系统控制芯片）：主要负责CPU与内存、CPU与PCI-E之间的通信。掌控项目多为高速设备，如：CPU、Host Bus。后期北桥集成内存控制器、Cache高速控制器；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问速度：寄存器&gt;Cache&gt;内存&gt;硬盘</p>
+</li>
+<li>控制器、运算器、存储器主要作用<ul>
+<li>控制器：分析指令，控制部件完成任务（协调、指挥各部件的中枢）。由指令寄存器、状态寄存器、指令译码器、时序电路和控制电路组成</li>
+<li>运算器（算数逻辑单元）：进行算数、逻辑运算。主要是对数据加工处理</li>
+<li>存储器：记忆、暂存数据。包括原始输入数据、经初步加工的中间数据、处理完成的有用信息、处理方式的指令</li>
+</ul>
+</li>
+<li>调制解调器（ Modem ），俗称 “猫”，因电话线传送的是模拟信号，计算机无法识别，需要做模拟信号和数字信号之间的相互转换。调制即“ 数 –&gt; 模 ”，解调即“ 模 –&gt; 数 ”</li>
+</ol>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><ol>
+<li>ISP（Internet Service Provider）：互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务和增值业务的电信运营商</li>
+<li>五层协议<ul>
+<li>应用层（报文）：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。</li>
+<li>传输层（ TCP 报文段或 UDP 用户数据报）：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。TCP 主要提供完整性服务，UDP 主要提供及时性服务</li>
+<li>网络层（ IP 数据报或分组）：异构网络互联、路由与转发</li>
+<li>数据链路层（帧）：封装成帧、差错检测、透明传输</li>
+<li>物理层（比特流）：考虑的是怎样在传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的作用是尽可能屏蔽传输媒体和通信手段的差异，使数据链路层感觉不到这些差异</li>
+</ul>
+</li>
+<li>OSI 还有表示层和会话层</li>
+<li>TCP/IP 网络协议<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>互联网层</li>
+<li>网络访问层</li>
+</ul>
+</li>
+<li>分组交换（包交换）会将通信数据分成等长数据段，首部加上控制信息，其特点<ul>
+<li>信息传送最小单位为分组：分组由组头和用户信息组成，分组头含有选路和控制信息</li>
+<li>统计时分复用：动态分配带宽</li>
+<li>不透明：需要对信息处理，如拆分、重组</li>
+<li>差错检测：可靠性要求高，实时性不高，由CRC校验、重发等</li>
+<li>流量控制：流量大时排队</li>
+</ul>
+</li>
+<li>地址分类<ul>
+<li>A类（适用大型网络）：1-127，私有 10.0.0.0-10.255.255.255</li>
+<li>B类（适用中型网络）：128-191，私有 172.16.0.0-172.31.255.255</li>
+<li>C类（适用小型网络）：192-223，私有 192.168.0.0-192.168.255.255</li>
+<li>D类（特殊）：224-239</li>
+<li>E类（特殊）：240-255</li>
+</ul>
+</li>
+<li>虚拟局域网可以在网路体系结构上实现交换机端口、MAC 地址、网络层地址和 IP 广播组</li>
+<li>ARP（地址解析协议 Address Resolution Protocol）负责将某个IP地址解析成对应的MAC地址。</li>
+<li>ARP攻击就是通过伪造IP地址和MAC地址实现ARP欺骗。仅能在局域网，不能对外网进行</li>
+<li>计算机网络面临的主要威胁：<ul>
+<li>黑客恶意攻击</li>
+<li>网络自身和管理缺陷</li>
+<li>软件设计漏洞和“后门”</li>
+<li>恶意网站陷阱</li>
+<li>用户网络内部工作人员不良行为引起的安全问题</li>
+<li>认为误接收病毒文件</li>
+</ul>
+</li>
+</ol>
+<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><ol>
+<li>操作系统五大功能模块<ul>
+<li>处理器管理：当多个程序同时运行，简介 CPU 时间分配问题</li>
+<li>作业管理：提供计算机界面，方便作业</li>
+<li>存储器管理：为数据分配内存，保证互不干扰</li>
+<li>设备管理：为用户分配设备，接收设备中断</li>
+<li>文件管理：存储、检索、共享和保护文件</li>
+</ul>
+</li>
+<li>伪指令是用于告诉汇编程序如何进行汇编的指令</li>
+<li><p>磁盘文件采用树形目录结构优点：</p>
+<ul>
+<li>解决重名问题</li>
+<li>利于文件分类，便于查找和管理</li>
+<li>缩短搜索路径，提高搜索速度</li>
+</ul>
+</li>
+<li><p>机器指令由操作码和地址码组成</p>
+</li>
+<li>有符号数分三种表示法：原码、反码（负数时，符号位不变，其他取反）、补码（负数时，符号位不变，其他取反再加1）</li>
+<li><p>机器语言、汇编语言、高级语言</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">机器语言：被计算机直接识别、执行。执行速度快、占内存少，但对于开发者编写、识别、记忆都难。</span><br><span class="line">汇编语言：是面向机器的低级语言。需要编译，机器才能识别。保持机器语言优点，直接、简洁、占用少、执行快，但可移植性差。</span><br><span class="line">高级语言：可维护性好、可移植性好、灵活、易懂、易学、容易编写出结构紧凑、复杂的程序，但执行速度低、对硬件可控性弱。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h3><ol>
+<li>软件危机主要表现：<ul>
+<li>无法满足需求增长</li>
+<li>开发成本、进度不可控</li>
+<li>质量不行</li>
+<li>可维护性差</li>
+<li>开发生产速率不及硬件发展和需求增长速率</li>
+</ul>
+</li>
+<li>线性表中顺序存储和链式存储<ul>
+<li>顺序存储：内存地址连续，节约空间，支持随机存取，方便操作，适用于频繁查询</li>
+<li>链式存储：内存地址不一定连续，适用于在较频繁地插入、删除、更新元素</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/20/2018-03-20-React-Native-Learning-Tips/" rel="next" title="2018-03-20 React Native Learning Tips">
+                <i class="fa fa-chevron-left"></i> 2018-03-20 React Native Learning Tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">JamesWong</p>
+              <p class="site-description motion-element" itemprop="description">简单即快乐。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机硬件"><span class="nav-number">1.</span> <span class="nav-text">计算机硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机网络"><span class="nav-number">2.</span> <span class="nav-text">计算机网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统"><span class="nav-number">3.</span> <span class="nav-text">计算机系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机软件"><span class="nav-number">4.</span> <span class="nav-text">计算机软件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JamesWong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

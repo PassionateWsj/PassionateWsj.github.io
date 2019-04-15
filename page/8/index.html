@@ -232,6 +232,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java26-正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java26-正则表达式/" itemprop="url">Java26-正则表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">正则表达式语法</span><br><span class="line">字符 说明</span><br><span class="line">\ 将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，&quot;n&quot;匹配字符&quot;n&quot;。&quot;\n&quot;匹配换行符。序列&quot;\\&quot;匹配&quot;\&quot;，&quot;\(&quot;匹配&quot;(&quot;。</span><br><span class="line">^ 匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与&quot;\n&quot;或&quot;\r&quot;之后的位置匹配。</span><br><span class="line">$ 匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与&quot;\n&quot;或&quot;\r&quot;之前的位置匹配。</span><br><span class="line">* 零次或多次匹配前面的字符或子表达式。例如，zo* 匹配&quot;z&quot;和&quot;zoo&quot;。* 等效于 &#123;0,&#125;。</span><br><span class="line">+ 一次或多次匹配前面的字符或子表达式。例如，&quot;zo+&quot;与&quot;zo&quot;和&quot;zoo&quot;匹配，但与&quot;z&quot;不匹配。+ 等效于 &#123;1,&#125;。</span><br><span class="line">? 零次或一次匹配前面的字符或子表达式。例如，&quot;do(es)?&quot;匹配&quot;do&quot;或&quot;does&quot;中的&quot;do&quot;。? 等效于 &#123;0,1&#125;。</span><br><span class="line">&#123;n&#125; n 是非负整数。正好匹配 n 次。例如，&quot;o&#123;2&#125;&quot;与&quot;Bob&quot;中的&quot;o&quot;不匹配，但与&quot;food&quot;中的两个&quot;o&quot;匹配。</span><br><span class="line">&#123;n,&#125; n 是非负整数。至少匹配 n 次。例如，&quot;o&#123;2,&#125;&quot;不匹配&quot;Bob&quot;中的&quot;o&quot;，而匹配&quot;foooood&quot;中的所有 o。&quot;o&#123;1,&#125;&quot;等效于&quot;o+&quot;。&quot;o&#123;0,&#125;&quot;等效于&quot;o*&quot;。</span><br><span class="line">&#123;n,m&#125; M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，&quot;o&#123;1,3&#125;&quot;匹配&quot;fooooood&quot;中的头三个 o。&apos;o&#123;0,1&#125;&apos; 等效于 &apos;o?&apos;。注意：您不能将空格插入逗号和数字之间。</span><br><span class="line">? 当此字符紧随任何其他限定符（*、+、?、&#123;n&#125;、&#123;n,&#125;、&#123;n,m&#125;）之后时，匹配模式是&quot;非贪心的&quot;。&quot;非贪心的&quot;模式匹配搜索到的、尽可能短的字符串，而默认的&quot;贪心的&quot;模式匹配搜索到的、尽可能长的字符串。例如，在字符串&quot;oooo&quot;中，&quot;o+?&quot;只匹配单个&quot;o&quot;，而&quot;o+&quot;匹配所有&quot;o&quot;。</span><br><span class="line">. 匹配除&quot;\r\n&quot;之外的任何单个字符。若要匹配包括&quot;\r\n&quot;在内的任意字符，请使用诸如&quot;[\s\S]&quot;之类的模式。</span><br><span class="line">(pattern) 匹配 pattern 并捕获该匹配的子表达式。可以使用 $0…$9 属性从结果&quot;匹配&quot;集合中检索捕获的匹配。若要匹配括号字符 ( )，请使用&quot;\(&quot;或者&quot;\)&quot;。</span><br><span class="line">(?:pattern) 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配。这对于用&quot;or&quot;字符 (|) 组合模式部件的情况很有用。例如，&apos;industr(?:y|ies) 是比 &apos;industry|industries&apos; 更经济的表达式。</span><br><span class="line">(?=pattern) 执行正向预测先行搜索的子表达式，该表达式匹配处于匹配 pattern 的字符串的起始点的字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?=95|98|NT|2000)&apos; 匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;，但不匹配&quot;Windows 3.1&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">(?!pattern) 执行反向预测先行搜索的子表达式，该表达式匹配不处于匹配 pattern 的字符串的起始点的搜索字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，&apos;Windows (?!95|98|NT|2000)&apos; 匹配&quot;Windows 3.1&quot;中的 &quot;Windows&quot;，但不匹配&quot;Windows 2000&quot;中的&quot;Windows&quot;。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。</span><br><span class="line">x|y 匹配 x 或 y。例如，&apos;z|food&apos; 匹配&quot;z&quot;或&quot;food&quot;。&apos;(z|f)ood&apos; 匹配&quot;zood&quot;或&quot;food&quot;。</span><br><span class="line">[xyz] 字符集。匹配包含的任一字符。例如，&quot;[abc]&quot;匹配&quot;plain&quot;中的&quot;a&quot;。</span><br><span class="line">[^xyz] 反向字符集。匹配未包含的任何字符。例如，&quot;[^abc]&quot;匹配&quot;plain&quot;中&quot;p&quot;，&quot;l&quot;，&quot;i&quot;，&quot;n&quot;。</span><br><span class="line">[a-z] 字符范围。匹配指定范围内的任何字符。例如，&quot;[a-z]&quot;匹配&quot;a&quot;到&quot;z&quot;范围内的任何小写字母。</span><br><span class="line">[^a-z] 反向范围字符。匹配不在指定的范围内的任何字符。例如，&quot;[^a-z]&quot;匹配任何不在&quot;a&quot;到&quot;z&quot;范围内的任何字符。</span><br><span class="line">\b 匹配一个字边界，即字与空格间的位置。例如，&quot;er\b&quot;匹配&quot;never&quot;中的&quot;er&quot;，但不匹配&quot;verb&quot;中的&quot;er&quot;。</span><br><span class="line">\B 非字边界匹配。&quot;er\B&quot;匹配&quot;verb&quot;中的&quot;er&quot;，但不匹配&quot;never&quot;中的&quot;er&quot;。</span><br><span class="line">\cx 匹配 x 指示的控制字符。例如，\cM 匹配 Control-M 或回车符。x 的值必须在 A-Z 或 a-z 之间。如果不是这样，则假定 c 就是&quot;c&quot;字符本身。</span><br><span class="line">\d 数字字符匹配。等效于 [0-9]。</span><br><span class="line">\D 非数字字符匹配。等效于 [^0-9]。</span><br><span class="line">\f 换页符匹配。等效于 \x0c 和 \cL。</span><br><span class="line">\n 换行符匹配。等效于 \x0a 和 \cJ。</span><br><span class="line">\r 匹配一个回车符。等效于 \x0d 和 \cM。</span><br><span class="line">\s 匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。</span><br><span class="line">\S 匹配任何非空白字符。与 [^ \f\n\r\t\v] 等效。</span><br><span class="line">\t 制表符匹配。与 \x09 和 \cI 等效。</span><br><span class="line">\v 垂直制表符匹配。与 \x0b 和 \cK 等效。</span><br><span class="line">\w 匹配任何字类字符，包括下划线。与&quot;[A-Za-z0-9_]&quot;等效。</span><br><span class="line">\W 与任何非单词字符匹配。与&quot;[^A-Za-z0-9_]&quot;等效。</span><br><span class="line">\xn 匹配 n，此处的 n 是一个十六进制转义码。十六进制转义码必须正好是两位数长。例如，&quot;\x41&quot;匹配&quot;A&quot;。&quot;\x041&quot;与&quot;\x04&quot;&amp;&quot;1&quot;等效。允许在正则表达式中使用 ASCII 代码。</span><br><span class="line">\num 匹配 num，此处的 num 是一个正整数。到捕获匹配的反向引用。例如，&quot;(.)\1&quot;匹配两个连续的相同字符。</span><br><span class="line">\n 标识一个八进制转义码或反向引用。如果 \n 前面至少有 n 个捕获子表达式，那么 n 是反向引用。否则，如果 n 是八进制数 (0-7)，那么 n 是八进制转义码。</span><br><span class="line">\nm 标识一个八进制转义码或反向引用。如果 \nm 前面至少有 nm 个捕获子表达式，那么 nm 是反向引用。如果 \nm 前面至少有 n 个捕获，则 n 是反向引用，后面跟有字符 m。如果两种前面的情况都不存在，则 \nm 匹配八进制值 nm，其中 n 和 m 是八进制数字 (0-7)。</span><br><span class="line">\nml 当 n 是八进制数 (0-3)，m 和 l 是八进制数 (0-7) 时，匹配八进制转义码 nml。</span><br><span class="line">\un 匹配 n，其中 n 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (©)。</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java27-数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,7 +470,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java06-静态关键字static/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java知识点整理1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -370,7 +489,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java06-静态关键字static/" itemprop="url">Java06-静态关键字static</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java知识点整理1/" itemprop="url">Java知识点整理1</a></h1>
         
 
         <div class="post-meta">
@@ -422,21 +541,7 @@
       
         
           
-            <p>1.关键字static，静态的意思<br>    特点：在类加载的时候就会把所有static的关键字内容进行全部加载<br>比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">    static int RECORD_POSITION;//静态的变量为了和一般的成员变量或者局部变量区分开来，使用纯大写</span><br><span class="line">    static int getPosition(); //静态方法</span><br><span class="line">    //内部的类可以是静态的</span><br><span class="line">    static class Persion&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    //静态模块，只执行一次，不会多次运行，在类加载的时候执行唯一的一次</span><br><span class="line">    static int T;</span><br><span class="line">    static&#123;</span><br><span class="line">               //可以初始化变量，都行</span><br><span class="line">                T = 10;</span><br><span class="line">                T++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>规则：静态模块，静态方法里使用的变量或者方法只能是静态的<br>    所有静态的变量，方法直接通过类名调用就可以了，不需要通过对象调用<br>    比如：Test.RECORD_POSITION;<br>              Test.getPosition();<br>反过来说，如果直接通过类名调用的变量和方法，那该变量和方法必定是静态的<br>    比如：<br>System.in    //这时候in一定是静态变量<br>System.out.println();    //println();一定是静态方法</p>
-<p><img src="https://i.imgur.com/IwV3niq.png" alt=""></p>
-<p>动态模块与静态模块最大的区别<br>静态模块：只执行一次，不会多次运行，在类加载的时候执行唯一的一次<br>动态模块：只要实例化对象，就会进行加载</p>
-<p><img src="https://i.imgur.com/cGBC08b.png" alt=""></p>
-<p>//Java设计模式（Java一共有23种设计模式，由4个外国人总结提炼出来的）<br>    一般去搭建框架会用到各种Java的设计模式</p>
-<p>1.建造类的模式之一，和new有关的，就是构造对象的角度出发</p>
-<pre><code>单例模式（Singlton model）
-    功能点：保持构建的对象只有一个，并且是唯一的，无论一个类new多少次，对象都是唯一的
-    比如：Android中窗口对象就是单例的，画笔无论new多少次，都是同一支笔
-</code></pre><p>遵循的三个规则：<br>1.内部定义静态的成员变量，这个成员变量类型是当前的类名<br>2.私有化构造方法（不让外部直接调用构造方法）<br>3.自己定义静态方法，内部实现new的操作<br>*.通过new的地方不同，在单例模式中分为懒汉式和饿汉式两种。饿汉式线程安全</p>
-<p>代码示例（懒汉式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singlton&#123;//单例的意思</span><br><span class="line">    private static Singlton singlton;    //声明</span><br><span class="line"></span><br><span class="line">    //私有化构造方法，外部不能访问，只能自己调用</span><br><span class="line">    private Singlton()&#123;    </span><br><span class="line">    &#125;</span><br><span class="line">    //外部只要访问getInstance方法就能获取实例化对象了</span><br><span class="line">    public static Singlton getInstance()&#123;</span><br><span class="line">            if(singlton == 0 )     //null表示singlton没有开辟空间，为了保证singlton是唯一的</span><br><span class="line">            singlton = new Singlton();    //实例化对象</span><br><span class="line">            return singlton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码示例（饿汉式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//对第一行static的一些解释</span><br><span class="line">// java允许我们在一个类里面定义静态类。比如内部类（nested class）。</span><br><span class="line">//把nested class封闭起来的类叫外部类。</span><br><span class="line">//在java中，我们不能用static修饰顶级类（top level class）。</span><br><span class="line">//只有内部类可以为static。</span><br><span class="line">public class Singleton&#123;</span><br><span class="line">    //在自己内部定义自己的一个实例，只供内部调用</span><br><span class="line">    private static final Singleton instance = new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;</span><br><span class="line">    //这里提供了一个供外部访问本class的静态方法，可以直接访问</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">包定义的规范</span><br><span class="line">com.alibaba.view   com.alibaba.bean   com.alibaba.dao</span><br><span class="line"></span><br><span class="line">三目表达式：表达式1 ？表达式2 ： 表达式3</span><br><span class="line"></span><br><span class="line">（i++与++i的区别     i++先执行，++i先赋值）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String -- 字符串类型  printin 在字符串后面的所有“+“号都为连接符  数字1变为字符1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">static关键字：表示静态的，静态声明的属性表示全局变量，在类声明前就已经执行（只执行1次）。静态方法只能调用静态的属性和方法（可以直接类名+方法（属性）调用），静态类里不存在this</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this和super：用来区分重复的变量，super（虚方法）大多用在继承中子类的构造方法里</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">多态：扩展性，</span><br><span class="line">条件：</span><br><span class="line">1.继承</span><br><span class="line">2.方法重写</span><br><span class="line">3.父类引用指向子类对象</span><br><span class="line"></span><br><span class="line">final关键字：final能声明类（不能被继承），方法（不能被重写），属性变量（变成常量要大写）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">修饰符</span><br><span class="line">                                                           不同包             不同包但有继承            同包         同包同类</span><br><span class="line">    public                                               可以                可以                            可以            可以</span><br><span class="line">    protected                                       不可以              可以                            可以            可以</span><br><span class="line">    default(friendly)默认不写                不可以            不可以                          可以            可以</span><br><span class="line">    private                                            不可以            不可以                         不可以         可以</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">抽象类：一定包含抽象方法的类，不能实例化对象必须被继承，包含子类常见的方法（抽象表示，没有方法体）</span><br><span class="line">任何子类必须重写父类的抽象方法，或者声明自身为抽象类。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">接口：  </span><br><span class="line">一个接口（interface）可以有全局常量（final static ）和多个方法（必须为抽象方法），可以被多实现（implements）</span><br><span class="line">接口不能包含成员变量，除了static和final变量。</span><br><span class="line">所有实现接口的类中方法都为public</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">内部类的使用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">数组</span><br><span class="line">foreach循环：foreach(int i in arr)</span><br><span class="line">java.util.Arrays    Arrays.toString(arr);</span><br><span class="line"></span><br><span class="line">在数据的类中重写toString方法，来偷懒：public</span><br><span class="line">判断一个字符串A中是否包含字符串B：A.indexOf(B)，如果包含返回0，不包含返回-1</span><br><span class="line">Math.random()方法返回一个[0-1)的随机数，想要随机0-10整数可以强转(int)Math.random();</span><br><span class="line"></span><br><span class="line">String s = &quot;a&quot;+&quot;b&quot;+&quot;c&quot;;效率比较低，常量池会产生3个字符串，a,ab,abc</span><br><span class="line">StringBulider  线程不安全，效率高</span><br><span class="line">StringBuffer    线程安全</span><br><span class="line">字符串：  toCharArry()    字符串转换字符数组    </span><br><span class="line">               charAt()    从字符串中提取指定位置的字符</span><br><span class="line">               compareTo()    根据字典的次序，对应的字符进行逐个比较(&gt;返回正数，=返回0，&lt;返回负数)</span><br><span class="line">               compareToIngoreCase()    同上（无视大小写进行比较）</span><br><span class="line">               getBytes()    与byte数组的转换    </span><br><span class="line">               indexOf()    过滤字符串中存在的字符，存在返回index，不存在返回-1</span><br><span class="line">               trim()        去掉字符串的前后空格</span><br><span class="line">               subString()    从字符串中取出子字符串（index来索引截取，结束index不包含）</span><br><span class="line">               toLowerCase()    toUpperCase()    大小写转换</span><br><span class="line">               endsWith()    startsWith()    判断字符串的开头结尾字符</span><br><span class="line">               replace()    替换String字符串中的一个字符（返回String），也可删除指定字符，用&quot;&quot;来替换即可</span><br><span class="line">               concat()    拼接字符串，返回String</span><br><span class="line">               contains()    判断是否包含字符串，返回boolean</span><br><span class="line">               valueOf()    将基本数据类型转成实际的字符串(这个方法是静态方法)</span><br><span class="line">                上个方法通常不用，最直接为***+&quot;&quot;直接将***变为字符串进行拼接</span><br><span class="line"></span><br><span class="line">StringBuffer（需要实例化，省内存空间（StringBuilding更快但是需要在单线程使用，并且不安全））</span><br><span class="line">                append()    添加字符</span><br><span class="line">                insert()</span><br><span class="line">                replace(a,b,&quot;c&quot;)</span><br><span class="line">                indexOf()</span><br><span class="line"></span><br><span class="line">eclipse快速查找类方法</span><br><span class="line">ctrl+o    ctrl+oo    当前类（ctrl+左键系统自带类，jdk目录导入源代码）</span><br><span class="line">ctrl+shift+t    快速定位任何类</span><br><span class="line">ctrl+T    查看类的继承结构</span><br><span class="line">ctrl+F    查找关键字</span><br><span class="line">ctrl+L    定位到指定行</span><br><span class="line"></span><br><span class="line">在finally中关闭流 .close()</span><br></pre></td></tr></table></figure>
           
         
       
@@ -603,7 +708,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java13-常用类-包含String类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java14-枚举类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JamesWong">
@@ -622,7 +727,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/16/Java13-常用类-包含String类/" itemprop="url">Java13-常用类-包含String类</a></h1>
+                <a class="post-title-link" href="/2016/07/16/Java14-枚举类/" itemprop="url">Java14-枚举类</a></h1>
         
 
         <div class="post-meta">
@@ -674,142 +779,289 @@
       
         
           
-            <h3 id="一、常用类（略）"><a href="#一、常用类（略）" class="headerlink" title="一、常用类（略）"></a>一、常用类（略）</h3><h3 id="二、String类"><a href="#二、String类" class="headerlink" title="二、String类"></a>二、String类</h3><ol>
-<li>构建（字符串常量池，在堆里开辟空间new的过程可以在构造方法进行参数传递）</li>
-<li>方法<ul>
-<li>比较    compareTo()，equals()（都可以无视大小写）</li>
-<li>截取    split()，subString()</li>
-<li>是否符合要求    startsWith()，endsWith()，trim()</li>
-<li>匹配    indexOf()，contains()</li>
-<li>根据索引获取字符    charAt()</li>
-<li>转换    toCharArry()    getBytes()    replace()    toLowerCase()    toUpperCase()</li>
-</ul>
-</li>
-</ol>
-<h3 id="三、Date类，Calendar类（时间日期有关的）"><a href="#三、Date类，Calendar类（时间日期有关的）" class="headerlink" title="三、Date类，Calendar类（时间日期有关的）"></a>三、Date类，Calendar类（时间日期有关的）</h3><p>使用Calendar比较多，对Date类进行了扩展</p>
-<ol>
-<li><p>对于Date而言，构造方法使用long毫秒数可以构建，可以使用after()或before()判断时间是否在前还是在后，其他方法都可以使用Calendar类提供的方法进行替换</p>
-</li>
-<li><p>Calendar类（抽象类）日历</p>
-<ul>
-<li>通过getInstance方法进行初始化，返回实例化对象(Calendar符合单例模式)</li>
-</ul>
-</li>
-<li><p>辅助时间类（Calendar类）的时候–&gt;SimpleDateFormat类（调整时间显示的格式）</p>
-<ul>
-<li>填写想要的格式，时间最后会转换成指定时间格式的字符串（核心的方法就是format()）</li>
-</ul>
-</li>
-</ol>
-<h3 id="四、System类"><a href="#四、System类" class="headerlink" title="四、System类"></a>四、System类</h3><ol>
-<li>打印的内容    out.println()</li>
-<li>获取当前系统的好秒时间    currentTimeMillis()</li>
-<li>接收控制台的数据System.in</li>
-</ol>
-<h3 id="五、Math类"><a href="#五、Math类" class="headerlink" title="五、Math类"></a>五、Math类</h3><ol>
-<li>sqrt()    根号</li>
-<li>abs()    绝对值</li>
-<li>pow()    幂次方</li>
-<li>round()    四舍五入    floor()只退    ceil()只进</li>
-<li>random()    随机数</li>
-<li>其他还有正弦余弦，π（PI）……</li>
-</ol>
-<h3 id="六、Runtim类"><a href="#六、Runtim类" class="headerlink" title="六、Runtim类"></a>六、Runtim类</h3><ol>
-<li>可以手动调用gc(Garbage Collection)垃圾回收器</li>
-<li>可以查看当前虚拟机的内存情况</li>
-<li>可以执行一些特殊的进程（记事本等）</li>
-</ol>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">通过关键词enum定义的类，称为枚举类</span><br><span class="line">    类似关键词class，interface</span><br><span class="line">    比如：</span><br><span class="line">    public enum SignalLight&#123;    //枚举类</span><br><span class="line">        //直接写</span><br><span class="line">        红灯，黄灯，绿灯</span><br><span class="line">        //可以写构造方法，普通方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    使用（.）： 枚举类.定义常量就可以了</span><br><span class="line">    比如：SignalLight.红灯;</span><br><span class="line">    返回对象就是枚举类实例化对象</span><br><span class="line">    枚举类和swtch-case使用比较多（switch支持int,char,String,枚举类）</span><br><span class="line"></span><br><span class="line"> 适用的场景：有多种不同的情况，通过枚举几次就能搞定的，可以定义枚举类</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java08-包和导入包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java08-包和导入包/" itemprop="url">Java08-包和导入包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">1.根据实际的业务逻辑不通，将写的源代码通过不同的包进行管理</span><br><span class="line"> java.lang.System    java.util.Scanner</span><br><span class="line">红色的即为Java对不同的类进行分包的操作，便于管理</span><br><span class="line">当我们去写比较大的项目的时候，一定要有分包的思想</span><br><span class="line">遵循包定义的规范：</span><br><span class="line">    1.公司的域名倒置是规范的写法，如果没有，暂时填入自己的英文名字</span><br><span class="line">        www.alibaba.com    包名这样写：com.alibaba</span><br><span class="line">    2.可以对功能扩展    com.alibaba.view   com.alibaba.bean   com.alibaba.dao</span><br><span class="line">        //bean 代表底层数据模型，在他的基础上可以发展业务逻辑</span><br><span class="line">        //dao  代表底层数据模型上发展的业务逻辑</span><br><span class="line">        //view 代表用户视图，可以查看数据的业务逻辑</span><br><span class="line">    3.在java中通过关键字package表示所在包，要求写在第一行，当前类的外部</span><br><span class="line"></span><br><span class="line">2.导入包</span><br><span class="line">    如果我们现在的类在com.qianfeng.test包下面，我要使用 java.util.Scanner 这个类，但是这个类在 java.util 这个包下面，这时必须导入 java.util 的包，我想用里面的Scanner，这时继续明确类的名字，即 java.util.Scanner </span><br><span class="line">    1.导入包的关键字 import ，明确所在的包和包下需要导入的类</span><br><span class="line">    2.当你不知道导入包的类名字，可以用 * 表示（通配该包下所有的类） import java.util.*(不推荐)</span><br><span class="line">    3.如果你要使用的类，与当前类是同一个包，则不需要导入</span><br><span class="line"></span><br><span class="line">3.不定义包名时，系统自生成一个default包</span><br><span class="line"></span><br><span class="line">//演示案例</span><br><span class="line">//关键指令：javac -d . 类的名字（类里必须要写package的信息，比如com.qianfeng）</span><br><span class="line">                    java 包名.类名（执行指定包下的class文件）</span><br><span class="line"></span><br><span class="line">4.访问修饰符的情况分析</span><br><span class="line">    访问修饰符可以修饰成员变量，方法，类。表示外部是否可以对他们进行访问</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
-<th>String自带方法</th>
-<th>作用</th>
+<th>修饰符</th>
+<th>不同包</th>
+<th>不同包但有继承</th>
+<th>同包</th>
+<th>同包同类</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>toCharArry()</td>
-<td>字符串转换字符数组    </td>
+<td>public</td>
+<td>可以</td>
+<td>可以</td>
+<td>可以</td>
+<td>可以</td>
 </tr>
 <tr>
-<td>charAt()</td>
-<td>从字符串中提取指定位置的字符</td>
+<td>protected</td>
+<td>不可以</td>
+<td>可以</td>
+<td>可以</td>
+<td>可以</td>
 </tr>
 <tr>
-<td>compareTo()</td>
-<td>根据字典的次序，对应的字符进行逐个比较(&gt;返回正数，=返回0，&lt;返回负数)</td>
+<td>default(friendly)默认不写</td>
+<td>不可以</td>
+<td>不可以</td>
+<td>可以</td>
+<td>可以</td>
 </tr>
 <tr>
-<td>compareToIngoreCase()</td>
-<td>同上（无视大小写进行比较）</td>
-</tr>
-<tr>
-<td>getBytes()</td>
-<td>与byte数组的转换    </td>
-</tr>
-<tr>
-<td>indexOf()</td>
-<td>过滤字符串中存在的字符，存在返回index，不存在返回-1</td>
-</tr>
-<tr>
-<td>lastIndexOf()</td>
-<td>返回最后一个index</td>
-</tr>
-<tr>
-<td>trim()</td>
-<td>去掉字符串的前后空格</td>
-</tr>
-<tr>
-<td>subString()</td>
-<td>从字符串中取出子字符串（index来索引截取，结束index不包含）</td>
-</tr>
-<tr>
-<td>toLowerCase()、toUpperCase()</td>
-<td>大小写转换</td>
-</tr>
-<tr>
-<td>endsWith()、startsWith()</td>
-<td>判断字符串的开头结尾字符</td>
-</tr>
-<tr>
-<td>replace()</td>
-<td>替换String字符串中的一个字符（返回String），也可删除指定字符，用””来替换即可</td>
-</tr>
-<tr>
-<td>concat()</td>
-<td>拼接字符串，返回String</td>
-</tr>
-<tr>
-<td>contains()</td>
-<td>判断是否包含字符串，返回boolean</td>
-</tr>
-<tr>
-<td>valueOf()</td>
-<td>将基本数据类型转成实际的字符串(这个方法是静态方法)</td>
-</tr>
-<tr>
-<td>append()</td>
-<td>添加字符</td>
-</tr>
-<tr>
-<td>insert()</td>
-<td></td>
-</tr>
-<tr>
-<td>replace(a,b,”c”)</td>
-<td></td>
-</tr>
-<tr>
-<td>indexOf()</td>
-<td></td>
+<td>private</td>
+<td>不可以</td>
+<td>不可以</td>
+<td>不可以</td>
+<td>可以</td>
 </tr>
 </tbody>
 </table>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 创建字符串的几种方法</span><br><span class="line">    */</span><br><span class="line">   static void create()&#123;</span><br><span class="line">       //1.直接赋值</span><br><span class="line">       String s1 = &quot;abc&quot;;</span><br><span class="line">       //2.通过new的方式进行实例化创建</span><br><span class="line">       String s2 = new String(&quot;abc&quot;);</span><br><span class="line">       String s3 = &quot;abc&quot;;    //s1与s3的地址是一样的</span><br><span class="line">       String s4 = new String(&quot;abc&quot;);    //s2和s4的地址是不同的</span><br><span class="line"></span><br><span class="line">       //他们的区别？</span><br><span class="line">       //1、s1和s2在内存中存储的空间不同</span><br><span class="line">       //    s1存放在方法区的字符串常量区</span><br><span class="line">       //    s2存放在堆里</span><br><span class="line">       //    如果存在字符串常量区，那么操作起来方便，空间也能节约下来</span><br><span class="line">       //    而堆区则需要开辟空间</span><br><span class="line">       //    推荐在常量池创建字符串，节省内存</span><br><span class="line">       //    从时间和空间去分析他们各自的特点</span><br><span class="line"></span><br><span class="line">       char[] ch = &#123;&apos;a&apos;,&apos;b&apos;,&apos;c&apos;&#125;;    //字符数组（byte[] 网络数组，char[]）可以变成字符串</span><br><span class="line">       byte[] bs = &#123;1,23,5&#125;;</span><br><span class="line">       String s6 = new String(ch);    //new的时候，构造方法支持char[]和byte[]</span><br><span class="line">       String s7 = new String(bs);</span><br><span class="line">       System.out.println(s6);</span><br><span class="line">       System.out.println(s7);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ol>
-<li>StringBuffer（需要实例化，省内存空间（StringBuilding更快但是需要在单线程使用，并且不安全））</li>
-</ol>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java07-对象的继承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java07-对象的继承/" itemprop="url">Java07-对象的继承</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">一、</span><br><span class="line">1.现在有个类Animal动物    还有个类Cat 猫</span><br><span class="line">    因为猫是动物，所以猫是继承自动物的</span><br><span class="line">比如：人类  老师（继承关系）     老师  学生（没有继承关系）</span><br><span class="line">类 金丝猴    类 值钱的（从句法上来说有继承关系）</span><br><span class="line"></span><br><span class="line">2.继承关系的特点：如果A继承B，A拥有B的属性，A拥有B的行为方式，但是A还可以拥有自己的一些特有的行为和属性</span><br><span class="line"></span><br><span class="line">3.在java里怎么表示继承：</span><br><span class="line">    a) class B&#123;&#125;</span><br><span class="line">    b) class A extends B&#123;&#125;</span><br><span class="line"></span><br><span class="line">4.继承的好处：可以大大降低重复属性和行为方法的出现</span><br><span class="line"></span><br><span class="line">5.java中继承的限制：java中只支持单继承，不支持多继承</span><br><span class="line">比如：A继承于B，还要继承于C，是不可以的，金丝猴继承动物类以后，不可以再继承值钱的类</span><br><span class="line"></span><br><span class="line">但是：B可以被多个类继承</span><br><span class="line"></span><br><span class="line">二、通过继承关系引申出来的概念</span><br><span class="line">重写：（最好  复制-粘贴）</span><br><span class="line">概念：通过继承引出方法重写，前提必须要有继承关系，否则不存方法重写的概念</span><br><span class="line">动物里有个吃的方法:动物吃东西</span><br><span class="line">猫继承动物，有你更有动物的吃的方法，猫对这个吃的方法不满意，想重新再写这个方法，这个时候就构成了方法的重写</span><br><span class="line"></span><br><span class="line">方法重写的最大特点：重写的方法和原来父类定义的方法必须一模一样（方法名，参数列表，返回值）</span><br><span class="line">                                 如果不符合上述条件，叫定义了新的方法，不叫方法重写</span><br><span class="line">重写的好处：业务逻辑上清楚，方便代码管理</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">区分重载和重写的区别：</span><br><span class="line">重写必须要有继承关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">关键字super的概念：</span><br><span class="line">    指向父类的引用，可以调用父类的成员变量，方法，构造方法</span><br><span class="line"></span><br><span class="line">    public class B&#123;</span><br><span class="line">        String name;</span><br><span class="line">    &#125;</span><br><span class="line">    public class A extends B&#123;</span><br><span class="line">        String name;</span><br><span class="line"></span><br><span class="line">        A()&#123;</span><br><span class="line">            super();//调用了父类的构造方法，默认父类就有无参的构造方法</span><br><span class="line">        &#125;</span><br><span class="line">        //打印B中的name</span><br><span class="line">        void print()&#123;</span><br><span class="line">            System.out.println(super.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">总结：关于super( )构造方法的使用</span><br><span class="line">    1.如果父类有无参的构造方法，子类可以不写super(); 默认子类的构造方法调用的都是父类的无参构造方法</span><br><span class="line">    2.如果父类没有无参的构造方法，子类自己调用父类存在的有参的构造方法，不能省略不写 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">三、多态的概念（OOP编程，封装、继承、多态）</span><br><span class="line">多态是同一个行为具有多个不同表现形式或形态的能力。</span><br><span class="line">多态性是对象多种表现形式的体现。</span><br><span class="line">多态存在的三个必要条件:</span><br><span class="line">  ● 继承</span><br><span class="line">  ● 重写</span><br><span class="line">  ● 父类引用指向子类对象</span><br><span class="line"></span><br><span class="line">定义：在代码运行的时候，才会知道真正调用方的对象具体是谁，这种表现形式称为多态。</span><br><span class="line">          在代码没有运行的时候，就不知道真正执行方法的对象是谁</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/2A5mxTZ.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">final关键字：</span><br><span class="line">1.如果final修饰的是class，表示这个类不允许被继承</span><br><span class="line">2.如果final修饰的是方法，表示该方法不允许被重写</span><br><span class="line">3.如果final修饰的是成员变量，表示该变量不允许被修改</span><br><span class="line">   如果final修饰的变量不是基本数据类型，是引用型的怎么办？</span><br><span class="line">   final修饰的引用变量不能改引用的地址</span><br><span class="line"></span><br><span class="line">    public final class String&#123;&#125;</span><br><span class="line">    为想写个类 public class MyString extends String&#123;&#125; //因为final，所以不能被继承</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1205,368 +1457,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/13/Java基本数据类型、运算符/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/13/Java基本数据类型、运算符/" itemprop="url">Java基本数据类型、运算符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-13T22:42:43+08:00">
-                2016-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line">一、基本数据类型</span><br><span class="line">1.Java的基本数据类型（8个）</span><br><span class="line">    逻辑型    boolean（true、false 布尔值）</span><br><span class="line">    字符型    char（字符）比如&apos;a&apos;、&apos;四&apos;（存放一个类型的）</span><br><span class="line">    整型       byte（字节）、short、int、long（1、2、3）</span><br><span class="line">    浮点型    float（32 bit、 4字节）、double（64 bit）</span><br><span class="line"></span><br><span class="line">2.长度的说明</span><br><span class="line">    逻辑型    boolean    </span><br><span class="line">                        boolean数据类型表示一位的信息；</span><br><span class="line">                        只有两个取值：true和false；</span><br><span class="line">                        这种类型只作为一种标志来记录true/false情况；</span><br><span class="line">                        默认值是false；</span><br><span class="line">                        例子：boolean one = true。</span><br><span class="line"></span><br><span class="line">    字符型  </span><br><span class="line">                  1 char = 16 bit = 0 ~ 2^16-1（0~65535）（范围是2^16）</span><br><span class="line">                        char类型是一个单一的16位Unicode字符；</span><br><span class="line">                        最小值是’\u0000’（即为0）；</span><br><span class="line">                        最大值是’\uffff’（即为65,535）；</span><br><span class="line">                        char数据类型可以储存任何字符；</span><br><span class="line">                        例子：char letter = ‘A’。</span><br><span class="line"></span><br><span class="line">    整型     </span><br><span class="line">                  1 byte = 8 bit = -2^7 ~ 2^7-1（-128~127）（范围是2^8）</span><br><span class="line">                        byte数据类型是8位、有符号的，以二进制补码表示的整数；</span><br><span class="line">                        byte类型用在大型数组中节约空间，主要代替整数；</span><br><span class="line">                        默认值是0；</span><br><span class="line">                        例子：byte a = 100，byte b = -50。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  1 short = 16 bit = -2^15 ~ 2^15-1（-32768~32767）（范围是2^16）</span><br><span class="line">                        short数据类型是16位、有符号的以二进制补码表示的整数；</span><br><span class="line">                        short数据类型也可以像byte那样节省空间；</span><br><span class="line">                        默认值是0；</span><br><span class="line">                        例子：short s = 1000，short r = -20000。</span><br><span class="line"></span><br><span class="line">                  1 int = 32 bit = -2^31 ~ 2^31-1（范围是2^32）</span><br><span class="line">                        int数据类型是32位、有符号的以二进制补码表示的整数；</span><br><span class="line">                        一般地整型变量默认为int类型；</span><br><span class="line">                        默认值是0；</span><br><span class="line">                        例子：int a = 100000, int b = -200000。</span><br><span class="line"></span><br><span class="line">                  1 long = 64 bit = -2^63 ~ 2^63-1（范围是2^64）</span><br><span class="line">                        long数据类型是64位、有符号的以二进制补码表示的整数；</span><br><span class="line">                        这种类型主要使用在需要比较大整数的系统上；</span><br><span class="line">                        默认值是0L；</span><br><span class="line">                        例子： long a = 100000L，Long b = -200000L。</span><br><span class="line">                  </span><br><span class="line">    浮点型    1 float = 32 bit = -2^31 ~ 2^31-1（范围是2^32） </span><br><span class="line">                        float数据类型是单精度、32位、符合IEEE 754标准的浮点数；</span><br><span class="line">                        float在储存大型浮点数组的时候可节省内存空间；</span><br><span class="line">                        浮点数不能用来表示精确的值，如货币；</span><br><span class="line">                        默认值是0.0f；        </span><br><span class="line">                        例子：float f1 = 234.5f。   </span><br><span class="line">                                                     </span><br><span class="line">                  1 double  = 64 bit = -2^63 ~ 2^63-1（范围是2^64）</span><br><span class="line">                        double数据类型是双精度、64位、符合IEEE 754标准的浮点数；</span><br><span class="line">                        浮点数的默认类型为double类型；</span><br><span class="line">                        double类型同样不能表示精确的值，如货币；</span><br><span class="line">                        默认值是0.0d；</span><br><span class="line">                        例子：double d1 = 123.4。</span><br><span class="line">3. 基本数据类型转换的问题</span><br><span class="line">    a.如果低位的数据类型转换成高位的数据类型，不需要任何操作，系统自动转型</span><br><span class="line">        short s = 100;</span><br><span class="line">        int i = s;  //自动转型</span><br><span class="line">        double d = i;//自动从32到64</span><br><span class="line">        </span><br><span class="line">        byte转换char必须强转（byte为8位，无法表示字符；java中2位表示字符，强转前面补8位构成字符）</span><br><span class="line"></span><br><span class="line">    b.如果高位的数据类型转换成低位的数据类型，必须自己强制类型转换（小心数据溢出）</span><br><span class="line">        double d = 10.22;</span><br><span class="line">        int i = (int)d;         //强制类型转换格式：short *** = (short)***;</span><br><span class="line">                                                                       int *** = (int)***;</span><br><span class="line"></span><br><span class="line">    c.如果同位数（int - float 32bit）（char - short 16bit）</span><br><span class="line">        低精度到高精度      不需要强转</span><br><span class="line">        高精度到低精度      需要强转</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">集中注释方式 （3种）</span><br><span class="line">        1、//         （写在代码每行当中，注释总不能出现‘ \ ’）</span><br><span class="line">        2、/*     */（写在方法上面比较多）</span><br><span class="line">        3、/**</span><br><span class="line">               *     java特有的注释方式，写在class中比较多</span><br><span class="line">               *     称为java的doc注释方式、这种注释可以生成文档（根目录cmd：javadoc  Test.java生成对应文档）、文档会保留该注释方式</span><br><span class="line">               *    @author   dsfasfhasd       （英文版）</span><br><span class="line">               *    @function  测试基本数据类型</span><br><span class="line">               */</span><br><span class="line"></span><br><span class="line">cmd（cls清屏）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、运算符</span><br><span class="line"></span><br><span class="line">1.算数运算符 </span><br><span class="line">        + - * / %（比如5%2=1，因为5/2余数为1），++，--</span><br><span class="line"></span><br><span class="line">         i++与++i区别？// ++在后面则先使用再+1，++在前面则先+1再使用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.关系运算符</span><br><span class="line">        &gt;  ,  &gt;=  ,  =  ,  &lt;  ,  &lt;=  ,  ==  ,  !=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3.逻辑运算符（结果要么true，要么false）</span><br><span class="line">        假设布尔变量A为真，变量B为假</span><br><span class="line">        &amp;&amp;（与）        （A &amp;&amp; B）为假。</span><br><span class="line">            称为逻辑与运算符。当且仅当两个操作数都为真，条件才为真。</span><br><span class="line">        ||（或）            （A | | B）为真。</span><br><span class="line">            称为逻辑或操作符。如果任何两个操作数任何一个为真，条件为真。</span><br><span class="line">        ！（非）           ！（A &amp;&amp; B）为真。</span><br><span class="line">            称为逻辑非运算符。用来反转操作数的逻辑状态。如果条件为true，则逻辑非运算符将得到false。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4.位运算符</span><br><span class="line"></span><br><span class="line">     &amp;、|、^、~、&gt;&gt;、&lt;&lt;、&gt;&gt;&gt;</span><br><span class="line"> 假设整数变量A的值为60和变量B的值为13                 </span><br><span class="line">&amp;----按位与操作符，当且仅当两个操作数的某一位都非0时候结果的该位才为1。</span><br><span class="line">               （A＆B），得到12，即0000 1100</span><br><span class="line">|-----按位或操作符，只要两个操作数的某一位有一个非0时候结果的该位就为1。</span><br><span class="line">                （A | B）得到61，即 0011 1101</span><br><span class="line">^----按位异或操作符，两个操作数的某一位不相同时候结果的该位就为1。</span><br><span class="line">                （A ^ B）得到49，即 0011 0001</span><br><span class="line">~----按位补运算符翻转操作数的每一位。</span><br><span class="line">                （〜A）得到-61，即1100 0011（公式：最开始加上符号，对整个二进制进行取反加一）</span><br><span class="line">                                                                 （~a = -(a+1)）</span><br><span class="line">&lt;&lt;--按位左移运算符。左操作数按位左移右操作数指定的位数。</span><br><span class="line">                A &lt;&lt; 2得到240，即 1111 0000</span><br><span class="line">&gt;&gt;--按位右移运算符。左操作数按位右移右操作数指定的位数。</span><br><span class="line">                A &gt;&gt; 2得到15即 1111</span><br><span class="line">&gt;&gt;&gt;-按位右移补零操作符。左操作数的值按右操作数指定的位数右移，移动得到的空位以零填充。</span><br><span class="line">                A&gt;&gt;&gt;2得到15即0000 1111</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5.条件运算符</span><br><span class="line">    三目表达式：表达式1 ？表达式2 ： 表达式3    （判断？之前布尔表达式的值）可嵌套</span><br><span class="line"></span><br><span class="line">    4&gt;2 ? (4&gt;3 ? 4 : 3) : 2      //=4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6.赋值运算符</span><br><span class="line">    =、+=、-=、*=、/=、%=</span><br><span class="line">    int i = 3;  //如果没有赋值，java自动附上默认值0</span><br><span class="line">    i+=3;//6</span><br><span class="line">    i-=2;//4</span><br><span class="line">    i*=2;//6</span><br><span class="line">    i%=3;//0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">运算符优先级（了解）</span><br><span class="line"></span><br><span class="line">类别	操作符	关联性</span><br><span class="line">后缀	() 、[] 、. (点操作符)	左到右</span><br><span class="line">一元	+ + 、- -、！、〜	从右到左</span><br><span class="line">乘性 	*、 /、％	左到右</span><br><span class="line">加性 	+、 -	左到右</span><br><span class="line">移位 	&gt;&gt;、 &gt;&gt;&gt; 、 &lt;&lt; 	左到右</span><br><span class="line">关系 	&gt;、&gt; = 、&lt;、&lt; = 	左到右</span><br><span class="line">相等 	== 、 !=	左到右</span><br><span class="line">按位与	＆	左到右</span><br><span class="line">按位异或	^	左到右</span><br><span class="line">按位或	|	左到右</span><br><span class="line">逻辑与	&amp;&amp;	左到右</span><br><span class="line">逻辑或	| |	左到右</span><br><span class="line">条件	？：	从右到左</span><br><span class="line">赋值	= 、+ =、 - =、 * =、 / =、％=、 &gt;&gt; = 、&lt;&lt; =、＆= 、^ =、 | =	从右到左</span><br><span class="line">逗号	，	左到右</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/13/分支语句/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/13/分支语句/" itemprop="url">分支语句</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-13T17:31:19+08:00">
-                2016-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">一、简称if else语句</span><br><span class="line">1.if else 条件语句（只要有一个条件语句成立，则不执行之后逻辑代码，即一旦其中一个else if语句检测为true，其他的else if以及else语句都将跳过执行）</span><br><span class="line">    a).if(条件语句//boolean类型)&#123;</span><br><span class="line">            //如果条件为true，则执行代码</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    b).if(条件语句//boolean类型)&#123;</span><br><span class="line">            //如果条件为true，则执行此处代码</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            //如为false，则执行此处代码</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    c.)if(条件语句//boolean类型)&#123;</span><br><span class="line">            //如此条件true，则执行此处代码</span><br><span class="line">        &#125;else if(条件语句//boolean类型)&#123;</span><br><span class="line">            //如此条件true，则执行此处代码</span><br><span class="line">        &#125;else if(条件语句//boolean类型)&#123;</span><br><span class="line">            //如此条件true，则执行此处代码</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            //如以上都为false，则执行此处代码</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    d).if(条件语句//boolean类型)&#123;</span><br><span class="line">                if(条件语句//boolean类型)&#123;</span><br><span class="line">                            //如果条件为true，则执行此处代码</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                            //如为false，则执行此处代码</span><br><span class="line">                     &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            //如为false，则执行此处代码</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">备注：scanner的使用（通过import导包--&gt;new开辟空间，入参填写System.in--&gt;***.nextInt()）</span><br><span class="line">                //使用scanner的方法</span><br><span class="line">                //nextDouble()    获取控制台输入的值，结果为double类型     double *** = new nextDouble();</span><br><span class="line">                //nextInt()          获取控制台输入的值，结果为int类型              int *** = new nextInt();</span><br><span class="line">                //next()          获取控制台输入的值，结果为String类型             String *** = new next();</span><br><span class="line"></span><br><span class="line">                    在控制台做输入操作，java提供的Scanner可以进行控制台输入</span><br><span class="line">                          （使用java提供的类需要导入包，通过关键字import进行包的导入）</span><br><span class="line">                            通过new方式使用，在堆里开辟内存空间（不是基本数据类型都需要向系统要内存）</span><br><span class="line">                            基本数据类型在栈里，栈的空间系统自动分配</span><br><span class="line">                            除了基本数据类型以外的引用数据类型，都必须向系统从堆里获取内存空间</span><br><span class="line">                                                                                            （new的作用）没空间无法使用</span><br><span class="line"></span><br><span class="line">switch(expression)&#123;case value ://语句break;//可选case value ://语句break;//可选//你可以有任意数量的case语句default://可选//语句&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、switch语句</span><br><span class="line"></span><br><span class="line">switch语句判断一个变量与一系列值中某个值是否相等，每个值称为一个分支。</span><br><span class="line"></span><br><span class="line"> switch语句有如下规则：</span><br><span class="line">switch语句中的变量类型只能为byte、short、int或者char。（JDK1.8之后支持字符串）</span><br><span class="line">switch语句可以拥有多个case语句。每个case后面跟一个要比较的值和冒号。</span><br><span class="line">case语句中的值的数据类型必须与变量的数据类型相同，而且只能是常量或者字面常量。</span><br><span class="line">当变量的值与case语句的值相等时，那么case语句之后的语句开始执行，直到break语句出现才会跳出switch语句。</span><br><span class="line">当遇到break语句时，switch语句终止。程序跳转到switch语句后面的语句执行。case语句不必须要包含break语句。如果没有break语句出现，程序会继续执行下一条case语句，直到出现break语句。</span><br><span class="line">switch语句可以包含一个default分支，该分支必须是switch语句的最后一个分支。default在没有case语句的值和变量值相等的时候执行。default分支不需要break语句。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">可转为if  else语句</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/12/Java环境搭建和helloworld运行/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/12/Java环境搭建和helloworld运行/" itemprop="url">Java环境搭建和helloworld运行</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-12T18:30:17+08:00">
-                2016-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">一、搭建环境</span><br><span class="line">  1.官网下载JDK</span><br><span class="line">  2.本地安装（路径默认，尽量不要更改）</span><br><span class="line">  3.环境变量的配置（重要）     </span><br><span class="line">    a.新建JAVA_HOME  = &quot;JDK安装的根路径&quot;</span><br><span class="line">    b.在系统path中%JAVA_HOME%\bin;%***%\jre\bin   （必须用分号 ; 隔开）</span><br><span class="line">       [;%***%\***]</span><br><span class="line">    c.验证环境变量是否配置成功</span><br><span class="line">         打开cmd进行版本确认验证</span><br><span class="line">         java -version  (     java     ;    javac    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、构建HelloWorld应用程序，并运行显示内容</span><br><span class="line"></span><br><span class="line">     在**.java目录下shift+右键--在此处打开命令窗口--</span><br><span class="line">     </span><br><span class="line">     javac  ****.java(cmd编译) --目录下出现 ***.class -- java  ***  运行（不加.class）</span><br><span class="line">       （compile 编译）  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">编译原理</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1.Java是属于编译型语言还是解释型语言？</span><br><span class="line">    a.Java一直被认为是解释型语言，特点：执行的效率低，移植性强，几乎所有的操作平台都会支持JVM</span><br><span class="line">        默认在JVM中运行的.class文件就是解释型语言</span><br><span class="line"></span><br><span class="line">    在JVM模拟值当中， .class文件系统是无法直接编译运行的，需要JVM虚拟机向系统解释.class文件中每一行的意思。</span><br><span class="line">    像c,c++这样的语言，编译完毕以后，系统就可以直接运行了。但是java不行，他编译以后要通过JVM解释给系统，系统才能正常运行。</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">2.命名规范</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    变量名称：局部变量（小写字母/下划线开头a/_，后面可数字111，大写字母（可开头，但是不规范）A，下划线_，dollar符$）</span><br><span class="line">        比如：int index = 0 ;  int _index = 1; </span><br><span class="line">        错误</span><br><span class="line"></span><br><span class="line">    方法名称：小写字母开头a，后面可数字111，大写字母A，下划线_，dollar符$</span><br><span class="line">        正确：getName();     ten2two();  </span><br><span class="line">        错误：2b();  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意：方法名称和变量名称尽量要有实际意义，见名知意，如果表达意思比较长，我们一般使用驼峰表达式（getName(); eatFruit();一般用动名字搭配来表示），或者用下划线隔开（get_name();）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    类（class）名称：必须大写字母开头，中间尽量不要出现数字，String，Scanner，System</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1612,7 +1507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1662,7 +1557,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

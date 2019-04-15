@@ -232,6 +232,477 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/2018-01-03-Native-与-H5-交互-属性动画-SnackbarUtil/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/03/2018-01-03-Native-与-H5-交互-属性动画-SnackbarUtil/" itemprop="url">Native 与 H5 交互-属性动画-SnackbarUtil.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T10:00:40+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
+<li><strong>A</strong></li>
+<li><strong>B</strong></li>
+<li><strong>C</strong></li>
+</ol>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="Native-与-H5-交互"><a href="#Native-与-H5-交互" class="headerlink" title="Native 与 H5 交互"></a><a href="http://blog.csdn.net/carson_ho/article/details/64904691" target="_blank" rel="noopener">Native 与 H5 交互</a></h3><ol>
+<li><p>Native 调用 JS (2种)</p>
+<ul>
+<li>loadUrl() : <code>mWebView.loadUrl(&quot;javascript:method()&quot;);</code></li>
+<li><p>evaluateJavascript() :</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mWebView.evaluateJavascript（&quot;javascript:method()&quot;, new ValueCallback&lt;String&gt;() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void onReceiveValue(String value) &#123;</span><br><span class="line">           //此处为 js 返回的结果</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 对比
+
+    调用方式 | 优点 | 缺点 | 使用场景
+    ------|-----------|------|----
+    使用loadUrl()|方便简洁|效率低；获取返回值麻烦|不需要获取返回值，对性能要求较低时
+    使用evaluateJavascript()|效率高|向下兼容差（仅 Android4.4 以上可用）|Android 4.4 以上
+</code></pre><ol>
+<li><p>JS 调用 Native (3种)</p>
+<ul>
+<li>通过 WebView 的 addJavascriptInterface() 进行对象映射 </li>
+<li>通过 WebViewClient 的 shouldOverrideUrlLoading() 方法回调拦截 url </li>
+<li>通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框 alert()、confirm()、prompt() 消息</li>
+<li><p>对比</p>
+<p>  调用方式|优点|缺点|使用场景<br>  —-|—-|—-|—-<br>  通过 addJavascriptInterface() 进行添加对象映射|方便简洁|Android 4.2 一下存在漏洞|Android 4.2 以上相对简单互调场景<br>  通过 WebViewClient 的方法 shouldOverrideUrlLoading() 回调拦截 url|不存在漏洞问题|使用复杂；需要进行协议的约束；从 Native 层往 Web 层传递值比较繁琐|不需要返回值情况下的互调场景（iOS主要使用的方式）<br>  通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框消息|不存在漏洞问题|使用复杂；需要进行协议的约束|能满足大多数情况下互调场景</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a><a href="http://blog.csdn.net/feiduclear_up/article/details/39255083" target="_blank" rel="noopener">属性动画</a></h3><ol>
+<li></li>
+</ol>
+<hr>
+<h3 id="ARouter"><a href="#ARouter" class="headerlink" title="ARouter"></a><a href="https://github.com/alibaba/ARouter" target="_blank" rel="noopener">ARouter</a></h3><hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>FastJson kotlin 变量 <code>var is_xxx : Int? = 0</code> 获取不到 json 中的数据，需要变更变量名称并加上注解 @JSONField(name=”is_xxx”)</li>
+<li>SnackbarUtil</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ****************************************************</span><br><span class="line"> * @author jameswong</span><br><span class="line"> * created on: 18/01/03 上午11:28</span><br><span class="line"> * e-mail: PassionateWsj@outlook.com</span><br><span class="line"> * name:</span><br><span class="line"> * desc:</span><br><span class="line"> * ****************************************************</span><br><span class="line"> */</span><br><span class="line">public class SnackbarUtil &#123;</span><br><span class="line"></span><br><span class="line">    public static final int Info = 1;</span><br><span class="line">    public static final int Confirm = 2;</span><br><span class="line">    public static final int Warning = 3;</span><br><span class="line">    public static final int Alert = 4;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static int red = 0xfff44336;</span><br><span class="line">    public static int green = 0xff4caf50;</span><br><span class="line">    public static int blue = 0xff2195f3;</span><br><span class="line">    public static int orange = 0xffffc107;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //选择预设类型</span><br><span class="line">    private static void switchType(Snackbar snackbar, int type) &#123;</span><br><span class="line">        switch (type) &#123;</span><br><span class="line">            case Info:</span><br><span class="line">                setSnackbarColor(snackbar, blue);</span><br><span class="line">                break;</span><br><span class="line">            case Confirm:</span><br><span class="line">                setSnackbarColor(snackbar, green);</span><br><span class="line">                break;</span><br><span class="line">            case Warning:</span><br><span class="line">                setSnackbarColor(snackbar, orange);</span><br><span class="line">                break;</span><br><span class="line">            case Alert:</span><br><span class="line">                setSnackbarColor(snackbar, Color.YELLOW, red);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar文字和背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">            ((TextView) view.findViewById(R.id.snackbar_text)).setTextColor(messageColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 向Snackbar中添加view</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param layoutId</span><br><span class="line">     * @param index    新加布局在Snackbar中的位置</span><br><span class="line">     */</span><br><span class="line">    public static void snackbarAddView(Snackbar snackbar, int layoutId, int index) &#123;</span><br><span class="line">        View snackbarview = snackbar.getView();</span><br><span class="line">        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarview;</span><br><span class="line"></span><br><span class="line">        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(layoutId, null);</span><br><span class="line"></span><br><span class="line">        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        p.gravity = Gravity.CENTER_VERTICAL;</span><br><span class="line"></span><br><span class="line">        snackbarLayout.addView(add_view, index, p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/29/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T23:50:04+08:00">
+                2017-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/App启动原理详解与启动优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/27/App启动原理详解与启动优化/" itemprop="url">App启动原理详解与启动优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T21:48:48+08:00">
+                2017-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ol>
+<li><strong>App启动原理详解与启动优化</strong></li>
+<li><strong>Application如何初始化</strong></li>
+<li><strong>冷热启动，启动时间分析检测</strong></li>
+<li><strong>方法执行效率与时长计算，trace文件分析</strong></li>
+<li><strong>反编译qq代码，分析手机qq是如何做启动优化的</strong></li>
+</ol>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><ol>
+<li>在点击 App 图标进行启动的过程中，系统会预处理一些比如分配内存等的耗时操作</li>
+<li>优化：<ul>
+<li>设置 Application 的主题<ul>
+<li>添加 item : android:windowIsTranslucent 为 true，即点击应用等待界面为透明</li>
+<li>添加 item : android:windowBackground ，设置背景（会导致其他问题）    </li>
+</ul>
+</li>
+<li>设置 SplashActivity 主题<ol>
+<li>添加 item : android:windowBackground ，设置背景</li>
+<li>在 oncreate 方法中设置为原先的 Theme</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>影响加载第一帧的三点<ol>
+<li>Application 的 onCreate 方法（代码优化）<ul>
+<li>开启线程执行初始化方法，条件：<ul>
+<li>没有创建 handler</li>
+<li>没有操作 UI</li>
+<li>异步要求不是单例（如果是单例，调用的地方需要判空）</li>
+</ul>
+</li>
+<li>两种优化方式<ul>
+<li>懒加载（延时加载）：放到双重校验锁的单例util中，延时启动加载，如果调用了工具没有初始化，就初始化</li>
+<li>放入线程加载（不能有handler）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MainActivity 的 onCreate 方法（代码优化）</li>
+<li>加载 xml（嵌套不要太多）</li>
+</ol>
+</li>
+<li><p>trace 文件分析</p>
+<pre><code>File file = new File(Environment.getExternalStorageDirectory(), &quot;syp&quot;);
+Log.i(&quot;SYPApplication&quot;, &quot;onCreate ::: &quot; + file.getAbsolutePath());
+// 本地存入tracing 文件
+Debug.startMethodTracing(file.getAbsolutePath());
+……
+Debug.stopMethodTracing();
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>系统启动时间 (注意冷热启动)<ul>
+<li>log ： Display 关键字</li>
+<li>命令行： adb shell am start -W {包名}/{启动 Activity 全类名}<ul>
+<li>ThisTime</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Application 千万不要创建 Assets 对象</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/2017-12-27-App启动原理详解与启动优化-Application如何初始化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2244,665 +2715,11 @@ private static String getImagePath(Uri uri, String selection, Context context) {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/2017-04-01-Launcher3介绍附Github地址-Launcher3壁纸-系统默认值wifi-字体/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/01/2017-04-01-Launcher3介绍附Github地址-Launcher3壁纸-系统默认值wifi-字体/" itemprop="url">Launcher3介绍附Github地址 Launcher3壁纸 系统默认值wifi 字体</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T09:22:30+08:00">
-                2017-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2017-4-1-9-22"><a href="#2017-4-1-9-22" class="headerlink" title="2017/4/1 9:22"></a>2017/4/1 9:22</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>Launcher3</strong></li>
-<li><strong>Launcher3壁纸修改</strong></li>
-<li><strong>根据plmn获取不同主页</strong></li>
-<li><strong>修改系统默认值</strong></li>
-</ol>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher3"><a href="#Launcher3" class="headerlink" title="Launcher3"></a>Launcher3</h3><ol>
-<li>结构示意图<ul>
-<li><img src="http://i.imgur.com/wi7sDBc.png" alt=""></li>
-</ul>
-</li>
-<li>github：<a href="https://github.com/fookwood/Launcher3" target="_blank" rel="noopener">https://github.com/fookwood/Launcher3</a></li>
-</ol>
-<h3 id="Launcher3壁纸修改"><a href="#Launcher3壁纸修改" class="headerlink" title="Launcher3壁纸修改"></a>Launcher3壁纸修改</h3><ol>
-<li>将资源图片放在<code>Launcher3\WallpaperPicker\res\drawable</code>目录下，并改好缩略图，命名规则为资源图后加<code>_small</code></li>
-<li>在<code>Launcher3\WallpaperPicker\res\values-nodpi\wallpapers.xml</code>文件中声明资源图片，可不包含后缀名</li>
-</ol>
-<h3 id="根据plmn获取不同主页"><a href="#根据plmn获取不同主页" class="headerlink" title="根据plmn获取不同主页"></a>根据plmn获取不同主页</h3><ol>
-<li><code>Browser\src\com\android\browser\BrowserSettings.java</code>文件中<code>getHomePageFromPLMN()</code>方法添加case</li>
-<li>并且在<code>setHomePage()</code>方法中添加相应项目的判断<pre><code>if(SystemProperties.get(&quot;ro.project.customer_name&quot;).equals(&quot;Bmobile&quot;)){
-            sFactoryResetUrl = getHomePageFromPLMN();
-        }
-</code></pre></li>
-</ol>
-<h3 id="修改系统默认值"><a href="#修改系统默认值" class="headerlink" title="修改系统默认值"></a>修改系统默认值</h3><ol>
-<li>修改<code>frameworks\base\packages\SettingsProvider\res\values\defaults.xml</code>文件中对应的值，比如：def_wifi_display_on和def_wifi_on设置为默认开启</li>
-<li>字体的修改在<code>\frameworks\base\core\java\android\content\res\Configuration.java</code>文件的<code>setToDefaults()</code>方法中，fontScale = 1； //normal value is 1</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><pre><code>@ALL MTK 7.0 平台 Kernel开启了device-mapper-verity (dm-verity) 功能导致userdebug版本无法remount /system为rw模式
-
-需要 
-1)执行adb disable-verity 
-2) reboot
-3) 重新root /remount 
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/2017-03-31-编译指令-Launcher3常用类分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/31/2017-03-31-编译指令-Launcher3常用类分析/" itemprop="url">Android 源码编译指令 Launcher3常用类分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T10:50:26+08:00">
-                2017-03-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2017-3-31-10-50"><a href="#2017-3-31-10-50" class="headerlink" title="2017/3/31 10:50"></a>2017/3/31 10:50</h2><p>##### </p>
-<h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>Launcher3常用类分析</strong></li>
-<li><strong>编译指令</strong></li>
-</ol>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Launcher3常用类分析"><a href="#Launcher3常用类分析" class="headerlink" title="Launcher3常用类分析"></a>Launcher3常用类分析</h3><ol>
-<li>Launcher：Launcher中常用的Activity</li>
-<li>Workspace：抽象的桌面</li>
-<li>CellLayout：Workspace的一个子View</li>
-<li>FoldIcon：文件夹的图标</li>
-<li>BubbleTextView：图标，一个一个快捷方式</li>
-<li>ItemInfo：从快捷方式、文件夹、小部件抽象出来的数据模型</li>
-<li>LauncherModel：封装的对数据库的操作</li>
-<li>LauncherProvider:Launcher的数据库，里面存储一些默认操作</li>
-<li>LauncherAppState：初始化一些对象</li>
-<li>DragLayout：Launcher layout的rootview 处理拖动事件</li>
-<li>DragController：为Drag定义的一个接口</li>
-<li>DragVIew：拖动图标的时候跟随手指移动的View</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>adb安装apk<ul>
-<li>adb push [apk所在目录] system/app/包：将apk push进手机中</li>
-<li>adb shell pm -r [完整包名]：进行安装</li>
-</ul>
-</li>
-<li>SystemProperty </li>
-<li>查看设备agent<ul>
-<li><a href="http://www.whoishostingthis.com/tools/user-agent/" target="_blank" rel="noopener">http://www.whoishostingthis.com/tools/user-agent/</a></li>
-</ul>
-</li>
-<li>Launcher3单双层切换<ul>
-<li>LauncherAppState.isDisableAllApps</li>
-</ul>
-</li>
-<li>adb pull [资料路径] [目标路径]<ul>
-<li>导出代码（需要root）</li>
-<li>应用databases所在路径（data/data/com.android.launcher3/databases） </li>
-</ul>
-</li>
-<li>vendor文件夹覆盖<ul>
-<li>sprocomm_overlays\项目名\相对路径（idh.code下）</li>
-</ul>
-</li>
-<li>通常对项目资源的的修改都是放在覆盖目录下，以实现不同项目的不同需求，同时保持源码的完整性</li>
-<li>编译指令<ul>
-<li>m：所有资源文件执行搜索操作</li>
-<li>mm：Build 当前目录下的模块</li>
-<li>mmm：Build 指定目录下的模块</li>
-<li>mma：编译当前路径下所有模块，且包含依赖</li>
-<li>mmma：编译指定路径下所有模块，且包含依赖</li>
-<li>make \：无参数则表示编译整个Android代码</li>
-</ul>
-</li>
-<li>搜索指令<ul>
-<li>cgrep：在所有 C/C++ 文件上执行 grep</li>
-<li>jgrep：在所有 C/C++ 文件上执行 grep</li>
-<li>resgrep：在所有 res/*.xml 文件上执行 grep</li>
-<li>mangrep：所有 AndroidManifest.xml 文件执行搜索操作</li>
-<li>sepgrep：所有 sepolicy 文件执行搜索操作</li>
-<li>sgerp：所有资源文件执行搜索操作</li>
-</ul>
-</li>
-<li>git使用<ul>
-<li>解决pull冲突<ul>
-<li>git stash：将本地修改保存起来（git stash list查看保存信息）</li>
-<li>git pull：更新代码</li>
-<li>git stash pop stash@{0}：还原修改内容</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>git cherry-pick <commit id="">的使用<ul>
-<li>可以选择某一个分支中的一个或几个commit(s)来进行操作</li>
-<li>例如，假设我们有个稳定版本的分支，叫v2.0，另外还有个开发版本的分支v3.0，我们不能直接把两个分支合并，这样会导致稳定版本混乱，但是又想增加一个v3.0中的功能到v2.0中，这里就可以使用cherry-pick了。</li>
-</ul>
-</commit></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/Android开关机动画铃声 修改默认铃声/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/Android开关机动画铃声 修改默认铃声/" itemprop="url">Android开关机动画铃声 修改默认铃声</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T10:15:05+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2017-3-27-10-15"><a href="#2017-3-27-10-15" class="headerlink" title="2017/3/27 10:15"></a>2017/3/27 10:15</h2><h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>回顾昨日知识点</strong></li>
-<li><strong>Android开关机动画铃声</strong></li>
-<li><strong>修改默认铃声</strong></li>
-</ol>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h3 id="Android开关机动画铃声"><a href="#Android开关机动画铃声" class="headerlink" title="Android开关机动画铃声"></a>Android开关机动画铃声</h3><ol>
-<li>开关机动画的启动<ul>
-<li>Android系统在init.rc中定义了很多Service，定义的Service将会被init进程创建，其中的服务包含开机动画</li>
-</ul>
-</li>
-<li>源文件SurfaceFlinger.cpp<ul>
-<li>当android系统boot时，开始加载动画和开机铃声<pre><code>status_tSurfaceFlinger::readyToRun()
-{
-// start boot animation service  
-property_set(&quot;ctl.start&quot;, &quot;bootanim&quot;);//  
-}
-</code></pre></li>
-<li>当Android完成boot后，关闭动画和开机铃声<pre><code>voidSurfaceFlinger::bootFinished()  
-{  
-//stop bootanim service  
-property_set(&quot;ctl.stop&quot;, &quot;bootanim&quot;);  
-}  
-</code></pre></li>
-</ul>
-</li>
-<li><p>bootanimationservice详解</p>
-<ul>
-<li>所在位置：/frameworks/base/cmds/bootanimation, 主要有两个文件<ul>
-<li>bootanimation_main.cpp</li>
-<li>bootAnimation.cpp</li>
-</ul>
-</li>
-<li><p>bootanimation_main.cpp是主入口文件</p>
-<ul>
-<li><p>其主要的功能是根据传进来的参数决定是是要播放开机还是关机动画/铃音，并且启动BootAnimation:<br>BootAnimation.cpp集成自Thread，在创建时会调用readyToRun()-&gt;threadLoop():</p>
-<pre><code>int main(intargc, char** argv)  
-{  
-   // ...  
-if(argc &gt; 1){  
-   if(!strcmp(argv[1],&quot;shut&quot;))  
-  setBoot =false;  
-  }  
-
-  if(argc &gt; 2){  
-  if(!strcmp(argv[2],&quot;nomp3&quot;))  
-  sePaly =false;  
-  }  
-
-  if(argc &gt; 3){  
-   if(!strcmp(argv[3],&quot;rotate&quot;))  
-  setRotated= true;  
-  }  
-
-// ...  
-
-sp&lt;BootAnimation&gt;boot = new BootAnimation(setBoot,sePaly,setRotated);  
-
-XLOGD(&quot;joinThreadPool...&quot;);  
-IPCThreadState::self()-&gt;joinThreadPool();  
-XLOGD(&quot;exit bootanimation...&quot;);  
-}  
-
-return 0;  
-
-}  
-</code></pre></li>
-</ul>
-</li>
-<li><p>readyToRun() 方法判断/system/media/bootanimation.zip(shutanimaion.zip)是否存在，如果存在，则将 mAndroidAnimation 设置false，这个变量决定threadLoop中调用android（）还是movie（）来具体实现动画的播放。</p>
-<pre><code>status_tBootAnimation::readyToRun() {  
-……………………………………  
-mAndroidAnimation = false;  
-   if(bBootOrShutDown){  
-
-status_terr = mZip.open(&quot;/data/local/bootanimation.zip&quot;);  
-
-if(err != NO_ERROR) {  
-
-   err =mZip.open(&quot;/system/media/bootanimation.zip&quot;);  
-
-   if (err != NO_ERROR) {  
-
-   mAndroidAnimation = true;  
-
-   }  
-
-}  
-
-   }else {  
-
-   if(!bShutRotate){  
-
-  status_terr = mZip.open(&quot;/data/local/shutanimation.zip&quot;);  
-
-  if (err != NO_ERROR) {  
-
-  err= mZip.open(&quot;/system/media/shutanimation.zip&quot;);  
-
-  if (err != NO_ERROR) {  
-
-  mAndroidAnimation = true;  
-
-  }  
-
-  }  
-
-   }  
-
-   }  
-
-return NO_ERROR;  
-
-}  
-boolBootAnimation::threadLoop()  
-{  
-//  …................  
-   if(!bBootOrShutDown){  
-
-  pSoundFileName=&quot;/data/local/shutaudio.mp3&quot;;  
-
-  pBackupSoundFileName=&quot;/system/media/shutaudio.mp3&quot;;  
-
-   } else {  
-
-  pSoundFileName=&quot;/data/local/bootaudio.mp3&quot;;  
-
- pBackupSoundFileName=&quot;/system/media/bootaudio.mp3&quot;;  
-
-   }  
-
-   …...............  
-
-   mediastatus =mediaplayer-&gt;setDataSource(pBackupSoundFileName, NULL);  
-
-   mediaplayer-&gt;setAudioStreamType(AudioSystem::BOOT);  
-
-   mediastatus = mediaplayer-&gt;prepare();  
-
-   mediaplayer-&gt;setAudioStreamType(AudioSystem::BOOT);  
-
-   mediastatus =mediaplayer-&gt;prepare();  
-
-   mediaplayer-&gt;setVolume(0.28,0.28);  
-
-   mediastatus =mediaplayer-&gt;start();  
-
- …..........................  
-
-   if (mAndroidAnimation）  
-
-  r = &lt;span style=&quot;background-color: rgb(255, 255, 102); &quot;&gt;android&lt;/span&gt;()；  
-
-} else {  
-
-   r = movie();  
-
-   }  
-
-}  
-</code></pre></li>
-<li>threadLoop首先判断system/media/bootaudio.mp3(shutaudio.mp3)文件是否存在，如果存在则调用mediaplayer的接口播放（setdatasoruce，prepare，setvolume，start）。<br>然后根据 mAndroidAnimation 变量调用android()/movie(). 如果system/media/shutanimation.zip/bootanimation.zip存在的话，调用movie（），该接口会解析zip文件中的desc.txt文件，根据txt文件中的配置来播放动画。</li>
-</ul>
-</li>
-<li>bootanimation.zip中desc.txt播放规则<ul>
-<li>1920 1080 15 —-第一位宽 第二位是高 第三位是帧率也就是一秒播放多少帧(多少张图片)</li>
-<li>p 1 0 part1—-第二位表示part1部分也就是包含图片的文件夹播放次数，第二位表示这部分播完后下部分开始的间隔，默认为0第三位表示文件夹名称</li>
-<li><strong>在编写完你所需要的设置后，最后一行要换行，切记，否则系统无法读取开机广告</strong></li>
-<li><img src="http://i.imgur.com/ASKTvQM.png" alt=""></li>
-<li><strong>zip资源是以存储的形式打包</strong></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>修改默认铃声需要更改的几个位置<ul>
-<li>资源：frameworks\base\data\sounds</li>
-<li>mk资源列表：frameworks\base\data\sounds</li>
-<li>默认铃声：build\buildplus\buildspec\对应项目spec、RO_CONFIG_RINGTONE</li>
-<li>如果需要针对不同机型，需要在devices\sprd\sounds.mk中进行资源文件夹的选择判断</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2948,7 +2765,7 @@ boolBootAnimation::threadLoop()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2998,7 +2815,7 @@ boolBootAnimation::threadLoop()
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -232,6 +232,494 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/计算机基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/15/计算机基础知识/" itemprop="url">计算机基础知识</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T10:05:46+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="计算机硬件"><a href="#计算机硬件" class="headerlink" title="计算机硬件"></a>计算机硬件</h3><ol>
+<li>PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作</li>
+<li>MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标</li>
+<li><p>主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互相沟通，而不需要依赖于CPU的大量中断负载) 。</span><br><span class="line">北桥（系统控制芯片）：主要负责CPU与内存、CPU与PCI-E之间的通信。掌控项目多为高速设备，如：CPU、Host Bus。后期北桥集成内存控制器、Cache高速控制器；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问速度：寄存器&gt;Cache&gt;内存&gt;硬盘</p>
+</li>
+<li>控制器、运算器、存储器主要作用<ul>
+<li>控制器：分析指令，控制部件完成任务（协调、指挥各部件的中枢）。由指令寄存器、状态寄存器、指令译码器、时序电路和控制电路组成</li>
+<li>运算器（算数逻辑单元）：进行算数、逻辑运算。主要是对数据加工处理</li>
+<li>存储器：记忆、暂存数据。包括原始输入数据、经初步加工的中间数据、处理完成的有用信息、处理方式的指令</li>
+</ul>
+</li>
+<li>调制解调器（ Modem ），俗称 “猫”，因电话线传送的是模拟信号，计算机无法识别，需要做模拟信号和数字信号之间的相互转换。调制即“ 数 –&gt; 模 ”，解调即“ 模 –&gt; 数 ”</li>
+</ol>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><ol>
+<li>ISP（Internet Service Provider）：互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务和增值业务的电信运营商</li>
+<li>五层协议<ul>
+<li>应用层（报文）：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。</li>
+<li>传输层（ TCP 报文段或 UDP 用户数据报）：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。TCP 主要提供完整性服务，UDP 主要提供及时性服务</li>
+<li>网络层（ IP 数据报或分组）：异构网络互联、路由与转发</li>
+<li>数据链路层（帧）：封装成帧、差错检测、透明传输</li>
+<li>物理层（比特流）：考虑的是怎样在传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的作用是尽可能屏蔽传输媒体和通信手段的差异，使数据链路层感觉不到这些差异</li>
+</ul>
+</li>
+<li>OSI 还有表示层和会话层</li>
+<li>TCP/IP 网络协议<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>互联网层</li>
+<li>网络访问层</li>
+</ul>
+</li>
+<li>分组交换（包交换）会将通信数据分成等长数据段，首部加上控制信息，其特点<ul>
+<li>信息传送最小单位为分组：分组由组头和用户信息组成，分组头含有选路和控制信息</li>
+<li>统计时分复用：动态分配带宽</li>
+<li>不透明：需要对信息处理，如拆分、重组</li>
+<li>差错检测：可靠性要求高，实时性不高，由CRC校验、重发等</li>
+<li>流量控制：流量大时排队</li>
+</ul>
+</li>
+<li>地址分类<ul>
+<li>A类（适用大型网络）：1-127，私有 10.0.0.0-10.255.255.255</li>
+<li>B类（适用中型网络）：128-191，私有 172.16.0.0-172.31.255.255</li>
+<li>C类（适用小型网络）：192-223，私有 192.168.0.0-192.168.255.255</li>
+<li>D类（特殊）：224-239</li>
+<li>E类（特殊）：240-255</li>
+</ul>
+</li>
+<li>虚拟局域网可以在网路体系结构上实现交换机端口、MAC 地址、网络层地址和 IP 广播组</li>
+<li>ARP（地址解析协议 Address Resolution Protocol）负责将某个IP地址解析成对应的MAC地址。</li>
+<li>ARP攻击就是通过伪造IP地址和MAC地址实现ARP欺骗。仅能在局域网，不能对外网进行</li>
+<li>计算机网络面临的主要威胁：<ul>
+<li>黑客恶意攻击</li>
+<li>网络自身和管理缺陷</li>
+<li>软件设计漏洞和“后门”</li>
+<li>恶意网站陷阱</li>
+<li>用户网络内部工作人员不良行为引起的安全问题</li>
+<li>认为误接收病毒文件</li>
+</ul>
+</li>
+</ol>
+<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><ol>
+<li>操作系统五大功能模块<ul>
+<li>处理器管理：当多个程序同时运行，简介 CPU 时间分配问题</li>
+<li>作业管理：提供计算机界面，方便作业</li>
+<li>存储器管理：为数据分配内存，保证互不干扰</li>
+<li>设备管理：为用户分配设备，接收设备中断</li>
+<li>文件管理：存储、检索、共享和保护文件</li>
+</ul>
+</li>
+<li>伪指令是用于告诉汇编程序如何进行汇编的指令</li>
+<li><p>磁盘文件采用树形目录结构优点：</p>
+<ul>
+<li>解决重名问题</li>
+<li>利于文件分类，便于查找和管理</li>
+<li>缩短搜索路径，提高搜索速度</li>
+</ul>
+</li>
+<li><p>机器指令由操作码和地址码组成</p>
+</li>
+<li>有符号数分三种表示法：原码、反码（负数时，符号位不变，其他取反）、补码（负数时，符号位不变，其他取反再加1）</li>
+<li><p>机器语言、汇编语言、高级语言</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">机器语言：被计算机直接识别、执行。执行速度快、占内存少，但对于开发者编写、识别、记忆都难。</span><br><span class="line">汇编语言：是面向机器的低级语言。需要编译，机器才能识别。保持机器语言优点，直接、简洁、占用少、执行快，但可移植性差。</span><br><span class="line">高级语言：可维护性好、可移植性好、灵活、易懂、易学、容易编写出结构紧凑、复杂的程序，但执行速度低、对硬件可控性弱。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h3><ol>
+<li>软件危机主要表现：<ul>
+<li>无法满足需求增长</li>
+<li>开发成本、进度不可控</li>
+<li>质量不行</li>
+<li>可维护性差</li>
+<li>开发生产速率不及硬件发展和需求增长速率</li>
+</ul>
+</li>
+<li>线性表中顺序存储和链式存储<ul>
+<li>顺序存储：内存地址连续，节约空间，支持随机存取，方便操作，适用于频繁查询</li>
+<li>链式存储：内存地址不一定连续，适用于在较频繁地插入、删除、更新元素</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/2018-03-20-React-Native-Learning-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/20/2018-03-20-React-Native-Learning-Tips/" itemprop="url">2018-03-20 React Native Learning Tips</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T10:51:36+08:00">
+                2018-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ol>
+<li>TouchableHithlight<ul>
+<li>只支持一个节点，多节点需用 View 包裹</li>
+<li>不绑定 onPress 不会显示按压效果，如需显示效果，绑定空事件 <code>onPress={()=&gt;{}}</code></li>
+<li>属性<ul>
+<li><strong>activeOpacity</strong>  number</li>
+<li><strong>onHideUnderlay</strong>  function</li>
+<li><strong>onShowUnderlay</strong>  function</li>
+<li><strong>style</strong>  View#style</li>
+<li><strong>underlayColor</strong>  String</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TabBarIOS<ul>
+<li>包含组件 TabBarIOS.Item</li>
+<li>属性<ul>
+<li><strong>barTintColor</strong> string</li>
+<li><strong>tintColor</strong> string</li>
+<li><strong>unselectedItemTintColor</strong> string</li>
+<li><strong>translucent</strong>  bool</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/Flutter-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/15/Flutter-Tips/" itemprop="url">Flutter Tips</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T13:40:28+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>通常命名中 <code>_</code> 开头的 State 子类，说明是私有类</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/2018-03-14-Android-与-Flutter-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2615,482 +3103,11 @@ mWebView.loadUrl(&quot;javascript:test(&apos;&quot; + aa+ &quot;&apos;)&quot;); 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/2018-01-03-Native-与-H5-交互-属性动画-SnackbarUtil/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/03/2018-01-03-Native-与-H5-交互-属性动画-SnackbarUtil/" itemprop="url">Native 与 H5 交互-属性动画-SnackbarUtil.md</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T10:00:40+08:00">
-                2018-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="今日概要"><a href="#今日概要" class="headerlink" title="今日概要"></a>今日概要</h2><ol>
-<li><strong>A</strong></li>
-<li><strong>B</strong></li>
-<li><strong>C</strong></li>
-</ol>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="Native-与-H5-交互"><a href="#Native-与-H5-交互" class="headerlink" title="Native 与 H5 交互"></a><a href="http://blog.csdn.net/carson_ho/article/details/64904691" target="_blank" rel="noopener">Native 与 H5 交互</a></h3><ol>
-<li><p>Native 调用 JS (2种)</p>
-<ul>
-<li>loadUrl() : <code>mWebView.loadUrl(&quot;javascript:method()&quot;);</code></li>
-<li><p>evaluateJavascript() :</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mWebView.evaluateJavascript（&quot;javascript:method()&quot;, new ValueCallback&lt;String&gt;() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void onReceiveValue(String value) &#123;</span><br><span class="line">           //此处为 js 返回的结果</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>- 对比
-
-    调用方式 | 优点 | 缺点 | 使用场景
-    ------|-----------|------|----
-    使用loadUrl()|方便简洁|效率低；获取返回值麻烦|不需要获取返回值，对性能要求较低时
-    使用evaluateJavascript()|效率高|向下兼容差（仅 Android4.4 以上可用）|Android 4.4 以上
-</code></pre><ol>
-<li><p>JS 调用 Native (3种)</p>
-<ul>
-<li>通过 WebView 的 addJavascriptInterface() 进行对象映射 </li>
-<li>通过 WebViewClient 的 shouldOverrideUrlLoading() 方法回调拦截 url </li>
-<li>通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框 alert()、confirm()、prompt() 消息</li>
-<li><p>对比</p>
-<p>  调用方式|优点|缺点|使用场景<br>  —-|—-|—-|—-<br>  通过 addJavascriptInterface() 进行添加对象映射|方便简洁|Android 4.2 一下存在漏洞|Android 4.2 以上相对简单互调场景<br>  通过 WebViewClient 的方法 shouldOverrideUrlLoading() 回调拦截 url|不存在漏洞问题|使用复杂；需要进行协议的约束；从 Native 层往 Web 层传递值比较繁琐|不需要返回值情况下的互调场景（iOS主要使用的方式）<br>  通过 WebChromeClient 的 onJsAlert()、onJsConfirm()、onJsPrompt() 方法回调拦截 JS 对话框消息|不存在漏洞问题|使用复杂；需要进行协议的约束|能满足大多数情况下互调场景</p>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a><a href="http://blog.csdn.net/feiduclear_up/article/details/39255083" target="_blank" rel="noopener">属性动画</a></h3><ol>
-<li></li>
-</ol>
-<hr>
-<h3 id="ARouter"><a href="#ARouter" class="headerlink" title="ARouter"></a><a href="https://github.com/alibaba/ARouter" target="_blank" rel="noopener">ARouter</a></h3><hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>FastJson kotlin 变量 <code>var is_xxx : Int? = 0</code> 获取不到 json 中的数据，需要变更变量名称并加上注解 @JSONField(name=”is_xxx”)</li>
-<li>SnackbarUtil</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ****************************************************</span><br><span class="line"> * @author jameswong</span><br><span class="line"> * created on: 18/01/03 上午11:28</span><br><span class="line"> * e-mail: PassionateWsj@outlook.com</span><br><span class="line"> * name:</span><br><span class="line"> * desc:</span><br><span class="line"> * ****************************************************</span><br><span class="line"> */</span><br><span class="line">public class SnackbarUtil &#123;</span><br><span class="line"></span><br><span class="line">    public static final int Info = 1;</span><br><span class="line">    public static final int Confirm = 2;</span><br><span class="line">    public static final int Warning = 3;</span><br><span class="line">    public static final int Alert = 4;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static int red = 0xfff44336;</span><br><span class="line">    public static int green = 0xff4caf50;</span><br><span class="line">    public static int blue = 0xff2195f3;</span><br><span class="line">    public static int orange = 0xffffc107;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，自定义颜色</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        setSnackbarColor(snackbar, messageColor, backgroundColor);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 短显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar shortSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 长显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar longSnackbar(View view, String message, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 自定义时常显示Snackbar，可选预设类型</span><br><span class="line">     *</span><br><span class="line">     * @param view</span><br><span class="line">     * @param message</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Snackbar indefiniteSnackbar(View view, String message, int duration, int type) &#123;</span><br><span class="line">        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setDuration(duration);</span><br><span class="line">        switchType(snackbar, type);</span><br><span class="line">        return snackbar;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //选择预设类型</span><br><span class="line">    private static void switchType(Snackbar snackbar, int type) &#123;</span><br><span class="line">        switch (type) &#123;</span><br><span class="line">            case Info:</span><br><span class="line">                setSnackbarColor(snackbar, blue);</span><br><span class="line">                break;</span><br><span class="line">            case Confirm:</span><br><span class="line">                setSnackbarColor(snackbar, green);</span><br><span class="line">                break;</span><br><span class="line">            case Warning:</span><br><span class="line">                setSnackbarColor(snackbar, orange);</span><br><span class="line">                break;</span><br><span class="line">            case Alert:</span><br><span class="line">                setSnackbarColor(snackbar, Color.YELLOW, red);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置Snackbar文字和背景颜色</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param messageColor</span><br><span class="line">     * @param backgroundColor</span><br><span class="line">     */</span><br><span class="line">    public static void setSnackbarColor(Snackbar snackbar, int messageColor, int backgroundColor) &#123;</span><br><span class="line">        View view = snackbar.getView();</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            view.setBackgroundColor(backgroundColor);</span><br><span class="line">            ((TextView) view.findViewById(R.id.snackbar_text)).setTextColor(messageColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 向Snackbar中添加view</span><br><span class="line">     *</span><br><span class="line">     * @param snackbar</span><br><span class="line">     * @param layoutId</span><br><span class="line">     * @param index    新加布局在Snackbar中的位置</span><br><span class="line">     */</span><br><span class="line">    public static void snackbarAddView(Snackbar snackbar, int layoutId, int index) &#123;</span><br><span class="line">        View snackbarview = snackbar.getView();</span><br><span class="line">        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarview;</span><br><span class="line"></span><br><span class="line">        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(layoutId, null);</span><br><span class="line"></span><br><span class="line">        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);</span><br><span class="line">        p.gravity = Gravity.CENTER_VERTICAL;</span><br><span class="line"></span><br><span class="line">        snackbarLayout.addView(add_view, index, p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T23:50:04+08:00">
-                2017-12-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/App启动原理详解与启动优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/27/App启动原理详解与启动优化/" itemprop="url">App启动原理详解与启动优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T21:48:48+08:00">
-                2017-12-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ol>
-<li><strong>App启动原理详解与启动优化</strong></li>
-<li><strong>Application如何初始化</strong></li>
-<li><strong>冷热启动，启动时间分析检测</strong></li>
-<li><strong>方法执行效率与时长计算，trace文件分析</strong></li>
-<li><strong>反编译qq代码，分析手机qq是如何做启动优化的</strong></li>
-</ol>
-<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><ol>
-<li>在点击 App 图标进行启动的过程中，系统会预处理一些比如分配内存等的耗时操作</li>
-<li>优化：<ul>
-<li>设置 Application 的主题<ul>
-<li>添加 item : android:windowIsTranslucent 为 true，即点击应用等待界面为透明</li>
-<li>添加 item : android:windowBackground ，设置背景（会导致其他问题）    </li>
-</ul>
-</li>
-<li>设置 SplashActivity 主题<ol>
-<li>添加 item : android:windowBackground ，设置背景</li>
-<li>在 oncreate 方法中设置为原先的 Theme</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>影响加载第一帧的三点<ol>
-<li>Application 的 onCreate 方法（代码优化）<ul>
-<li>开启线程执行初始化方法，条件：<ul>
-<li>没有创建 handler</li>
-<li>没有操作 UI</li>
-<li>异步要求不是单例（如果是单例，调用的地方需要判空）</li>
-</ul>
-</li>
-<li>两种优化方式<ul>
-<li>懒加载（延时加载）：放到双重校验锁的单例util中，延时启动加载，如果调用了工具没有初始化，就初始化</li>
-<li>放入线程加载（不能有handler）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>MainActivity 的 onCreate 方法（代码优化）</li>
-<li>加载 xml（嵌套不要太多）</li>
-</ol>
-</li>
-<li><p>trace 文件分析</p>
-<pre><code>File file = new File(Environment.getExternalStorageDirectory(), &quot;syp&quot;);
-Log.i(&quot;SYPApplication&quot;, &quot;onCreate ::: &quot; + file.getAbsolutePath());
-// 本地存入tracing 文件
-Debug.startMethodTracing(file.getAbsolutePath());
-……
-Debug.stopMethodTracing();
-</code></pre></li>
-</ol>
-<hr>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
-<li>系统启动时间 (注意冷热启动)<ul>
-<li>log ： Display 关键字</li>
-<li>命令行： adb shell am start -W {包名}/{启动 Activity 全类名}<ul>
-<li>ThisTime</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Application 千万不要创建 Assets 对象</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3136,7 +3153,7 @@ Debug.stopMethodTracing();
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3186,7 +3203,7 @@ Debug.stopMethodTracing();
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
