@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="JamesWong&#39;s Notes">
 <meta property="og:description" content="Views Q : 在 Flutter 中与 View 等同的是啥？ Android : 如 Buttons, Toolbars, Inputs，总之什么都是一个 View Flutter : Widget Q : But 区别又是啥？  View 自身是不会进行重绘的，除非调用 invalidate ; Widget 只支持一帧，然后每一帧 Flutter 的 framework 都会创建一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T15:43:54.049Z">
+<meta property="og:updated_time" content="2019-04-16T03:31:15.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 与 Flutter (一)">
 <meta name="twitter:description" content="Views Q : 在 Flutter 中与 View 等同的是啥？ Android : 如 Buttons, Toolbars, Inputs，总之什么都是一个 View Flutter : Widget Q : But 区别又是啥？  View 自身是不会进行重绘的，除非调用 invalidate ; Widget 只支持一帧，然后每一帧 Flutter 的 framework 都会创建一个">
@@ -325,7 +325,7 @@
 <ul>
 <li>Android 中使用 XML 敲布局 ; Flutter 用 Widget tree 编写布局</li>
 <li><p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return new Scaffold(</span><br><span class="line">    appBar: new AppBar(</span><br><span class="line">      title: new Text(&quot;Sample App&quot;),</span><br><span class="line">    ),</span><br><span class="line">    body: new Center(</span><br><span class="line">      child: new MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: new Text(&apos;Hello&apos;),</span><br><span class="line">        padding: new EdgeInsets.only(left: 10.0, right: 10.0),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Scaffold(</span><br><span class="line">    appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">      title: <span class="keyword">new</span> Text(<span class="string">"Sample App"</span>),</span><br><span class="line">    ),</span><br><span class="line">    body: <span class="keyword">new</span> Center(</span><br><span class="line">      child: <span class="keyword">new</span> MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: <span class="keyword">new</span> Text(<span class="string">'Hello'</span>),</span><br><span class="line">        padding: <span class="keyword">new</span> EdgeInsets.only(left: <span class="number">10.0</span>, right: <span class="number">10.0</span>),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><a href="https://flutter.io/widgets/layout/" target="_blank" rel="noopener"><font color="#69f">Flutter所提供的所有布局</font></a></p>
 </li>
@@ -372,8 +372,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/15/Flutter-Tips/" rel="prev" title="Flutter Tips">
-                Flutter Tips <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/15/计算机基础知识/" rel="prev" title="计算机基础知识">
+                计算机基础知识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

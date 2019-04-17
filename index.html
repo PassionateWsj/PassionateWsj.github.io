@@ -232,6 +232,332 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/16/数据库设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/16/数据库设计/" itemprop="url">数据库设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T11:45:46+08:00">
+                2019-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h2><p><img src="/img/203fb80e7bec54e7eefc876cb9389b504fc26ab4.jpg" alt=""></p>
+<ol>
+<li>需求分析：数据流图、数据字典、需求说明书</li>
+<li>概念设计：形成独立于具体 DBMS 的 E-R 模型</li>
+<li>逻辑设计：将 E-R 图转为 DBMS 所支持的数据模型（关系模式）</li>
+<li>物理设计：选取存储结构和存取方法</li>
+<li>数据库实施</li>
+<li>数据库运行和维护</li>
+</ol>
+<h2 id="E-R-图"><a href="#E-R-图" class="headerlink" title="E-R 图"></a>E-R 图</h2><p>ER 即 Entity-Relationship ，有三个组成部分：实体、属性、联系</p>
+<p><strong>实体（entity）</strong>即数据对象，用长方形</p>
+<p><strong>属性（attribute）</strong>即数据对象具有的属性，用椭圆形</p>
+<p><strong>联系（relationship）</strong>对数据象与数据对象之间的关系，用菱形</p>
+<h3 id="实体间联系类型"><a href="#实体间联系类型" class="headerlink" title="实体间联系类型"></a>实体间联系类型</h3><p>有<code>1:1</code>、<code>1:n</code>、<code>n:m</code>三种，分别表示一对一、一对多、多对多</p>
+<h3 id="E-R-图转成关系模型"><a href="#E-R-图转成关系模型" class="headerlink" title="E-R 图转成关系模型"></a>E-R 图转成关系模型</h3><h5 id="实体类型转换"><a href="#实体类型转换" class="headerlink" title="实体类型转换"></a>实体类型转换</h5><ol>
+<li>将每个实体转成关系模式</li>
+<li>实体的属性转为关系模式的属性</li>
+<li>实体的唯一标识，转成关系模式的键</li>
+</ol>
+<h5 id="联系的转换"><a href="#联系的转换" class="headerlink" title="联系的转换"></a>联系的转换</h5><p><strong>1 : 1</strong> 的联系，在任意一个关系模式中，加入另一个的键、联系的属性</p>
+<p><strong>1 : n</strong> 的联系，在 n 的关系模式中，加入 1 的键、联系的属性</p>
+<p><strong>n : m</strong> 的联系，将联系类型也转成关系模式，并且属性为两端的键、联系的属性。这个关系模式的键为两端实体键的组合</p>
+<p><strong>实例</strong>：</p>
+<p><img src="/img/20150728110504289.png" alt=""></p>
+<ol>
+<li>实体转关系模式并附上<strong>属性</strong>及<strong>主键</strong>：<ul>
+<li>系（<u>系编号</u>，系名，电话）</li>
+<li>教师（<u>教工号</u>，姓名，性别，职称）</li>
+<li>课程（<u>课程号</u>，课程名，学分）</li>
+</ul>
+</li>
+<li>根据联系添加<strong>属性</strong>（1:1、1:n）<ul>
+<li>系（<u>系编号</u>，系名，电话，主管教工号）</li>
+<li>教师（<u>教工号</u>，姓名，性别，职称，所属系，聘期）</li>
+<li>课程（<u>课程号</u>，课程名，学分，开设系）</li>
+</ul>
+</li>
+<li>添加<strong>关系模型</strong>（n:m）<ul>
+<li>任教（<u>教工号</u>，<u>课程号</u>，教材）</li>
+</ul>
+</li>
+<li>最终<ul>
+<li>系（<u>系编号</u>，系名，电话，主管教工号）</li>
+<li>教师（<u>教工号</u>，姓名，性别，职称，所属系，聘期）</li>
+<li>课程（<u>课程号</u>，课程名，学分，开设系）</li>
+<li>任教（<u>教工号</u>，<u>课程号</u>，教材）</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/16/UML-图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/16/UML-图/" itemprop="url">UML</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T08:45:46+08:00">
+                2019-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>统一建模语言（Unified Modeling Language，UML） 是描述、构造和文档化系统的可视化语言</p>
+<p>UML 是一个庞大的图形化表示法体系</p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>依赖、关联（聚合、组合）、泛化、实现</p>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p><strong>静态建模</strong></p>
+<ul>
+<li>类图</li>
+</ul>
+<p><strong>动态家建模</strong></p>
+<ul>
+<li>顺序图(协作图)</li>
+<li>用例图</li>
+<li>活动图</li>
+<li>状态图</li>
+</ul>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><ul>
+<li>类名，方法名，属性名</li>
+<li>多重度：<code>1、0..*、1..*、*</code></li>
+<li><p>关系</p>
+<p>  <strong>例：</strong>神州六号飞船是神州飞船系列的一种，它由轨道舱、返回舱、推进舱和逃逸救生塔等组成;航天员可以在返回舱内驾驶飞船，轨道仓则是航天员工作和休息的场所。在紧急的情况下，可以利用逃逸救生塔逃生。在飞船两侧有多个太阳能电池翼，可以为飞船提供电能;画出相应 UML 图</p>
+<p>  <img src="/img/WX20190416-182537.png" alt=""></p>
+</li>
+</ul>
+<p><img src="/img/WX20190416-151250.png" alt="接口"><img src="/img/WX20190416-150951.png" alt=""></p>
+<p><img src="/img/WX20190416-145421.png" alt="结构"></p>
+<h3 id="顺序图、协作图"><a href="#顺序图、协作图" class="headerlink" title="顺序图、协作图"></a>顺序图、协作图</h3><p><center>掷骰子</center><img src="/img/WX20190416-143140.png" alt="掷骰子"></p>
+<p><center>登录</center><img src="/img/WX20190416-183437.png" alt="登录"></p>
+<p><center>添加用户</center><img src="/img/WX20190416-183943.png" alt="添加用户"></p>
+<p><center>发送消息顺序图</center><img src="/img/WX20190416-185417.png" alt="发送消息顺序图"></p>
+<p><center>发送消息协作图</center><img src="/img/WechatIMG255.jpeg" alt="发送消息协作图"></p>
+<h3 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h3><p><img src="/img/WX20190416-190530.png" alt=""></p>
+<p><img src="/img/WX20190416-145804.png" alt=""></p>
+<h5 id="用例关系"><a href="#用例关系" class="headerlink" title="用例关系"></a>用例关系</h5><ol>
+<li><strong>包含关系</strong><code>&lt;&lt;include&gt;&gt;</code>：用例必然会被其他用例使用到</li>
+<li><strong>扩展关系</strong><code>&lt;&lt;extend&gt;&gt;</code>：比如查询之后的修改，可选，不是必须</li>
+</ol>
+<h3 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h3><p><img src="/img/WX20190416-145813.png" alt=""><br><img src="/img/WX20190416-195001.png" alt=""></p>
+<h3 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h3><p>用来描述一个特定对象所有可能的状态，已经由各种事件引起的状态变化</p>
+<p><img src="/img/WX20190416-190249.png" alt=""></p>
+<p><img src="/img/WX20190416-145756.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/计算机基础知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -304,13 +630,16 @@
         
           
             <h3 id="计算机硬件"><a href="#计算机硬件" class="headerlink" title="计算机硬件"></a>计算机硬件</h3><ol>
+<li>冯诺依曼计算机的体系结构分为五大部分：控制器、运算器、存储器、输入和输出设备</li>
+<li>计算机总线分为：地址总线、控制总线、数据总线。计算机五大部分通过总线连接成一个整体。</li>
 <li>PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作</li>
 <li>MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标</li>
-<li><p>主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互相沟通，而不需要依赖于CPU的大量中断负载) 。</span><br><span class="line">北桥（系统控制芯片）：主要负责CPU与内存、CPU与PCI-E之间的通信。掌控项目多为高速设备，如：CPU、Host Bus。后期北桥集成内存控制器、Cache高速控制器；</span><br></pre></td></tr></table></figure>
+<li>主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组<ul>
+<li>南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互相沟通，而不需要依赖于CPU的大量中断负载) 。</li>
+<li>北桥（系统控制芯片）：主要负责CPU与内存、CPU与PCI-E之间的通信。掌控项目多为高速设备，如：CPU、Host Bus。后期北桥集成内存控制器、Cache高速控制器；</li>
+</ul>
 </li>
-<li><p>访问速度：寄存器&gt;Cache&gt;内存&gt;硬盘</p>
-</li>
+<li>访问速度：寄存器&gt;Cache&gt;内存&gt;硬盘</li>
 <li>控制器、运算器、存储器主要作用<ul>
 <li>控制器：分析指令，控制部件完成任务（协调、指挥各部件的中枢）。由指令寄存器、状态寄存器、指令译码器、时序电路和控制电路组成</li>
 <li>运算器（算数逻辑单元）：进行算数、逻辑运算。主要是对数据加工处理</li>
@@ -319,8 +648,7 @@
 </li>
 <li>调制解调器（ Modem ），俗称 “猫”，因电话线传送的是模拟信号，计算机无法识别，需要做模拟信号和数字信号之间的相互转换。调制即“ 数 –&gt; 模 ”，解调即“ 模 –&gt; 数 ”</li>
 </ol>
-<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><ol>
-<li>ISP（Internet Service Provider）：互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务和增值业务的电信运营商</li>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><ol>
 <li>五层协议<ul>
 <li>应用层（报文）：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。</li>
 <li>传输层（ TCP 报文段或 UDP 用户数据报）：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。TCP 主要提供完整性服务，UDP 主要提供及时性服务</li>
@@ -345,6 +673,18 @@
 <li>流量控制：流量大时排队</li>
 </ul>
 </li>
+<li>ARP（地址解析协议 Address Resolution Protocol）负责将某个IP地址解析成对应的MAC地址。</li>
+<li>ARP攻击就是通过伪造IP地址和MAC地址实现ARP欺骗。仅能在局域网，不能对外网进行</li>
+</ol>
+<h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><p>域名是有两组或两组以上的ASCII或各国语言字符构成，各字符间用点分开最右边为顶级域名或一级域名、倒数第二为二级域名、倒数第三为三级域名</p>
+<p>还分为三类：</p>
+<ul>
+<li>国家或地区：cn (中国)、jp (日本)等；</li>
+<li>通用顶级域名：com（企业）、net（网络提供商）、org（非盈利组织）等；</li>
+<li>新顶级域名：xyz（通用）、top（“高端”）、red（“红色”）、men（“人”）等</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ol>
+<li>ISP（Internet Service Provider）：互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务和增值业务的电信运营商</li>
 <li>地址分类<ul>
 <li>A类（适用大型网络）：1-127，私有 10.0.0.0-10.255.255.255</li>
 <li>B类（适用中型网络）：128-191，私有 172.16.0.0-172.31.255.255</li>
@@ -354,8 +694,6 @@
 </ul>
 </li>
 <li>虚拟局域网可以在网路体系结构上实现交换机端口、MAC 地址、网络层地址和 IP 广播组</li>
-<li>ARP（地址解析协议 Address Resolution Protocol）负责将某个IP地址解析成对应的MAC地址。</li>
-<li>ARP攻击就是通过伪造IP地址和MAC地址实现ARP欺骗。仅能在局域网，不能对外网进行</li>
 <li>计算机网络面临的主要威胁：<ul>
 <li>黑客恶意攻击</li>
 <li>网络自身和管理缺陷</li>
@@ -386,8 +724,11 @@
 <li><p>机器指令由操作码和地址码组成</p>
 </li>
 <li>有符号数分三种表示法：原码、反码（负数时，符号位不变，其他取反）、补码（负数时，符号位不变，其他取反再加1）</li>
-<li><p>机器语言、汇编语言、高级语言</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">机器语言：被计算机直接识别、执行。执行速度快、占内存少，但对于开发者编写、识别、记忆都难。</span><br><span class="line">汇编语言：是面向机器的低级语言。需要编译，机器才能识别。保持机器语言优点，直接、简洁、占用少、执行快，但可移植性差。</span><br><span class="line">高级语言：可维护性好、可移植性好、灵活、易懂、易学、容易编写出结构紧凑、复杂的程序，但执行速度低、对硬件可控性弱。</span><br></pre></td></tr></table></figure>
+<li>机器语言、汇编语言、高级语言<ul>
+<li>机器语言：被计算机直接识别、执行。执行速度快、占内存少，但对于开发者编写、识别、记忆都难。</li>
+<li>汇编语言：是面向机器的低级语言。需要编译，机器才能识别。保持机器语言优点，直接、简洁、占用少、执行快，但可移植性差。</li>
+<li>高级语言：可维护性好、可移植性好、灵活、易懂、易学、容易编写出结构紧凑、复杂的程序，但执行速度低、对硬件可控性弱。需要编译计算机才可识别</li>
+</ul>
 </li>
 </ol>
 <h3 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h3><ol>
@@ -404,273 +745,6 @@
 <li>链式存储：内存地址不一定连续，适用于在较频繁地插入、删除、更新元素</li>
 </ul>
 </li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/React-Native-Learning-Tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/20/React-Native-Learning-Tips/" itemprop="url">React Native Learning Tips</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T10:51:36+08:00">
-                2018-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ol>
-<li>TouchableHithlight<ul>
-<li>只支持一个节点，多节点需用 View 包裹</li>
-<li>不绑定 onPress 不会显示按压效果，如需显示效果，绑定空事件 <code>onPress={()=&gt;{}}</code></li>
-<li>属性<ul>
-<li><strong>activeOpacity</strong>  number</li>
-<li><strong>onHideUnderlay</strong>  function</li>
-<li><strong>onShowUnderlay</strong>  function</li>
-<li><strong>style</strong>  View#style</li>
-<li><strong>underlayColor</strong>  String</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>TabBarIOS<ul>
-<li>包含组件 TabBarIOS.Item</li>
-<li>属性<ul>
-<li><strong>barTintColor</strong> string</li>
-<li><strong>tintColor</strong> string</li>
-<li><strong>unselectedItemTintColor</strong> string</li>
-<li><strong>translucent</strong>  bool</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/Flutter-Tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/15/Flutter-Tips/" itemprop="url">Flutter Tips</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T13:40:28+08:00">
-                2018-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>通常命名中 <code>_</code> 开头的 State 子类，说明是私有类</li>
 </ol>
 
           
@@ -816,7 +890,7 @@
 <ul>
 <li>Android 中使用 XML 敲布局 ; Flutter 用 Widget tree 编写布局</li>
 <li><p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return new Scaffold(</span><br><span class="line">    appBar: new AppBar(</span><br><span class="line">      title: new Text(&quot;Sample App&quot;),</span><br><span class="line">    ),</span><br><span class="line">    body: new Center(</span><br><span class="line">      child: new MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: new Text(&apos;Hello&apos;),</span><br><span class="line">        padding: new EdgeInsets.only(left: 10.0, right: 10.0),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Scaffold(</span><br><span class="line">    appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">      title: <span class="keyword">new</span> Text(<span class="string">"Sample App"</span>),</span><br><span class="line">    ),</span><br><span class="line">    body: <span class="keyword">new</span> Center(</span><br><span class="line">      child: <span class="keyword">new</span> MaterialButton(</span><br><span class="line">        onPressed: () &#123;&#125;,</span><br><span class="line">        child: <span class="keyword">new</span> Text(<span class="string">'Hello'</span>),</span><br><span class="line">        padding: <span class="keyword">new</span> EdgeInsets.only(left: <span class="number">10.0</span>, right: <span class="number">10.0</span>),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><a href="https://flutter.io/widgets/layout/" target="_blank" rel="noopener"><font color="#69f">Flutter所提供的所有布局</font></a></p>
 </li>
@@ -946,33 +1020,34 @@
 <li><p>动态改变 Retrofit 网络请求中的服务器连接</p>
 <ul>
 <li><p>添加一个允许运行时改变 hostname 的拦截器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class ChangeableBaseUrlInterceptor : Interceptor &#123;</span><br><span class="line">    @Volatile private var host: HttpUrl? = null</span><br><span class="line"></span><br><span class="line">    fun setHost(url: String) &#123;</span><br><span class="line">        this.host = HttpUrl.parse(url)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Throws(IOException::class)</span><br><span class="line">    override fun intercept(chain: Interceptor.Chain): Response &#123;</span><br><span class="line">         val newRequest = host?.let &#123;</span><br><span class="line">            val newUrl = chain.request().url().newBuilder()</span><br><span class="line">                    .scheme(it.scheme())</span><br><span class="line">                    .host(it.url().toURI().host)</span><br><span class="line">                    .port(it.port())</span><br><span class="line">                    .build()</span><br><span class="line"></span><br><span class="line">            return@let chain.request().newBuilder()</span><br><span class="line">                    .url(newUrl)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">         return if(newRequest!=null)&#123;</span><br><span class="line">             chain.proceed(newRequest)</span><br><span class="line">         &#125;else&#123;</span><br><span class="line">             chain.proceed(chain.request())</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class ChangeableBaseUrlInterceptor : Interceptor &#123;</span><br><span class="line">    <span class="meta">@Volatile</span> <span class="keyword">private</span> var host: HttpUrl? = <span class="keyword">null</span></span><br><span class="line"></span><br><span class="line">    <span class="function">fun <span class="title">setHost</span><span class="params">(url: String)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = HttpUrl.parse(url)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Throws</span>(IOException::<span class="class"><span class="keyword">class</span>)</span></span><br><span class="line">    override fun intercept(chain: Interceptor.Chain): Response &#123;</span><br><span class="line">         val newRequest = host?.let &#123;</span><br><span class="line">            val newUrl = chain.request().url().newBuilder()</span><br><span class="line">                    .scheme(it.scheme())</span><br><span class="line">                    .host(it.url().toURI().host)</span><br><span class="line">                    .port(it.port())</span><br><span class="line">                    .build()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="meta">@let</span> chain.request().newBuilder()</span><br><span class="line">                    .url(newUrl)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">if</span>(newRequest!=<span class="keyword">null</span>)&#123;</span><br><span class="line">             chain.proceed(newRequest)</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             chain.proceed(chain.request())</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
+</ol>
+<ol>
 <li><p>Retrofit 离线缓存</p>
 <ul>
 <li><p>设置缓存路径</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();</span><br><span class="line"></span><br><span class="line">File cacheDir = new File(ctx.getCacheDir(), &quot;response&quot;);</span><br><span class="line">//缓存的最大尺寸10m</span><br><span class="line">Cache cache = new Cache(cacheDir, 1024 * 1024 * 10);</span><br><span class="line">clientBuilder.cache(cache);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient.Builder clientBuilder = <span class="keyword">new</span> OkHttpClient.Builder();</span><br><span class="line"></span><br><span class="line">File cacheDir = <span class="keyword">new</span> File(ctx.getCacheDir(), <span class="string">"response"</span>);</span><br><span class="line"><span class="comment">//缓存的最大尺寸10m</span></span><br><span class="line">Cache cache = <span class="keyword">new</span> Cache(cacheDir, <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">10</span>);</span><br><span class="line">clientBuilder.cache(cache);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>添加拦截器</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class CacheInterceptor : Interceptor &#123;</span><br><span class="line"></span><br><span class="line">    override fun intercept(chain: Interceptor.Chain): okhttp3.Response &#123;</span><br><span class="line">        var request = chain.request()</span><br><span class="line">        val netAvailable = HttpUtil.isConnected(SYPApplication.globalContext)</span><br><span class="line"></span><br><span class="line">        if (netAvailable) &#123;</span><br><span class="line">            request = request.newBuilder()</span><br><span class="line">                    //网络可用 强制从网络获取数据</span><br><span class="line">                    .cacheControl(CacheControl.FORCE_NETWORK)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            request = request.newBuilder()</span><br><span class="line">                    //网络不可用 从缓存获取</span><br><span class="line">                    .cacheControl(CacheControl.FORCE_CACHE)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line">        var response = chain.proceed(request)</span><br><span class="line">        if (netAvailable) &#123;</span><br><span class="line">            response = response.newBuilder()</span><br><span class="line">                    .removeHeader(&quot;Pragma&quot;)</span><br><span class="line">                    // 有网络时 设置缓存超时时间1个小时</span><br><span class="line">                    .header(&quot;Cache-Control&quot;, &quot;public, max-age=&quot; + 60 * 60)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            response = response.newBuilder()</span><br><span class="line">                    .removeHeader(&quot;Pragma&quot;)</span><br><span class="line">                    // 无网络时，设置超时为1周</span><br><span class="line">                    .header(&quot;Cache-Control&quot;, &quot;public, only-if-cached, max-stale=&quot; + 7 * 24 * 60 * 60)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line">        return response</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class CacheInterceptor : Interceptor &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">intercept</span><span class="params">(chain: Interceptor.Chain)</span>: okhttp3.Response </span>&#123;</span><br><span class="line">        var request = chain.request()</span><br><span class="line">        val netAvailable = HttpUtil.isConnected(SYPApplication.globalContext)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (netAvailable) &#123;</span><br><span class="line">            request = request.newBuilder()</span><br><span class="line">                    <span class="comment">//网络可用 强制从网络获取数据</span></span><br><span class="line">                    .cacheControl(CacheControl.FORCE_NETWORK)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            request = request.newBuilder()</span><br><span class="line">                    <span class="comment">//网络不可用 从缓存获取</span></span><br><span class="line">                    .cacheControl(CacheControl.FORCE_CACHE)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line">        var response = chain.proceed(request)</span><br><span class="line">        <span class="keyword">if</span> (netAvailable) &#123;</span><br><span class="line">            response = response.newBuilder()</span><br><span class="line">                    .removeHeader(<span class="string">"Pragma"</span>)</span><br><span class="line">                    <span class="comment">// 有网络时 设置缓存超时时间1个小时</span></span><br><span class="line">                    .header(<span class="string">"Cache-Control"</span>, <span class="string">"public, max-age="</span> + <span class="number">60</span> * <span class="number">60</span>)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            response = response.newBuilder()</span><br><span class="line">                    .removeHeader(<span class="string">"Pragma"</span>)</span><br><span class="line">                    <span class="comment">// 无网络时，设置超时为1周</span></span><br><span class="line">                    .header(<span class="string">"Cache-Control"</span>, <span class="string">"public, only-if-cached, max-stale="</span> + <span class="number">7</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>)</span><br><span class="line">                    .build()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>WebView 离线缓存</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">webSettings?.cacheMode = if (HttpUtil.isConnected(this)) &#123;</span><br><span class="line">    // 缓存模式为无缓存</span><br><span class="line">    WebSettings.LOAD_NO_CACHE</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    WebSettings.LOAD_CACHE_ELSE_NETWORK</span><br><span class="line">&#125;</span><br><span class="line">val cacheDir = File(cacheDir, &quot;webviewCache&quot;)</span><br><span class="line">//设置数据库缓存路径</span><br><span class="line">webSettings?.databasePath = cacheDir.absolutePath</span><br><span class="line">//设置 应用 缓存目录</span><br><span class="line">webSettings?.setAppCachePath(cacheDir.absolutePath)</span><br><span class="line">//开启 DOM 存储功能</span><br><span class="line">webSettings?.domStorageEnabled = true</span><br><span class="line">//开启 数据库 存储功能</span><br><span class="line">webSettings?.databaseEnabled = true</span><br><span class="line">//开启 应用缓存 功能</span><br><span class="line">webSettings?.setAppCacheEnabled(true)</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">webSettings?.cacheMode = <span class="keyword">if</span> (HttpUtil.isConnected(<span class="keyword">this</span>)) &#123;</span><br><span class="line">    <span class="comment">// 缓存模式为无缓存</span></span><br><span class="line">    WebSettings.LOAD_NO_CACHE</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    WebSettings.LOAD_CACHE_ELSE_NETWORK</span><br><span class="line">&#125;</span><br><span class="line">val cacheDir = File(cacheDir, <span class="string">"webviewCache"</span>)</span><br><span class="line"><span class="comment">//设置数据库缓存路径</span></span><br><span class="line">webSettings?.databasePath = cacheDir.absolutePath</span><br><span class="line"><span class="comment">//设置 应用 缓存目录</span></span><br><span class="line">webSettings?.setAppCachePath(cacheDir.absolutePath)</span><br><span class="line"><span class="comment">//开启 DOM 存储功能</span></span><br><span class="line">webSettings?.domStorageEnabled = <span class="keyword">true</span></span><br><span class="line"><span class="comment">//开启 数据库 存储功能</span></span><br><span class="line">webSettings?.databaseEnabled = <span class="keyword">true</span></span><br><span class="line"><span class="comment">//开启 应用缓存 功能</span></span><br><span class="line">webSettings?.setAppCacheEnabled(<span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>X5 的 WebView 与 SwipeRefreshLayout 滑动冲突</p>
 <ul>
 <li><p>注意 : <code>this.getScrollY()</code> 永远为 0 ，想要获取 WebView 顶部到 WebView 可视顶部距离的方法为 <code>this.getWebScrollY()</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 重写 WebView 的onScrollChagned 方法</span><br><span class="line">public class WebView4Scroll extends WebView &#123;</span><br><span class="line">    private SwipeRefreshLayout swipeRefreshLayout;</span><br><span class="line"></span><br><span class="line">    public WebView4Scroll(Context context, SwipeRefreshLayout swipeRefreshLayout)&#123;</span><br><span class="line">        super(context);</span><br><span class="line">        this.swipeRefreshLayout = swipeRefreshLayout;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onScrollChanged(int l, int t, int oldl, int oldt) &#123;</span><br><span class="line">        super.onScrollChanged(l, t, oldl, oldt);</span><br><span class="line">        if (this.getWebScrollY() == 0)&#123;</span><br><span class="line">            swipeRefreshLayout.setEnabled(true);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            swipeRefreshLayout.setEnabled(false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 重写 WebView 的onScrollChagned 方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebView4Scroll</span> <span class="keyword">extends</span> <span class="title">WebView</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SwipeRefreshLayout swipeRefreshLayout;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WebView4Scroll</span><span class="params">(Context context, SwipeRefreshLayout swipeRefreshLayout)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">        <span class="keyword">this</span>.swipeRefreshLayout = swipeRefreshLayout;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onScrollChanged</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> oldl, <span class="keyword">int</span> oldt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onScrollChanged(l, t, oldl, oldt);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.getWebScrollY() == <span class="number">0</span>)&#123;</span><br><span class="line">            swipeRefreshLayout.setEnabled(<span class="keyword">true</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            swipeRefreshLayout.setEnabled(<span class="keyword">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>X5 的 WebView 去除滚动条</p>
-<pre><code>mWebView?.x5WebViewExtension?.setScrollBarFadingEnabled(false)
-</code></pre></li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mWebView?.x5WebViewExtension?.setScrollBarFadingEnabled(<span class="keyword">false</span>)</span><br></pre></td></tr></table></figure></li>
 </ol>
 
           
@@ -1349,7 +1424,7 @@
 </table>
 <h3 id="3-4-常量名"><a href="#3-4-常量名" class="headerlink" title="3.4 常量名"></a>3.4 常量名</h3><p>常量名命名模式为 <code>CONSTANT_CASE</code>，全部字母大写，用下划线分隔单词。那到底什么算是一个常量？</p>
 <p>每个常量都是一个 <code>static final</code> 字段，但不是所有 <code>static final</code> 字段都是常量。在决定一个字段是否是一个常量时，得考虑它是否真的感觉像是一个常量。例如，如果观测任何一个该实例的状态是可变的，则它几乎肯定不会是一个常量。只是永远不打算改变的对象一般是不够的，它要真的一直不变才能将它示为常量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// Constants</span><br><span class="line">static final int NUMBER = 5;</span><br><span class="line">static final ImmutableListNAMES = ImmutableList.of(&quot;Ed&quot;, &quot;Ann&quot;);</span><br><span class="line">static final Joiner COMMA_JOINER = Joiner.on(&apos;,&apos;); // because Joiner is immutable</span><br><span class="line">static final SomeMutableType[] EMPTY_ARRAY = &#123;&#125;;</span><br><span class="line">enum SomeEnum &#123; ENUM_CONSTANT &#125;</span><br><span class="line"></span><br><span class="line">// Not constants</span><br><span class="line">static String nonFinal = &quot;non-final&quot;;</span><br><span class="line">final String nonStatic = &quot;non-static&quot;;</span><br><span class="line">static final SetmutableCollection = new HashSet();</span><br><span class="line">static final ImmutableSetmutableElements = ImmutableSet.of(mutable);</span><br><span class="line">static final Logger logger = Logger.getLogger(MyClass.getName());</span><br><span class="line">static final String[] nonEmptyArray = &#123;&quot;these&quot;, &quot;can&quot;, &quot;change&quot;&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Constants</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUMBER = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableListNAMES = ImmutableList.of(<span class="string">"Ed"</span>, <span class="string">"Ann"</span>);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Joiner COMMA_JOINER = Joiner.on(<span class="string">','</span>); <span class="comment">// because Joiner is immutable</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> SomeMutableType[] EMPTY_ARRAY = &#123;&#125;;</span><br><span class="line"><span class="keyword">enum</span> SomeEnum &#123; ENUM_CONSTANT &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Not constants</span></span><br><span class="line"><span class="keyword">static</span> String nonFinal = <span class="string">"non-final"</span>;</span><br><span class="line"><span class="keyword">final</span> String nonStatic = <span class="string">"non-static"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> SetmutableCollection = <span class="keyword">new</span> HashSet();</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableSetmutableElements = ImmutableSet.of(mutable);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Logger logger = Logger.getLogger(MyClass.getName());</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String[] nonEmptyArray = &#123;<span class="string">"these"</span>, <span class="string">"can"</span>, <span class="string">"change"</span>&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="3-5-非常量字段名"><a href="#3-5-非常量字段名" class="headerlink" title="3.5 非常量字段名"></a>3.5 非常量字段名</h3><p>非常量字段名以 <code>lowerCamelCase</code> 风格的基础上改造为如下风格：基本结构为 <code>scope{Type0}VariableName{Type1}</code>、<code>type0VariableName{Type1}</code>、<code>variableName{Type1}</code>。</p>
 <p>说明：<code>{}</code> 中的内容为可选。</p>
 <blockquote>
@@ -1359,7 +1434,7 @@
 <p>静态字段命名以 s 开头。</p>
 <p>其他字段以小写字母开头。</p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass &#123;</span><br><span class="line">    public int publicField;</span><br><span class="line">    private static MyClass sSingleton;</span><br><span class="line">    int mPackagePrivate;</span><br><span class="line">    private int mPrivate;</span><br><span class="line">    protected int mProtected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> publicField;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MyClass sSingleton;</span><br><span class="line">    <span class="keyword">int</span> mPackagePrivate;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mPrivate;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> mProtected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用 1 个字符前缀来表示作用范围，1 个字符的前缀必须小写，前缀后面是由表意性强的一个单词或多个单词组成的名字，而且每个单词的首写字母大写，其它字母小写，这样保证了对变量名能够进行正确的断句。</p>
 <h4 id="3-5-2-Type0（控件类型）"><a href="#3-5-2-Type0（控件类型）" class="headerlink" title="3.5.2 Type0（控件类型）"></a>3.5.2 Type0（控件类型）</h4><p>考虑到 Android 众多的 UI 控件，为避免控件和普通成员变量混淆以及更好地表达意思，所有用来表示控件的成员变量统一加上控件缩写作为前缀（具体见附录UI 控件缩写表）。</p>
 <p>例如：<code>mIvAvatar</code>、<code>rvBooks</code>、<code>flContainer</code>。</p>
@@ -1413,13 +1488,13 @@
 <li>以类命名方式（<a href="https://www.jianshu.com/p/45c1675bec69#32-%E7%B1%BB%E5%90%8D" target="_blank" rel="noopener"><strong><font color="#69f">参考3.2 类名</font></strong></a>），后面加个大写的 T（如：<code>RequestT</code>, <code>FooBarT</code>）。<br>更多还可参考：<a href="https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E7%BA%AA%E5%BF%B5%E7%89%88%EF%BC%89.pdf" target="_blank" rel="noopener"><strong><font color="#69f">阿里巴巴 Java 开发手册</font></strong></a></li>
 </ol>
 <h2 id="4-代码样式规范"><a href="#4-代码样式规范" class="headerlink" title="4 代码样式规范"></a>4 代码样式规范</h2><h3 id="4-1-使用标准大括号样式"><a href="#4-1-使用标准大括号样式" class="headerlink" title="4.1 使用标准大括号样式"></a>4.1 使用标准大括号样式</h3><p>左大括号不单独占一行，与其前面的代码位于同一行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyClass &#123;</span><br><span class="line">    int func() &#123;</span><br><span class="line">        if (something) &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125; else if (somethingElse) &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (something) &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (somethingElse) &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们需要在条件语句周围添加大括号。例外情况：如果整个条件语句（条件和主体）适合放在同一行，那么您可以（但不是必须）将其全部放在一行上。例如，我们接受以下样式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (condition) &#123;</span><br><span class="line">    body();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    body();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>同样也接受以下样式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (condition) body();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) body();</span><br></pre></td></tr></table></figure>
 <p>但不接受以下样式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (condition)</span><br><span class="line">    body();  // bad!</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition)</span><br><span class="line">    body();  <span class="comment">// bad!</span></span><br></pre></td></tr></table></figure>
 <h3 id="4-2-编写简短方法"><a href="#4-2-编写简短方法" class="headerlink" title="4.2 编写简短方法"></a>4.2 编写简短方法</h3><p>在可行的情况下，尽量编写短小精炼的方法。我们了解，有些情况下较长的方法是恰当的，因此对方法的代码长度没有做出硬性限制。如果某个方法的代码超出 40 行，请考虑是否可以在不破坏程序结构的前提下对其拆解。</p>
 <h3 id="4-3-类成员的顺序"><a href="#4-3-类成员的顺序" class="headerlink" title="4.3 类成员的顺序"></a>4.3 类成员的顺序</h3><p>这并没有唯一的正确解决方案，但如果都使用一致的顺序将会提高代码的可读性，推荐使用如下排序：</p>
 <ol>
@@ -1432,13 +1507,13 @@
 <li>内部类或接口</li>
 </ol>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    private static final String TAG = MainActivity.class.getSimpleName();</span><br><span class="line"></span><br><span class="line">    private String mTitle;</span><br><span class="line">    private TextView mTextViewTitle;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setTitle(String title) &#123;</span><br><span class="line">        mTitle = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void setUpView() &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static class AnInnerClass &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = MainActivity.class.getSimpleName();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String mTitle;</span><br><span class="line">    <span class="keyword">private</span> TextView mTextViewTitle;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTitle</span><span class="params">(String title)</span> </span>&#123;</span><br><span class="line">        mTitle = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setUpView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AnInnerClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果类继承于 <code>Android</code> 组件（例如 <code>Activity</code> 或 <code>Fragment</code>），那么把重写函数按照他们的生命周期进行排序是一个非常好的习惯，例如，<code>Activity</code> 实现了 <code>onCreate()</code>、<code>onDestroy()</code>、<code>onPause()</code>、<code>onResume()</code>，它的正确排序如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line">    //Order matches Activity lifecycle</span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onResume() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onPause() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroy() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="comment">//Order matches Activity lifecycle</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="4-4-函数参数的排序"><a href="#4-4-函数参数的排序" class="headerlink" title="4.4 函数参数的排序"></a>4.4 函数参数的排序</h3><p>在 Android 开发过程中，<code>Context</code> 在函数参数中是再常见不过的了，我们最好把 <code>Context</code> 作为其第一个参数。</p>
 <p>正相反，我们把回调接口应该作为其最后一个参数。</p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Context always goes first</span><br><span class="line">public User loadUser(Context context, int userId);</span><br><span class="line"></span><br><span class="line">// Callbacks always go last</span><br><span class="line">public void loadUserAsync(Context context, int userId, UserCallback callback);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Context always goes first</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">loadUser</span><span class="params">(Context context, <span class="keyword">int</span> userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Callbacks always go last</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadUserAsync</span><span class="params">(Context context, <span class="keyword">int</span> userId, UserCallback callback)</span></span>;</span><br></pre></td></tr></table></figure>
 <h3 id="4-5-字符串常量的命名和值"><a href="#4-5-字符串常量的命名和值" class="headerlink" title="4.5 字符串常量的命名和值"></a>4.5 字符串常量的命名和值</h3><p>Android SDK 中的很多类都用到了键值对函数，比如<code>SharedPreferences</code>、<code>Bundle</code>、<code>Intent</code>，所以，即便是一个小应用，我们最终也不得不编写大量的字符串常量。</p>
 <p>当时用到这些类的时候，我们 必须 将它们的键定义为 <code>static final</code> 字段，并遵循以下指示作为前缀。</p>
 <table>
@@ -1473,13 +1548,13 @@
 </table>
 <p>说明：虽然 Fragment.getArguments() 得到的也是 Bundle ，但因为这是 Bundle 的常用用法，所以特意为此定义一个不同的前缀。</p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 注意：字段的值与名称相同以避免重复问题</span><br><span class="line">static final String PREF_EMAIL = &quot;PREF_EMAIL&quot;;</span><br><span class="line">static final String BUNDLE_AGE = &quot;BUNDLE_AGE&quot;;</span><br><span class="line">static final String ARGUMENT_USER_ID = &quot;ARGUMENT_USER_ID&quot;;</span><br><span class="line"></span><br><span class="line">// 与意图相关的项使用完整的包名作为值的前缀</span><br><span class="line">static final String EXTRA_SURNAME = &quot;com.myapp.extras.EXTRA_SURNAME&quot;;</span><br><span class="line">static final String ACTION_OPEN_USER = &quot;com.myapp.action.ACTION_OPEN_USER&quot;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意：字段的值与名称相同以避免重复问题</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String PREF_EMAIL = <span class="string">"PREF_EMAIL"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String BUNDLE_AGE = <span class="string">"BUNDLE_AGE"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String ARGUMENT_USER_ID = <span class="string">"ARGUMENT_USER_ID"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与意图相关的项使用完整的包名作为值的前缀</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_SURNAME = <span class="string">"com.myapp.extras.EXTRA_SURNAME"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String ACTION_OPEN_USER = <span class="string">"com.myapp.action.ACTION_OPEN_USER"</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="4-6-Activities-和-Fragments-的传参"><a href="#4-6-Activities-和-Fragments-的传参" class="headerlink" title="4.6 Activities 和 Fragments 的传参"></a>4.6 Activities 和 Fragments 的传参</h3><p>当 <code>Activity</code> 或 <code>Fragment</code> 传递数据通过 <code>Intent</code> 或 <code>Bundle</code> 时，不同值的键须遵循上一条所提及到的。</p>
 <p>当 <code>Activity</code> 或 <code>Fragment</code> 启动需要传递参数时，那么它需要提供一个 <code>public static</code> 的函数来帮助启动或创建它。</p>
 <p>这方面，AS 已帮你写好了相关的 Live Templates，启动相关 <code>Activity</code> 的只需要在其内部输入 <code>starter</code> 即可生成它的启动器，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void start(Context context, User user) &#123;</span><br><span class="line">      Intent starter = new Intent(context, MainActivity.class);</span><br><span class="line">      starter.putParcelableExtra(EXTRA_USER, user);</span><br><span class="line">      context.startActivity(starter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Context context, User user)</span> </span>&#123;</span><br><span class="line">      Intent starter = <span class="keyword">new</span> Intent(context, MainActivity.class);</span><br><span class="line">      starter.putParcelableExtra(EXTRA_USER, user);</span><br><span class="line">      context.startActivity(starter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>同理，启动相关 <code>Fragment</code> 在其内部输入 <code>newInstance</code> 即可，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static MainFragment newInstance(User user) &#123;</span><br><span class="line">      Bundle args = new Bundle();</span><br><span class="line">      args.putParcelable(ARGUMENT_USER, user);</span><br><span class="line">      MainFragment fragment = new MainFragment();</span><br><span class="line">      fragment.setArguments(args);</span><br><span class="line">      return fragment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MainFragment <span class="title">newInstance</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">      Bundle args = <span class="keyword">new</span> Bundle();</span><br><span class="line">      args.putParcelable(ARGUMENT_USER, user);</span><br><span class="line">      MainFragment fragment = <span class="keyword">new</span> MainFragment();</span><br><span class="line">      fragment.setArguments(args);</span><br><span class="line">      <span class="keyword">return</span> fragment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：这些函数需要放在 onCreate() 之前的类的顶部；如果我们使用了这种方式，那么 extras 和 arguments 的键应该是 private 的，因为它们不再需要暴露给其他类来使用。</p>
 </blockquote>
@@ -1495,36 +1570,29 @@
 </ul>
 <h4 id="4-7-1-换行策略"><a href="#4-7-1-换行策略" class="headerlink" title="4.7.1 换行策略"></a>4.7.1 换行策略</h4><p>这没有一个准确的解决方案来决定如何换行，通常不同的解决方案都是有效的，但是有一些规则可以应用于常见的情况。</p>
 <h5 id="4-7-1-1-操作符的换行"><a href="#4-7-1-1-操作符的换行" class="headerlink" title="4.7.1.1 操作符的换行"></a>4.7.1.1 操作符的换行</h5><p>除赋值操作符之外，我们把换行符放在操作符之前，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int longName = anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne</span><br><span class="line">        + theFinalOne;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> longName = anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne</span><br><span class="line">        + theFinalOne;</span><br></pre></td></tr></table></figure>
 <p>赋值操作符的换行我们放在其后，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int longName =</span><br><span class="line">        anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne + theFinalOne;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> longName =</span><br><span class="line">        anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne + theFinalOne;</span><br></pre></td></tr></table></figure>
 <h5 id="4-7-1-2-函数链的换行"><a href="#4-7-1-2-函数链的换行" class="headerlink" title="4.7.1.2 函数链的换行"></a>4.7.1.2 函数链的换行</h5><p>当同一行中调用多个函数时（比如使用构建器时），对每个函数的调用应该在新的一行中，我们把换行符插入在 <code>.</code> 之前。</p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(&quot;https://blankj.com/images/avatar.jpg&quot;).into(ivAvatar);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context).load(<span class="string">"https://blankj.com/images/avatar.jpg"</span>).into(ivAvatar);</span><br></pre></td></tr></table></figure>
 <p>我们应该使用如下规则：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">        .load(&quot;https://blankj.com/images/avatar.jpg&quot;)</span><br><span class="line">        .into(ivAvatar);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">        .load(<span class="string">"https://blankj.com/images/avatar.jpg"</span>)</span><br><span class="line">        .into(ivAvatar);</span><br></pre></td></tr></table></figure>
 <h5 id="4-7-1-3-多参数的换行"><a href="#4-7-1-3-多参数的换行" class="headerlink" title="4.7.1.3 多参数的换行"></a>4.7.1.3 多参数的换行</h5><p>当一个方法有很多参数或者参数很长的时候，我们应该在每个 , 后面进行换行。</p>
 <p>比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadPicture(context, &quot;https://blankj.com/images/avatar.jpg&quot;, ivAvatar, &quot;Avatar of the user&quot;, clickListener);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadPicture(context, <span class="string">"https://blankj.com/images/avatar.jpg"</span>, ivAvatar, <span class="string">"Avatar of the user"</span>, clickListener);</span><br></pre></td></tr></table></figure>
 <p>我们应该使用如下规则：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">loadPicture(context,</span><br><span class="line">        &quot;https://blankj.com/images/avatar.jpg&quot;,</span><br><span class="line">        ivAvatar,</span><br><span class="line">        &quot;Avatar of the user&quot;,</span><br><span class="line">        clickListener);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">loadPicture(context,</span><br><span class="line">        <span class="string">"https://blankj.com/images/avatar.jpg"</span>,</span><br><span class="line">        ivAvatar,</span><br><span class="line">        <span class="string">"Avatar of the user"</span>,</span><br><span class="line">        clickListener);</span><br></pre></td></tr></table></figure>
 <h6 id="4-7-1-4-RxJava-链式的换行"><a href="#4-7-1-4-RxJava-链式的换行" class="headerlink" title="4.7.1.4 RxJava 链式的换行"></a>4.7.1.4 RxJava 链式的换行</h6><p>RxJava 的每个操作符都需要换新行，并且把换行符插入在 . 之前。</p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public Observable&lt;Location&gt; syncLocations() &#123;</span><br><span class="line">    return mDatabaseHelper.getAllLocations()</span><br><span class="line">            .concatMap(new Func1&lt;Location, Observable&lt;? extends Location&gt;&gt;() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                 public Observable&lt;? extends Location&gt; call(Location location) &#123;</span><br><span class="line">                     return mRetrofitService.getLocation(location.id);</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            .retry(new Func2&lt;Integer, Throwable, Boolean&gt;() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public Boolean call(Integer numRetries, Throwable throwable) &#123;</span><br><span class="line">                     return throwable instanceof RetrofitError;</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Observable&lt;Location&gt; <span class="title">syncLocations</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mDatabaseHelper.getAllLocations()</span><br><span class="line">            .concatMap(<span class="keyword">new</span> Func1&lt;Location, Observable&lt;? extends Location&gt;&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                 <span class="keyword">public</span> Observable&lt;? extends Location&gt; call(Location location) &#123;</span><br><span class="line">                     <span class="keyword">return</span> mRetrofitService.getLocation(location.id);</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            .retry(<span class="keyword">new</span> Func2&lt;Integer, Throwable, Boolean&gt;() &#123;</span><br><span class="line">                 <span class="meta">@Override</span></span><br><span class="line">                 <span class="function"><span class="keyword">public</span> Boolean <span class="title">call</span><span class="params">(Integer numRetries, Throwable throwable)</span> </span>&#123;</span><br><span class="line">                     <span class="keyword">return</span> throwable <span class="keyword">instanceof</span> RetrofitError;</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="5-资源文件规范"><a href="#5-资源文件规范" class="headerlink" title="5 资源文件规范"></a>5 资源文件规范</h2><p>资源文件命名为全部小写，采用下划线命名法。</p>
 <p>如果想对资源文件进行分包可以参考我这篇文章：<a href="https://blankj.com/2016/09/21/android-studio-classify-src-package/" target="_blank" rel="noopener"><strong><font color="#69f">Android Studio 下对资源进行分包</font></strong></a>。</p>
 <p><img src="https://blankj.com/2016/09/21/android-studio-classify-src-package/classify_dir.png" alt=""></p>
 <p>从图中可以看出新增了 <code>res_core</code> 和 <code>res_sub</code> 两个资源包，这样我们可以对每个模块的资源都进行具体分类，是不是心动了，赶紧照着如下配置试一试吧，别再让资源文件们“混为一潭”了。</p>
 <p>方法很简单，配置我们的app文件夹下的 <code>build.gradle</code> 文件，比如</p>
-<pre><code>android {
-    ...
-    sourceSets {
-        main {
-            res.srcDirs(&apos;src/main/res&apos;, &apos;src/main/res_core&apos;, &apos;src/main/res_sub&apos;)
-        }
-    }
-}
-</code></pre><p>配置完之后，sync project 一下就成功了。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    ...</span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            res.srcDirs(<span class="string">'src/main/res'</span>, <span class="string">'src/main/res_core'</span>, <span class="string">'src/main/res_sub'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置完之后，sync project 一下就成功了。</p>
 <h3 id="5-1-动画资源文件（anim-和-animator-）"><a href="#5-1-动画资源文件（anim-和-animator-）" class="headerlink" title="5.1 动画资源文件（anim/ 和 animator/）"></a>5.1 动画资源文件（anim/ 和 animator/）</h3><p>安卓主要包含属性动画和视图动画，其视图动画包括补间动画和逐帧动画。属性动画文件需要放在 <code>res/animator/</code> 目录下，视图动画文件需放在 <code>res/anim/</code> 目录下。</p>
 <p>命名规则：<code>{模块名_}逻辑名称</code>。</p>
 <p>说明：<code>{}</code> 中的内容为可选，逻辑名称 可由多个单词加下划线组成。</p>
@@ -1765,16 +1833,16 @@
 <h3 id="5-6-values-资源文件（values-）"><a href="#5-6-values-资源文件（values-）" class="headerlink" title="5.6 values 资源文件（values/）"></a>5.6 values 资源文件（values/）</h3><p><code>values/</code> 资源文件下的文件都以 <code>s</code> 结尾，如 <code>attrs.xml</code>、<code>colors.xml</code>、<code>dimens.xml</code>，起作用的不是文件名称，而是 <code>&lt;resources&gt;</code> 标签下的各种标签，比如 <code>&lt;style&gt;</code> 决定样式，<code>&lt;color&gt;</code> 决定颜色，所以，可以把一个大的 <code>xml</code> 文件分割成多个小的文件，比如可以有多个 <code>style</code> 文件，如 <code>styles.xml</code>、<code>styles_home.xml</code>、<code>styles_item_details.xml</code>、<code>styles_forms.xml</code>。</p>
 <h4 id="5-6-1-colors-xml"><a href="#5-6-1-colors-xml" class="headerlink" title="5.6.1 colors.xml"></a>5.6.1 colors.xml</h4><p><code>&lt;color&gt;</code> 的 <code>name</code> 命名使用下划线命名法，在你的 <code>colors.xml</code> 文件中应该只是映射颜色的名称一个 ARGB 值，而没有其它的。不要使用它为不同的按钮来定义 ARGB 值。</p>
 <p>例如，不要像下面这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">  &lt;color name=&quot;button_foreground&quot;&gt;#FFFFFF&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;button_background&quot;&gt;#2A91BD&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;comment_background_inactive&quot;&gt;#5F5F5F&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;comment_background_active&quot;&gt;#939393&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;comment_foreground&quot;&gt;#FFFFFF&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;comment_foreground_important&quot;&gt;#FF9D2F&lt;/color&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;color name=&quot;comment_shadow&quot;&gt;#323232&lt;/color&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"button_foreground"</span>&gt;</span>#FFFFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"button_background"</span>&gt;</span>#2A91BD<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_background_inactive"</span>&gt;</span>#5F5F5F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_background_active"</span>&gt;</span>#939393<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_foreground"</span>&gt;</span>#FFFFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_foreground_important"</span>&gt;</span>#FF9D2F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_shadow"</span>&gt;</span>#323232<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>使用这种格式，会非常容易重复定义 ARGB 值，而且如果应用要改变基色的话会非常困难。同时，这些定义是跟一些环境关联起来的，如 <code>button</code> 或者 <code>comment</code>，应该放到一个按钮风格中，而不是在 <code>colors.xml</code> 文件中。</p>
 <p>相反，应该这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- grayscale --&gt;</span><br><span class="line">  &lt;color name=&quot;white&quot;     &gt;#FFFFFF&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;gray_light&quot;&gt;#DBDBDB&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;gray&quot;      &gt;#939393&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;gray_dark&quot; &gt;#5F5F5F&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;black&quot;     &gt;#323232&lt;/color&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- basic colors --&gt;</span><br><span class="line">  &lt;color name=&quot;green&quot;&gt;#27D34D&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;blue&quot;&gt;#2A91BD&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;orange&quot;&gt;#FF9D2F&lt;/color&gt;</span><br><span class="line">  &lt;color name=&quot;red&quot;&gt;#FF432F&lt;/color&gt;</span><br><span class="line"></span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">&lt;!-- grayscale --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"white"</span>     &gt;</span>#FFFFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"gray_light"</span>&gt;</span>#DBDBDB<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"gray"</span>      &gt;</span>#939393<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"gray_dark"</span> &gt;</span>#5F5F5F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"black"</span>     &gt;</span>#323232<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- basic colors --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"green"</span>&gt;</span>#27D34D<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"blue"</span>&gt;</span>#2A91BD<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"orange"</span>&gt;</span>#FF9D2F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"red"</span>&gt;</span>#FF432F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>向应用设计者那里要这个调色板，名称不需要跟 <code>&quot;green&quot;</code>、<code>&quot;blue&quot;</code> 等等相同。<code>&quot;brand_primary&quot;</code>、<code>&quot;brand_secondary&quot;</code>、<code>&quot;brand_negative&quot;</code> 这样的名字也是完全可以接受的。像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。通常一个具有审美价值的 UI 来说，减少使用颜色的种类是非常重要的。</p>
 <blockquote>
 <p>注意：如果某些颜色和主题有关，那就单独写一个 colors_theme.xml。</p>
 </blockquote>
 <h4 id="5-6-2-dimens-xml"><a href="#5-6-2-dimens-xml" class="headerlink" title="5.6.2 dimens.xml"></a>5.6.2 dimens.xml</h4><p>像对待 <code>colors.xml</code> 一样对待 <code>dimens.xml</code> 文件，与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- font sizes --&gt;</span><br><span class="line">    &lt;dimen name=&quot;font_22&quot;&gt;22sp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;font_18&quot;&gt;18sp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;font_15&quot;&gt;15sp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;font_12&quot;&gt;12sp&lt;/dimen&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- typical spacing between two views --&gt;</span><br><span class="line">    &lt;dimen name=&quot;spacing_40&quot;&gt;40dp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;spacing_24&quot;&gt;24dp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;spacing_14&quot;&gt;14dp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;spacing_10&quot;&gt;10dp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;spacing_4&quot;&gt;4dp&lt;/dimen&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- typical sizes of views --&gt;</span><br><span class="line">    &lt;dimen name=&quot;button_height_60&quot;&gt;60dp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;button_height_40&quot;&gt;40dp&lt;/dimen&gt;</span><br><span class="line">    &lt;dimen name=&quot;button_height_32&quot;&gt;32dp&lt;/dimen&gt;</span><br><span class="line"></span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- font sizes --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_22"</span>&gt;</span>22sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_18"</span>&gt;</span>18sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_15"</span>&gt;</span>15sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_12"</span>&gt;</span>12sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- typical spacing between two views --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_40"</span>&gt;</span>40dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_24"</span>&gt;</span>24dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_14"</span>&gt;</span>14dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_10"</span>&gt;</span>10dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_4"</span>&gt;</span>4dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- typical sizes of views --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"button_height_60"</span>&gt;</span>60dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"button_height_40"</span>&gt;</span>40dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"button_height_32"</span>&gt;</span>32dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>布局时在写 <code>margins</code> 和 <code>paddings</code> 时，你应该使用 <code>spacing_xx</code> 尺寸格式来布局，而不是像对待 <code>string</code> 字符串一样直接写值，像这样规范的尺寸很容易修改或重构，会使应用所有用到的尺寸一目了然。 这样写会非常有感觉，会使组织和改变风格或布局非常容易。</p>
 <h4 id="5-6-3-strings-xml"><a href="#5-6-3-strings-xml" class="headerlink" title="5.6.3 strings.xml"></a>5.6.3 strings.xml</h4><p><code>&lt;string&gt;</code> 的 <code>name</code> 命名使用下划线命名法，采用以下规则：<code>{模块名_}逻辑名称</code>，这样方便同一个界面的所有 <code>string</code> 都放到一起，方便查找。</p>
 <table>
@@ -1816,18 +1884,9 @@
 </tbody>
 </table>
 <h4 id="5-6-4-styles-xml"><a href="#5-6-4-styles-xml" class="headerlink" title="5.6.4 styles.xml"></a>5.6.4 styles.xml</h4><p><code>&lt;style&gt;</code> 的 <code>name</code> 命名使用大驼峰命名法，几乎每个项目都需要适当的使用 <code>styles.xml</code> 文件，因为对于一个视图来说，有一个重复的外观是很常见的，将所有的外观细节属性（<code>colors</code>、<code>padding</code>、<code>font</code>）放在 <code>styles.xml</code> 文件中。 在应用中对于大多数文本内容，最起码你应该有一个通用的 <code>styles.xml</code> 文件，例如：</p>
-<pre><code>&lt;style name=&quot;ContentText&quot;&gt;
-    &lt;item name=&quot;android:textSize&quot;&gt;@dimen/font_normal&lt;/item&gt;
-    &lt;item name=&quot;android:textColor&quot;&gt;@color/basic_black&lt;/item&gt;
-&lt;/style&gt;
-</code></pre><p>应用到 TextView 中：</p>
-<pre><code>&lt;TextView
-    android:layout_width=&quot;wrap_content&quot;
-    android:layout_height=&quot;wrap_content&quot;
-    android:text=&quot;@string/price&quot;
-    style=&quot;@style/ContentText&quot;
-    /&gt;
-</code></pre><p>或许你需要为按钮控件做同样的事情，不要停止在那里，将一组相关的和重复 <code>android:xxxx</code> 的属性放到一个通用的 <code>&lt;style&gt;</code> 中。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ContentText"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textSize"</span>&gt;</span>@dimen/font_normal<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textColor"</span>&gt;</span>@color/basic_black<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>应用到 TextView 中：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"@string/price"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">style</span>=<span class="string">"@style/ContentText"</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>或许你需要为按钮控件做同样的事情，不要停止在那里，将一组相关的和重复 <code>android:xxxx</code> 的属性放到一个通用的 <code>&lt;style&gt;</code> 中。</p>
 <h3 id="5-7-id-命名"><a href="#5-7-id-命名" class="headerlink" title="5.7 id 命名"></a>5.7 id 命名</h3><p>命名规则：<code>view缩写{_模块名}_逻辑名</code>，例如： <code>btn_main_search</code>、<code>btn_back</code>。</p>
 <p>如果在项目中有用黄油刀的话，使用 AS 的插件：ButterKnife Zelezny，可以非常方便帮助你生成注解；没用黄油刀的话可以使用 Android Code Generator 插件。</p>
 <h2 id="6-版本统一规范"><a href="#6-版本统一规范" class="headerlink" title="6 版本统一规范"></a>6 版本统一规范</h2><p>Android 开发存在着众多版本的不同，比如 <code>compileSdkVersion</code>、<code>minSdkVersion</code>、<code>targetSdkVersion</code> 以及项目中依赖第三方库的版本，不同的 module 及不同的开发人员都有不同的版本，所以需要一个统一版本规范的文件。</p>
@@ -1849,44 +1908,13 @@
 </ul>
 <h2 id="8-注释规范"><a href="#8-注释规范" class="headerlink" title="8 注释规范"></a>8 注释规范</h2><p>为了减少他人阅读你代码的痛苦值，请在关键地方做好注释。</p>
 <h3 id="8-1-类注释"><a href="#8-1-类注释" class="headerlink" title="8.1 类注释"></a>8.1 类注释</h3><p>每个类完成后应该有作者姓名和联系方式的注释，对自己的代码负责。</p>
-<pre><code>/**
- * &lt;pre&gt;
- *     author : Blankj
- *     e-mail : xxx@xx
- *     time   : 2017/03/07
- *     desc   : xxxx 描述
- *     version: 1.0
- * &lt;/pre&gt;
- */
-public class WelcomeActivity {
-    ...
-}
-</code></pre><p>具体可以在 AS 中自己配制，进入 Settings -&gt; Editor -&gt; File and Code Templates -&gt; Includes -&gt; File Header，输入</p>
-<pre><code>/**
- * &lt;pre&gt;
- *     author : ${USER}
- *     e-mail : xxx@xx
- *     time   : ${YEAR}/${MONTH}/${DAY}
- *     desc   :
- *     version: 1.0
- * &lt;/pre&gt;
- */
-</code></pre><p>这样便可在每次新建类的时候自动加上该头注释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     author : Blankj</span></span><br><span class="line"><span class="comment"> *     e-mail : xxx@xx</span></span><br><span class="line"><span class="comment"> *     time   : 2017/03/07</span></span><br><span class="line"><span class="comment"> *     desc   : xxxx 描述</span></span><br><span class="line"><span class="comment"> *     version: 1.0</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WelcomeActivity</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体可以在 AS 中自己配制，进入 Settings -&gt; Editor -&gt; File and Code Templates -&gt; Includes -&gt; File Header，输入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     author : $&#123;USER&#125;</span></span><br><span class="line"><span class="comment"> *     e-mail : xxx@xx</span></span><br><span class="line"><span class="comment"> *     time   : $&#123;YEAR&#125;/$&#123;MONTH&#125;/$&#123;DAY&#125;</span></span><br><span class="line"><span class="comment"> *     desc   :</span></span><br><span class="line"><span class="comment"> *     version: 1.0</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>这样便可在每次新建类的时候自动加上该头注释。</p>
 <h3 id="8-2-方法注释"><a href="#8-2-方法注释" class="headerlink" title="8.2 方法注释"></a>8.2 方法注释</h3><p>每一个成员方法（包括自定义成员方法、覆盖方法、属性方法）的方法头都必须做方法头注释，在方法前一行输入 <code>/** + 回车</code> 或者设置 <code>Fix doc comment</code>（Settings -&gt; Keymap -&gt; Fix doc comment）快捷键，AS 便会帮你生成模板，我们只需要补全参数即可，如下所示。</p>
-<pre><code>/**
- * bitmap 转 byteArr
- *
- * @param bitmap bitmap 对象
- * @param format 格式
- * @return 字节数组
- */
-public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
-    if (bitmap == null) return null;
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    bitmap.compress(format, 100, baos);
-    return baos.toByteArray();
-}
-</code></pre><h3 id="8-3-块注释"><a href="#8-3-块注释" class="headerlink" title="8.3 块注释"></a>8.3 块注释</h3><p>块注释与其周围的代码在同一缩进级别。它们可以是 <code>/* ... */</code> 风格，也可以是 <code>// ...</code> 风格（<code>//</code>后最好带一个空格）。对于多行的 <code>/* ... */</code> 注释，后续行必须从 <code>*</code> 开始， 并且与前一行的 <code>*</code> 对齐。以下示例注释都是 OK 的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * bitmap 转 byteArr</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> bitmap bitmap 对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> format 格式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 字节数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) &#123;</span><br><span class="line">    <span class="keyword">if</span> (bitmap == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">    bitmap.compress(format, <span class="number">100</span>, baos);</span><br><span class="line">    <span class="keyword">return</span> baos.toByteArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-块注释"><a href="#8-3-块注释" class="headerlink" title="8.3 块注释"></a>8.3 块注释</h3><p>块注释与其周围的代码在同一缩进级别。它们可以是 <code>/* ... */</code> 风格，也可以是 <code>// ...</code> 风格（<code>//</code>后最好带一个空格）。对于多行的 <code>/* ... */</code> 注释，后续行必须从 <code>*</code> 开始， 并且与前一行的 <code>*</code> 对齐。以下示例注释都是 OK 的。</p>
 <pre><code>/*
  * This is
  * okay.
@@ -1941,27 +1969,20 @@ public static byte[] bitmap2Bytes(Bitmap bitmap, CompressFormat format) {
 <li><p>及时关闭流；</p>
 </li>
 <li><p>尽量减少对变量的重复计算；</p>
+</li>
+</ol>
 <p>如下面的操作：</p>
-<pre><code>for (int i = 0; i &lt; list.size(); i++) {
-      ...
-}
-</code></pre><p>建议替换为：</p>
-<pre><code>for (int i = 0, len = list.size(); i &lt; len; i++) {
-      ...
-}
-</code></pre></li>
-<li><p>尽量采用懒加载的策略，即在需要的时候才创建；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建议替换为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, len = list.size(); i &lt; len; i++) &#123;</span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>尽量采用懒加载的策略，即在需要的时候才创建；</li>
+</ol>
 <p>例如：</p>
-<pre><code>String str = &quot;aaa&quot;;
-if (i == 1) {
-      list.add(str);
-}
-</code></pre><p>建议替换为：</p>
-<pre><code>if (i == 1) {
-      String str = &quot;aaa&quot;;
-      list.add(str);
-}
-</code></pre></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"aaa"</span>;</span><br><span class="line"><span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">      list.add(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建议替换为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">      String str = <span class="string">"aaa"</span>;</span><br><span class="line">      list.add(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
 <li><p>不要在循环中使用 <code>try…catch…</code>，应该把其放在最外层；</p>
 </li>
 <li><p>使用带缓冲的输入输出流进行 IO 操作；</p>

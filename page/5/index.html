@@ -1521,6 +1521,244 @@ vp_main.setOffscreenPageLimit(4);
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java28-反射机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java28-反射机制/" itemprop="url">Java28-反射机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">一、什么是反射机制</span><br><span class="line">        简单的来说，反射机制指的是程序在运行时能够获取自身的信息。在java中，只要给定类的名字， 那么就可以通过反射机制来获得类的所有信息。</span><br><span class="line">  </span><br><span class="line">二、哪里用到反射机制</span><br><span class="line">        有些时候，我们用过一些知识，但是并不知道它的专业术语是什么，在刚刚学jdbc时用过一行代码， Class.forName(&quot;com.mysql.jdbc.Driver.class&quot;).newInstance();但是那时候只知道那行代码是生成驱动对象实例，并不知道它的具体含义。听了反射机制这节课后，才知道，原来这就是反射，现在很多开框架都用到反射机制，hibernate、struts都是用反射机制实现的。</span><br><span class="line"></span><br><span class="line">三、反射机制的优点与缺点</span><br><span class="line">        为什么要用反射机制？直接创建对象不就可以了吗，这就涉及到了动态与静态的概念，</span><br><span class="line">  ●  静态编译：在编译时确定类型，绑定对象,即通过。  </span><br><span class="line">  ●  动态编译：运行时确定类型，绑定对象。动态编译最大限度发挥了java的灵活性，体现了多态的应用，有以降低类之间的藕合性。  </span><br><span class="line">        一句话，反射机制的优点就是可以实现动态创建对象和编译，体现出很大的灵活性，特别是在J2EE的开发中它的灵活性就表现的十分明显。比如，一个大型的软件，不可能一次就把把它设计的很完美，当这个程序编译后，发布了，当发现需要更新某些功能时，我们不可能要用户把以前的卸载，再重新安装新的版本，假如这样的话，这个软件肯定是没有多少人用的。采用静态的话，需要把整个程序重新编译一次才可以实现功能的更新，而采用反射机制的话，它就可以不用卸载，只需要在运行时才动态的创建和编译，就可以实现该功能。</span><br><span class="line">       它的缺点是对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满足我们的要求。这类操作总是慢于只直接执行相同的操作。</span><br><span class="line"></span><br><span class="line">四、利用反射机制能获得什么信息</span><br><span class="line">       一句话，类中有什么信息，它就可以获得什么信息，不过前提是得知道类的名字，要不就没有后文了,首先得根据传入的类的全名来创建Class对象。  </span><br><span class="line">        Class c=Class.forName(&quot;className&quot;);          //注明：className必须为全名，也就是得包含包名，比如，com.jimmy.UserInfo;</span><br><span class="line">        Object obj=c.newInstance();                        //创建对象的实例</span><br><span class="line">  </span><br><span class="line">        以下所有的方法全部通过class调用</span><br><span class="line"></span><br><span class="line">    1、获得构造函数的方法  </span><br><span class="line">         Constructor getConstructor(Class[] params)                            //根据指定参数获得public构造器</span><br><span class="line">         Constructor[] getConstructors()                                                //获得public的所有构造器</span><br><span class="line">         Constructor getDeclaredConstructor(Class[] params)             //根据指定参数获得public和非public的构造器</span><br><span class="line">         Constructor[] getDeclaredConstructors()                                 //获得public和非public的所有构造器 </span><br><span class="line"></span><br><span class="line">     2、获得类方法的方法  </span><br><span class="line">         Method getMethod(String name, Class[] params)    //根据方法名，参数类型获得方法</span><br><span class="line">         Method[] getMethods()                                              //获得所有的public方法 </span><br><span class="line">         Method getDeclaredMethod(String name, Class[] params)        //根据方法名和参数类型，获得public和非public的方法</span><br><span class="line">         Method[] getDeclaredMethods()                                                  //获得所以的public和非public方法</span><br><span class="line">   </span><br><span class="line">    3、 获得类中属性的方法</span><br><span class="line">        Field getField(String name)                    //根据变量名得到相应的public变量</span><br><span class="line">        Field[] getFields()                                    //获得类中所以public的变量的方法</span><br><span class="line">        Field getDeclaredField(String name)    //根据方法名获得public和非public变量</span><br><span class="line">        Field[] getDeclaredFields()                    //获得类中所有的public和非public方法 </span><br><span class="line"></span><br><span class="line">注意：一般使用框架用到反射，对默认的架构不满意，重新搭建新的架构</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java27-数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JamesWong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JamesWong's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/16/Java27-数据库/" itemprop="url">Java27-数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">TABLE_NAME 常用指令：</span><br><span class="line">    .help    帮助</span><br><span class="line">    .exit     退出</span><br><span class="line">    .tables    查看表名称</span><br><span class="line">    .schema ***    查看指定表内容</span><br><span class="line">  .headers on    显示列明</span><br><span class="line">  .mode column   左侧居中，调整格式</span><br><span class="line">  .width 10,20,30    调整列之间的距离</span><br><span class="line"></span><br><span class="line">    alter table 表 rename to 表new;    修改表名</span><br><span class="line">    drop table database_name.table_name;    删除表</span><br><span class="line">    insert into 表(列名2,列名3,列名4...) values (属性2,属性3,属性4...)    给表赋值</span><br><span class="line">    insert into 表 values(属性1,属性2,属性3,属性4...)</span><br><span class="line">    select 列1,列2,...或者* from 表    查询</span><br><span class="line">  delete from TABLE where ID=1;    删除行</span><br><span class="line">  update TABLE set 列名=值,列名=值 where 条件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    strftime(&apos;格式&apos;,列名)    重定义时间格式</span><br><span class="line">    列名 as 列名new    临时名称</span><br><span class="line">    表1||&apos;我是小三&apos;||表2    拼接表</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    INTEGER、REAL、TEXT、BLOB、NULL</span><br><span class="line">    primary key（_id integer primary key autoincrement not null） 主键（autoincrement 自增长）</span><br><span class="line">    not null    非空</span><br><span class="line">    unique    唯一</span><br><span class="line">    check    检测    check sex=&apos;man&apos; or sex=&apos;woman&apos;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">运算符 描述</span><br><span class="line">AND AND 运算符允许在一个 SQL 语句的 WHERE 子句中的多个条件的存在。</span><br><span class="line">BETWEEN BETWEEN 运算符用于在给定最小值和最大值范围内的一系列值中搜索值。</span><br><span class="line">EXISTS EXISTS 运算符用于在满足一定条件的指定表中搜索行的存在。</span><br><span class="line">IN IN 运算符用于把某个值与一系列指定列表的值进行比较。</span><br><span class="line">NOT IN IN 运算符的对立面，用于把某个值与不在一系列指定列表的值进行比较。</span><br><span class="line">LIKE LIKE 运算符用于把某个值与使用通配符运算符的相似值进行比较。</span><br><span class="line">GLOB GLOB 运算符用于把某个值与使用通配符运算符的相似值进行比较。GLOB 与 LIKE 不同之处在于，它是大小写敏感的。</span><br><span class="line">NOT NOT 运算符是所用的逻辑运算符的对立面。比如 NOT EXISTS、NOT BETWEEN、NOT IN，等等。它是否定运算符。</span><br><span class="line">OR OR 运算符用于结合一个 SQL 语句的 WHERE 子句中的多个条件。</span><br><span class="line">IS NULL NULL 运算符用于把某个值与 NULL 值进行比较。</span><br><span class="line">IS IS 运算符与 = 相似。</span><br><span class="line">IS NOT IS NOT 运算符与 != 相似。</span><br><span class="line">|| 连接两个不同的字符串，得到一个新的字符串。</span><br><span class="line">UNIQUE UNIQUE 运算符搜索指定表中的每一行，确保唯一性（无重复）。</span><br><span class="line">LIKE 是大小不敏感</span><br><span class="line">下面一些实例演示了 带有 &apos;%&apos; 和 &apos;_&apos; 运算符的 LIKE 子句不同的地方：</span><br><span class="line">语句 描述</span><br><span class="line">WHERE SALARY LIKE &apos;200%&apos; 查找以 200 开头的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;%200%&apos; 查找任意位置包含 200 的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;_00%&apos; 查找第二位和第三位为 00 的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;2_%_%&apos; 查找以 2 开头，且长度至少为 3 个字符的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;%2&apos; 查找以 2 结尾的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;_2%3&apos; 查找第二位为 2，且以 3 结尾的任意值</span><br><span class="line">WHERE SALARY LIKE &apos;2___3&apos; 查找长度为 5 位数，且以 2 开头以 3 结尾的任意值</span><br><span class="line">GLOB 是大小写敏感</span><br><span class="line">下面一些实例演示了 带有 &apos;*&apos; 和 &apos;?&apos; 运算符的 GLOB 子句不同的地方：</span><br><span class="line">语句 描述</span><br><span class="line">WHERE SALARY GLOB &apos;200*&apos; 查找以 200 开头的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;*200*&apos; 查找任意位置包含 200 的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;?00*&apos; 查找第二位和第三位为 00 的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;2??&apos; 查找以 2 开头，且长度至少为 3 个字符的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;*2&apos; 查找以 2 结尾的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;?2*3&apos; 查找第二位为 2，且以 3 结尾的任意值</span><br><span class="line">WHERE SALARY GLOB &apos;2???3&apos; 查找长度为 5 位数，且以 2 开头以 3 结尾的任意值</span><br><span class="line">SQLite Limit 子句</span><br><span class="line">SQLite 的 LIMIT 子句用于限制由 SELECT 语句返回的数据数量。</span><br><span class="line">带有 LIMIT 子句的 SELECT 语句的基本语法如下：</span><br><span class="line">SELECT column1, column2, columnN </span><br><span class="line">FROM table_name</span><br><span class="line">LIMIT [no of rows]</span><br><span class="line">下面是 LIMIT 子句与 OFFSET 子句一起使用时的语法：</span><br><span class="line">SELECT column1, column2, columnN </span><br><span class="line">FROM table_name</span><br><span class="line">LIMIT [no of rows] OFFSET [row num]</span><br><span class="line"></span><br><span class="line">SQLite Order By</span><br><span class="line">SQLite 的 ORDER BY 子句是用来基于一个或多个列按升序或降序顺序排列数据。</span><br><span class="line">ORDER BY 子句的基本语法如下：</span><br><span class="line">SELECT column-list </span><br><span class="line">FROM table_name </span><br><span class="line">[WHERE condition][ORDER BY column1, column2,.. columnN][ASC | DESC];</span><br><span class="line">SQLite Group By</span><br><span class="line">SQLite 的 GROUP BY 子句用于与 SELECT 语句一起使用，来对相同的数据进行分组。</span><br><span class="line">在 SELECT 语句中，GROUP BY 子句放在 WHERE 子句之后，放在 ORDER BY 子句之前。</span><br><span class="line">下面给出了 GROUP BY 子句的基本语法。GROUP BY 子句必须放在 WHERE 子句中的条件之后，必须放在 ORDER BY 子句之前。</span><br><span class="line">SELECT column-list</span><br><span class="line">FROM table_name</span><br><span class="line">WHERE [ conditions ]</span><br><span class="line">GROUP BY column1, column2....columnN</span><br><span class="line">ORDER BY column1, column2....columnN</span><br><span class="line">您可以在 GROUP BY 子句中使用多个列。确保您使用的分组列在列清单中。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">一、简介</span><br><span class="line">    存储数据的仓库，将一些数据通过数据库结构化的规则进行存储。</span><br><span class="line">    常用的一些数据库的存储：sqlite、oracle、MySQL、SQLDB、DB2。。。包括其他的数据库</span><br><span class="line">    sqlite是Oracle的一个子产品：sqlite是一个轻量级的数据库（sqlite数据库是以文件的方式进行存储）</span><br><span class="line">二、Sqlite的忒点  </span><br><span class="line">  一般大型的数据库都会分配用户的权限，进行对应的管理，有专门的数据库配置文件进行统一管理</span><br><span class="line">    sqlite没有这样的权限管理。要使用sqlite数据库内容，文件copy就可以了，不需要进行导入导出，也没有访问限制</span><br><span class="line"></span><br><span class="line">  1、移植性高，只要文件的copy</span><br><span class="line">  2、存储占用的空间不会太大，也不需要专门数据后台支持</span><br><span class="line">  3、数据库的存储量有限，当存出数据多的时候，访问效率会比较低，一般数据存储量在10万条左右</span><br><span class="line">  4、比如数据库操作过程比较弱，删除表的列，添加列等操作都不支持，对外键的支持比较弱</span><br><span class="line">  5、sqlite开源的，Android设备中，自带的本地数据库就是sqlite(因为消耗内存小)</span><br><span class="line"></span><br><span class="line">三、下载（因为JAVASE没有sqlite）</span><br><span class="line">网址：http://www.sqlite.org/download.html（下载windows版本的tools）</span><br><span class="line">下载的zip压缩包解压缩就可以了</span><br><span class="line">直接可以启动sqlite3看到命令行</span><br><span class="line">补充：如果不能识别sqlite3的命令，配置环境变量Path加入sqlite3.exe所在的完整的文件路径</span><br><span class="line"></span><br><span class="line">四、后续所有对sqlite的操作都是基于命令行的操作</span><br><span class="line">    1.如果直接执行sqlite3的命令行，数据库的内容是存放在内存，没有实际的文件。若将关闭命令行，所有的操作都数据都不再存在。纯粹练练手的</span><br><span class="line">    2.如果要存储到实际的文件中，如何操作？</span><br><span class="line">      a)在任意目录创建一个后缀名是.db的文件（该文件可以用来存放sqlite的数据内容）</span><br><span class="line">      b)通过sqlite3的指令打开该文件，存储数据内容即可 </span><br><span class="line">         指令:sqlite3 *.db文件</span><br><span class="line"></span><br><span class="line">五、使用sqlite3基本指令的介绍</span><br><span class="line">      1.常用的指令：</span><br><span class="line">         .help   帮助</span><br><span class="line">         .exit    退出</span><br><span class="line">        .table   查看数据中创建的所有的表</span><br><span class="line">        .schema  （全部）查看当时创建表的语句，确认有哪些列的名字</span><br><span class="line">        .schema 表名   查看该表的创建语句     </span><br><span class="line">        .headers on      显示列的名字</span><br><span class="line">        .mode column     列默认左侧居中的显示方式</span><br><span class="line"></span><br><span class="line">      2.与数据库操作有关的指令（执行对应的sql语句）</span><br><span class="line">         sql语句的含义：结构化查询语言的意思</span><br><span class="line">         分为三种类型：</span><br><span class="line">         1）DDL：数据库定义语句  （主要作用创建数据表，删除数据表，修改数据表的操作）       </span><br><span class="line">         2）DML：数据库操作语句  （主要往数据表添加，删除，修改，查询等）</span><br><span class="line">         3)  DCL: 数据库控制语句 （数据库开启事务，事件回滚的操作等等）</span><br><span class="line"></span><br><span class="line">     3.DDL语句：</span><br><span class="line">        1.数据库中最重要的就是表的资源，组成表由2个基本要素（列名和字段）</span><br><span class="line">           创建表的过程中，定义列的名字和列的数据类型 比如：name字符串  age整数  等等</span><br><span class="line">           扩展：sqlite中有5种数据类型</span><br><span class="line">                     1— integer  整型</span><br><span class="line">                     2— real       浮点型</span><br><span class="line">                     3— text      文本型/字符串类型</span><br><span class="line">                     4— blob     二进制类型</span><br><span class="line">                     5— Null      空</span><br><span class="line">         2.创建表的语句：create table 表名 (列的名字1 列的数据类型1 限制条件1 ,列的名字2 列的数据类型2 限制条件2);</span><br><span class="line">             比如：create table student (name text,age integer，sex text);    //分号结尾表示语句结束了</span><br><span class="line">             补充列录入字段值的限制</span><br><span class="line">             a)primary key   主键  （特点，表示数据的唯一性）规则：主键必须是integer,而且字段的值不能重复 。如果值重复直接报错</span><br><span class="line">             b)not null 非空 （录入的数据不能为空，否则报错）</span><br><span class="line">             c)unique 唯一  （录入的数据内容唯一，不能有重复）</span><br><span class="line">             d)check  检测    (录入数据内容进行检测 ) </span><br><span class="line">                语句格式:check 列名1=内容1 or 列名2=内容2</span><br><span class="line">                比如:  check (sex=&apos;man&apos; or sex=&apos;woman&apos;)</span><br><span class="line">          </span><br><span class="line">            比如：create table student (_id integer primary key autoincrement , name text not null, age integer, sex text check （sex=&apos;man&apos; or sex = &apos;woman&apos;）, score real);</span><br><span class="line">            特殊:autoincrement 自增长的意思，修饰主键，这样录入数据就可以不用考虑主键值的录入了</span><br><span class="line">            </span><br><span class="line">            修改表名字的语句： alter table 表名1 rename to 表名2;  </span><br><span class="line">            删除表语句: drop table 表名;</span><br><span class="line">            表中添加新的列名： alter table 表名 add 字段名 字段类型  限制条件</span><br><span class="line"></span><br><span class="line">       4.DML语句</span><br><span class="line">          1.往数据表中添加数据： insert into 表名 (列名1,列名2,列名3) values (字段值1,字段值2,字段值3)</span><br><span class="line">              比如： insert into student (name,sex,score) values (&apos;zhangsan&apos;,&apos;man&apos;,66.5);</span><br><span class="line">            </span><br><span class="line">          2.查看指定表的所有的数据: select * from 表名     ==    select  列名1,列名2,列名3 from 表名</span><br><span class="line">               补充：*指代了所有的列名</span><br><span class="line">              a)显示指定列的数据（快速通过列名过滤数据）： select  列名1,列名2 from 表名   比如: select _id,name from student;</span><br><span class="line">              b)where语句进行查询: select 列名门  from 表名 where 条件</span><br><span class="line">                  i)支持判断条件：&gt; &lt; =  &gt;= &lt;= !=    比如：select * from student where age &lt;= 20;    select * from student where score&gt;=60;</span><br><span class="line">                  ii)支持算数条件： + - * / %  比如: select * from student where _id+age = 51;</span><br><span class="line">                  iii)支持其他条件：or(或)   and（且）  between 范围1 and 范围2 （在范围1和范围2之间）</span><br><span class="line">                         比如:select * from student where age &gt; 16 or score &gt;80;       只要一个满足就符合要求</span><br><span class="line">                         比如:select * from student where age &gt; 16 and score &gt;80;     全部满足才符合要求</span><br><span class="line">                         比如:select * from student where age between 18 and 20;    在该区间之内（18和20都是包含的）  等同于：where age&gt;=18 and age&lt;=20;</span><br><span class="line">                  iv) distinct(去除重复的数据) </span><br><span class="line">                       比如:select distinct name from student;   //如果名字一样，不显示重复的名字 (比如相同的部门不用反复打印，只要打印几个不同的部门名字就可以了)</span><br><span class="line">                  v)  like (实现模糊查询的功能)</span><br><span class="line">                       语句结构:select 列名 from 表名 where 需要匹配的列的名字 like  &apos;模糊查询的条件(%和_的使用)&apos; </span><br><span class="line">                        比如: select * from student where  name like &apos;ma%&apos;;   //匹配名字是ma开始后面任意内容，所有符合要求的可以查询  （%匹配任意多的字符，0个也可以）                 </span><br><span class="line">                        比如: select * from student where  name like &apos;ma_&apos;;   //匹配名字是ma开始的，后面一个字符的情况，符合要求的可以查询到 （_匹配单一的字符）</span><br><span class="line">                        比如: select * from student where  name like &apos;_ma%&apos;;  //开始匹配一个字符，中间出现ma,结尾匹配任意字符</span><br><span class="line">                c) order by语句（排序，可以根据实际要求进行指定字段的排序）</span><br><span class="line">                        语句结构: select 列名们 from 表名 where 条件  order by  需要排序的列名 asc(升序)/desc(降序)</span><br><span class="line">                        比如: select * from student order by score desc;   (如果字符串排序按照字典次序)</span><br><span class="line">                d) limit 语句 （限制获取的记录条数，数据库查询分页的情况使用比较多）  15(0-14) 15(15-29) 15(30-44)</span><br><span class="line">                        语句结构：select 列名们 from 表名 where 条件 limit  起始记录数(从0开始计算),获取记录的条数   </span><br><span class="line">                        比如：select * from student limit 0,3 (从第一条记录开始，获取3条数据)</span><br><span class="line">                        补充：可以结合order by使用，在排序完成以后进行数据条数的限制获取</span><br><span class="line">                 f) group by语句 （根据某个字段进行分组的操作）</span><br><span class="line">                         语句结构：select 列名们 from 表名 group by  需要分组的列名</span><br><span class="line">                         比如: select * from student group by stu_group;</span><br><span class="line">            3、内部自带的聚合函数的使用</span><br><span class="line">                 count(列名),min(列名),max(列名),sum(列名),avg(列名);</span><br><span class="line">                 比如：select count(*) from student;      可以获取有多少条student的值 (结果)</span><br><span class="line">                           select min(age) from student;     可以获取年龄最小student的值</span><br><span class="line">                           select max(age) from student;     可以获取年龄最大student的值</span><br><span class="line">                           上述的max,min可以作为where的判断条件</span><br><span class="line">                           比如:select * from student where age = (select max(age) from student);</span><br><span class="line">                 后续sum,avg一样的使用方式</span><br><span class="line">    </span><br><span class="line">          3.删除指定的数据：delete from 表名  （清除表内所有的数据）</span><br><span class="line">                                        delete from 表名 where 判断条件    </span><br><span class="line">                                        比如： delete from student where _id=3; (根据主键是3的对应数据进行删除)</span><br><span class="line">                                        当判断条件不成立的时候，删除失败，不会报错的</span><br><span class="line">          4.修改指定的数据：update 表名 set  列名1=修改的值1,列名2=修改的值2 where 条件判断</span><br><span class="line">                          比如：update student set age=50,phonenum=&apos;110&apos; where _id=1; (根据主键是1的对应的数据，修改对应列名所在的内容)</span><br><span class="line"></span><br><span class="line">补充：主外键的概念</span><br><span class="line">1.主键：记录该表数据的唯一性的标识</span><br><span class="line">2.外键： 当前表的某一列记录其他表的主键，该列就称之为外键，定义的名字一般关联表的名字+_id</span><br><span class="line"></span><br><span class="line">如何创建2张表：</span><br><span class="line">1.创建主表 （department）</span><br><span class="line">   create table department (_id integer primary key autoincrement,name text not null);</span><br><span class="line"></span><br><span class="line">2.创建关联主表主键的副表(employee)</span><br><span class="line">   create table employee (_id integer primay key autoincrement, name text not null, salary real, department_id integer, foreign key (department_id)  references  deparment(_id))；</span><br><span class="line">   规则： foreign 外键的列名 references  主表的名字(主表的主键)</span><br><span class="line">   默认情况下sqilte是关闭外键的使用：需要通过命令行手动打开外键的使用  指令:pragma foreign_keys = on;  打开外键的使用 ，如果不打开创建副表foreign不会被识别</span><br><span class="line">   1.可以确认foreign_key 是否代开的情况，输入指令：pragma foreign_keys （通过返回的0或者1进行判断,0是关闭的）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">录入： 主表录入，然后副表的外键关联就可以了</span><br><span class="line">比如主表：insert into department (name) values (&apos;android&apos;);</span><br><span class="line">          insert into department (name) values (&apos;ios&apos;);</span><br><span class="line"></span><br><span class="line">比如副表：insert into employee(name,salary,department_id) values (&apos;jimmy&apos;,3000.0,1);</span><br><span class="line">                 ......</span><br><span class="line"></span><br><span class="line">查询</span><br><span class="line">采用多表联查的方式</span><br><span class="line">select 主表名.列名1，副表名.列名1  from 主表名，副表名;</span><br><span class="line">1.主表1的显示主表1的信息，主表主表2的信息，重复显示</span><br><span class="line">2.多表查询加上查询的条件</span><br><span class="line">     //加入主外键判断条件，过滤数据</span><br><span class="line">     select employee._id,employee.name,employee.salary,department.name from employee,departmentwhere employee.department_id = deparment._id;        </span><br><span class="line">                                 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ● SQLite 简介</span><br><span class="line">本教程帮助您了解什么是 SQLite，它与 SQL 之间的不同，为什么需要它，以及它的应用程序数据库处理方式。</span><br><span class="line">SQLite是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。SQLite是一个增长最快的数据库引擎，这是在普及方面的增长，与它的尺寸大小无关。SQLite 源代码不受版权限制。</span><br><span class="line">什么是 SQLite？</span><br><span class="line">SQLite是一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。它是一个零配置的数据库，这意味着与其他数据库一样，您不需要在系统中配置。</span><br><span class="line">就像其他数据库，SQLite 引擎不是一个独立的进程，可以按应用程序需求进行静态或动态连接。SQLite 直接访问其存储文件。</span><br><span class="line">为什么要用 SQLite？</span><br><span class="line">      ○ 不需要一个单独的服务器进程或操作的系统（无服务器的）。</span><br><span class="line">      ○ SQLite 不需要配置，这意味着不需要安装或管理。</span><br><span class="line">      ○ 一个完整的 SQLite 数据库是存储在一个单一的跨平台的磁盘文件。</span><br><span class="line">      ○ SQLite 是非常小的，是轻量级的，完全配置时小于 400KiB，省略可选功能配置时小于250KiB。</span><br><span class="line">      ○ SQLite 是自给自足的，这意味着不需要任何外部的依赖。</span><br><span class="line">      ○ SQLite 事务是完全兼容 ACID 的，允许从多个进程或线程安全访问。</span><br><span class="line">      ○ SQLite 支持 SQL92（SQL2）标准的大多数查询语言的功能。</span><br><span class="line">      ○ SQLite 使用 ANSI-C 编写的，并提供了简单和易于使用的 API。</span><br><span class="line">      ○ SQLite 可在 UNIX（Linux, Mac OS-X, Android, iOS）和 Windows（Win32, WinCE, WinRT）中运行。</span><br><span class="line"></span><br><span class="line">  ● 在 Windows 上安装 SQLite</span><br><span class="line">      ○ 请访问 SQLite 下载页面，从 Windows 区下载预编译的二进制文件。</span><br><span class="line">      ○ 您需要下载 sqlite-shell-win32-*.zip 和 sqlite-dll-win32-*.zip 压缩文件。</span><br><span class="line">      ○ 创建文件夹 C:\sqlite，并在此文件夹下解压上面两个压缩文件，将得到 sqlite3.def、sqlite3.dll 和 sqlite3.exe 文件。</span><br><span class="line">      ○ 添加 C:\sqlite 到 PATH 环境变量，最后在命令提示符下，使用 sqlite3 命令，将显示如下结果。</span><br><span class="line">历史</span><br><span class="line">      a. 2000 -- D. Richard Hipp 设计 SQLite 是为了不需要管理即可操作程序。</span><br><span class="line">      b. 2000 -- 在八月，SQLite1.0 发布 GNU 数据库管理器（GNU Database Manager）。</span><br><span class="line">      c. 2011 -- Hipp 宣布，向 SQLite DB 添加 UNQl 接口，开发 UNQLite（面向文档的数据库）。</span><br><span class="line">SQLite 局限性</span><br><span class="line">在 SQLite 中，SQL92 不支持的特性如下所示：</span><br><span class="line">特性 描述</span><br><span class="line">RIGHT OUTER JOIN 只实现了 LEFT OUTER JOIN。</span><br><span class="line">FULL OUTER JOIN 只实现了 LEFT OUTER JOIN。</span><br><span class="line">ALTER TABLE 支持 RENAME TABLE 和 ALTER TABLE 的 ADD COLUMN variants 命令，不支持 DROP COLUMN、ALTER COLUMN、ADD CONSTRAINT。</span><br><span class="line">Trigger 支持 支持 FOR EACH ROW 触发器，但不支持 FOR EACH STATEMENT 触发器。</span><br><span class="line">VIEWs 在 SQLite 中，视图是只读的。您不可以在视图上执行 DELETE、INSERT 或 UPDATE 语句。</span><br><span class="line">GRANT 和 REVOKE 可以应用的唯一的访问权限是底层操作系统的正常文件访问权限。</span><br><span class="line">SQLite 命令</span><br><span class="line">与关系数据库进行交互的标准 SQLite 命令类似于 SQL。命令包括 CREATE、SELECT、INSERT、UPDATE、DELETE 和 DROP。这些命令基于它们的操作性质可分为以下几种：</span><br><span class="line">DDL - 数据定义语言</span><br><span class="line">命令 描述</span><br><span class="line">CREATE 创建一个新的表，一个表的视图，或者数据库中的其他对象。</span><br><span class="line">ALTER 修改数据库中的某个已有的数据库对象，比如一个表。</span><br><span class="line">DROP 删除整个表，或者表的视图，或者数据库中的其他对象。</span><br><span class="line">DML - 数据操作语言</span><br><span class="line">命令 描述</span><br><span class="line">INSERT 创建一条记录。</span><br><span class="line">UPDATE 修改记录。</span><br><span class="line">DELETE 删除记录。</span><br><span class="line">DQL - 数据查询语言</span><br><span class="line">命令 描述</span><br><span class="line">SELECT 从一个或多个表中检索某些记录。</span><br><span class="line">  ●</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java07-对象的继承/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1595,306 +1833,6 @@ vp_main.setOffscreenPageLimit(4);
             <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">一、</span><br><span class="line">1.现在有个类Animal动物    还有个类Cat 猫</span><br><span class="line">    因为猫是动物，所以猫是继承自动物的</span><br><span class="line">比如：人类  老师（继承关系）     老师  学生（没有继承关系）</span><br><span class="line">类 金丝猴    类 值钱的（从句法上来说有继承关系）</span><br><span class="line"></span><br><span class="line">2.继承关系的特点：如果A继承B，A拥有B的属性，A拥有B的行为方式，但是A还可以拥有自己的一些特有的行为和属性</span><br><span class="line"></span><br><span class="line">3.在java里怎么表示继承：</span><br><span class="line">    a) class B&#123;&#125;</span><br><span class="line">    b) class A extends B&#123;&#125;</span><br><span class="line"></span><br><span class="line">4.继承的好处：可以大大降低重复属性和行为方法的出现</span><br><span class="line"></span><br><span class="line">5.java中继承的限制：java中只支持单继承，不支持多继承</span><br><span class="line">比如：A继承于B，还要继承于C，是不可以的，金丝猴继承动物类以后，不可以再继承值钱的类</span><br><span class="line"></span><br><span class="line">但是：B可以被多个类继承</span><br><span class="line"></span><br><span class="line">二、通过继承关系引申出来的概念</span><br><span class="line">重写：（最好  复制-粘贴）</span><br><span class="line">概念：通过继承引出方法重写，前提必须要有继承关系，否则不存方法重写的概念</span><br><span class="line">动物里有个吃的方法:动物吃东西</span><br><span class="line">猫继承动物，有你更有动物的吃的方法，猫对这个吃的方法不满意，想重新再写这个方法，这个时候就构成了方法的重写</span><br><span class="line"></span><br><span class="line">方法重写的最大特点：重写的方法和原来父类定义的方法必须一模一样（方法名，参数列表，返回值）</span><br><span class="line">                                 如果不符合上述条件，叫定义了新的方法，不叫方法重写</span><br><span class="line">重写的好处：业务逻辑上清楚，方便代码管理</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">区分重载和重写的区别：</span><br><span class="line">重写必须要有继承关系</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">关键字super的概念：</span><br><span class="line">    指向父类的引用，可以调用父类的成员变量，方法，构造方法</span><br><span class="line"></span><br><span class="line">    public class B&#123;</span><br><span class="line">        String name;</span><br><span class="line">    &#125;</span><br><span class="line">    public class A extends B&#123;</span><br><span class="line">        String name;</span><br><span class="line"></span><br><span class="line">        A()&#123;</span><br><span class="line">            super();//调用了父类的构造方法，默认父类就有无参的构造方法</span><br><span class="line">        &#125;</span><br><span class="line">        //打印B中的name</span><br><span class="line">        void print()&#123;</span><br><span class="line">            System.out.println(super.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">总结：关于super( )构造方法的使用</span><br><span class="line">    1.如果父类有无参的构造方法，子类可以不写super(); 默认子类的构造方法调用的都是父类的无参构造方法</span><br><span class="line">    2.如果父类没有无参的构造方法，子类自己调用父类存在的有参的构造方法，不能省略不写 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">三、多态的概念（OOP编程，封装、继承、多态）</span><br><span class="line">多态是同一个行为具有多个不同表现形式或形态的能力。</span><br><span class="line">多态性是对象多种表现形式的体现。</span><br><span class="line">多态存在的三个必要条件:</span><br><span class="line">  ● 继承</span><br><span class="line">  ● 重写</span><br><span class="line">  ● 父类引用指向子类对象</span><br><span class="line"></span><br><span class="line">定义：在代码运行的时候，才会知道真正调用方的对象具体是谁，这种表现形式称为多态。</span><br><span class="line">          在代码没有运行的时候，就不知道真正执行方法的对象是谁</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/2A5mxTZ.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">final关键字：</span><br><span class="line">1.如果final修饰的是class，表示这个类不允许被继承</span><br><span class="line">2.如果final修饰的是方法，表示该方法不允许被重写</span><br><span class="line">3.如果final修饰的是成员变量，表示该变量不允许被修改</span><br><span class="line">   如果final修饰的变量不是基本数据类型，是引用型的怎么办？</span><br><span class="line">   final修饰的引用变量不能改引用的地址</span><br><span class="line"></span><br><span class="line">    public final class String&#123;&#125;</span><br><span class="line">    为想写个类 public class MyString extends String&#123;&#125; //因为final，所以不能被继承</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java08-抽象类和接口/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java08-抽象类和接口/" itemprop="url">Java08-抽象类和接口</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、抽象类"><a href="#一、抽象类" class="headerlink" title="一、抽象类"></a>一、抽象类</h3><p>定义：这个类是抽象的，抽象的东西就是不完整的东西，他不可能被直接创建，直接去new是不可以的<br>表达抽象类的关键字：abstract 表示抽象    可以形容类，也可以形容方法<br>    比如：</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">abstact class Animal&#123;</span><br><span class="line">                 //抽象方法是没有方法体的</span><br><span class="line">                 //所以抽象方法就是等待被重写的，希望他的子类能描述清楚</span><br><span class="line">                 abstract void eat();  </span><br><span class="line">         &#125;</span><br><span class="line">         class Cat extends Animal&#123;</span><br><span class="line">                 //必须重写父类的抽象方法</span><br><span class="line">                 void eat()&#123;</span><br><span class="line">                     System.out.print(&quot;猫吃东西&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
-</code></pre><ul>
-<li>总结抽象类特点：<ol>
-<li>抽象类里可以没有抽象方法</li>
-<li>如果一个类里存在抽象方法，这个类一定是抽象类</li>
-<li>抽象类必须被继承以后才能实例化</li>
-</ol>
-</li>
-</ul>
-<p>在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</p>
-<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。<br>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。<br>父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。</p>
-<h3 id="二、接口"><a href="#二、接口" class="headerlink" title="二、接口"></a>二、接口</h3><p>定义：表示同意的一种行为规范<br>    比如：值钱的，美味的，能造东西的<br>Java中认为只要是able，ability结尾的可以定义为接口，形成一种规范<br>表达接口的关键字：interface<br>比如：<br>    interface Valuable{}    对比 class Valueablt{}</p>
-<ul>
-<li>接口里可以写哪些东西？<ol>
-<li>只能写常量（static final  来表示）</li>
-<li>只能写抽象方法</li>
-</ol>
-</li>
-</ul>
-<p>比如：</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface Valuable&#123;</span><br><span class="line">               public static final String NAME = &quot;东西&quot;；    //定义完毕以后就不能改,常量大写</span><br><span class="line">               //常量是方法区开辟的空间，专门进行常量的存放，就类似于静态区</span><br><span class="line">               //接口中的方法必须为抽象方法</span><br><span class="line">               public abstract double howMoney();</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
-
-3. 接口中的常量和抽象方法的访问修饰符只能是public
-</code></pre><p>特点：等待其他的类来实现（implements）该接口（interface），完善里面的规则<br>   比如：大熊猫值钱的，要实现Valuable接口,关键字implements实现接口</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Panda implements Valuable，Delicious&#123;</span><br><span class="line"></span><br><span class="line">     public void show()&#123;</span><br><span class="line">      System.out.println(&quot;常量名字&quot;+name);</span><br><span class="line">     &#125;</span><br><span class="line">  </span><br><span class="line">    //必须重写抽象方法</span><br><span class="line">    public double howMoney()&#123;</span><br><span class="line">         System.out.println(&quot;1个亿&quot;);</span><br><span class="line">         return 100000000.00;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-4. 补充：接口中定义的public ,abstract,static,final都可以省略不写，特性还是常量和抽象方法的特性
-</code></pre><p>   记忆的时候class和interface是一块的的，然后extends和implements是一块的</p>
-<ul>
-<li>请描述下抽象类和接口的区别：<ol>
-<li>抽象类是被继承的，接口是被实现的<br>Java规定继承只能是单继承，Java规定实现可以是多实现，在每个接口直接用逗号隔开就可以了</li>
-<li>抽象类里可以没有抽象的方法，但是接口不行，要么不写方法，要写方法都是抽象方法</li>
-<li>抽象类里可以定义变量，接口内部只能定义常量，没有变量的说法</li>
-<li>抽象类内部访问修饰除了private其他都可以定义，接口只能用public进行访问修饰</li>
-<li>接口编程灵活性更加强，是比抽象类更抽象的一个东西</li>
-</ol>
-</li>
-</ul>
-<p>接口（英文：Interface），在JAVA编程语言中是一个抽象类型，是抽象方法的集合，接口通常以interface来声明。一个类通过继承接口的方式，从而来继承接口的抽象方法。<br>接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。<br>除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。<br>接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。另外，在Java中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。</p>
-<ul>
-<li><p>接口与类相似点：</p>
-<ul>
-<li>一个接口可以有多个方法。</li>
-<li>接口文件保存在.java结尾的文件中，文件名使用接口名。</li>
-<li>接口的字节码文件保存在.class结尾的文件中。</li>
-<li>接口相应的字节码文件必须在与包名称相匹配的目录结构中。</li>
-</ul>
-</li>
-<li><p>接口与类的区别：</p>
-<ul>
-<li>接口不能用于实例化对象。</li>
-<li>接口没有构造方法。</li>
-<li>接口中所有的方法必须是抽象方法。</li>
-<li>接口不能包含成员变量，除了static和final变量。</li>
-<li>接口不是被类继承了，而是要被类实现。</li>
-<li>接口支持多重继承。</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/16/Java08-简单工厂模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JamesWong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JamesWong's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/16/Java08-简单工厂模型/" itemprop="url">Java08-简单工厂模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T10:01:35+08:00">
-                2016-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、Java 23种设计模式的1种<br>    工厂模式（主要功能就是造东西，最主要就是new）<br>        1.简单工厂模式（也可以称为静态工厂）<br>        2.工厂方法模式<br>        3.抽象工厂模式</p>
-<p>需求：<br>    用户要拿到几样东西，拿到电视机，洗衣机，电冰箱（对应有方法可以验证可以正常使用）<br>构建3个类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class TV&#123;&#125;    class Washer&#123;&#125;    class IceBox&#123;&#125;</span><br><span class="line">class Customer&#123;</span><br><span class="line">    public static void main(String [] args)&#123;</span><br><span class="line">        TV tv = new TV();</span><br><span class="line">        Washer washer = new Washer();</span><br><span class="line">        IceBox iceBox = new IceBox();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//使用工厂专门去造电视机，电冰箱，洗衣机</span><br><span class="line">class Factory&#123;</span><br><span class="line">    //造东西</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//把电视机，电冰箱，洗衣机归纳为产品</span><br></pre></td></tr></table></figure></p>
-
           
         
       

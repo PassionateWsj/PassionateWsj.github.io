@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="计算机硬件 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组  12南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互">
+<meta name="description" content="计算机硬件 冯诺依曼计算机的体系结构分为五大部分：控制器、运算器、存储器、输入和输出设备 计算机总线分为：地址总线、控制总线、数据总线。计算机五大部分通过总线连接成一个整体。 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组 南桥">
 <meta name="keywords" content="计算机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机基础知识">
 <meta property="og:url" content="http://yoursite.com/2019/04/15/计算机基础知识/index.html">
 <meta property="og:site_name" content="JamesWong&#39;s Notes">
-<meta property="og:description" content="计算机硬件 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组  12南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互">
+<meta property="og:description" content="计算机硬件 冯诺依曼计算机的体系结构分为五大部分：控制器、运算器、存储器、输入和输出设备 计算机总线分为：地址总线、控制总线、数据总线。计算机五大部分通过总线连接成一个整体。 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组 南桥">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T15:39:10.287Z">
+<meta property="og:updated_time" content="2019-04-16T14:26:48.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机基础知识">
-<meta name="twitter:description" content="计算机硬件 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组  12南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互">
+<meta name="twitter:description" content="计算机硬件 冯诺依曼计算机的体系结构分为五大部分：控制器、运算器、存储器、输入和输出设备 计算机总线分为：地址总线、控制总线、数据总线。计算机五大部分通过总线连接成一个整体。 PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作 MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标 主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组 南桥">
 
 
 
@@ -301,13 +301,16 @@
 
       
         <h3 id="计算机硬件"><a href="#计算机硬件" class="headerlink" title="计算机硬件"></a>计算机硬件</h3><ol>
+<li>冯诺依曼计算机的体系结构分为五大部分：控制器、运算器、存储器、输入和输出设备</li>
+<li>计算机总线分为：地址总线、控制总线、数据总线。计算机五大部分通过总线连接成一个整体。</li>
 <li>PCI 总线独立于 CPU 总线，可以与 CPU 总线并行操作</li>
 <li>MIPS 是每秒处理的百万级的机器语言指令数，这是衡量 CPU 速度的重要指标</li>
-<li><p>主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互相沟通，而不需要依赖于CPU的大量中断负载) 。</span><br><span class="line">北桥（系统控制芯片）：主要负责CPU与内存、CPU与PCI-E之间的通信。掌控项目多为高速设备，如：CPU、Host Bus。后期北桥集成内存控制器、Cache高速控制器；</span><br></pre></td></tr></table></figure>
+<li>主板上最重要的构成组件是芯片组，分为南桥、北桥，两者都是超大规模集成芯片组<ul>
+<li>南桥（系统I/O芯片）：主要管理中低速外部设备；集成中断控制器、DMA 控制器(Direct Memory Access，直接内存存取，其允许不同速度的硬件装置互相沟通，而不需要依赖于CPU的大量中断负载) 。</li>
+<li>北桥（系统控制芯片）：主要负责CPU与内存、CPU与PCI-E之间的通信。掌控项目多为高速设备，如：CPU、Host Bus。后期北桥集成内存控制器、Cache高速控制器；</li>
+</ul>
 </li>
-<li><p>访问速度：寄存器&gt;Cache&gt;内存&gt;硬盘</p>
-</li>
+<li>访问速度：寄存器&gt;Cache&gt;内存&gt;硬盘</li>
 <li>控制器、运算器、存储器主要作用<ul>
 <li>控制器：分析指令，控制部件完成任务（协调、指挥各部件的中枢）。由指令寄存器、状态寄存器、指令译码器、时序电路和控制电路组成</li>
 <li>运算器（算数逻辑单元）：进行算数、逻辑运算。主要是对数据加工处理</li>
@@ -316,8 +319,7 @@
 </li>
 <li>调制解调器（ Modem ），俗称 “猫”，因电话线传送的是模拟信号，计算机无法识别，需要做模拟信号和数字信号之间的相互转换。调制即“ 数 –&gt; 模 ”，解调即“ 模 –&gt; 数 ”</li>
 </ol>
-<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><ol>
-<li>ISP（Internet Service Provider）：互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务和增值业务的电信运营商</li>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><ol>
 <li>五层协议<ul>
 <li>应用层（报文）：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。</li>
 <li>传输层（ TCP 报文段或 UDP 用户数据报）：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。TCP 主要提供完整性服务，UDP 主要提供及时性服务</li>
@@ -342,6 +344,18 @@
 <li>流量控制：流量大时排队</li>
 </ul>
 </li>
+<li>ARP（地址解析协议 Address Resolution Protocol）负责将某个IP地址解析成对应的MAC地址。</li>
+<li>ARP攻击就是通过伪造IP地址和MAC地址实现ARP欺骗。仅能在局域网，不能对外网进行</li>
+</ol>
+<h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><p>域名是有两组或两组以上的ASCII或各国语言字符构成，各字符间用点分开最右边为顶级域名或一级域名、倒数第二为二级域名、倒数第三为三级域名</p>
+<p>还分为三类：</p>
+<ul>
+<li>国家或地区：cn (中国)、jp (日本)等；</li>
+<li>通用顶级域名：com（企业）、net（网络提供商）、org（非盈利组织）等；</li>
+<li>新顶级域名：xyz（通用）、top（“高端”）、red（“红色”）、men（“人”）等</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ol>
+<li>ISP（Internet Service Provider）：互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务和增值业务的电信运营商</li>
 <li>地址分类<ul>
 <li>A类（适用大型网络）：1-127，私有 10.0.0.0-10.255.255.255</li>
 <li>B类（适用中型网络）：128-191，私有 172.16.0.0-172.31.255.255</li>
@@ -351,8 +365,6 @@
 </ul>
 </li>
 <li>虚拟局域网可以在网路体系结构上实现交换机端口、MAC 地址、网络层地址和 IP 广播组</li>
-<li>ARP（地址解析协议 Address Resolution Protocol）负责将某个IP地址解析成对应的MAC地址。</li>
-<li>ARP攻击就是通过伪造IP地址和MAC地址实现ARP欺骗。仅能在局域网，不能对外网进行</li>
 <li>计算机网络面临的主要威胁：<ul>
 <li>黑客恶意攻击</li>
 <li>网络自身和管理缺陷</li>
@@ -383,8 +395,11 @@
 <li><p>机器指令由操作码和地址码组成</p>
 </li>
 <li>有符号数分三种表示法：原码、反码（负数时，符号位不变，其他取反）、补码（负数时，符号位不变，其他取反再加1）</li>
-<li><p>机器语言、汇编语言、高级语言</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">机器语言：被计算机直接识别、执行。执行速度快、占内存少，但对于开发者编写、识别、记忆都难。</span><br><span class="line">汇编语言：是面向机器的低级语言。需要编译，机器才能识别。保持机器语言优点，直接、简洁、占用少、执行快，但可移植性差。</span><br><span class="line">高级语言：可维护性好、可移植性好、灵活、易懂、易学、容易编写出结构紧凑、复杂的程序，但执行速度低、对硬件可控性弱。</span><br></pre></td></tr></table></figure>
+<li>机器语言、汇编语言、高级语言<ul>
+<li>机器语言：被计算机直接识别、执行。执行速度快、占内存少，但对于开发者编写、识别、记忆都难。</li>
+<li>汇编语言：是面向机器的低级语言。需要编译，机器才能识别。保持机器语言优点，直接、简洁、占用少、执行快，但可移植性差。</li>
+<li>高级语言：可维护性好、可移植性好、灵活、易懂、易学、容易编写出结构紧凑、复杂的程序，但执行速度低、对硬件可控性弱。需要编译计算机才可识别</li>
+</ul>
 </li>
 </ol>
 <h3 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h3><ol>
@@ -432,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/20/React-Native-Learning-Tips/" rel="next" title="React Native Learning Tips">
-                <i class="fa fa-chevron-left"></i> React Native Learning Tips
+              <a href="/2018/03/14/Android-与-Flutter-一/" rel="next" title="Android 与 Flutter (一)">
+                <i class="fa fa-chevron-left"></i> Android 与 Flutter (一)
               </a>
             
           </div>
@@ -441,6 +456,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/16/UML-图/" rel="prev" title="UML">
+                UML <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -563,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机硬件"><span class="nav-number">1.</span> <span class="nav-text">计算机硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机网络"><span class="nav-number">2.</span> <span class="nav-text">计算机网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统"><span class="nav-number">3.</span> <span class="nav-text">计算机系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机软件"><span class="nav-number">4.</span> <span class="nav-text">计算机软件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机硬件"><span class="nav-number">1.</span> <span class="nav-text">计算机硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机网络"><span class="nav-number">2.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协议"><span class="nav-number">2.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域名"><span class="nav-number">2.2.</span> <span class="nav-text">域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">2.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统"><span class="nav-number">3.</span> <span class="nav-text">计算机系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机软件"><span class="nav-number">4.</span> <span class="nav-text">计算机软件</span></a></li></ol></div>
             
 
           </div>
